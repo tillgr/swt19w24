@@ -1,0 +1,64 @@
+= Protokoll Gruppe 24
+
+Treffen am 18.10.2019
+
+Ort:      APB vor 1066 +
+Beginn:   14:50 Uhr +
+Ende:     16:50 Uhr
+
+__Schriftführer:__ Viktor Reusch
+
+*Nächstes Treffen:* +
+25.10.2019, 14:50 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Anna Lopatkina
+- Till
+- Tobias Köllner
+- Deokgeun Kim
+- Kien
+- Viktor Reusch
+
+== Bemerkungen
+// Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+=== Bis nächste Woche
+- Analysediagram-Entwürfe
+- Videoshop anschauen und Feature für den kleinen Prototyp herraussuchen
+- Pflichtenheft vom Videoshop anschauen und überlegen, wie man das überträgt
+
+=== To-Do
+- kleiner Prototyp (eine selbstgewählte Funktion zum Videoshop hinzufügen) auf einem eigenen Branch
+- Pflichtenheft (wie im Videoshop)
+- Analysediagram
+
+////
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|…     |…       |…      |…
+|===
+////
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+////
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+/*[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===
+////
