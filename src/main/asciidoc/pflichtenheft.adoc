@@ -19,12 +19,51 @@ Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
 
+Kleinreparaturbetrieb 
+Jeder Miss-Mint-Reparaturbetrieb umfasst:
+
+- eine Flickschusterei (Absätze, Sohlen, Nähte)
+- einen Nähservice (Knöpfe, Nähte, Flicken)
+- einen Schlüsseldienst (Schlüssel kopieren, Schilder gravieren)
+- eine Schnellreinigung und Heißmangel (Wäsche, Anzüge, Leder)
+- eine Elektrowerkstatt (Kabel ersetzen, löten)
+- eine Scherenschleiferei (Scheren, Messer schärfen)
+
+__Bestellung:__
+
+- Unmittelbare Erfassung des Preises bei Annahme am Annahmeschalter + Vorauszahlung
+- Auftragszettel für Kunden = (eindeutigen Auftragsnummer + Fertigstellungstermin)
+
+__Abholung:__
+
+- Vorlage des Auftragszettels
+
+-  (0 - 7 Tage) = Abholungszeitraum 
+-  (8 - 91 Tage) = Aufbewahrung + Lagergebuhr (0,50€/7 Tage) 
+-  (ab Tag 92) = karitative Organisation.
+
+__Lieferverzögerung:__
+
+- ab Fertigstellungstermin 10% Rabatt auf Reperaturkosten/Tag Verzögerung
+
+__Softwareansprüche:__
+
+- Annahme, Reparaturplanung, Ausgabe und Lagerung der Waren
+- Ressourcenverwaltung  
+- laufende und akkumulierte Bilanzen (monatliche Bilanz/Gesamtbilanz/evtl. tägliche Bilanz)  
+
+__Aufgaben des Filialmanagments:__
+
+- Bereitstellung der Ressourcen (Personal, Arbeitsgerät, Material, Räume)
+- monatliche Abrechnung (Umsatz - Kosten = Gewinn) an Zentrale 
+
 == Produktnutzung
 In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
 Zusätzlich kurze Einleitung für fachfremde Personen
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+
 
 == Systemgrenze und Top-Level-Architektur
 
