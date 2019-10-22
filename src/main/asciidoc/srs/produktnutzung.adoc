@@ -1,0 +1,5 @@
+== Produktnutzung
+
+In welchem Kontext soll das System später genutzt werden?
+Welche Rahmenbedingungen gelten?
+Zusätzlich kurze Einleitung für fachfremde Personen
