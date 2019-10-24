@@ -7,7 +7,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 [option="headers"]
 |===
 |Woche |Till |Kien |Anna Lopatkina |Tobias Köllner |Deokgeun Kim |Viktor Reusch |Meeting
-|1  |…   |…    |…    |11    |…    |11,5    |3    
+|1  |…   |7    |…    |11    |…    |11,5    |3    
 |2  |…   |…    |…    |…    |…    |3    |1,5    
 |3  |…   |…    |…    |…    |…    |…    |…    
 |4  |…   |…    |…    |…    |…    |…    |…    
