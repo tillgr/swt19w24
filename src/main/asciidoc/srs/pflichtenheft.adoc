@@ -39,8 +39,8 @@ __Abholung:__
 - Vorlage des Auftragszettels
 
 -  (0 - 7 Tage) = Abholungszeitraum 
--  (8 - 91 Tage) = Aufbewahrung + Lagergebuhr (0,50€/7 Tage) 
--  (ab Tag 92) = karitative Organisation.
+-  3 Monate = Aufbewahrung + Lagergebuhr (0,50€/7 Tage) 
+-  danach = karitative Organisation
 
 __Lieferverzögerung:__
 
