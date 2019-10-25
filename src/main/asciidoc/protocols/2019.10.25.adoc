@@ -1,0 +1,65 @@
+= Protokoll Gruppe 24
+
+Treffen am 25.10.2019
+
+Ort:      APB vor 1066 +
+Beginn:   15:00 Uhr +
+Ende:     16:32 Uhr
+
+__Schriftführer:__ Kien Dang Tran
+
+*Nächstes Treffen:* +
+01.11.2019, 14:50 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+// == Bemerkungen
+// Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+////
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|…     |…       |…      |…
+|===
+////
+
+
+=== Aktueller Stand
+- GuestBook: jeder hat sich mit dem Beispiel vertraut gemacht
+- Videoshop: Till, Viktor und Tobias haben Feature implementiert
+- Analysemodelle wurden angefangen
+- GUI-Prototyp
+
+=== Bis nächste Woche
+- Videoshop: Kien und Anna implementieren Lösch-Button in Kommentar/Warenkorb
+- Zusammenstellung der Modelle in das Pflichtenheft
+- Pflichtenheft PDF/HTML?
+
+=== To-Do
+- Viktor: Analyseklassendiagramm fertigstellen, GUI-Prototyp Screenshots
+- Anna: Kontextmodell und Top-Level in MagicDraw, Sequenzdiagramm: Abgabe an karitative Organisation
+- Tobias: Anwendungsfall-Diagramm, Sequenzdiagramm: Raum-Slot wird frei
+- Kien: Sequenzdiagramm: Bilanz-Übersicht
+- Till: Sequenzdiagramm: Dienstleistung wird beantragt
+
+////
+// See http://asciidoctor.org/docs/user-manual/=tables
+ [option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===
+////
