@@ -15,10 +15,10 @@ __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
 - Anna Lopatkina
-- Till
+- Till Große
 - Tobias Köllner
 - Deokgeun Kim
-- Kien
+- Kien Dang Tran
 - Viktor Reusch
 
 == Bemerkungen
