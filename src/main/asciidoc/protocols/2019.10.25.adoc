@@ -49,11 +49,50 @@ __Teilnehmer:__
 - Pflichtenheft PDF/HTML?
 
 === To-Do
-- Viktor: Analyseklassendiagramm fertigstellen, GUI-Prototyp Screenshots
+- Viktor: Analyseklassendiagramm fertigstellen, GUI-Prototyp Screenshots, noch zu wählendes Sequenzdiagramm
 - Anna: Kontextmodell und Top-Level in MagicDraw, Sequenzdiagramm: Abgabe an karitative Organisation
 - Tobias: Anwendungsfall-Diagramm, Sequenzdiagramm: Raum-Slot wird frei
 - Kien: Sequenzdiagramm: Bilanz-Übersicht
 - Till: Sequenzdiagramm: Dienstleistung wird beantragt
+
+=== Geklärte Fragen
+- Wie viele/Welche Muss-Kriterien sind zu erfassen?
+* Muss-Kriterien eher generell halten
+* z. B. Mitarbeiter muss Bestellung aufgeben
+* Alles aus Aufgabenstellung muss vorhanden sein.
+* Allerdings sollen die Kriterien nicht zu kleinkariert werden.
+* Generell gesagt: alles was Funktionalität bietet
+* *Wichtig:* Es soll ein Lager geben
+- Was sind Kann-Kriterien?
+* Bequemlichkeit für Nutzer
+* Besseres Nutzererlebnis
+* Zweisprachigkeit
+* Arbeitsgeräte nachbestellen
+* Passwort-Sicherheit
+* Aber auch gene selber welche hinzudenken
+* Tabelle _Quality Demands_ aus Videoshop übernehmen und anpassen
+- IDs für die einzelnen Tabellen-Einträge im Pflichtenheft?
+* ja
+* Kategorien in die IDs einbauen (z. B. 01XXX für alle Verwaltungs-Anwendungsfällte etc.)
+- Analyse-Diagramme in Englisch
+- Mehrere Dienstleistungen pro Auftrag
+* nein
+- Kunde-System-Interaktion
+* Diese soll es nicht geben.
+- System ist für nur eine Filiale gedacht.
+- Gibt es neben Admin und Mitarbeiter noch andere Nutzer?
+* nein
+* Admin soll gleichzeitig der Filialleiter sein.
+- Räume können alle Aufgaben machen, aber Mitarbeiter können nur bestimmte Skills.
+- Karitative Organisation?
+* Gegenstände aus dem System löschen aber Rechnung behalten
+- Wie viele/welche Sequenzdiagramme?
+* So umsetzen, wie im Videoshop.
+- Räume automatisch belegen?
+* ja
+- Pflichtenheft-Texte auf Deutsch
+- Methoden gehören zum Analyseklassendiagram
+- Räume haben feste Zeit-Slots
 
 ////
 // See http://asciidoctor.org/docs/user-manual/=tables
