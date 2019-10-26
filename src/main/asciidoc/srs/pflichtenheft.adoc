@@ -1,5 +1,5 @@
 = Pflichtenheft
-:project_name: Projektname
+:project_name: Kleinreparaturbetrieb
 == __{project_name}__
 
 [options="header"]

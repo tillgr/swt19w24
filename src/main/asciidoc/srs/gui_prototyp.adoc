@@ -21,3 +21,29 @@ Was kann man damit tun?
 3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
 4. Evtl.
 Maskendetails, spezielle Widgets
+
+=== Grafischer Prototyp
+
+[[index.html]]
+image::./gui-prototype/index.html.png[Startseite,100%,100%,pdfwidth=100%,title= "Startseite",align=center]
+
+[[receiving.html]]
+image::./gui-prototype/receiving.html.png[Annahme,100%,100%,pdfwidth=100%,title= "Formular für den Annahme-Schalter",align=center]
+
+[[cost.html]]
+image::./gui-prototype/cost.html.png[Kosten,100%,100%,pdfwidth=100%,title= "Kosten-Berechnung für den neuen Auftrag",align=center]
+
+[[ticket.html]]
+image::./gui-prototype/ticket.html.png[Auftragszettel,100%,100%,pdfwidth=100%,title= "Auftragszettel für den neuen Auftrag",align=center]
+
+[[orders.html]]
+image::./gui-prototype/orders.html.png[Aufträge,100%,100%,pdfwidth=100%,title= "Übersicht über alle Aufträge",align=center]
+
+[[rooms.html]]
+image::./gui-prototype/rooms.html.png[Räume,100%,100%,pdfwidth=100%,title= "Übersicht über alle Räume",align=center]
+
+[[material.html]]
+image::./gui-prototype/material.html.png[Material,100%,100%,pdfwidth=100%,title= "Übersicht über vorhandenes Material",align=center]
+
+[[users.html]]
+image::./gui-prototype/users.html.png[Nutzerverwaltung,100%,100%,pdfwidth=100%,title= "Übersicht über registrierte Mitarbeiter",align=center]
