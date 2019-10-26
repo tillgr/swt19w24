@@ -10,7 +10,7 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
-    <title>Miss-Mint-Filialmanagement</title>
+    <title>Räume</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,19 +55,35 @@
 </nav>
 
 <div class="container mt-md-5">
-    <h1>Miss-Mint-Filialmanagement</h1>
+    <h1>Räume</h1>
 
-    <p><strong>Bitte melden Sie sich an, um die Management-Software zu nutzen.</strong></p>
+    <div class="card mt-2">
+        <div class="card-header">
+            <h3>B103-E</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><strong>Belegt</strong> von 8adfdf53-0e11-499f-af36-efbc9db8a7f9</h5>
+        </div>
+        <div class="card-footer text-muted">
+            <a class="btn btn-info" href="#">Belegplan</a> <a class="btn btn-danger" href="#">Raum löschen</a>
+        </div>
+    </div>
 
-    <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.
-    </p>
+    <div class="card mt-2">
+        <div class="card-header">
+            <h3>R104-Q</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><strong>Frei</strong></h5>
+            <p class="card-text">Dieser Raum gehört zur Dienstleistung Elektrowerkstatt.</p>
+            <!-- Ob Räume nur bestimme Dienstleistungen können, ist mit dem Kunden zu bereden -->
+        </div>
+        <div class="card-footer text-muted">
+            <a class="btn btn-info" href="#">Belegplan</a> <a class="btn btn-danger" href="#">Raum löschen</a>
+        </div>
+    </div>
 
+    <a class="btn btn-primary mt-2" href="#">Raum hinzufügen</a>
 </div>
 
 <footer class="border-top mt-md-5 pt-sm-2">

@@ -10,7 +10,7 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
-    <title>Miss-Mint-Filialmanagement</title>
+    <title>Annahme - Kosten</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,19 +55,16 @@
 </nav>
 
 <div class="container mt-md-5">
-    <h1>Miss-Mint-Filialmanagement</h1>
+    <h1>Annahme - Kosten</h1>
+    <form action="ticket.html">
+        <div class="form-group form-check">
+            <input class="form-check-input" id="paid" required type="checkbox">
+            <label class="form-check-label" for="paid">Der Kunde hat 1,54€ bezahlt.</label>
+            <!-- Wird automatisch ermittelt -->
+        </div>
 
-    <p><strong>Bitte melden Sie sich an, um die Management-Software zu nutzen.</strong></p>
-
-    <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.
-    </p>
-
+        <button class="btn btn-success" type="submit">Auftragszettel generieren</button>
+    </form>
 </div>
 
 <footer class="border-top mt-md-5 pt-sm-2">
