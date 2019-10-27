@@ -1,0 +1,31 @@
+== Anwendungsfälle
+
+=== Akteure
+
+Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen.
+Dokumentieren Sie die Akteure in einer Tabelle.
+Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz.
+Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
+Weitere relevante Spalten können bei Bedarf ergänzt werden.
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+[cols="1,4"]
+|===
+|Name |Beschreibung
+|...  |...
+|===
+
+=== Überblick Anwendungsfalldiagramm
+
+Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+
+=== Anwendungsfallbeschreibungen
+
+Dieser Unterabschnitt beschreibt die Anwendungsfälle.
+In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden.
+Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden.
+Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
+Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
+Einfache Anwendungsfälle mit einem Absatz beschreiben.
+Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
