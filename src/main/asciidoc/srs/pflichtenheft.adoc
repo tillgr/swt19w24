@@ -1,5 +1,6 @@
 = Pflichtenheft
 :project_name: Kleinreparaturbetrieb
+:toc: macro
 == __{project_name}__
 
 [options="header"]
@@ -10,7 +11,9 @@
 |===
 
 == Inhaltsverzeichnis
-Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
+//Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
+
+toc::[]
 
 == Zusammenfassung
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
