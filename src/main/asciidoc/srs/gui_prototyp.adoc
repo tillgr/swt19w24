@@ -1,0 +1,49 @@
+== GUI Prototyp
+
+In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
+Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
+Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
+
+=== Überblick: Dialoglandkarte
+
+Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt.
+Also mit welchen Aktionen zwischen den Masken navigiert wird.
+//Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
+
+=== Dialogbeschreibung
+
+Für jeden Dialog:
+
+1. Kurze textuelle Dialogbeschreibung eingefügt: Was soll der jeweilige Dialog?
+Was kann man damit tun?
+Überblick?
+2. Maskenentwürfe (Screenshot, Mockup)
+3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
+4. Evtl.
+Maskendetails, spezielle Widgets
+
+=== Grafischer Prototyp
+
+[[index.html]]
+image::./gui-prototype/index.html.png[Startseite,100%,100%,pdfwidth=100%,title= "Startseite",align=center]
+
+[[receiving.html]]
+image::./gui-prototype/receiving.html.png[Annahme,100%,100%,pdfwidth=100%,title= "Formular für den Annahme-Schalter",align=center]
+
+[[cost.html]]
+image::./gui-prototype/cost.html.png[Kosten,100%,100%,pdfwidth=100%,title= "Kosten-Berechnung für den neuen Auftrag",align=center]
+
+[[ticket.html]]
+image::./gui-prototype/ticket.html.png[Auftragszettel,100%,100%,pdfwidth=100%,title= "Auftragszettel für den neuen Auftrag",align=center]
+
+[[orders.html]]
+image::./gui-prototype/orders.html.png[Aufträge,100%,100%,pdfwidth=100%,title= "Übersicht über alle Aufträge",align=center]
+
+[[rooms.html]]
+image::./gui-prototype/rooms.html.png[Räume,100%,100%,pdfwidth=100%,title= "Übersicht über alle Räume",align=center]
+
+[[material.html]]
+image::./gui-prototype/material.html.png[Material,100%,100%,pdfwidth=100%,title= "Übersicht über vorhandenes Material",align=center]
+
+[[users.html]]
+image::./gui-prototype/users.html.png[Nutzerverwaltung,100%,100%,pdfwidth=100%,title= "Übersicht über registrierte Mitarbeiter",align=center]

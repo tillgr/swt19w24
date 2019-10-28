@@ -1,0 +1,3 @@
+== Interessensgruppen (Stakeholders)
+
+Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?

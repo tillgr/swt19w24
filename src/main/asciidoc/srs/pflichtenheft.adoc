@@ -1,0 +1,84 @@
+= Pflichtenheft
+:project_name: Kleinreparaturbetrieb
+== __{project_name}__
+
+[options="header"]
+[cols="1, 1, 1, 1, 4"]
+|===
+|Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
+|0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
+|===
+
+== Inhaltsverzeichnis
+Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
+
+== Zusammenfassung
+Eine kurze Beschreibung des Dokuments. Wenige Absätze.
+
+== Aufgabenstellung und Zielsetzung
+Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
+Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
+
+Kleinreparaturbetrieb 
+Jeder Miss-Mint-Reparaturbetrieb umfasst:
+
+- eine Flickschusterei (Absätze, Sohlen, Nähte)
+- einen Nähservice (Knöpfe, Nähte, Flicken)
+- einen Schlüsseldienst (Schlüssel kopieren, Schilder gravieren)
+- eine Schnellreinigung und Heißmangel (Wäsche, Anzüge, Leder)
+- eine Elektrowerkstatt (Kabel ersetzen, löten)
+- eine Scherenschleiferei (Scheren, Messer schärfen)
+
+__Bestellung:__
+
+- Unmittelbare Erfassung des Preises bei Annahme am Annahmeschalter + Vorauszahlung
+- Auftragszettel für Kunden = (eindeutigen Auftragsnummer + Fertigstellungstermin)
+
+__Abholung:__
+
+- Vorlage des Auftragszettels
+
+-  (0 - 7 Tage) = Abholungszeitraum 
+-  3 Monate = Aufbewahrung + Lagergebuhr (0,50€/7 Tage) 
+-  danach = karitative Organisation
+
+__Lieferverzögerung:__
+
+- ab Fertigstellungstermin 10% Rabatt auf Reperaturkosten/Tag Verzögerung
+
+__Softwareansprüche:__
+
+- Annahme, Reparaturplanung, Ausgabe und Lagerung der Waren
+- Ressourcenverwaltung  
+- laufende und akkumulierte Bilanzen (monatliche Bilanz/Gesamtbilanz/evtl. tägliche Bilanz)  
+
+__Aufgaben des Filialmanagments:__
+
+- Bereitstellung der Ressourcen (Personal, Arbeitsgerät, Material, Räume)
+- monatliche Abrechnung (Umsatz - Kosten = Gewinn) an Zentrale
+
+include::produktnutzung.adoc[]
+
+include::interessensgruppen.adoc[]
+
+include::systemgrenze.adoc[]
+
+include::anwendungsfälle.adoc[]
+
+include::funktionale_anforderungen.adoc[]
+
+include::nicht-funktionale_anforderungen.adoc[]
+
+include::gui_prototyp.adoc[]
+
+include::datenmodell.adoc[]
+
+include::akzeptanztestfälle.adoc[]
+
+== Glossar
+Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
+Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
+Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+
+== Offene Punkte
+Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
