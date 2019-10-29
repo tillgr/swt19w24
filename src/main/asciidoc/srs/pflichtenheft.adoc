@@ -78,6 +78,267 @@ include::datenmodell.adoc[]
 
 include::akzeptanztestfälle.adoc[]
 
+=== Use-Case Diagram
+
+[[use_case_diagram]]
+image::./images/Use_Case_Diagram.png[Use Case diagram, 100%, 100%, pdfwidth=100%, title= "Use case diagram of {project_name}", align=center]
+
+=== Use-Case Descriptions
+
+This section describes the use cases shown in the use case diagram in detail.
+_Note: It is not yet necessary to fully include all special cases and variants (scenarios) of the use case (e.g. what happens if the stock is not sufficient), but the general purpose of the system should become visible._
+_Complex use cases can be shown in detail with a sequence diagram._
+_Typical CRUD (create, read, update, delete) use cases can be condensed into one use case._
+
+_Note: We did not provide a sequence diagram for every use case._
+
+See: +
+https://www.sophist.de/fileadmin/user_upload/Bilder_zu_Seiten/Publikationen/UML2_glasklar/4._Auflage/12-1_Schablone_fuer__Use-Case-Beschreibung.pdf
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<UC0010>>**
+|Name                       |Login/Logout
+|Description                |A user shall be able to login (authenticate) with the system to access further functionality.
+This process shall be reversible by logging out.
+|Actors                     |User
+|Trigger                    |
+_Login_: User wants to access "hidden" functionality by logging in.
+
+_Logout_: User wants to leave the shop.
+|Precondition(s)           a|
+_Login_: User is not authenticated yet
+
+_Logout_: User is authenticated
+|Essential Steps           a|
+_Login_:
+
+  1. User accesses "Einloggen" in the navigation bar
+  2. User enters his credentials
+  3. User hits "Log in" button
+
+_Logout_:
+
+  1. User hits "Ausloggen" in the navigation bar
+  2. User is unauthenticated and is shown the home screen
+
+|Extensions                 |-
+|Functional Requirements    |<<F0010>>
+|===
+
+[cols="1h, 3"]
+[[UC0020]]
+|===
+|ID                         |**<<UC0020>>**
+|Name                       |Register
+|Description                |An unauthenticated user shall be able to create an account for himself.
+|Actors                     |Unauthenticated User
+|Trigger                    |Unauthenticated user wants to create an account for himself by pressing "Registrieren"
+|Precondition(s)           a|Actor is not logged in (authenticated) yet
+|Essential Steps           a|
+1.  Unauthenticated user presses "Registrieren"
+2.  He enters his desired username, password, and delivery address
+3.  System checks username uniqueness
+  . If Unique: An account is created with the provided data
+  . Otherwise: An error message is shown
+|Extensions                 |-
+|Functional Requirements    |<<F0020>>, <<F0021>>
+|===
+
+[[UC0100]]
+[cols="1h, 3"]
+|===
+|ID                         |**<<UC0100>>**
+|Name                       |**View Catalog**
+|Description                |Every visitor of the Videoshop (i.e. *User*) shall be able to access the Catalog, which displays all the offered discs.
+The Catalog must provide the possibility to distinguish between different types of Discs (Dvd, Blu-Ray).
+|Actors                     |User
+|Trigger                    |Accessing the navigation element, which is responsible for displaying the Catalog.
+|Precondition(s)           a|None
+|Essential Steps           a|1. User clicks on the navigation element named "DVD Katalog" or "BluRay Katalog".
+                             2. User is shown all Discs of the selected category.
+|Extensions                 |None
+|Functional Requirements    | <<F0100>>, <<F0110>>, <<F0111>>, <<F0112>>
+|===
+
+[[sequence_diagram_view_catalog]]
+image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
+
+[[UC0110]]
+[cols="1h, 3"]
+|===
+|ID                         |**<<UC0110>>**
+|Name                       |View Product Details
+|Description                |A user shall be able to view the details of a disc on an extra page.
+|Actors                     |User
+|Trigger                    |User views the catalog and presses on an entry to view the details of the disc.
+|Precondition(s)           a|User is viewing the catalog.
+|Essential Steps           a|
+1.  User presses on a displayed entry of the catalog (disc)
+2.  User is shown the details of the selected disc.
+|Extensions                 |-
+|Functional Requirements    | <<F0120>>
+|===
+
+[[sequence_diagram_view_catalog]]
+image::./images/Sequence_Diagrams/View_Product_Details.png[Sequence diagram: View Product Details, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Product Details", align=center]
+
+[cols="1h,3"]
+[[UC0120]]
+|===
+|ID                         |**<<UC0120>>**
+|Name                       |Comment on Product
+|Description                |A user shall be able to leave his opinion about a disc, visible to all other users.
+|Actors                     |User
+|Trigger                    |User wants to comment on a disc
+|Precondition(s)           a|User views the details page (<<UC0110>>) of a disc.
+|Essential Steps           a|
+1.  User enters his textual comment on the details page of a disc
+2.  User presses "Senden" to persist his comment
+3.  Persisted comment is listed on the details page of the disc
+|Extensions                a|
+-   Only authenticated users shall be able to leave a comment
+-   Only authenticated users, who bought this disc, shall be able to comment it
+|Functional Requirements    | <<F0121>>
+|===
+
+[[sequence_diagram_comment_product]]
+image::./images/Sequence_Diagrams/Comment_Product.png[Sequence diagram: Comment on Product, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Comment on Product", align=center]
+
+[cols="1h,3"]
+[[UC0121]]
+|===
+|ID                         |**<<UC0121>>**
+|Name                       |Rate Product
+|Description                |A user shall be able to support his comment with a rating.
+
+_Please Note: As it is implemented, this is not a use case in itself, as the rating is part of use case <<UC0120>>._
+_We decided to model it this way to show an example of the "include" in a use case diagram. The meaning would be: During the process of <<UC0120>>, <<UC0121>> is executed mandatorily (if you decide to leave a comment, it is also necessary to leave a rating)._
+|Actors                     |User
+|Trigger                    |User is about to comment on a disc
+|Precondition(s)           a|User views the details page (<<UC0110>>) of a disc and is about to leave a comment (<<UC0120>>)
+|Essential Steps           a|Actor enters a numerical rating besides the comment
+|Extensions                 |-
+|Functional Requirements    | <<F0121>>
+|===
+
+[cols="1h,3"]
+[[UC0200]]
+|===
+|ID                         |**<<UC0200>>**
+|Name                       |Add Product to Cart
+|Description                |A registered user shall be able to add a disc of a chosen quantity to his cart.
+|Actors                     |Registered User
+|Trigger                    |A registered user views the details page of a disc and wants to enter it to his cart.
+|Precondition(s)           a|
+- Actor has authenticated with the system (i.e. is a registered user)
+- Actor views the details page of a disc
+|Essential Steps           a|
+1.  Actor enters a desired quantity for the selected disc (1..5)
+2.  Actor presses "zum Warenkorb hinzufügen"
+3.  Disc is added to his cart with the selected quantity
+|Extensions                 |-
+|Functional Requirements    | <<F0200>>, <<F0201>>
+|===
+
+[[sequence_diagram_Add_Product_to_Cart]]
+image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add Product to Cart, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Add Product to Cart", align=center]
+
+[cols="1h,3"]
+[[UC0210]]
+|===
+|ID                         |**<<UC0210>>**
+|Name                       |View Cart
+|Description                |A registered user shall be able to view the contents of his cart and the total price of his choice.
+|Actors                     |Registered User
+|Trigger                    |Actor presses "Warenkorb" in the navigation bar
+|Precondition(s)           a|
+- Actor has authenticated with the system (i.e. is a registered user)
+|Essential Steps           a|
+1.    Actor presses "Warenkorb" in the navigation bar
+2.    Actor is shown the content of his cart as well as he total price of it
+|Extensions                 |-
+|Functional Requirements    | <<F0210>>
+|===
+
+[cols="1h,3"]
+[[UC0220]]
+|===
+|ID                         |**<<UC0220>>**
+|Name                       |Buy Products in Cart
+|Description                |A customer shall be able to buy the content of his cart.
+|Actors                     |Customer
+|Trigger                    |Customer
+|Precondition(s)           a|
+- Actor is authenticated and has the role "CUSTOMER" in the system
+- Cart is not empty
+|Essential Steps           a|
+1.  (Customer has put at least one item into his cart (<<UC0200>>))
+2.  Customer presses "Buy"
+3.  Order is checked against stock
+4.  Order is paid automatically
+5.  Discs are removed from the inventory in the chosen quantity
+6.  Order is archived
+|Extensions                 |
+|Functional Requirements    | <<F0101>>, <<F0220>>, <<F0230>>, <<F0240>>, <<F0241>>, <<F0242>>, <<F0243>>
+|===
+
+[[sequence_diagram_Buy_Products_in_Cart]]
+image::./images/Sequence_Diagrams/Buy_Products_in_Cart.png[<Image removed for educational purposes. Such a complex use case does definitely need to be shown in detail with a sequence diagram.>, 100%, 100%, pdfwidth=100%, title= "<Image removed for educational purposes.>", align=center]
+
+[cols="1h,3"]
+[[UC0300]]
+|===
+|ID                         |**<<UC0300>>**
+|Name                       |View Customer List
+|Description                |A Boss should be able to view the whole list of customers of the application.
+|Actors                     |Boss
+|Trigger                    |Boss selects "Kunden" in the navigation bar
+|Precondition(s)           a|User is authenticated and has role "Boss"
+|Essential Steps           a|
+1.  Boss selects "Kunden" in the navigation bar
+2.  Complete list of all registered users with the role "customer" is shown
+|Extensions                 |-
+|Functional Requirements    | <<F0300>>
+|===
+
+[cols="1h,3"]
+[[UC0310]]
+|===
+|ID                         |**<<UC0310>>**
+|Name                       |View Orders
+|Description                |A boss shall be able to view a list of completed orders.
+|Actors                     |Boss
+|Trigger                    |Boss selects "Bestellungen" in the navigation bar
+|Precondition(s)           a|User is authenticated and has role "Boss"
+|Essential Steps           a|
+1.  Boss selects "Bestellungen" in the navigation bar
+2.  Complete list of all completed orders is shown
+|Extensions                 |-
+|Functional Requirements    | <<F0310>>
+|===
+
+[[sequence_diagram_View_Orders]]
+image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+
+
+[cols="1h,3"]
+[[UC0320]]
+|===
+|ID                         |**<<UC0320>>**
+|Name                       |View Inventory
+|Description                |A boss shall be able to view the inventory including the current stock.
+|Actors                     |Boss
+|Trigger                    |Boss selects "Lager" in the navigation bar
+|Precondition(s)           a|User is authenticated and has role "Boss"
+|Essential Steps           a|
+1.  Boss selects "Lager" in the navigation bar
+2.  Complete list of all items of the inventory and the current stock is shown
+|Extensions                 |-
+|Functional Requirements    | <<F0100>>, <<F0320>>
+|===
+
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
