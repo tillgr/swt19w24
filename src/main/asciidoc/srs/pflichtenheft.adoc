@@ -16,7 +16,13 @@
 toc::[]
 
 == Zusammenfassung
-Eine kurze Beschreibung des Dokuments. Wenige Absätze.
+Dieses Dokument stellt die _Software Requirement Specification_ (SRS) von Miss-Mint-Filialmanagement dar.
+Es liefert eine Übersicht über die zu bauende Software und fungiert als Basis für die Kommunikation zwischen den
+Beteiligten dieses Projektes. Das Pflichtenheft beschreibt, was das gewünschte System zu erfüllen hat und
+teilweise wie der Auftragnehmer die Lösung zu implementieren hat.
+
+Die Spezifikationen sollen i.A. korrekt, vollständig und konsistent sein. Da sie am Ende des Projektes
+genutzt werden um zu prüfen, ob die Software den Anforderungen enspricht.
 
 == Aufgabenstellung und Zielsetzung
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
