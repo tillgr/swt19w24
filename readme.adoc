@@ -1,3 +1,8 @@
+Quicklink
+
+link:https://github.com/st-tu-dresden-praktikum/swt19w24/tree/srs/src/main/asciidoc/srs[Pflichtenheft]
+link:https://github.com/st-tu-dresden-praktikum/swt19w24/tree/master/src/main/asciidoc/protocols[Protocols]
+
 = Kickstart
 
 The kickstart module is a template project to bootstrap the Java project in the Software Engineering lab.
