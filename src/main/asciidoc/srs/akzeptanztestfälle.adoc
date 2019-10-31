@@ -16,9 +16,23 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 Ein unangemeldeter Angestellter geht zur Login-Maske und meldet sich mit den validen Nutzerdaten
 (name=mueller, passwort=123) an.
 |Erwartetes Ergebnis     a|
-- Der Angestellte ist jetzt als "mueller" angemeldet.
+- Der Angestellte ist jetzt als _mueller_ angemeldet.
 - Der Angestellte wird auf die Annahmeschalter-Seite weiter geleitet.
 - Der Angestellte hat jetzt Zugriff auf den Annahmeschalter, die Aufträge etc.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Das System hat existierende Nutzer.
+|Ereignis                a|
+Eine unangemeldete Person geht zur Login-Maske und meldet sich mit dem validen Nutzernamen
+_mueller_ aber dem falschen Passwort _321_ an.
+|Erwartetes Ergebnis     a|
+- Die Person wird auf gar keinen Fall als _mueller_ angemeldet.
+- Die Person landet wieder bei der Login-Maske.
+- Ein Fehler wird angezeigt, der ihn über falsche Daten informiert,
+ohne ihm zu verraten, dass der Nutzername richtig war.
 |===
 
 |===
@@ -87,6 +101,20 @@ Die Jeans sind jetzt erst fertig geworden.
 |Erwartetes Ergebnis     a|
 - Herr Leiter bekommt 30% seines bezahlten Preises zurück.
 - Diese Ausgaben werden in den Finanzen vermerkt.
+- Die Jeans wird aus dem Lager-System entfernt.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|
+Herr Leiter hat seine Jeans abgegeben und sie sollten vor 20 Tagen fertig gewesen sein.
+|Ereignis                a|
+Die Jeans sind jetzt erst fertig geworden.
+|Erwartetes Ergebnis     a|
+- Herr Leiter bekommt den vollen Reparatur-Preis zurück aber nicht mehr!
+- Diese Ausgaben werden in den Finanzen vermerkt.
+- Die Jeans wird aus dem Lager-System entfernt.
 |===
 
 |===
@@ -111,4 +139,16 @@ Der Filialleiter trägt einen neuen Mitarbeiter in das System ein, der Schustern
 - Der Mitarbeiter kann sich jetzt in das System einloggen.
 - Neue Schufterei-Aufträge werden auch diesem Mitarbeiter zugeordnet.
 - Vielleicht werden auch bestehende Aufträge an den Mitarbeiter verteilt, damit sie schneller fertig werden.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Der Filialleiter is angemeldet. Und das System kennt einen Nutzer _mueller_.
+|Ereignis                a|
+Der Filialleiter trägt einen neuen Mitarbeiter in das System ein. Er möchte ihn auch _mueller_ nennen.
+|Erwartetes Ergebnis     a|
+- Das alte Benutzerkonto _mueller_ bleibt unangetastet.
+- Der Filialleiter wird das Nutzer-Anlege-Formular wieder angezeigt, wo seine eingegebenen Daten noch drin stehen.
+- Der Filialleiter wird gebeten, sich einen anderen Nutzernamen auszudenken.
 |===
