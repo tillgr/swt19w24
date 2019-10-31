@@ -1,8 +1,66 @@
 == Funktionale Anforderungen
 
 === Muss-Kriterien
+Dieser Abschnitt gibt einen Überblick über die Muss-Kriterien, welche die Software auf jeden Fall
+gewährleisten muss.
 
-Was das zu erstellende Programm auf alle Fälle leisten muss.
+Die Tabelle beinhaltet:
+
+    - eine eindeutige Id, die zum referenzieren benutzt werden kann
+    - Name des Kriteriums
+    - eine Beschreibung des Kriteriums
+
+[options="header", cols="2h, 3, 12"]
+|===
+|ID
+|Name
+|Beschreibung
+
+|[[F0010]]<<F0010>>
+|Authentifizierung
+|Mitarbeiter sollen sich durch einen Benutzernamen und einem Passwort einloggen können.
+
+|[[F0020]]<<F0020>>
+|Registrierung
+|Der Admin kann neue Mitarbeiter registrieren.
+
+|[[F0030]]<<F0030>>
+|Auftragszettel
+|Nach Bezahlung wird ein Auftragszettel mit eindeutiger Auftragsnummer und Fertigstellungstermin
+erstellt.
+
+|[[F0040]]<<F0040>>
+|Lagerung der Ware in Aufbewahrungsstelle
+|Eine Woche nach dem Fertigstellungstermin geht die Ware in eine Aufbewahrungsstelle.
+
+|[[F0050]]<<F0050>>
+|Aufbewahrungsgebühr
+|Für die Lagerung der Ware in der Aufbewahrungsstelle wird eine Gebühr von 0,50€ pro Woche verlangt.
+
+|[[F0060]]<<F0060>>
+|Teilweise Erstattung bei Verzögerung
+|Für jeden ganzen verspäteten Tag seitens des Betriebs werden 10% der Reparaturkosten für den Kunden erstattet.
+Dabei können nicht mehr als 100% erstattet werden.
+
+|[[F0070]]<<F0070>>
+|Ressourcenverwaltung
+|Das System soll Ressourcen wie Personal, Arbeitsgeräte, Materialen und Räume verwalten.
+
+|[[F0080]]<<F0080>>
+|Bilanzübersicht
+|Der Admin soll zu jeder Zeit die gesamte Bilanzen des Betriebs einsehen können. Dazu gehören
+laufende und akkumulierte Bilanzen.
+
+|[[F0090]]<<F0090>>
+|Übergabe an karitative Organisation
+|Falls die Ware nach den 3 Monaten in der Aufbewahrungsstelle nicht abgeholt wurde, soll sie an
+eine karitative Organisation weitergeben werden.
+
+|[[F0100]]<<F0100>>
+|Dienstleistungen
+|Das System soll die aktuell verfügbaren Dienstleistungen des Reparaturbetriebs erfassen können.
+
+|===
 
 === Kann-Kriterien
 
