@@ -42,7 +42,7 @@ __Abholung:__
 - Vorlage des Auftragszettels
 
 -  (0 - 7 Tage) = Abholungszeitraum 
--  3 Monate = Aufbewahrung + Lagergebuhr (0,50€/7 Tage) 
+-  3 Monate = Aufbewahrung + Lagergebühr (0,50€/7 Tage) 
 -  danach = karitative Organisation
 
 __Lieferverzögerung:__
