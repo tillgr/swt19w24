@@ -1,5 +1,20 @@
 == Produktnutzung
 
-In welchem Kontext soll das System später genutzt werden?
-Welche Rahmenbedingungen gelten?
-Zusätzlich kurze Einleitung für fachfremde Personen
+Dieser Abschnitt gibt einen Überblick , wie das Produkt nach Fertigstellung
+und unter welchen Umständen verwendet werden soll.
+
+Das System wird vom Mitarbeiter des Kleinreparaturbetriebs Filiale verwendet, um Arbeitsprozess zu optimisieren.
+Die Software soll auf einem Server laufen und sowohl für Mitarbeiter als auch für Chef rund um die Uhr zur Verfügung stehen.
+
+Das System muss für die folgenden Browser zugänglich und optisch optimiert sein:
+
+-Google Chrome, Version 61.0.3163+
+
+-Mozilla Firefox, Version 55.0.3+
+
+Die Hauptnutzer der Software sind Mitarbeiters, die angeblich typische Website-Navigationsschemata kennen,
+sowie Chaf (Admin), der nicht unbedingt über einen technischen Hintergrund verfügt.
+
+Das System muss nicht technisch gewartet werden.
+Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein
+(z. B. sollten für einen Chef keine SQL-Kenntnisse erforderlich sein).
