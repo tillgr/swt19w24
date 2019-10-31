@@ -1,7 +1,154 @@
 == Akzeptanztestfälle
 
+////
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt.
 Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt).
 Für jedes Szenarium sollte es einen Akzeptanztestfall geben.
 Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+////
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Das System hat existierende Nutzer.
+|Ereignis                a|
+Ein unangemeldeter Angestellter geht zur Login-Maske und meldet sich mit den validen Nutzerdaten
+(name=mueller, passwort=123) an.
+|Erwartetes Ergebnis     a|
+- Der Angestellte ist jetzt als _mueller_ angemeldet.
+- Der Angestellte wird auf die Annahmeschalter-Seite weiter geleitet.
+- Der Angestellte hat jetzt Zugriff auf den Annahmeschalter, die Aufträge etc.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Das System hat existierende Nutzer.
+|Ereignis                a|
+Eine unangemeldete Person geht zur Login-Maske und meldet sich mit dem validen Nutzernamen
+_mueller_ aber dem falschen Passwort _321_ an.
+|Erwartetes Ergebnis     a|
+- Die Person wird auf gar keinen Fall als _mueller_ angemeldet.
+- Die Person landet wieder bei der Login-Maske.
+- Ein Fehler wird angezeigt, der ihn über falsche Daten informiert,
+ohne ihm zu verraten, dass der Nutzername richtig war.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Ein Nutzer hat sich angemeldet.
+|Ereignis                a|
+Der angemeldete Nutzer klickt auf den Logout-Button.
+|Erwartetes Ergebnis     a|
+- Der Nutzer ist jetzt abgemeldet.
+- Der Nutzer wird die Startseite weiter geleitet.
+- Der Nutzer hat jetzt nur noch Zugriff auf die Start- und Login-Seite.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|
+Es existiert mindestens ein Raum im System und ein Mitarbeiter, der Schuster-Aufgaben erledigen kann
+und freie Zeit bzw. noch keine Aufträge hat.
+|Ereignis                a|
+Ein Kunde kommt in den Laden und möchte seien Sohlen reparieren. +
+Ein angemeldeter Mitarbeiter trägt den Auftrag ins System ein und kassiert den Kunden ab. +
+Zudem nimmt er den Gegenstand entgegen.
+|Erwartetes Ergebnis     a|
+- Das eingenommene Geld wird in den Finanzen verbucht.
+- Der Auftrag und damit der Schuh wird in den nächsten freien Zeit-Slot eines Raums eingetragen.
+- Der Auftrag wird zu dieser Zeit auch dem Mitarbeiter zugeordnet.
+- Materialien für diesen Auftrag werden aus dem System ausgetragen.
+- Für den Kunden wird ein Auftragszettel generiert.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Es existieren Räume im System. Der Filialleiter is angemeldet.
+|Ereignis                a|
+Der Filialleiter trägt einen neu hinzugekommenen Raum in die Raumverwaltung ein.
+|Erwartetes Ergebnis     a|
+- Neue Aufträge werden nun, wenn von der Zeit günstig, in diesen Raum eingeplant.
+- Vielleicht werden auch bestehende Aufträge in den neuen Raum verteilt, damit sie schneller fertig werden.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|
+Die Jeans von Herrn Leiter liegt schon 3 Wochen über dem Fertigstellungstermin im Lager.
+|Ereignis                a|
+Herr Leiter kommt in den Laden und holt seinen Gegenstand ab.
+
+Ein angemeldete Angestellter geht auf die Auftragsseite und löst den Gegenstand aus.
+|Erwartetes Ergebnis     a|
+- Der Angestellte wird aufgefordert 1€ zu kassieren.
+- Der eine Euro wird in die Finanz-Verwaltung als Einnahme eingetragen.
+- Die Jeans wird aus dem Lager-System entfernt.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|
+Herr Leiter hat seine Jeans abgegeben und sie sollten vor 3 Tagen fertig gewesen sein.
+|Ereignis                a|
+Die Jeans sind jetzt erst fertig geworden.
+|Erwartetes Ergebnis     a|
+- Herr Leiter bekommt 30% seines bezahlten Preises zurück.
+- Diese Ausgaben werden in den Finanzen vermerkt.
+- Die Jeans wird aus dem Lager-System entfernt.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|
+Herr Leiter hat seine Jeans abgegeben und sie sollten vor 20 Tagen fertig gewesen sein.
+|Ereignis                a|
+Die Jeans sind jetzt erst fertig geworden.
+|Erwartetes Ergebnis     a|
+- Herr Leiter bekommt den vollen Reparatur-Preis zurück aber nicht mehr!
+- Diese Ausgaben werden in den Finanzen vermerkt.
+- Die Jeans wird aus dem Lager-System entfernt.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|
+Herr Leiter hat seine Jeans schon vor langer Zeit zur Reparatur abgegeben.
+|Ereignis                a|
+Die Jeans ist schon seit einer Woche und drei Monaten nicht abgeholt worden.
+|Erwartetes Ergebnis     a|
+- Die Jeans wird aus dem Lager-System gelöscht und einer karitativen Organisation zugeführt.
+- Der Auftrags-Zustand wird entsprechend gesetzt.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Der Filialleiter is angemeldet.
+|Ereignis                a|
+Der Filialleiter trägt einen neuen Mitarbeiter in das System ein, der Schustern kann.
+|Erwartetes Ergebnis     a|
+- Der Mitarbeiter kann sich jetzt in das System einloggen.
+- Neue Schufterei-Aufträge werden auch diesem Mitarbeiter zugeordnet.
+- Vielleicht werden auch bestehende Aufträge an den Mitarbeiter verteilt, damit sie schneller fertig werden.
+|===
+
+|===
+|ID                       |
+|Anwendungsfall           |
+|Voraussetzungen         a|Der Filialleiter is angemeldet. Und das System kennt einen Nutzer _mueller_.
+|Ereignis                a|
+Der Filialleiter trägt einen neuen Mitarbeiter in das System ein. Er möchte ihn auch _mueller_ nennen.
+|Erwartetes Ergebnis     a|
+- Das alte Benutzerkonto _mueller_ bleibt unangetastet.
+- Der Filialleiter wird das Nutzer-Anlege-Formular wieder angezeigt, wo seine eingegebenen Daten noch drin stehen.
+- Der Filialleiter wird gebeten, sich einen anderen Nutzernamen auszudenken.
+|===
