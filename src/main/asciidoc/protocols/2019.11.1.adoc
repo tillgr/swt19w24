@@ -1,15 +1,15 @@
-= Protokoll Gruppe XX
+= Protokoll Gruppe 24
 
-Treffen am XX.XX.20XX
+Treffen am 1.1.2019
 
 Ort:      APB E0005 +
 Beginn:   15:01 Uhr +
-Ende:     xx:xx Uhr
+Ende:     16:10 Uhr
 
 __Schriftführer: Tobias Köllner__
 
 *Nächstes Treffen:* +
-8.11.2019, 15:00 Uhr
+8.11.2019, 14:55 Uhr
 
 __Teilnehmer:__
 
@@ -22,35 +22,36 @@ __Teilnehmer:__
 
 == Aktueller Stand
 - Videoshop: Kien, Viktor und Tobias haben Feature implementiert
-- SwP:
+
 
 == Bis Nächste Woche
 Pflichtenheft
-uml diagramme hinzufügen
+
+UMl-Diagramme hinzufügen
 
 Stakeholder: ok
 
 Muss-Kriterien: ein wenig mehr
 
-kann-kriterien: mehr
+Kann-kriterien: mehr
 
 Nicht funktionale Anforderung: mehr
 
 gui-prototyp: passt
 
-dialoglandkarte: nicht relevant
+Dialoglandkarte: nicht relevant
 
-anwendungsfälle: text fixen
+Anwendungsfälle: text fixen
 
-datenmodell: passt
+Datenmodell: passt
 
-akzeptanztestfälle: meeeehr
+Akzeptanztestfälle: meeeehr
 
-produktnutzung: passt
+Produktnutzung: passt
 
-systemgrenze: Text raus
+Systemgrenze: Text raus
 
-glossar:
+Glossar:
 
 
 == To Do
@@ -69,5 +70,3 @@ Till: Weiß was er zu tun hat
 Tobias: Videoshopprototyp fixen/ Teil des Pflichtenhefts hinzufügen(Akteure für UseCases/Stakeholder)
 
 Kien: Fliestext Aufgabenstellung und Zielsetzung
-== Geklärte Fragen
--
