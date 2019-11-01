@@ -57,7 +57,13 @@ reagieren und dort benutzbar dargestellt werden.
 |Hilfreiche Fehlermeldungen
 a|
 Wenn Formulare mit falschen Daten abgeschickt werden,
-sollen dem Nutzer hilfreiche Fehlermeldungnen angezeigt werden.
+sollen dem Nutzer hilfreiche Fehlermeldungen angezeigt werden.
+
+|[[NF0041]]<<NF0041>>
+|Zusätzliche Client-Side-Validation
+a|
+Schon möglichst im HTML soll verhindert werden,
+dass der Nutzer falsche bzw. keine Angaben in Formular-Feldern tätigt.
 
 |[[NF0050]]<<NF0050>>
 |Englische Übersetzung
