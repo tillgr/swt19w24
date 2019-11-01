@@ -99,35 +99,35 @@ _Typical CRUD (create, read, update, delete) use cases can be condensed into one
 _Note: We did not provide a sequence diagram for every use case._
 
 See: +
-https://www.sophist.de/fileadmin/user_upload/Bilder_zu_Seiten/Publikationen/UML2_glasklar/4._Auflage/12-1_Schablone_fuer__Use-Case-Beschreibung.pdf
+https://www.sophist.de/fileadmin/SOPHIST/UML/uml2-4_linknummern/12-1_Schablone_fuer_%20Use-Case-Beschreibung.pdf
 
 [cols="1h, 3"]
 [[UC0010]]
 |===
 |ID                         |**<<UC0010>>**
 |Name                       |Login/Logout
-|Description                |A user shall be able to login (authenticate) with the system to access further functionality.
-This process shall be reversible by logging out.
-|Actors                     |User
+|Description                |Ein Benutzer muss sich beim System anmelden (authentifizieren) können, um auf weitere Funktionen zugreifen zu können.
+Dieser Prozess muss durch Abmeldung rückgängig gemacht werden können.
+|Actors                     |Mitarbeiter
 |Trigger                    |
-_Login_: User wants to access "hidden" functionality by logging in.
+_Login_: Der Benutzer möchte durch Einloggen auf "versteckte" Funktionen zugreifen.
 
-_Logout_: User wants to leave the shop.
-|Precondition(s)           a|
-_Login_: User is not authenticated yet
+_Logout_: Der Benutzer möchte den Shop verlassen.
+|Precondition(s)  a|
+_Login_: Der Benutzer ist noch nicht authentifiziert.
 
-_Logout_: User is authenticated
-|Essential Steps           a|
+_Logout_: Benutzer ist authentifiziert
+|Essential Steps a|
 _Login_:
 
-  1. User accesses "Einloggen" in the navigation bar
-  2. User enters his credentials
-  3. User hits "Log in" button
+1. Benutzerzugriffe auf "Einloggen" in der Navigationsleiste
+2. Benutzer gibt seine Zugangsdaten ein
+3. Der Benutzer drückt auf die Schaltfläche "Anmelden".
 
 _Logout_:
 
-  1. User hits "Ausloggen" in the navigation bar
-  2. User is unauthenticated and is shown the home screen
+1. Benutzer klickt in der Navigationsleiste auf "Ausloggen".
+2. Der Benutzer ist nicht authentifiziert und wird auf dem Startbildschirm angezeigt.
 
 |Extensions                 |-
 |Functional Requirements    |<<F0010>>
@@ -137,18 +137,17 @@ _Logout_:
 [[UC0020]]
 |===
 |ID                         |**<<UC0020>>**
-|Name                       |Register
-|Description                |An unauthenticated user shall be able to create an account for himself.
-|Actors                     |Unauthenticated User
-|Trigger                    |Unauthenticated user wants to create an account for himself by pressing "Registrieren"
-|Precondition(s)           a|Actor is not logged in (authenticated) yet
+|Name                       |Mitarbeiter wird erstellt
+|Description                |Ein Admin sollte in der Lage sein einen Account für einen Mitarbeiter zu erstellen.
+|Actors                     |Admin
+|Trigger                    |Der Administrator möchte ein Konto für einen Benutzer erstellen, indem er auf "Registrieren" drückt.
+|Precondition(s)           a|Mitarbeit ist noch nicht eingeloggt (authentifiziert)
 |Essential Steps           a|
-1.  Unauthenticated user presses "Registrieren"
-2.  He enters his desired username, password, and delivery address
-3.  System checks username uniqueness
-  . If Unique: An account is created with the provided data
-  . Otherwise: An error message is shown
-|Extensions                 |-
+1.  Der Admin drückt "Registrieren".
+2.  Er gibt den gewünschten Benutzernamen, das Passwort und die Adresse ein.
+3.  System prüft die Eindeutigkeit des Benutzernamens
+. Wenn einzigartig: Es wird ein Konto mit den angegebenen Daten angelegt.
+. Andernfalls: Es wird eine Fehlermeldung angezeigt.|Extensions                 |-
 |Functional Requirements    |<<F0020>>, <<F0021>>
 |===
 
@@ -156,7 +155,7 @@ _Logout_:
 [cols="1h, 3"]
 |===
 |ID                         |**<<UC0100>>**
-|Name                       |**View Catalog**
+|Name                       |Bilanzen abrufen
 |Description                |Every visitor of the Videoshop (i.e. *User*) shall be able to access the Catalog, which displays all the offered discs.
 The Catalog must provide the possibility to distinguish between different types of Discs (Dvd, Blu-Ray).
 |Actors                     |User
@@ -169,62 +168,62 @@ The Catalog must provide the possibility to distinguish between different types 
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
+image::.\images\Sequence_Diagrams\View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
 
 [[UC0110]]
 [cols="1h, 3"]
 |===
 |ID                         |**<<UC0110>>**
-|Name                       |View Product Details
-|Description                |A user shall be able to view the details of a disc on an extra page.
-|Actors                     |User
-|Trigger                    |User views the catalog and presses on an entry to view the details of the disc.
-|Precondition(s)           a|User is viewing the catalog.
+|Name                       |Gewinn abführen
+|Description                |Ein Admin sollte in der Lage sein, in einer gesonderten Nutzerumgebung den Gewinn einzusehen und auszuzahlen.
+|Actors                     |Admin
+|Trigger                    |Admin öffnet die Bilanzübersicht und lässt sich Gewinn anzeigen.
+|Precondition(s)           a|Admin lässt sich Bilanzübersicht anzeigen.
 |Essential Steps           a|
-1.  User presses on a displayed entry of the catalog (disc)
-2.  User is shown the details of the selected disc.
+1.  Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus
+2.  Admin bekommt den Gewinn angezeigt und kann ihn abführen
 |Extensions                 |-
 |Functional Requirements    | <<F0120>>
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/Sequence_Diagrams/View_Product_Details.png[Sequence diagram: View Product Details, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Product Details", align=center]
+image::.\images\Sequence_Diagrams\View_Product_Details.png[Sequence diagram: View Product Details, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Product Details", align=center]
 
 [cols="1h,3"]
 [[UC0120]]
 |===
 |ID                         |**<<UC0120>>**
-|Name                       |Comment on Product
-|Description                |A user shall be able to leave his opinion about a disc, visible to all other users.
-|Actors                     |User
-|Trigger                    |User wants to comment on a disc
-|Precondition(s)           a|User views the details page (<<UC0110>>) of a disc.
+|Name                       |Auftrag erstellen
+|Description                |Ein Kunde gibt bei einem Mitarbeiter einen Auftrag ab und dieser soll ihn dem System überstellen.
+|Actors                     |Mitarbeiter
+|Trigger                    |Mitarbeiter gibt Auftrag in das Sytsem ein.
+|Precondition(s)           a|Mitarbeiter ist eingeloggt und hat Zugriff auf die Komponente zur Auftragsverwaltung.
 |Essential Steps           a|
-1.  User enters his textual comment on the details page of a disc
-2.  User presses "Senden" to persist his comment
-3.  Persisted comment is listed on the details page of the disc
+1.  Mitarbeiter loggt sich ein
+2.  Mitarbeiter gibt Daten in das System ein
+3.  System verarbeitet Auftrag und gibt Ticket für den Kunden aus
 |Extensions                a|
--   Only authenticated users shall be able to leave a comment
--   Only authenticated users, who bought this disc, shall be able to comment it
+-   Nur Angemeldete Mitarbeiter dürfen Aufträge erstellem und Stornieren
+-   Jeder Mitarbeiter kann nur seine eigenen Aufträge stornieren
 |Functional Requirements    | <<F0121>>
 |===
 
 [[sequence_diagram_comment_product]]
-image::./images/Sequence_Diagrams/Comment_Product.png[Sequence diagram: Comment on Product, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Comment on Product", align=center]
+image::.\images\Sequence_Diagrams\Comment_Product.png[Sequence diagram: Comment on Product, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Comment on Product", align=center]
 
 [cols="1h,3"]
 [[UC0121]]
 |===
 |ID                         |**<<UC0121>>**
-|Name                       |Rate Product
-|Description                |A user shall be able to support his comment with a rating.
-
-_Please Note: As it is implemented, this is not a use case in itself, as the rating is part of use case <<UC0120>>._
-_We decided to model it this way to show an example of the "include" in a use case diagram. The meaning would be: During the process of <<UC0120>>, <<UC0121>> is executed mandatorily (if you decide to leave a comment, it is also necessary to leave a rating)._
-|Actors                     |User
-|Trigger                    |User is about to comment on a disc
-|Precondition(s)           a|User views the details page (<<UC0110>>) of a disc and is about to leave a comment (<<UC0120>>)
-|Essential Steps           a|Actor enters a numerical rating besides the comment
+|Name                       |Ware abholen
+|Description                |Ein Mitarbeiter soll einem Kunden seine fertige Ware aushändigen.
+|Actors                     |Mitarbeiter
+|Trigger                    |Mitarbeiter bestätigt Abholung der Ware im System
+|Precondition(s)           a|Ware liegt fertig bearbeitet im Lager
+|Essential Steps           a|
+1.  Bei Abholung wird auf Verspätung der Bearbeitung geprüft
+2.  Bei Abholung wird auf Verspätung der Abholung geprüft
+3.  Die nötigen Schritte werden eingeleitet
 |Extensions                 |-
 |Functional Requirements    | <<F0121>>
 |===
@@ -233,37 +232,36 @@ _We decided to model it this way to show an example of the "include" in a use ca
 [[UC0200]]
 |===
 |ID                         |**<<UC0200>>**
-|Name                       |Add Product to Cart
-|Description                |A registered user shall be able to add a disc of a chosen quantity to his cart.
-|Actors                     |Registered User
-|Trigger                    |A registered user views the details page of a disc and wants to enter it to his cart.
-|Precondition(s)           a|
-- Actor has authenticated with the system (i.e. is a registered user)
-- Actor views the details page of a disc
+|Name                       |Ware wird zu spät abgeholt
+|Description                |Ein Mitarbeiter soll einem Kunden seine fertige Ware aushändigen.
+|Actors                     |Mitarbeiter
+|Trigger                    |Mitarbeiter bestätigt Abholung der Ware im System
+|Precondition(s)           a|Ware liegt fertig bearbeitet im Lager
 |Essential Steps           a|
-1.  Actor enters a desired quantity for the selected disc (1..5)
-2.  Actor presses "zum Warenkorb hinzufügen"
-3.  Disc is added to his cart with the selected quantity
+1.  Bei Abholung wird auf Verspätung der Bearbeitung geprüft
+2.  Bei Abholung wird auf Verspätung der Abholung geprüft
+3.  Gebühren werden auf den Preis aufegschlagen
+4.  Mitarbeiter kassiert die Gebühr
 |Extensions                 |-
 |Functional Requirements    | <<F0200>>, <<F0201>>
 |===
 
 [[sequence_diagram_Add_Product_to_Cart]]
-image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add Product to Cart, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Add Product to Cart", align=center]
+image::.\images\Sequence_Diagrams\Add_Product_to_Cart.png[Sequence diagram: Add Product to Cart, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Add Product to Cart", align=center]
 
 [cols="1h,3"]
 [[UC0210]]
 |===
 |ID                         |**<<UC0210>>**
-|Name                       |View Cart
-|Description                |A registered user shall be able to view the contents of his cart and the total price of his choice.
-|Actors                     |Registered User
-|Trigger                    |Actor presses "Warenkorb" in the navigation bar
+|Name                       |Karitative Abgabe
+|Description                |Nach Ablauf der Abholungsfrist soll die betroffene Ware karitativ abgegeben werden
+|Actors                     |-
+|Trigger                    |Abholungsfrist läuft ab
 |Precondition(s)           a|
-- Actor has authenticated with the system (i.e. is a registered user)
+Ware wurde nicht fristgerecht abgeholt
 |Essential Steps           a|
-1.    Actor presses "Warenkorb" in the navigation bar
-2.    Actor is shown the content of his cart as well as he total price of it
+1.    Ware wird automatisch zur Abgabe markiert
+2.    Karitative Organisation holt die bis dato markierte Ware ab
 |Extensions                 |-
 |Functional Requirements    | <<F0210>>
 |===
@@ -272,39 +270,41 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 [[UC0220]]
 |===
 |ID                         |**<<UC0220>>**
-|Name                       |Buy Products in Cart
-|Description                |A customer shall be able to buy the content of his cart.
-|Actors                     |Customer
-|Trigger                    |Customer
+|Name                       |Materialien nachbestellen
+|Description                |Fehlende Maerialien sollen automatisch nachbestellt werden
+|Actors                     |-
+|Trigger                    |Sollwert für den nächsten Monat wird unterschritten
 |Precondition(s)           a|
-- Actor is authenticated and has the role "CUSTOMER" in the system
-- Cart is not empty
+- Material wurde diesen Monat aufgefüllt
+- Material ist verfügbar
 |Essential Steps           a|
-1.  (Customer has put at least one item into his cart (<<UC0200>>))
-2.  Customer presses "Buy"
-3.  Order is checked against stock
-4.  Order is paid automatically
-5.  Discs are removed from the inventory in the chosen quantity
-6.  Order is archived
+1.  Material wird als fehlend markiert
+2.  Auftrage mit diesem Material werden pausiert
+3.  Bestellliste wird zusammengetragen
+4.  Material wird bestellt
 |Extensions                 |
 |Functional Requirements    | <<F0101>>, <<F0220>>, <<F0230>>, <<F0240>>, <<F0241>>, <<F0242>>, <<F0243>>
 |===
 
 [[sequence_diagram_Buy_Products_in_Cart]]
-image::./images/Sequence_Diagrams/Buy_Products_in_Cart.png[<Image removed for educational purposes. Such a complex use case does definitely need to be shown in detail with a sequence diagram.>, 100%, 100%, pdfwidth=100%, title= "<Image removed for educational purposes.>", align=center]
+image::.\images\Sequence_Diagrams\Buy_Products_in_Cart.png[<Image removed for educational purposes. Such a complex use case does definitely need to be shown in detail with a sequence diagram.>, 100%, 100%, pdfwidth=100%, title= "<Image removed for educational purposes.>", align=center]
 
 [cols="1h,3"]
 [[UC0300]]
 |===
 |ID                         |**<<UC0300>>**
-|Name                       |View Customer List
-|Description                |A Boss should be able to view the whole list of customers of the application.
-|Actors                     |Boss
-|Trigger                    |Boss selects "Kunden" in the navigation bar
-|Precondition(s)           a|User is authenticated and has role "Boss"
+|Name                       |Arbeitsgeräte nachbestellen
+|Description                |Fehlende Arbeitsgeräte sollen automatisch nachbestellt werden
+|Actors                     |-
+|Trigger                    |Sollwert für den nächsten Monat wird unterschritten
+|Precondition(s)           a|
+- Arbeitsgerät wurde diesen Monat aufgefüllt
+- Arbeitsgerät ist verfügbar
 |Essential Steps           a|
-1.  Boss selects "Kunden" in the navigation bar
-2.  Complete list of all registered users with the role "customer" is shown
+1.  Arbeitsgerät wird als fehlend markiert
+2.  Auftrage mit diesem Arbeitsgerät werden pausiert
+3.  Bestellliste wird zusammengetragen
+4.  Arbeitsgerät wird bestellt
 |Extensions                 |-
 |Functional Requirements    | <<F0300>>
 |===
@@ -313,34 +313,37 @@ image::./images/Sequence_Diagrams/Buy_Products_in_Cart.png[<Image removed for ed
 [[UC0310]]
 |===
 |ID                         |**<<UC0310>>**
-|Name                       |View Orders
-|Description                |A boss shall be able to view a list of completed orders.
-|Actors                     |Boss
-|Trigger                    |Boss selects "Bestellungen" in the navigation bar
+|Name                       |Raum buchen
+|Description                |Das System soll automatisch für Bestellungen freie, passende Räume buchen
+|Actors                     |Mitarbeiter
+|Trigger                    |Mitarbeiter übergibt dem System einen neuen Auftrag, welcher bearbeitet werden soll
 |Precondition(s)           a|User is authenticated and has role "Boss"
 |Essential Steps           a|
-1.  Boss selects "Bestellungen" in the navigation bar
-2.  Complete list of all completed orders is shown
+1.  Alle Ressourcen sind vorhanden und vollständig
+2.  Im Timetable wird ein freier Slot gesucht
+3. Slot und Ressourcen werden für die Bestellung gebucht
 |Extensions                 |-
 |Functional Requirements    | <<F0310>>
 |===
 
 [[sequence_diagram_View_Orders]]
-image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+image::.\images\Sequence_Diagrams\View_Orders.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
 
 
 [cols="1h,3"]
 [[UC0320]]
 |===
 |ID                         |**<<UC0320>>**
-|Name                       |View Inventory
-|Description                |A boss shall be able to view the inventory including the current stock.
-|Actors                     |Boss
-|Trigger                    |Boss selects "Lager" in the navigation bar
-|Precondition(s)           a|User is authenticated and has role "Boss"
+|Name                       |Raum löschen
+|Description                |Raum soll wegen aus Datenbank gelöscht werden
+|Actors                     |Admin
+|Trigger                    |Admin löst Löschung des Raumes aus der Datenbank aus
+|Precondition(s)           a|Raum befindet sich in der Datenbank
 |Essential Steps           a|
-1.  Boss selects "Lager" in the navigation bar
-2.  Complete list of all items of the inventory and the current stock is shown
+1.  Admin wählt die Löschung des Raumes aus
+2.  Raum wird gelöscht
+3.  Raum kann neu erstellt werden
+4.  Raum kann mit Ressourcen verknüpft werden
 |Extensions                 |-
 |Functional Requirements    | <<F0100>>, <<F0320>>
 |===
