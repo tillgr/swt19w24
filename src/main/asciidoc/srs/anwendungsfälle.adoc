@@ -12,9 +12,23 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 [options="header"]
 [cols="1,4"]
 |===
-|Name |Beschreibung
-|...  |...
+|Name
+|Beschreibung
+
+|User
+|Rerpräasentiert jede Person die mit dem System interagiert unabhängig davon ob sie angemeldet ist oder nicht.
+
+|Signed-out User
+|Repräsentiert jede Person die zwar einen Account besitzt aber (noch) nicht angemeldet ist.
+
+|Staff
+|Repräsentiert jeden angemeldeten Nutzer der die Rolle "Staff" hat. Besitz nur eingeschränkte Zugriffsrechte.
+
+|Admin
+|Repräsentiert jeden angemeldeten Nutzer der die Rolle "Admin" hat. Hat uneingeschränkten Zugriff
 |===
+
+
 
 === Überblick Anwendungsfalldiagramm
 

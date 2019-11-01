@@ -1,0 +1,73 @@
+= Protokoll Gruppe XX
+
+Treffen am XX.XX.20XX
+
+Ort:      APB E0005 +
+Beginn:   15:01 Uhr +
+Ende:     xx:xx Uhr
+
+__Schriftführer: Tobias Köllner__
+
+*Nächstes Treffen:* +
+8.11.2019, 15:00 Uhr
+
+__Teilnehmer:__
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+
+== Aktueller Stand
+- Videoshop: Kien, Viktor und Tobias haben Feature implementiert
+- SwP:
+
+== Bis Nächste Woche
+Pflichtenheft
+uml diagramme hinzufügen
+
+Stakeholder: ok
+
+Muss-Kriterien: ein wenig mehr
+
+kann-kriterien: mehr
+
+Nicht funktionale Anforderung: mehr
+
+gui-prototyp: passt
+
+dialoglandkarte: nicht relevant
+
+anwendungsfälle: text fixen
+
+datenmodell: passt
+
+akzeptanztestfälle: meeeehr
+
+produktnutzung: passt
+
+systemgrenze: Text raus
+
+glossar:
+
+
+== To Do
+- Großer Prototyp(erste Funktionen)
+- Aufteilung der Aufgabenbereiche
+- Testplan/DevDoc
+- Salespoint anschauen
+
+
+Viktor:  ist relativ fertig
+
+Anna: Videoshop-Prototyp
+
+Till: Weiß was er zu tun hat
+
+Tobias: Videoshopprototyp fixen/ Teil des Pflichtenhefts hinzufügen(Akteure für UseCases/Stakeholder)
+
+Kien: Fliestext Aufgabenstellung und Zielsetzung
+== Geklärte Fragen
+-
