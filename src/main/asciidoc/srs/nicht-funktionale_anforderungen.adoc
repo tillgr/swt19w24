@@ -2,7 +2,7 @@
 
 === Qualitätsziele
 
-Die folgende Tabelle zeigt, welche Qualitätsanforderungen in welchem ​​Umfang erfüllt werden müssen.
+Die folgende Tabelle zeigt, welche Qualitätsanforderungen in welchem Umfang erfüllt werden müssen.
 Die erste Spalte listet die Qualitätsanforderungen auf.
 In den folgenden Spalten wird ein "x" verwendet, um die Priorität kennzuzeichnen.
 Die zugewiesene Priorität muss bei der Formulierung der konkreten nichtfunktionalen
@@ -23,7 +23,7 @@ Anforderungen berücksichtigt werden.
 
 === Konkrete Nicht-Funktionale Anforderungen
 
- :desired-uptime: 99,5%
+:desired-uptime: 99,5%
 
 [options="header", cols="2h, 1, 3, 12"]
 |===
@@ -36,7 +36,7 @@ Anforderungen berücksichtigt werden.
 |v0.1
 |Erreichbarkeit - Betriebszeit
 a|
-Das System soll mindestens **{Gewünschte - Betriebszeit}** Betriebszeit erreichbar sein.
+Das System soll mindestens **{desired-uptime}** der Betriebszeit erreichbar sein.
 
 |[[NF0020]]<<NF0020>>
 |v0.1
