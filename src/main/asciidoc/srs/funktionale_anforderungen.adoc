@@ -61,7 +61,3 @@ eine karitative Organisation weitergeben werden.
 |Das System soll die aktuell verfügbaren Dienstleistungen des Reparaturbetriebs erfassen können.
 
 |===
-
-=== Kann-Kriterien
-
-Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
