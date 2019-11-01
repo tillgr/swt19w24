@@ -345,10 +345,18 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 |Functional Requirements    | <<F0100>>, <<F0320>>
 |===
 
+
+
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+
+- Nutzer: Ein vom Admin authentifizierter Mitarbeiter, der sich im System ab- und anmelden kann
+- Mitarbeiter: Angestellte der Firma
+- Admin: Ist selbst Angestellter hat aber höhere Rechte als die normalen Nutzer und verwaltet diese
+- Salespoint: Java-basiertes Anwendungs-Framework zur Entwicklung von PoS-Anwendungen (Point of Sales) mit Spring Framework und Spring Boot. Es besteht aus einer Vielzahl von Geschäftsmodulen, die es den Benutzern ermöglichen, anspruchsvolle Webanwendungen zu implementieren.
+
 
 == Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
