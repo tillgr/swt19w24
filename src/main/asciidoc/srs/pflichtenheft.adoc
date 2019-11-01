@@ -348,6 +348,15 @@ image::.\images\Sequence_Diagrams\View_Orders.png[Sequence diagram: View Orders,
 |Functional Requirements    | <<F0100>>, <<F0320>>
 |===
 
+== Kann Kriterien
+
+- System Bestellt automatisch nach
+- Kunde kann bearbeitungsstand einsehen mit id
+- Kunde wird bei verspätung benachrichtigt
+- Bearbeitungsdauer wird automatisch kalkuliert
+- Arbeitszeiten der Mitarbeiter werden aufgezeichnet
+- Sytsem wählt automatisch den Raum mit der Effektivsten Bearbeitung aus
+
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
