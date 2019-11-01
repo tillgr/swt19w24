@@ -1,6 +1,7 @@
 = Pflichtenheft
 :project_name: Kleinreparaturbetrieb
 :toc: macro
+:toc-title:
 == __{project_name}__
 
 [options="header"]
@@ -14,6 +15,7 @@
 //Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
 
 toc::[]
+:numbered:
 
 == Zusammenfassung
 Dieses Dokument stellt die _Software Requirement Specification_ (SRS) von Miss-Mint-Filialmanagement dar.
