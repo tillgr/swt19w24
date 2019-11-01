@@ -25,7 +25,7 @@ __Teilnehmer:__
 
 
 == Bis Nächste Woche
-Pflichtenheft
+*Pflichtenheft*
 
 UMl-Diagramme hinzufügen
 
@@ -67,6 +67,6 @@ Anna: Videoshop-Prototyp
 
 Till: Weiß was er zu tun hat
 
-Tobias: Videoshopprototyp fixen/ Teil des Pflichtenhefts hinzufügen(Akteure für UseCases/Stakeholder)
+Tobias: Videoshop-Prototyp fixen/ Teil des Pflichtenhefts hinzufügen(Akteure für UseCases/Stakeholder)
 
-Kien: Fliestext Aufgabenstellung und Zielsetzung
+Kien: Fließtext für Aufgabenstellung und Zielsetzung
