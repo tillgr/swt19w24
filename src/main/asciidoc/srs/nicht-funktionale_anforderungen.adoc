@@ -1,5 +1,12 @@
 == Nicht-Funktionale Anforderungen
 
+- System Bestellt automatisch nach
+- Kunde kann bearbeitungsstand einsehen mit id
+- Kunde wird bei verspätung benachrichtigt
+- Bearbeitungsdauer wird automatisch kalkuliert
+- Arbeitszeiten der Mitarbeiter werden aufgezeichnet
+- System wählt automatisch den Raum mit der Effektivsten Bearbeitung aus
+
 === Qualitätsziele
 
 Die folgende Tabelle zeigt, welche Qualitätsanforderungen in welchem Umfang erfüllt werden müssen.
