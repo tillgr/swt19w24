@@ -100,12 +100,15 @@ Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes 
 |Nutzer        |
 Ein vom Admin autorisierter Mitarbeiterin bzw. eine autorisierte Mitarbeiterin,
 der oder die sich im System ab- und anmelden kann.
+
 |Mitarbeiter   |
 Eine Mitarbeiterin bzw. ein Mitarbeiter der Firma. Dies kann ein Angestellter oder der Filialleiter sein.
+
 |Admin         |
 Hier wird angenommen, das dies der Filialleiter ist, der dann die höchsten Rechte im System hat.
 Er übernimmt daher alle Verwaltungsaufgaben.
 Diese Aufgabe kann aber natürlich auch ausgelagert werden.
+
 |Salespoint    |
 Java-basiertes Anwendungs-Framework zur Entwicklung von PoS-Anwendungen (Point of Sales)
 mit Spring Framework und Spring Boot.
