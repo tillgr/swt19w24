@@ -5,14 +5,15 @@
 == __{project_name}__
 
 [options="header"]
-[cols="1, 1, 1, 1, 4"]
+[cols="1, 1, 1, 4, 1"]
 |===
-|Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
-|0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
+|Version | Status      | Bearbeitungsdatum   | Autor(en) |  Vermerk
+|0.1     | In Arbeit   | 10.10.2019          | _Template-Autor_       | Initiale Version
+|1.0.0   | Fertig      | 3.11.2019           |
+Till Große, Tobias Köllner, Anna Lopatkina, Kien Dang Tran, Viktor Reusch | Finale Version
 |===
 
 == Inhaltsverzeichnis
-//Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
 
 toc::[]
 :numbered:
@@ -86,32 +87,33 @@ include::datenmodell.adoc[]
 
 include::akzeptanztestfälle.adoc[]
 
-=== Use-Case Diagram
-
-[[use_case_diagram]]
-image::./images/Use_Case_Diagram.png[Use Case diagram, 100%, 100%, pdfwidth=100%, title= "Use case diagram of {project_name}", align=center]
-
-=== Use-Case Descriptions
-
-This section describes the use cases shown in the use case diagram in detail.
-_Note: It is not yet necessary to fully include all special cases and variants (scenarios) of the use case (e.g. what happens if the stock is not sufficient), but the general purpose of the system should become visible._
-_Complex use cases can be shown in detail with a sequence diagram._
-_Typical CRUD (create, read, update, delete) use cases can be condensed into one use case._
-
-_Note: We did not provide a sequence diagram for every use case._
-
-See: +
-https://www.sophist.de/fileadmin/SOPHIST/UML/uml2-4_linknummern/12-1_Schablone_fuer_%20Use-Case-Beschreibung.pdf
-
 == Glossar
+
+////
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+////
 
-- Nutzer: Ein vom Admin authentifizierter Mitarbeiter, der sich im System ab- und anmelden kann
-- Mitarbeiter: Angestellte der Firma
-- Admin: Ist selbst Angestellter hat aber höhere Rechte als die normalen Nutzer und verwaltet diese
-- Salespoint: Java-basiertes Anwendungs-Framework zur Entwicklung von PoS-Anwendungen (Point of Sales) mit Spring Framework und Spring Boot. Es besteht aus einer Vielzahl von Geschäftsmodulen, die es den Benutzern ermöglichen, anspruchsvolle Webanwendungen zu implementieren.
+[cols="1, 4"]
+|===
+|Nutzer        |
+Ein vom Admin autorisierter Mitarbeiterin bzw. eine autorisierte Mitarbeiterin,
+der oder die sich im System ab- und anmelden kann.
+|Mitarbeiter   |
+Eine Mitarbeiterin bzw. ein Mitarbeiter der Firma. Dies kann ein Angestellter oder der Filialleiter sein.
+|Admin         |
+Hier wird angenommen, das dies der Filialleiter ist, der dann die höchsten Rechte im System hat.
+Er übernimmt daher alle Verwaltungsaufgaben.
+Diese Aufgabe kann aber natürlich auch ausgelagert werden.
+|Salespoint    |
+Java-basiertes Anwendungs-Framework zur Entwicklung von PoS-Anwendungen (Point of Sales)
+mit Spring Framework und Spring Boot.
+Es besteht aus einer Vielzahl von Geschäftsmodulen, die es den Benutzern ermöglichen,
+anspruchsvolle Webanwendungen zu implementieren.
+|===
 
+////
 == Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
+////
