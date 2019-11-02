@@ -1,5 +1,40 @@
 == Anwendungsfälle
 
+=== Akteure
+
+Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen.
+Dokumentieren Sie die Akteure in einer Tabelle.
+Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz.
+Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
+Weitere relevante Spalten können bei Bedarf ergänzt werden.
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+[cols="1,4"]
+|===
+|Name |Beschreibung
+|...  |...
+|===
+
+=== Überblick Anwendungsfalldiagramm
+
+//Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+
+[[use_case_diagram]]
+image::models/UseCases.png[Anwendungsfalldiagramm,100%,100%,pdfwidth=100%,title= "Anwendungsfalldiagramm",align=center]
+
+=== Anwendungsfallbeschreibungen
+
+////
+Dieser Unterabschnitt beschreibt die Anwendungsfälle.
+In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden.
+Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden.
+Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
+Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
+Einfache Anwendungsfälle mit einem Absatz beschreiben.
+Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
+////
+
 [cols="1h, 3"]
 [[UC0010]]
 |===
@@ -42,9 +77,9 @@ _Logout_:
 |Trigger                    |Der Administrator möchte ein Konto für einen Benutzer erstellen, indem er auf "Registrieren" drückt.
 |Precondition(s)           a|Mitarbeit ist noch nicht eingeloggt (authentifiziert)
 |Essential Steps           a|
-1.  Der Admin drückt "Registrieren".
-2.  Er gibt den gewünschten Benutzernamen, das Passwort und die Adresse ein.
-3.  System prüft die Eindeutigkeit des Benutzernamens
+1. Der Admin drückt "Registrieren".
+2. Er gibt den gewünschten Benutzernamen, das Passwort und die Adresse ein.
+3. System prüft die Eindeutigkeit des Benutzernamens
 . Wenn einzigartig: Es wird ein Konto mit den angegebenen Daten angelegt.
 . Andernfalls: Es wird eine Fehlermeldung angezeigt.|Extensions                 |-
 |Functional Requirements    |<<F0020>>, <<F0021>>
@@ -66,8 +101,8 @@ The Catalog must provide the possibility to distinguish between different types 
 |Functional Requirements    | <<F0100>>, <<F0110>>, <<F0111>>, <<F0112>>
 |===
 
-[[sequence_diagram_view_catalog]]
-image::.\images\Sequence_Diagrams\View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
+[[sequence_diagram_finance]]
+image::models/Finance.png[Sequenzdiagramm: Bilanzübersicht abrufen,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Bilanzübersicht abrufen",align=center]
 
 [[UC0110]]
 [cols="1h, 3"]
@@ -79,14 +114,11 @@ image::.\images\Sequence_Diagrams\View_Catalog.png[Sequence diagram: View Catalo
 |Trigger                    |Admin öffnet die Bilanzübersicht und lässt sich Gewinn anzeigen.
 |Precondition(s)           a|Admin lässt sich Bilanzübersicht anzeigen.
 |Essential Steps           a|
-1.  Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus
-2.  Admin bekommt den Gewinn angezeigt und kann ihn abführen
+1. Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus
+2. Admin bekommt den Gewinn angezeigt und kann ihn abführen
 |Extensions                 |-
 |Functional Requirements    | <<F0120>>
 |===
-
-[[sequence_diagram_view_catalog]]
-image::.\images\Sequence_Diagrams\View_Product_Details.png[Sequence diagram: View Product Details, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Product Details", align=center]
 
 [cols="1h,3"]
 [[UC0120]]
@@ -98,17 +130,17 @@ image::.\images\Sequence_Diagrams\View_Product_Details.png[Sequence diagram: Vie
 |Trigger                    |Mitarbeiter gibt Auftrag in das Sytsem ein.
 |Precondition(s)           a|Mitarbeiter ist eingeloggt und hat Zugriff auf die Komponente zur Auftragsverwaltung.
 |Essential Steps           a|
-1.  Mitarbeiter loggt sich ein
-2.  Mitarbeiter gibt Daten in das System ein
-3.  System verarbeitet Auftrag und gibt Ticket für den Kunden aus
+1. Mitarbeiter loggt sich ein
+2. Mitarbeiter gibt Daten in das System ein
+3. System verarbeitet Auftrag und gibt Ticket für den Kunden aus
 |Extensions                a|
--   Nur Angemeldete Mitarbeiter dürfen Aufträge erstellem und Stornieren
--   Jeder Mitarbeiter kann nur seine eigenen Aufträge stornieren
+- Nur Angemeldete Mitarbeiter dürfen Aufträge erstellem und Stornieren
+- Jeder Mitarbeiter kann nur seine eigenen Aufträge stornieren
 |Functional Requirements    | <<F0121>>
 |===
 
-[[sequence_diagram_comment_product]]
-image::.\images\Sequence_Diagrams\Comment_Product.png[Sequence diagram: Comment on Product, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Comment on Product", align=center]
+[[sequence_diagram_hand_in]]
+image::models/Hand_In.png[Sequenzdiagramm: Auftrag erstellen,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Auftrag erstellen",align=center]
 
 [cols="1h,3"]
 [[UC0121]]
@@ -120,12 +152,15 @@ image::.\images\Sequence_Diagrams\Comment_Product.png[Sequence diagram: Comment 
 |Trigger                    |Mitarbeiter bestätigt Abholung der Ware im System
 |Precondition(s)           a|Ware liegt fertig bearbeitet im Lager
 |Essential Steps           a|
-1.  Bei Abholung wird auf Verspätung der Bearbeitung geprüft
-2.  Bei Abholung wird auf Verspätung der Abholung geprüft
-3.  Die nötigen Schritte werden eingeleitet
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft
+2. Bei Abholung wird auf Verspätung der Abholung geprüft
+3. Die nötigen Schritte werden eingeleitet
 |Extensions                 |-
 |Functional Requirements    | <<F0121>>
 |===
+
+[[sequence_diagram_pick_up]]
+image::models/Hand_In.png[Sequenzdiagramm: Ware abholen,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Ware abholen",align=center]
 
 [cols="1h,3"]
 [[UC0200]]
@@ -137,16 +172,13 @@ image::.\images\Sequence_Diagrams\Comment_Product.png[Sequence diagram: Comment 
 |Trigger                    |Mitarbeiter bestätigt Abholung der Ware im System
 |Precondition(s)           a|Ware liegt fertig bearbeitet im Lager
 |Essential Steps           a|
-1.  Bei Abholung wird auf Verspätung der Bearbeitung geprüft
-2.  Bei Abholung wird auf Verspätung der Abholung geprüft
-3.  Gebühren werden auf den Preis aufegschlagen
-4.  Mitarbeiter kassiert die Gebühr
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft
+2. Bei Abholung wird auf Verspätung der Abholung geprüft
+3. Gebühren werden auf den Preis aufegschlagen
+4. Mitarbeiter kassiert die Gebühr
 |Extensions                 |-
 |Functional Requirements    | <<F0200>>, <<F0201>>
 |===
-
-[[sequence_diagram_Add_Product_to_Cart]]
-image::.\images\Sequence_Diagrams\Add_Product_to_Cart.png[Sequence diagram: Add Product to Cart, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Add Product to Cart", align=center]
 
 [cols="1h,3"]
 [[UC0210]]
@@ -159,11 +191,14 @@ image::.\images\Sequence_Diagrams\Add_Product_to_Cart.png[Sequence diagram: Add 
 |Precondition(s)           a|
 Ware wurde nicht fristgerecht abgeholt
 |Essential Steps           a|
-1.    Ware wird automatisch zur Abgabe markiert
-2.    Karitative Organisation holt die bis dato markierte Ware ab
+1. Ware wird automatisch zur Abgabe markiert
+2. Karitative Organisation holt die bis dato markierte Ware ab
 |Extensions                 |-
 |Functional Requirements    | <<F0210>>
 |===
+
+[[sequence_diagram_charity]]
+image::models/Charity.png[Sequenzdiagramm: Karitative Abgabe,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Karitative Abgabe",align=center]
 
 [cols="1h,3"]
 [[UC0220]]
@@ -177,16 +212,13 @@ Ware wurde nicht fristgerecht abgeholt
 - Material wurde diesen Monat aufgefüllt
 - Material ist verfügbar
 |Essential Steps           a|
-1.  Material wird als fehlend markiert
-2.  Auftrage mit diesem Material werden pausiert
-3.  Bestellliste wird zusammengetragen
-4.  Material wird bestellt
+1. Material wird als fehlend markiert
+2. Auftrage mit diesem Material werden pausiert
+3. Bestellliste wird zusammengetragen
+4. Material wird bestellt
 |Extensions                 |
 |Functional Requirements    | <<F0101>>, <<F0220>>, <<F0230>>, <<F0240>>, <<F0241>>, <<F0242>>, <<F0243>>
 |===
-
-[[sequence_diagram_Buy_Products_in_Cart]]
-image::.\images\Sequence_Diagrams\Buy_Products_in_Cart.png[<Image removed for educational purposes. Such a complex use case does definitely need to be shown in detail with a sequence diagram.>, 100%, 100%, pdfwidth=100%, title= "<Image removed for educational purposes.>", align=center]
 
 [cols="1h,3"]
 [[UC0300]]
@@ -200,10 +232,10 @@ image::.\images\Sequence_Diagrams\Buy_Products_in_Cart.png[<Image removed for ed
 - Arbeitsgerät wurde diesen Monat aufgefüllt
 - Arbeitsgerät ist verfügbar
 |Essential Steps           a|
-1.  Arbeitsgerät wird als fehlend markiert
-2.  Auftrage mit diesem Arbeitsgerät werden pausiert
-3.  Bestellliste wird zusammengetragen
-4.  Arbeitsgerät wird bestellt
+1. Arbeitsgerät wird als fehlend markiert
+2. Auftrage mit diesem Arbeitsgerät werden pausiert
+3. Bestellliste wird zusammengetragen
+4. Arbeitsgerät wird bestellt
 |Extensions                 |-
 |Functional Requirements    | <<F0300>>
 |===
@@ -218,16 +250,12 @@ image::.\images\Sequence_Diagrams\Buy_Products_in_Cart.png[<Image removed for ed
 |Trigger                    |Mitarbeiter übergibt dem System einen neuen Auftrag, welcher bearbeitet werden soll
 |Precondition(s)           a|User is authenticated and has role "Boss"
 |Essential Steps           a|
-1.  Alle Ressourcen sind vorhanden und vollständig
-2.  Im Timetable wird ein freier Slot gesucht
+1. Alle Ressourcen sind vorhanden und vollständig
+2. Im Timetable wird ein freier Slot gesucht
 3. Slot und Ressourcen werden für die Bestellung gebucht
 |Extensions                 |-
 |Functional Requirements    | <<F0310>>
 |===
-
-[[sequence_diagram_View_Orders]]
-image::.\images\Sequence_Diagrams\View_Orders.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
-
 
 [cols="1h,3"]
 [[UC0320]]
@@ -239,40 +267,10 @@ image::.\images\Sequence_Diagrams\View_Orders.png[Sequence diagram: View Orders,
 |Trigger                    |Admin löst Löschung des Raumes aus der Datenbank aus
 |Precondition(s)           a|Raum befindet sich in der Datenbank
 |Essential Steps           a|
-1.  Admin wählt die Löschung des Raumes aus
-2.  Raum wird gelöscht
-3.  Raum kann neu erstellt werden
-4.  Raum kann mit Ressourcen verknüpft werden
+1. Admin wählt die Löschung des Raumes aus
+2. Raum wird gelöscht
+3. Raum kann neu erstellt werden
+4. Raum kann mit Ressourcen verknüpft werden
 |Extensions                 |-
 |Functional Requirements    | <<F0100>>, <<F0320>>
 |===
-
-=== Akteure
-
-Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen.
-Dokumentieren Sie die Akteure in einer Tabelle.
-Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz.
-Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
-Weitere relevante Spalten können bei Bedarf ergänzt werden.
-
-// See http://asciidoctor.org/docs/user-manual/#tables
-[options="header"]
-[cols="1,4"]
-|===
-|Name |Beschreibung
-|...  |...
-|===
-
-=== Überblick Anwendungsfalldiagramm
-
-Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
-
-=== Anwendungsfallbeschreibungen
-
-Dieser Unterabschnitt beschreibt die Anwendungsfälle.
-In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden.
-Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden.
-Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
-Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
-Einfache Anwendungsfälle mit einem Absatz beschreiben.
-Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
