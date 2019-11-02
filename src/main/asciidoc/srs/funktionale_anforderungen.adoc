@@ -60,6 +60,38 @@ eine karitative Organisation weitergeben werden.
 |Dienstleistungen
 |Das System soll die aktuell verfügbaren Dienstleistungen des Reparaturbetriebs erfassen können.
 
+|[[MK0110]]<<MK0110>>
+|Nachbestellen von Materialen
+|Materialien sollen nachbestellbar sein, falls notwendig. Die Kosten werden im System vermerkt.
+
+|[[MK0120]]<<MK0120>>
+|Löschen von Accounts
+|Der Admin kann Accounts vom System entfernen.
+
+|[[MK0130]]<<MK0130>>
+|Eindeutige Benutzerkonten
+|Es darf nicht mehr als ein Account mit selbem Namen im System existieren.
+
+|[[MK0140]]<<MK0140>>
+|Fachliche Kompetenzen eines Mitarbeiters im System
+|Mitarbeiter können ihre fachlichen Kompetenzen in das System eintragen.
+
+|[[MK0150]]<<MK0150>>
+|Umbenennung von Benutzernamen
+|Der Benutzername kann geändert werden.
+
+|[[MK0160]]<<MK0160>>
+|Arbeitsgeräte nachbestellen
+|Arbeitsgeräte können nachbestellt werden. Die Kosten werden im System vermerkt.
+
+|[[MK0170]]<<MK0170>>
+|Voller Raum
+|Das System muss erkennen, wenn bei der Planung der Raum voll ausgelastet ist.
+
+|[[MK0180]]<<MK0180>>
+|Auftragsübersicht
+|Mitarbeiter können sich die Aufträge im System anzeigen lassen.
+
 |===
 
 === Kann-Kriterien
