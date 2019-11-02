@@ -1,3 +1,42 @@
 == Interessensgruppen (Stakeholders)
 
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+
+[options="header"]
+[cols="2,^1,4,4"]
+|===
+|Name
+|Priorität (1-5)
+|Beschreibung
+|Ziele
+
+|Miss Mint Management
+|5
+|Primärer Klient dieses Projekts
+a|
+- Gewinnmaximierung
+- Automatisierung/Optimierung des Bestellprozesses und der Lager/Mitarbeiter/Finanzverwaltung
+- Verfolgung/Überwachung der Einnahmen/Ausgaben
+
+|Mitarbeiter
+|4
+|Hauptsächliche Nutzer der Anwendung, sind für das Tagesgeschäft verantwortlich.
+a|
+- einfach zu bediende Nutzerobrfläche
+- schnelle Verarbeitung der Aufträge
+
+|Administratoren
+|3
+|Benutzer die die Anwendung verwalten (Übersicht über alle Bestellungen/Finanzen etc.)
+a|
+- Überblick über alle Abläufe/Vorgänge (Bestellungen, Lagerzustand, Finanzen, Mitarbeiter)
+- Verwaltung o.g. Prozesse
+
+|Entwickler
+|2
+|Für die Wartung und/oder die Implementierung verantwortlich
+a|
+- einfache Erweiterung der Anwendung
+- geringer Wartungsaufwand
+- gute Debuggingmöglichkeiten
+|===
