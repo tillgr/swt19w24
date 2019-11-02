@@ -92,6 +92,10 @@ eine karitative Organisation weitergeben werden.
 |Auftragsübersicht
 |Mitarbeiter können sich die Aufträge im System anzeigen lassen.
 
+|[[MK0190]]<<MK0190>>
+|monatliche Reingewinn
+|Der monatliche Reingewinn soll an die Zentrale geschickt werden.
+
 |===
 
 === Kann-Kriterien
