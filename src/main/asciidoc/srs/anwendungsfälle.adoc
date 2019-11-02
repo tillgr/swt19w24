@@ -287,3 +287,6 @@ image::models/Charity.png[Sequenzdiagramm: Karitative Abgabe,100%,100%,pdfwidth=
 |Extensions                 |-
 |Functional Requirements    | <<F0100>>, <<F0320>>
 |===
+
+[[sequence_diagram_add_room]]
+image::models/Add_Room.png[Sequenzdiagramm: Hinzufügen eines Raumes mit Umsortierung eines Zeitslots,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Hinzufügen eines Raumes mit Umsortierung eines Zeitslots",align=center]
