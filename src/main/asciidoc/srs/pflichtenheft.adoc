@@ -28,11 +28,13 @@ Die Spezifikationen sollen i.A. korrekt, vollständig und konsistent sein. Da si
 genutzt werden um zu prüfen, ob die Software den Anforderungen enspricht.
 
 == Aufgabenstellung und Zielsetzung
+////
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
+////
 
-Kleinreparaturbetrieb 
-Jeder Miss-Mint-Reparaturbetrieb umfasst:
+Es soll eine Software bereitgestellt werden für _Miss Mint Mending Points_. Dabei bezieht sich
+die Software auf jeweils eine Filiale. Ein Kleinreparaturbetrieb umfasst:
 
 - eine Flickschusterei (Absätze, Sohlen, Nähte)
 - einen Nähservice (Knöpfe, Nähte, Flicken)
@@ -41,33 +43,32 @@ Jeder Miss-Mint-Reparaturbetrieb umfasst:
 - eine Elektrowerkstatt (Kabel ersetzen, löten)
 - eine Scherenschleiferei (Scheren, Messer schärfen)
 
+
 __Bestellung:__
 
-- Unmittelbare Erfassung des Preises bei Annahme am Annahmeschalter + Vorauszahlung
-- Auftragszettel für Kunden = (eindeutigen Auftragsnummer + Fertigstellungstermin)
+An den Annahmeschaltern wird die gewünschte Dienstleistung gewählt und der Kunde zahlt im Voraus.
+Im Anschluss erhält der Kunde einen Auftragszettel, welcher eine eindeutige Identifikationsnummer und
+einen Fertigstellungstermin beinhaltet.
 
 __Abholung:__
 
-- Vorlage des Auftragszettels
-
--  (0 - 7 Tage) = Abholungszeitraum 
--  3 Monate = Aufbewahrung + Lagergebühr (0,50€/7 Tage) 
--  danach = karitative Organisation
+Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels
+abgeholt werden. Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter
+Vorlage des Auftragszettels durch eine Zahlung der Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden
+kann. Falls die Ware in diesem Zeitraum nicht abgeholt wurde, wird sie an eine karitative Organisation
+weitergegeben.
 
 __Lieferverzögerung:__
 
-- ab Fertigstellungstermin 10% Rabatt auf Reperaturkosten/Tag Verzögerung
+Bei Lieferverzögerungen werden ab dem Fertigstellungstermin für jeden vollen Tag 10% Rabatt der Reparaturkosten erstattet
+(maximal 100%).
 
 __Softwareansprüche:__
 
-- Annahme, Reparaturplanung, Ausgabe und Lagerung der Waren
-- Ressourcenverwaltung  
-- laufende und akkumulierte Bilanzen (monatliche Bilanz/Gesamtbilanz/evtl. tägliche Bilanz)  
-
-__Aufgaben des Filialmanagments:__
-
-- Bereitstellung der Ressourcen (Personal, Arbeitsgerät, Material, Räume)
-- monatliche Abrechnung (Umsatz - Kosten = Gewinn) an Zentrale
+Die Software soll sich um die Annahme, Reparaturplanung, Ausgabe und Lagerung der Waren kümmern.
+Zusätzlich sollen Ressourcen wie Personal, Arbeitsgeräte, Materialien und Räume im System
+verwaltbar sein. Die laufenden und akkumulierten Bilanzen sollen für den Filialleiter einsehbar sein.
+Am Monatsende soll der monatliche Reingewinn an die Zentrale geschickt werden.
 
 include::produktnutzung.adoc[]
 
