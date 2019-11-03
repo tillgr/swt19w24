@@ -123,7 +123,7 @@ Ressourcen sind Mitarbeiter, Material und Räume.
 Die Bestellung ist ein einzelner Auftrag, den ein Kunde am Annahmeschalter aufgegeben hat.Jeder Auftrag gehört zu einer Dienstleistung und ist mit dem abgegebenen Gegenstand verbunden. Wenn der Auftrag gerade bearbeitet wird, ist ihm ein Mitarbeiter und ein Raum zugeordnet.
 
 |Service        |
-ISt eine Dienstleistung mit einen Namen, einen Preis und gehört zu einer Kategorie.
+Ist eine Dienstleistung mit einen Namen, einen Preis und gehört zu einer Kategorie.
 
 |Time Table     |
 Jeder Raum hat einen Zeit-Plan, in dem feste Slots für jeden Tag sind. Die zu bearbeitenden Aufträge werden in die Slots eingeschrieben.
