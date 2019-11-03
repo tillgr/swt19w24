@@ -2,10 +2,12 @@
 
 === Qualitätsziele
 
+////
 Die folgende Tabelle zeigt, welche Qualitätsanforderungen in welchem Umfang erfüllt werden müssen.
 Die erste Spalte listet die Qualitätsanforderungen auf.
 In den folgenden Spalten wird ein "x" verwendet, um die Priorität kennzuzeichnen.
 Die zugewiesene Priorität muss bei der Formulierung der konkreten nichtfunktionalen Anforderungen berücksichtigt werden.
+////
 
 1 = Nicht wichtig ..
 5 = Sehr wichtig

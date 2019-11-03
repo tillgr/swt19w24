@@ -44,17 +44,17 @@ _Order Management_ verwaltet alle Aufträge und erlaubt diese durchzugehen.
 
 |Order Ticket        |
 Wenn ein Kunde einen Auftrag am Schalter registriert,
-wird ihm ein Auftragszettel mit Auftragsnummer und Fertigstellungstermin.
+wird ihm ein Auftragszettel mit Auftragsnummer und Fertigstellungstermin übergeben.
 
 |Resource            |
 Ressourcen sind Mitarbeiter, Material und Räume.
 
 |Resource Management |
-Die Ressourcen werden dann vom _Resource Management_.
+Die Ressourcen werden dann vom _Resource Management_ verwaltet.
 
 |Role                |
 Mitarbeiter können entweder Angestellte oder Administratoren sein.
-Der Administrator könnte der Chef der Filiale sein. Das erlaubt dann Rechte-Verwaltung.
+Der Administrator könnte der Filialleiter sein. Das erlaubt Rechte-Verwaltung.
 
 |Room                |
 Jeder Raum hat einen Zeit-Plan, mit einer festen Anzahl von Slots pro Tag.
@@ -71,14 +71,15 @@ Jeder Mitarbeiter in der Filiale gehört zur Klasse _Staff_ und besitzt speziell
 die zu den Dienstleistungen korrespondieren. Der Nachname wird von _Resource_ geerbt.
 
 |State               |
-Jeder Auftrag ist in einem Zustand. +
+Jeder Auftrag ist in einem Zustand: +
 _WAITING_ ist gesetzt, solange der Auftrag keinem Raum und Mitarbeiter zugeordnet ist. +
 _IN PROGRESS_ ist gesetzt, wenn der Auftrag gerade in Bearbeitung ist. +
 _FINISHED_ ist gesetzt, wenn der Gegenstand gerade fertig bearbeitet wurde. +
 _STORED_ wird gesetzt, wenn der Gegenstand ins Langzeit-Lager gegangen ist,
 da er eine Woche nicht abgeholt wurde. +
 _PICKED UP_ wird gesetzt, wenn der Gegenstand vom Kunden abgeholt wurde. +
-_CHARITABLE USED_ wird gesetzt, wenn der Kunde den Gegenstand nicht abgeholt hat. +
+_CHARITABLE USED_ wird gesetzt, wenn der Kunde den Gegenstand nicht abgeholt hat
+und der Gegenstand abgegeben wurde. +
 
 |Storage            |
 Die Gegenstände der Kunden werden im Lager verwaltet.
@@ -91,6 +92,6 @@ Die zu bearbeitenden Aufträge werden in die Slots eingeschrieben.
 Wenn ein Auftrag in einen Zeit-Slot eingefügt wird, wird ein neuer _Time Table Entry_ angelegt.
 
 |User               |
-Administratoren und Angestellte werden in die Klasse User kombiniert.
+Administratoren und Angestellte werden in die Klasse _User_ kombiniert.
 Jeder Nutzer kann sich in das System einloggen.
 |===

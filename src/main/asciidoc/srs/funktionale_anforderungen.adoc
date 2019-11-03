@@ -1,6 +1,8 @@
 == Funktionale Anforderungen
 
 === Muss-Kriterien
+
+////
 Dieser Abschnitt gibt einen Überblick über die Muss-Kriterien, welche die Software auf jeden Fall
 gewährleisten muss.
 
@@ -9,6 +11,7 @@ Die Tabelle beinhaltet:
     - eine eindeutige Id, die zum referenzieren benutzt werden kann
     - Name des Kriteriums
     - eine Beschreibung des Kriteriums
+////
 
 [options="header", cols="2h, 3, 12"]
 |===
@@ -81,18 +84,14 @@ eine karitative Organisation weitergeben werden.
 |Der Benutzername kann geändert werden.
 
 |[[MK0160]]<<MK0160>>
-|Arbeitsgeräte nachbestellen
-|Arbeitsgeräte können nachbestellt werden. Die Kosten werden im System vermerkt.
-
-|[[MK0170]]<<MK0170>>
 |Voller Raum
 |Das System muss erkennen, wenn bei der Planung der Raum voll ausgelastet ist.
 
-|[[MK0180]]<<MK0180>>
+|[[MK0170]]<<MK0170>>
 |Auftragsübersicht
 |Mitarbeiter können sich die Aufträge im System anzeigen lassen.
 
-|[[MK0190]]<<MK0190>>
+|[[MK0180]]<<MK0180>>
 |monatliche Reingewinn
 |Der monatliche Reingewinn soll an die Zentrale geschickt werden.
 
@@ -118,7 +117,7 @@ eine karitative Organisation weitergeben werden.
 
 |[[KK0030]]<<KK0030>>
 |Nachbestellung
-|System Bestellt automatisch nach
+|System bestellt automatisch Materialien nach
 
 |[[KK0040]]<<KK0040>>
 |Bearbeitungsstand einsehen
@@ -126,7 +125,7 @@ eine karitative Organisation weitergeben werden.
 
 |[[KK0050]]<<KK0050>>
 |Benachrichtigung des Kunden
-|Kunde wird bei Verspätung enachrichtigt
+|Kunde wird bei Verspätung benachrichtigt
 
 |[[KK0060]]<<KK0060>>
 |BEarbeitungsdauer kalkulieren

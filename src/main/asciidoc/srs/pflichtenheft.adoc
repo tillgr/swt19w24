@@ -24,8 +24,8 @@ Es liefert eine Übersicht über die zu bauende Software und fungiert als Basis 
 Beteiligten dieses Projektes. Das Pflichtenheft beschreibt, was das gewünschte System zu erfüllen hat und
 teilweise wie der Auftragnehmer die Lösung zu implementieren hat.
 
-Die Spezifikationen sollen i.A. korrekt, vollständig und konsistent sein. Da sie am Ende des Projektes
-genutzt werden um zu prüfen, ob die Software den Anforderungen enspricht.
+Die Spezifikationen sollen i. A. korrekt, vollständig und konsistent sein.
+Da sie am Ende des Projektes genutzt werden, um zu prüfen, ob die Software den Anforderungen entspricht.
 
 == Aufgabenstellung und Zielsetzung
 ////
@@ -115,6 +115,13 @@ Java-basiertes Anwendungs-Framework zur Entwicklung von PoS-Anwendungen (Point o
 mit Spring Framework und Spring Boot.
 Es besteht aus einer Vielzahl von Geschäftsmodulen, die es den Benutzern ermöglichen,
 anspruchsvolle Webanwendungen zu implementieren.
+
+|Spring       |
+Spring ist ein Java-basierendes Framework,
+welches häufig zur schnellen und sicheren Entwicklung von Web-Anwendungen genutzt wird.
+
+|Filialleiter     |
+Die Person, die für die Miss Mint Filiale verantwortlich ist und höchste Rechte im System hat.
 
 |Ressourcen     |
 Ressourcen sind Mitarbeiter, Material und Räume.
