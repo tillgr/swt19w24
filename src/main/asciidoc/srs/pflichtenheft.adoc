@@ -2,6 +2,7 @@
 :project_name: Kleinreparaturbetrieb
 :toc: macro
 :toc-title:
+
 == __{project_name}__
 
 [options="header"]
