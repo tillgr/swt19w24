@@ -22,7 +22,7 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 |Repräsentiert jede Person, die mit dem System interagiert, unabhängig davon, ob sie angemeldet ist oder nicht.
 
 |Signed-out User
-|Repräsentiert jede Person die zwar einen Account besitzt, aber (noch) nicht angemeldet ist.
+|Repräsentiert jede Person die zwar einen Account besitzt, aber momentan nicht angemeldet ist.
 
 |Staff
 |Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Staff" hat. Besitz nur eingeschränkte Zugriffsrechte.
