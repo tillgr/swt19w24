@@ -8,22 +8,24 @@ Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
 ////
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0010]]<<AT0010>>
+|Anwendungsfall           |<<UC0010>>
 |Voraussetzungen         a|Das System hat existierende Nutzer.
 |Ereignis                a|
 Ein unangemeldeter Angestellter geht zur Login-Maske und meldet sich mit den validen Nutzerdaten
-(name=mueller, passwort=123) an.
+(name=mueller, password=123) an.
 |Erwartetes Ergebnis     a|
 - Der Angestellte ist jetzt als _mueller_ angemeldet.
 - Der Angestellte wird auf die Annahmeschalter-Seite weiter geleitet.
 - Der Angestellte hat jetzt Zugriff auf den Annahmeschalter, die Aufträge etc.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0011]]<<AT0011>>
+|Anwendungsfall           |<<UC0010>>
 |Voraussetzungen         a|Das System hat existierende Nutzer.
 |Ereignis                a|
 Eine unangemeldete Person geht zur Login-Maske und meldet sich mit dem validen Nutzernamen
@@ -35,9 +37,10 @@ _mueller_ aber dem falschen Passwort _321_ an.
 ohne ihm zu verraten, dass der Nutzername richtig war.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0012]]<<AT0012>>
+|Anwendungsfall           |<<UC0010>>
 |Voraussetzungen         a|Ein Nutzer hat sich angemeldet.
 |Ereignis                a|
 Der angemeldete Nutzer klickt auf den Logout-Button.
@@ -47,9 +50,10 @@ Der angemeldete Nutzer klickt auf den Logout-Button.
 - Der Nutzer hat jetzt nur noch Zugriff auf die Start- und Login-Seite.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0020]]<<AT0020>>
+|Anwendungsfall           |<<UC0040>>
 |Voraussetzungen         a|
 Es existiert mindestens ein Raum im System und ein Mitarbeiter, der Schuster-Aufgaben erledigen kann
 und freie Zeit bzw. noch keine Aufträge hat.
@@ -65,35 +69,124 @@ Zudem nimmt er den Gegenstand entgegen.
 - Für den Kunden wird ein Auftragszettel generiert.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0021]]<<AT0021>>
+|Anwendungsfall           |<<UC0040>>
+|Voraussetzungen         a|
+Es existiert mindestens ein Raum im System und ein Mitarbeiter, der Schuster-Aufgaben erledigen kann
+und freie Zeit bzw. noch keine Aufträge hat.
+|Ereignis                a|
+Ein Kunde kommt in den Laden und möchte seien Sohlen reparieren. +
+Ein angemeldeter Mitarbeiter trägt den Auftrag ins System ein, bestätigt aber nicht, dass er das Geld kassiert hat.
+|Erwartetes Ergebnis     a|
+- Das entgegenzunehmende Geld wird *nicht* in den Finanzen verbucht.
+- Der Auftrag wird nicht in das System hinzugefügt.
+- Der Mitarbeiter wird darauf hin gewiesen, das Geld zu kassieren.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0022]]<<AT0022>>
+|Anwendungsfall           |<<UC0040>>
+|Voraussetzungen         a|
+Es existiert mindestens ein Raum im System.
+|Ereignis                a|
+Ein Kunde kommt in den Laden und möchte seien Sohlen reparieren. +
+Ein angemeldeter Mitarbeiter trägt den Auftrag ins System ein, vergisst aber eine Dienstleistung auszuwählen.
+|Erwartetes Ergebnis     a|
+- Der Auftrag wird *nicht* in das System hinzugefügt.
+- Der Mitarbeiter wird auf das Annahmeformular zurück geführt und muss die Dienstleistung angeben,
+um den Auftrag abzusenden.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0023]]<<AT0023>>
+|Anwendungsfall           |<<UC0040>>
+|Voraussetzungen         a|
+Es existiert mindestens ein Raum im System aber *kein* Mitarbeiter, der Schuster-Aufgaben erledigen kann.
+|Ereignis                a|
+Ein Kunde kommt in den Laden und möchte seien Sohlen reparieren. +
+Ein angemeldeter Mitarbeiter versucht den Auftrag ins System einzugeben.
+|Erwartetes Ergebnis     a|
+- Der Auftrag wird nicht in das System hinzugefügt.
+- Der Mitarbeiter wird darauf hingewiesen, dass zur Zeit keine Schusterrei verfügbar ist.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0024]]<<AT0024>>
+|Anwendungsfall           |<<UC0040>>
+|Voraussetzungen         a|
+Es existiert kein Raum im System.
+|Ereignis                a|
+Ein Kunde kommt in den Laden und möchte seien Sohlen reparieren. +
+Ein angemeldeter Mitarbeiter versucht den Auftrag ins System einzugeben.
+|Erwartetes Ergebnis     a|
+- Der Auftrag wird nicht in das System hinzugefügt.
+- Der Mitarbeiter wird darauf hingewiesen, das zur Zeit keine Reparaturen möglich sind.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0030]]<<AT0030>>
+|Anwendungsfall           |<<UC0072>>
 |Voraussetzungen         a|Es existieren Räume im System. Der Filialleiter is angemeldet.
 |Ereignis                a|
 Der Filialleiter trägt einen neu hinzugekommenen Raum in die Raumverwaltung ein.
 |Erwartetes Ergebnis     a|
 - Neue Aufträge werden nun, wenn von der Zeit günstig, in diesen Raum eingeplant.
-- Vielleicht werden auch bestehende Aufträge in den neuen Raum verteilt, damit sie schneller fertig werden.
+- Vielleicht werden auch bestehende Aufträge in den neuen Raum verteilt, damit diese schneller fertig werden.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0031]]<<AT0031>>
+|Anwendungsfall           |<<UC0072>>, <<UC0071>>
+|Voraussetzungen         a|Es existiert ein Raum _E-001_ im System. Der Filialleiter is angemeldet.
+|Ereignis                a|
+Der Filialleiter benennt einen Raum in der Raumverwaltung in _E-001W_ um.
+|Erwartetes Ergebnis     a|
+- Der Filialleiter wird auf die Raumverwaltung geleitet.
+- Der Raumname wurde geändert.
+- Der Zeitplan für den Raum wurde nicht verändert.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0032]]<<AT0032>>
+|Anwendungsfall           |<<UC0072>>
+|Voraussetzungen         a|Es existiert ein Raum _E-001_ im System. Der Filialleiter is angemeldet.
+|Ereignis                a|
+Der Filialleiter fügt einen Raum _E-001_ in die Raumverwaltung hinzu.
+|Erwartetes Ergebnis     a|
+- Der Filialleiter wird auf das Formular zurück geleitet und über die Dopplung informiert.
+- Der Raum wurde nicht angelegt.
+- Der existierende Raum _E-001_ bleibt erhalten.
+- Der Zeitplan für den Raum wurde nicht verändert.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0040]]<<AT0040>>
+|Anwendungsfall           |<<UC0042>>
 |Voraussetzungen         a|
 Die Jeans von Herrn Leiter liegt schon 3 Wochen über dem Fertigstellungstermin im Lager.
 |Ereignis                a|
 Herr Leiter kommt in den Laden und holt seinen Gegenstand ab.
 
-Ein angemeldete Angestellter geht auf die Auftragsseite und löst den Gegenstand aus.
+Eine angemeldete Angestellte geht auf die Auftragsseite und löst den Gegenstand aus.
 |Erwartetes Ergebnis     a|
-- Der Angestellte wird aufgefordert 1€ zu kassieren.
+- Die Angestellte wird aufgefordert `1€` zu kassieren.
 - Der eine Euro wird in die Finanz-Verwaltung als Einnahme eingetragen.
 - Die Jeans wird aus dem Lager-System entfernt.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0041]]<<AT0041>>
+|Anwendungsfall           |<<UC0043>>
 |Voraussetzungen         a|
 Herr Leiter hat seine Jeans abgegeben und sie sollten vor 3 Tagen fertig gewesen sein.
 |Ereignis                a|
@@ -104,22 +197,24 @@ Die Jeans sind jetzt erst fertig geworden.
 - Die Jeans wird aus dem Lager-System entfernt.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0042]]<<AT0042>>
+|Anwendungsfall           |<<UC0043>>
 |Voraussetzungen         a|
 Herr Leiter hat seine Jeans abgegeben und sie sollten vor 20 Tagen fertig gewesen sein.
 |Ereignis                a|
 Die Jeans sind jetzt erst fertig geworden.
 |Erwartetes Ergebnis     a|
-- Herr Leiter bekommt den vollen Reparatur-Preis zurück aber nicht mehr!
+- Herr Leiter bekommt den vollen Reparatur-Preis zurück, aber nicht mehr!
 - Diese Ausgaben werden in den Finanzen vermerkt.
 - Die Jeans wird aus dem Lager-System entfernt.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0043]]<<AT0043>>
+|Anwendungsfall           |<<UC0050>>
 |Voraussetzungen         a|
 Herr Leiter hat seine Jeans schon vor langer Zeit zur Reparatur abgegeben.
 |Ereignis                a|
@@ -129,21 +224,23 @@ Die Jeans ist schon seit einer Woche und drei Monaten nicht abgeholt worden.
 - Der Auftrags-Zustand wird entsprechend gesetzt.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0050]]<<AT0050>>
+|Anwendungsfall           |<<UC0020>>
 |Voraussetzungen         a|Der Filialleiter is angemeldet.
 |Ereignis                a|
-Der Filialleiter trägt einen neuen Mitarbeiter in das System ein, der Schustern kann.
+Der Filialleiter trägt einen neuen Mitarbeiter in das System ein, der schustern kann.
 |Erwartetes Ergebnis     a|
 - Der Mitarbeiter kann sich jetzt in das System einloggen.
 - Neue Schufterei-Aufträge werden auch diesem Mitarbeiter zugeordnet.
 - Vielleicht werden auch bestehende Aufträge an den Mitarbeiter verteilt, damit sie schneller fertig werden.
 |===
 
+[cols="1, 3"]
 |===
-|ID                       |
-|Anwendungsfall           |
+|ID                       |[[AT0051]]<<AT0051>>
+|Anwendungsfall           |<<UC0020>>
 |Voraussetzungen         a|Der Filialleiter is angemeldet. Und das System kennt einen Nutzer _mueller_.
 |Ereignis                a|
 Der Filialleiter trägt einen neuen Mitarbeiter in das System ein. Er möchte ihn auch _mueller_ nennen.
@@ -151,4 +248,106 @@ Der Filialleiter trägt einen neuen Mitarbeiter in das System ein. Er möchte ih
 - Das alte Benutzerkonto _mueller_ bleibt unangetastet.
 - Der Filialleiter wird das Nutzer-Anlege-Formular wieder angezeigt, wo seine eingegebenen Daten noch drin stehen.
 - Der Filialleiter wird gebeten, sich einen anderen Nutzernamen auszudenken.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0052]]<<AT0052>>
+|Anwendungsfall           |<<UC0020>>
+|Voraussetzungen         a|Der Filialleiter is angemeldet.
+|Ereignis                a|
+Der Filialleiter trägt einen neuen Mitarbeiter in das System ein, vergisst aber den Nachnamen auszufüllen.
+|Erwartetes Ergebnis     a|
+- Der Mitarbeiter wird nicht angelegt.
+- Der Filialleiter landet wieder bei dem Formular und muss den Nachnamen eintragen, um den Nutzer anlegen zu können.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0053]]<<AT0053>>
+|Anwendungsfall           |<<UC0020>>
+|Voraussetzungen         a|
+Der Filialleiter is angemeldet.
+Und das System kennt einen Nutzer _mueller_ mit dem Vornamen _Herbert_ und Nachnamen _Müller_.
+|Ereignis                a|
+Der Filialleiter ändert den Nachnamen in _Meier_.
+|Erwartetes Ergebnis     a|
+- Der Filialleiter wird auf die Nutzerverwaltungsseite gebracht.
+- Der Nutzer ist überall im System umbenannt.
+- Er kann sich dennoch wie gewohnt anmelden.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0060]]<<AT0060>>
+|Anwendungsfall           |<<UC0010>>
+|Voraussetzungen         a|
+Ein Angestellter ist angemeldet und besitzt keine Admin-Rechte.
+|Ereignis                a|
+Der Angestellte gibt den URI für die Nutzerverwaltung in seinen Browser ein.
+|Erwartetes Ergebnis     a|
+- Der Angestellte bekommt eine Fehlermeldung, da er keine Zugriffsrechte hat.
+- Der Angestellte erhält keinen Zugriff auf die Nutzerverwaltung.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0061]]<<AT0061>>
+|Anwendungsfall           |<<UC0010>>
+|Voraussetzungen         a|
+Eine Person ist nicht angemeldet.
+|Ereignis                a|
+Die Person gibt den URI für die Auftragsverwaltung in seinen Browser ein.
+|Erwartetes Ergebnis     a|
+- Die Person bekommt eine Fehlermeldung, da sie keine Zugriffsrechte hat.
+- Die Person erhält keinen Zugriff auf die Auftragsverwaltung.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0070]]<<AT0070>>
+|Anwendungsfall           |<<UC0060>>
+|Voraussetzungen         a|
+Ein Mitarbeiter ist im System angemeldet.
+|Ereignis                a|
+Die Mitarbeiter geht auf die Materialverwaltungsseite und bestellt Schnur nach.
+|Erwartetes Ergebnis     a|
+- Die zusätzliche Schnur wird in das System hinzugefügt.
+- Die Kosten für die Schnur werden in den Finanzen vermerkt.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0071]]<<AT0071>>
+|Anwendungsfall           |<<UC0060>>
+|Voraussetzungen         a|
+Ein Mitarbeiter ist im System angemeldet.
+|Ereignis                a|
+Die Mitarbeiter geht auf die Materialverwaltungsseite und trägt die von ihm verbrauchte Schnur ein.
+|Erwartetes Ergebnis     a|
+- Die verbrauchte Schnur wird im System gelöscht.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0080]]<<AT0080>>
+|Anwendungsfall           |<<UC0030>>
+|Voraussetzungen         a|Der Filialleiter is angemeldet. Es existieren Bilanz-Posten im System.
+|Ereignis                a|
+Der Filialleiter navigiert zur Bilanzübersicht.
+|Erwartetes Ergebnis     a|
+- Der Filialleiter bekommt alle Bilanz-Posten angezeigt.
+- Die kalkulierte Summe der Posten ist korrekt.
+|===
+
+[cols="1, 3"]
+|===
+|ID                       |[[AT0081]]<<AT0081>>
+|Anwendungsfall           |<<UC0030>>
+|Voraussetzungen         a|Der Filialleiter is angemeldet. Es existieren *keine* Bilanz-Posten im System.
+|Ereignis                a|
+Der Filialleiter navigiert zur Bilanzübersicht.
+|Erwartetes Ergebnis     a|
+- Der Filialleiter bekommt keine Bilanz-Posten angezeigt.
+- Die kalkulierte Summe der Posten ist `0`.
 |===

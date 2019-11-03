@@ -2,9 +2,67 @@
 
 === Qualitätsziele
 
-Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
+////
+Die folgende Tabelle zeigt, welche Qualitätsanforderungen in welchem Umfang erfüllt werden müssen.
+Die erste Spalte listet die Qualitätsanforderungen auf.
+In den folgenden Spalten wird ein "x" verwendet, um die Priorität kennzuzeichnen.
+Die zugewiesene Priorität muss bei der Formulierung der konkreten nichtfunktionalen Anforderungen berücksichtigt werden.
+////
+
+1 = Nicht wichtig ..
+5 = Sehr wichtig
+
+[options="header",cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Qualitätsanspruch        | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit              |   |   |   | x |
+|Benutzerfreundlichkeit   |   |   |   |   | x
+|Sicherheit               |   |   |   | x |
+|Design                   |   | x |   |   |
+|===
 
 === Konkrete Nicht-Funktionale Anforderungen
 
-Beschreiben Sie Nicht-Funktionale Anforderungen, welche dazu dienen, die zuvor definierten Qualitätsziele zu erreichen.
-Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein muss.
+:desired-uptime: 99,5%
+
+[options="header",cols="2h, 3, 12"]
+|===
+|ID
+|Name
+|Beschreibung
+
+|[[NF0010]]<<NF0010>>
+|Erreichbarkeit - Betriebszeit
+a|
+Das System soll mindestens **{desired-uptime}** der Betriebszeit erreichbar sein.
+
+|[[NF0020]]<<NF0020>>
+|Sicherheit - Passwortspeicherung
+a|
+Passwörter von Nutzern werden nur als Hash-Werte gespeichert,
+um Diebstahl zu verhindern.
+
+|[[NF0030]]<<NF0030>>
+|Responsive Design
+a|
+Das Design der Anwendung soll dynamisch auf verschiedene Display-Größen
+reagieren und dort benutzbar dargestellt werden.
+
+|[[NF0040]]<<NF0040>>
+|Verständliche Fehlermeldungen
+a|
+Wenn Formulare mit falschen Daten abgeschickt werden,
+sollen dem Nutzer verständliche Fehlermeldungen angezeigt werden.
+
+|[[NF0041]]<<NF0041>>
+|Zusätzliche Client-Side-Validation
+a|
+Schon möglichst im HTML soll verhindert werden,
+dass der Nutzer falsche bzw. keine Angaben in Formular-Feldern tätigt.
+
+|[[NF0050]]<<NF0050>>
+|Englische Übersetzung
+a|
+Die Anwendung soll auch vollständig auf englischer Sprache verfügbar sein und
+so auch für internationales Personal bedienbar sein.
+|===

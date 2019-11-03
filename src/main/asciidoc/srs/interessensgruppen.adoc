@@ -1,6 +1,9 @@
 == Interessensgruppen (Stakeholders)
 
-Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+In dieser Tabelle sind alle realen und juristischen Personen(-gruppen) die Einfluss auf die Anforderungen dieses Projektes haben vermerkt.
+Dabei wird jedem Akteur eine Priorität, von 1 (niedrigste) bis zu 5 (höchste), zugewiesen.
+Dies erleichtert, für den Fall das sich Anforderungen widersprechen, die Einscheidungsfindung.
+Die Hauptziele der einzelnen Akteure werden ebenfalls beschrieben.
 
 [options="header"]
 [cols="2,^1,4,4"]
@@ -15,22 +18,22 @@ Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforde
 |Primärer Klient dieses Projekts
 a|
 - Gewinnmaximierung
-- Automatisierung/Optimierung des Bestellprozesses und der Lager/Mitarbeiter/Finanzverwaltung
+- Automatisierung/Optimierung des Bestellprozesses und der Lager-/Mitarbeiter-/Finanzverwaltung
 - Verfolgung/Überwachung der Einnahmen/Ausgaben
 
 |Mitarbeiter
 |4
-|Hauptsächliche Nutzer der Anwendung, sind für das Tagesgeschäft verantwortlich.
+|Hauptsächliche Nutzer der Anwendung, sind für das Tagesgeschäft verantwortlich
 a|
-- einfach zu bediende Nutzerobrfläche
+- einfach zu bedienende Nutzeroberfläche
 - schnelle Verarbeitung der Aufträge
 
 |Administratoren
 |3
-|Benutzer die die Anwendung verwalten (Übersicht über alle Bestellungen/Finanzen etc.)
+|Benutzer, die die Anwendung verwalten (Übersicht über alle Bestellungen/Finanzen etc.)
 a|
 - Überblick über alle Abläufe/Vorgänge (Bestellungen, Lagerzustand, Finanzen, Mitarbeiter)
-- Verwaltung o.g. Prozesse
+- Verwaltung o. g. Prozesse
 
 |Entwickler
 |2
@@ -40,4 +43,3 @@ a|
 - geringer Wartungsaufwand
 - gute Debuggingmöglichkeiten
 |===
-

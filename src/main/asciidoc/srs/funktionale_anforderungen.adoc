@@ -1,6 +1,8 @@
 == Funktionale Anforderungen
 
 === Muss-Kriterien
+
+////
 Dieser Abschnitt gibt einen Überblick über die Muss-Kriterien, welche die Software auf jeden Fall
 gewährleisten muss.
 
@@ -9,6 +11,7 @@ Die Tabelle beinhaltet:
     - eine eindeutige Id, die zum referenzieren benutzt werden kann
     - Name des Kriteriums
     - eine Beschreibung des Kriteriums
+////
 
 [options="header", cols="2h, 3, 12"]
 |===
@@ -16,52 +19,123 @@ Die Tabelle beinhaltet:
 |Name
 |Beschreibung
 
-|[[F0010]]<<F0010>>
+|[[MK0010]]<<MK0010>>
 |Authentifizierung
 |Mitarbeiter sollen sich durch einen Benutzernamen und einem Passwort einloggen können.
 
-|[[F0020]]<<F0020>>
+|[[MK0020]]<<MK0020>>
 |Registrierung
 |Der Admin kann neue Mitarbeiter registrieren.
 
-|[[F0030]]<<F0030>>
+|[[MK0030]]<<MK0030>>
 |Auftragszettel
 |Nach Bezahlung wird ein Auftragszettel mit eindeutiger Auftragsnummer und Fertigstellungstermin
 erstellt.
 
-|[[F0040]]<<F0040>>
+|[[MK0040]]<<MK0040>>
 |Lagerung der Ware in Aufbewahrungsstelle
 |Eine Woche nach dem Fertigstellungstermin geht die Ware in eine Aufbewahrungsstelle.
 
-|[[F0050]]<<F0050>>
+|[[MK0050]]<<MK0050>>
 |Aufbewahrungsgebühr
 |Für die Lagerung der Ware in der Aufbewahrungsstelle wird eine Gebühr von 0,50€ pro Woche verlangt.
 
-|[[F0060]]<<F0060>>
+|[[MK0060]]<<MK0060>>
 |Teilweise Erstattung bei Verzögerung
 |Für jeden ganzen verspäteten Tag seitens des Betriebs werden 10% der Reparaturkosten für den Kunden erstattet.
 Dabei können nicht mehr als 100% erstattet werden.
 
-|[[F0070]]<<F0070>>
+|[[MK0070]]<<MK0070>>
 |Ressourcenverwaltung
 |Das System soll Ressourcen wie Personal, Arbeitsgeräte, Materialen und Räume verwalten.
 
-|[[F0080]]<<F0080>>
+|[[MK0080]]<<MK0080>>
 |Bilanzübersicht
 |Der Admin soll zu jeder Zeit die gesamte Bilanzen des Betriebs einsehen können. Dazu gehören
 laufende und akkumulierte Bilanzen.
 
-|[[F0090]]<<F0090>>
+|[[MK0090]]<<MK0090>>
 |Übergabe an karitative Organisation
 |Falls die Ware nach den 3 Monaten in der Aufbewahrungsstelle nicht abgeholt wurde, soll sie an
 eine karitative Organisation weitergeben werden.
 
-|[[F0100]]<<F0100>>
+|[[MK0100]]<<MK0100>>
 |Dienstleistungen
 |Das System soll die aktuell verfügbaren Dienstleistungen des Reparaturbetriebs erfassen können.
+
+|[[MK0110]]<<MK0110>>
+|Nachbestellen von Materialen
+|Materialien sollen nachbestellbar sein, falls notwendig. Die Kosten werden im System vermerkt.
+
+|[[MK0120]]<<MK0120>>
+|Löschen von Accounts
+|Der Admin kann Accounts vom System entfernen.
+
+|[[MK0130]]<<MK0130>>
+|Eindeutige Benutzerkonten
+|Es darf nicht mehr als ein Account mit selbem Namen im System existieren.
+
+|[[MK0140]]<<MK0140>>
+|Fachliche Kompetenzen eines Mitarbeiters im System
+|Mitarbeiter können ihre fachlichen Kompetenzen in das System eintragen.
+
+|[[MK0150]]<<MK0150>>
+|Umbenennung von Benutzernamen
+|Der Benutzername kann geändert werden.
+
+|[[MK0160]]<<MK0160>>
+|Voller Raum
+|Das System muss erkennen, wenn bei der Planung der Raum voll ausgelastet ist.
+
+|[[MK0170]]<<MK0170>>
+|Auftragsübersicht
+|Mitarbeiter können sich die Aufträge im System anzeigen lassen.
+
+|[[MK0180]]<<MK0180>>
+|monatlicher Reingewinn
+|Der monatliche Reingewinn soll an die Zentrale geschickt werden.
 
 |===
 
 === Kann-Kriterien
 
-Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
+// Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
+
+[options="header",cols="2h, 3, 12"]
+|===
+|ID
+|Name
+|Beschreibung
+
+|[[KK0010]]<<KK0010>>
+|Arbeitsgeräte
+|Der Filialleiter kann auch noch Arbeitsgeräte über die Finanzen abrechnen.
+
+|[[KK0020]]<<KK0020>>
+|Passwort ändern
+|Die Nutzer des Systems können ihr Passwort ändern.
+
+|[[KK0030]]<<KK0030>>
+|Nachbestellung
+|System bestellt automatisch Materialien nach.
+
+|[[KK0040]]<<KK0040>>
+|Bearbeitungsstand einsehen
+|Kunde kann Bearbeitungsstand einsehen mit ID.
+
+|[[KK0050]]<<KK0050>>
+|Benachrichtigung des Kunden
+|Kunde wird bei Verspätung benachrichtigt.
+
+|[[KK0060]]<<KK0060>>
+|Bearbeitungsdauer kalkulieren
+|Bearbeitungsdauer wird automatisch kalkuliert.
+
+|[[KK0070]]<<KK0070>>
+|Zeiten aufzeichnen
+|Arbeitszeiten der Mitarbeiter werden aufgezeichnet.
+
+|[[KK0080]]<<KK0080>>
+|effektivster Raum
+|System wählt automatisch den Raum mit der effektivsten Bearbeitung aus.
+|===

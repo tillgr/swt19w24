@@ -2,7 +2,8 @@
 
 === Überblick: Klassendiagramm
 
-UML-Analyseklassendiagramm
+[[class_diagram]]
+image::models/Class_Diagram.png[Klassendiagramm,100%,100%,pdfwidth=100%,title="Klassendiagramm",align=center]
 
 === Klassen und Enumerationen
 
@@ -13,64 +14,84 @@ Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
 ////
 
 // See http://asciidoctor.org/docs/user-manual/#tables
-[options="header"]
+[options="header",cols="1, 3"]
 |===
 |Klasse/Enumeration  |Beschreibung
+
 |Customer Item       |
 Diese Klasse beschreibt einen Gegenstand, den ein Kunde in der Filiale zur Reparatur abgegeben hat.
 Dieser Gegenstand kann entweder gelagert sein oder er wird gerade bearbeitet.
+
 |Financial Item      |
 Wenn die Filiale Ausgaben oder Einnahmen tätigt, müssen diese Posten in den Bilanzen auftauchen.
 Jedes _Financial Item_ steht für genau einen Posten.
+
 |Financial Management|
 Diese Klasse verwaltet alle Einnahmen und Ausgaben, die durch _Financial Items_ repräsentiert werden.
 Zudem erlaubt diese Klasse die akkumulierten Bilanzen aufzuzeigen.
+
 |Material            |
 Jedes Material, das zum Reparieren benötigt wird wird durch eine Instanz von _Material_ dargestellt.
 Jedes Material ist in einer bestimmten Menge vorhanden und kann bei Bedarf nachbestellt werden.
+
 |Order               |
 _Order_ ist ein einzelner Auftrag, den ein Kunde am Annahmeschalter aufgegeben hat.
 Jeder Auftrag gehört zu einer Dienstleistung und ist mit dem abgegebenen Gegenstand verbunden.
 Wenn der Auftrag gerade bearbeitet wird, ist ihm ein Mitarbeiter und ein Raum zugeordnet.
+
 |Order Management    |
 _Order Management_ verwaltet alle Aufträge und erlaubt diese durchzugehen.
+
 |Order Ticket        |
 Wenn ein Kunde einen Auftrag am Schalter registriert,
-wird ihm ein Auftragszettel mit Auftragsnummer und Fertigstellungstermin.
+wird ihm ein Auftragszettel mit Auftragsnummer und Fertigstellungstermin übergeben.
+
 |Resource            |
 Ressourcen sind Mitarbeiter, Material und Räume.
+
 |Resource Management |
-Die Ressourcen werden dann vom _Resource Management_.
+Die Ressourcen werden dann vom _Resource Management_ verwaltet.
+
 |Role                |
 Mitarbeiter können entweder Angestellte oder Administratoren sein.
-Der Administrator könnte der Chef der Filiale sein. Das erlaubt dann Rechte-Verwaltung.
+Der Administrator könnte der Filialleiter sein. Das erlaubt Rechte-Verwaltung.
+
 |Room                |
-Jeder Raum hat einen Zeit-Plan, mit einer festen Anzahl von Slots pro Tag.
+Jeder Raum hat einen Zeitplan, mit einer festen Anzahl von Slots pro Tag.
 Jeder Auftrag, an dem gearbeitet werden muss, wird dann in einen freien Slot eines Raum eingetragen.
+
 |Service              |
 Eine Dienstleistung hat einen Namen, einen Preis und gehört zu einer Kategorie.
+
 |Service Category     |
 Das sind die einzelnen Dienstleistungskategorien.
+
 |Staff               |
 Jeder Mitarbeiter in der Filiale gehört zur Klasse _Staff_ und besitzt spezielle Fähigkeiten,
 die zu den Dienstleistungen korrespondieren. Der Nachname wird von _Resource_ geerbt.
+
 |State               |
-Jeder Auftrag ist in einem Zustand. +
+Jeder Auftrag ist in einem Zustand: +
 _WAITING_ ist gesetzt, solange der Auftrag keinem Raum und Mitarbeiter zugeordnet ist. +
 _IN PROGRESS_ ist gesetzt, wenn der Auftrag gerade in Bearbeitung ist. +
 _FINISHED_ ist gesetzt, wenn der Gegenstand gerade fertig bearbeitet wurde. +
 _STORED_ wird gesetzt, wenn der Gegenstand ins Langzeit-Lager gegangen ist,
 da er eine Woche nicht abgeholt wurde. +
 _PICKED UP_ wird gesetzt, wenn der Gegenstand vom Kunden abgeholt wurde. +
-_CHARITABLE USED_ wird gesetzt, wenn der Kunde den Gegenstand nicht abgeholt hat. +
+_CHARITABLE USED_ wird gesetzt, wenn der Kunde den Gegenstand nicht abgeholt hat
+und der Gegenstand abgegeben wurde. +
+
 |Storage            |
 Die Gegenstände der Kunden werden im Lager verwaltet.
+
 |Time Table         |
 Jeder Raum hat einen Zeit-Plan, in dem feste Slots für jeden Tag sind.
 Die zu bearbeitenden Aufträge werden in die Slots eingeschrieben.
+
 |Time Table Entry   |
 Wenn ein Auftrag in einen Zeit-Slot eingefügt wird, wird ein neuer _Time Table Entry_ angelegt.
+
 |User               |
-Administratoren und Angestellte werden in die Klasse User kombiniert.
+Administratoren und Angestellte werden in die Klasse _User_ kombiniert.
 Jeder Nutzer kann sich in das System einloggen.
 |===

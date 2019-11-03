@@ -2,40 +2,45 @@
 
 === Akteure
 
+////
 Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen.
 Dokumentieren Sie die Akteure in einer Tabelle.
 Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz.
 Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
 Weitere relevante Spalten können bei Bedarf ergänzt werden.
+////
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 [cols="1,4"]
 |===
+
 |Name
 |Beschreibung
 
 |User
-|Rerpräasentiert jede Person die mit dem System interagiert unabhängig davon ob sie angemeldet ist oder nicht.
+|Repräsentiert jede Person, die mit dem System interagiert, unabhängig davon, ob sie angemeldet ist oder nicht.
 
 |Signed-out User
-|Repräsentiert jede Person die zwar einen Account besitzt aber (noch) nicht angemeldet ist.
+|Repräsentiert jede Person die zwar einen Account besitzt, aber momentan nicht angemeldet ist.
 
 |Staff
-|Repräsentiert jeden angemeldeten Nutzer der die Rolle "Staff" hat. Besitz nur eingeschränkte Zugriffsrechte.
+|Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Staff" hat. Besitzt nur eingeschränkte Zugriffsrechte.
 
 |Admin
-|Repräsentiert jeden angemeldeten Nutzer der die Rolle "Admin" hat. Hat uneingeschränkten Zugriff
+|Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Admin" hat. Er hat uneingeschränkten Zugriff.
 |===
-
-
 
 === Überblick Anwendungsfalldiagramm
 
-Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+//Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+
+[[use_case_diagram]]
+image::models/UseCases.png[Anwendungsfalldiagramm,100%,100%,pdfwidth=100%,title= "Anwendungsfalldiagramm",align=center]
 
 === Anwendungsfallbeschreibungen
 
+////
 Dieser Unterabschnitt beschreibt die Anwendungsfälle.
 In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden.
 Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden.
@@ -43,3 +48,284 @@ Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den 
 Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 Einfache Anwendungsfälle mit einem Absatz beschreiben.
 Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
+////
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<UC0010>>**
+|Name                       |Login/Logout
+|Beschreibung                |Ein Benutzer muss sich beim System anmelden (authentifizieren) können, um auf weitere Funktionen zugreifen zu können.
+Dieser Prozess muss durch Abmeldung rückgängig gemacht werden können.
+|Akteure                     |Mitarbeiter
+|Auslöser                    |
+_Login_: Der Benutzer möchte durch Einloggen auf "versteckte" Funktionen zugreifen.
+
+_Logout_: Der Benutzer möchte das System verlassen.
+|Vorbedingung  a|
+_Login_: Der Benutzer ist noch nicht authentifiziert.
+
+_Logout_: Benutzer ist authentifiziert
+|Wesentliche Schritte a|
+_Login_:
+
+1. Benutzerzugriffe auf "Einloggen" in der Navigationsleiste.
+2. Benutzer gibt seine Zugangsdaten ein.
+3. Der Benutzer drückt auf die Schaltfläche "Anmelden".
+
+_Logout_:
+
+1. Benutzer klickt in der Navigationsleiste auf "Ausloggen".
+2. Der Benutzer ist nicht authentifiziert und wird auf dem Startbildschirm angezeigt.
+
+|Erweiterungen                 |-
+|Funktionale Anforderungen    |<<MK0010>>
+|===
+
+[cols="1h, 3"]
+[[UC0020]]
+|===
+|ID                         |**<<UC0020>>**
+|Name                       |Mitarbeiter wird erstellt
+|Beschreibung               |Ein Admin sollte in der Lage sein, einen Account für einen Mitarbeiter zu erstellen.
+|Akteure                    |Admin
+|Auslöser                   |Der Administrator möchte ein Konto für einen Benutzer erstellen, indem er auf "Registrieren" drückt.
+|Vorbedingung              a|Mitarbeiter ist noch nicht eingeloggt (authentifiziert)
+|Wesentliche Schritte      a|
+1. Der Admin drückt "Registrieren".
+2. Er gibt den gewünschten Benutzernamen, das Passwort und die Adresse ein.
+3. System prüft die Eindeutigkeit des Benutzernamens
+. Falls valide: Es wird ein Konto mit den angegebenen Daten angelegt.
+. Andernfalls: Es wird eine Fehlermeldung angezeigt.|Erweiterungen                 |-
+|Funktionale Anforderungen    |<<MK0020>>
+|===
+
+[[UC0030]]
+[cols="1h, 3"]
+|===
+|ID                         |**<<UC0030>>**
+|Name                       |Bilanzen ansehen
+|Beschreibung                |Ein Admin sollte in der Lage sein, in einer gesonderten Nutzerumgebung die Bilanzen einzusehen.
+|Akteure                     |Admin
+|Auslöser                    |Admin öffnet die Bilanzübersicht und lässt sich die Bilanzen anzeigen.
+|Vorbedingung           a|Admin kann sich Bilanzübersicht anzeigen lassen.
+|Wesentliche Schritte           a|
+1. Admin wählt "Bilanzen anzeigen" in der Bilanzübersicht aus.
+2. Admin bekommt die Bilanzen angezeigt.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0080>>
+|===
+
+[[sequence_diagram_finance]]
+image::models/Finance.png[Sequenzdiagramm: Bilanzübersicht abrufen,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Bilanzübersicht abrufen",align=center]
+
+[[UC0031]]
+[cols="1h, 3"]
+|===
+|ID                         |**<<UC0031>>**
+|Name                       |Gewinn abführen
+|Beschreibung                |Ein Admin sollte in der Lage sein, in einer gesonderten Nutzerumgebung den Gewinn einzusehen und auszuzahlen.
+|Akteure                     |Admin
+|Auslöser                    |Admin öffnet die Bilanzübersicht und lässt sich Gewinn anzeigen.
+|Vorbedingung           a|Admin lässt sich Bilanzübersicht anzeigen.
+|Wesentliche Schritte           a|
+1. Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus.
+2. Admin bekommt den Gewinn angezeigt und kann ihn abführen.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0080>>
+|===
+
+[cols="1h,3"]
+[[UC0040]]
+|===
+|ID                          |**<<UC0040>>**
+|Name                        |Auftrag erstellen
+|Beschreibung                |Ein Kunde gibt bei einem Mitarbeiter einen Auftrag ab und dieser soll ihn dem System überstellen.
+|Akteure                     |Mitarbeiter
+|Auslöser                    |Mitarbeiter gibt Auftrag in das System ein.
+|Vorbedingung               a|Mitarbeiter ist eingeloggt und hat Zugriff auf die Komponente zur Auftragsverwaltung.
+|Wesentliche Schritte       a|
+1. Mitarbeiter loggt sich ein.
+2. Mitarbeiter gibt Daten in das System ein.
+3. System verarbeitet Auftrag und gibt Ticket für den Kunden aus.
+|Erweiterungen                a|
+- Nur Angemeldete Mitarbeiter dürfen Aufträge erstellem und Stornieren.
+- Jeder Mitarbeiter kann nur seine eigenen Aufträge stornieren.
+|Funktionale Anforderungen    | <<MK0030>>, <<MK0170>>
+|===
+
+[[sequence_diagram_hand_in]]
+image::models/Hand_In.png[Sequenzdiagramm: Auftrag erstellen,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Auftrag erstellen",align=center]
+
+[cols="1h,3"]
+[[UC0041]]
+|===
+|ID                         |**<<UC0041>>**
+|Name                       |Ware abholen
+|Beschreibung                |Ein Mitarbeiter soll einem Kunden seine fertige Ware aushändigen.
+|Akteure                     |Mitarbeiter
+|Auslöser                    |Mitarbeiter bestätigt Abholung der Ware im System
+|Vorbedingung           a|Ware liegt fertig bearbeitet im Lager
+|Wesentliche Schritte           a|
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft.
+2. Bei Abholung wird auf Verspätung der Abholung geprüft.
+3. Die nötigen Schritte werden eingeleitet.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0050>>, <<MK0040>>
+|===
+
+[[sequence_diagram_pick_up]]
+image::models/Hand_In.png[Sequenzdiagramm: Ware abholen,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Ware abholen",align=center]
+
+[cols="1h,3"]
+[[UC0042]]
+|===
+|ID                         |**<<UC0042>>**
+|Name                       |Ware wird zu spät abgeholt
+|Beschreibung                |Ein Mitarbeiter soll einem Kunden seine fertige Ware aushändigen.
+|Akteure                     |Mitarbeiter
+|Auslöser                    |Mitarbeiter bestätigt Abholung der Ware im System
+|Vorbedingung           a|Ware liegt fertig bearbeitet im Lager
+|Wesentliche Schritte           a|
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft.
+2. Bei Abholung wird auf Verspätung der Abholung geprüft.
+3. Gebühren werden auf den Preis aufgeschlagen.
+4. Mitarbeiter kassiert die Gebühr
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0050>>, <<MK0040>>
+|===
+
+[cols="1h,3"]
+[[UC0043]]
+|===
+|ID                         |**<<UC0043>>**
+|Name                       |Ware wird zu spät fertig
+|Beschreibung                |Ein Mitarbeiter soll einem Kunden seine fertige Ware aushändigen.
+|Akteure                     |Mitarbeiter
+|Auslöser                    |Mitarbeiter bestätigt Abholung der Ware im System
+|Vorbedingung           a|Ware liegt fertig bearbeitet, aber zu spät, im Lager
+|Wesentliche Schritte           a|
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft.
+2. Bei Abholung wird auf Verspätung der Abholung geprüft.
+3. Preis wird verringert.
+4. Mitarbeiter tätigt Ausgleichszahlung.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0060>>
+|===
+
+[cols="1h,3"]
+[[UC0050]]
+|===
+|ID                         |**<<UC0050>>**
+|Name                       |Karitative Abgabe
+|Beschreibung                |Nach Ablauf der Abholungsfrist soll die betroffene Ware karitativ abgegeben werden
+|Akteure                     |-
+|Auslöser                    |Abholungsfrist läuft ab
+|Vorbedingung           a|
+Ware wurde nicht fristgerecht abgeholt
+|Wesentliche Schritte           a|
+1. Ware wird automatisch zur Abgabe markiert.
+2. Karitative Organisation holt die bis dato markierte Ware ab.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0090>>
+|===
+
+[[sequence_diagram_charity]]
+image::models/Charity.png[Sequenzdiagramm: Karitative Abgabe,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Karitative Abgabe",align=center]
+
+[cols="1h,3"]
+[[UC0060]]
+|===
+|ID                         |**<<UC0060>>**
+|Name                       |Materialien nachbestellen
+|Beschreibung                |Fehlende Materialien sollen automatisch nachbestellt werden
+|Akteure                     |-
+|Auslöser                    |Sollwert für den nächsten Monat wird unterschritten
+|Vorbedingung           a|
+- Material wurde diesen Monat aufgefüllt
+- Material ist verfügbar
+|Wesentliche Schritte           a|
+1. Material wird als fehlend markiert.
+2. Aufträge mit diesem Material werden pausiert.
+3. Bestellliste wird zusammengetragen.
+4. Material wird bestellt.
+|Erweiterungen                 |
+|Funktionale Anforderungen    | <<MK0110>>
+|===
+
+[cols="1h,3"]
+[[UC0070]]
+|===
+|ID                         |**<<UC0070>>**
+|Name                       |Raum buchen
+|Beschreibung                |Das System soll automatisch für Bestellungen freie, passende Räume buchen
+|Akteure                     |Mitarbeiter
+|Auslöser                    |Mitarbeiter übergibt dem System einen neuen Auftrag, welcher bearbeitet werden soll
+|Vorbedingung           a|Der Mitarbeiter ist angemeldet.
+|Wesentliche Schritte           a|
+1. Alle Ressourcen sind vorhanden und vollständig
+2. Im Terminplan wird ein freier Slot gesucht
+3. Slot und Ressourcen werden für die Bestellung gebucht
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<MK0160>>, <<MK0030>>
+|===
+
+[cols="1h,3"]
+[[UC0071]]
+|===
+|ID                         |**<<UC0071>>**
+|Name                       |Raum löschen
+|Beschreibung                |Raum soll aus Datenbank gelöscht werden
+|Akteure                     |Admin
+|Auslöser                    |Admin löst Löschung des Raumes aus der Datenbank aus
+|Vorbedingung           a|Raum befindet sich in der Datenbank
+|Wesentliche Schritte           a|
+1. Admin wählt die Löschung des Raumes aus.
+2. Raum wird gelöscht.
+3. Raum kann neu erstellt werden.
+4. Raum kann mit Ressourcen verknüpft werden.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    |
+|===
+
+[cols="1h,3"]
+[[UC0072]]
+|===
+|ID                         |**<<UC0072>>**
+|Name                       |Raum hinzufügen
+|Beschreibung                |Raum soll in das System hinzugefügt werden
+|Akteure                     |Admin
+|Auslöser                    |Admin löst Hinzufügen eines Raums in die Datenbank aus
+|Vorbedingung           a|Raum mit dem selben Namen befindet sich *nicht* in der Datenbank
+|Wesentliche Schritte           a|
+1. Admin wählt die Hinzufügung eines Raumes aus.
+2. Admin trägt Daten des Raumes ein.
+3. Raum wird erstellt.
+|Erweiterungen                 |Aufträge können umverteilt werden.
+|Funktionale Anforderungen    | <<KK0080>>
+|===
+
+[[sequence_diagram_add_room]]
+image::models/Add_Room.png[Sequenzdiagramm: Hinzufügen eines Raumes mit Umsortierung eines Zeitslots,100%,100%,pdfwidth=100%,title="Sequenzdiagramm: Hinzufügen eines Raumes mit Umsortierung eines Zeitslots",align=center]
+
+==== Anwendungsfallbeschreibungen zu Kann-Kriterien
+
+[cols="1h,3"]
+[[UC1010]]
+|===
+|ID                         |**<<UC1010>>**
+|Name                       |Arbeitsgeräte nachbestellen
+|Beschreibung                |Fehlende Arbeitsgeräte sollen automatisch nachbestellt werden
+|Akteure                     |-
+|Auslöser                    |Sollwert für den nächsten Monat wird unterschritten
+|Vorbedingung           a|
+- Arbeitsgerät wurde diesen Monat aufgefüllt
+- Arbeitsgerät ist verfügbar
+|Wesentliche Schritte           a|
+1. Arbeitsgerät wird als fehlend markiert.
+2. Auftrage mit diesem Arbeitsgerät werden pausiert.
+3. Bestellliste wird zusammengetragen.
+4. Arbeitsgerät wird bestellt.
+|Erweiterungen                 |-
+|Funktionale Anforderungen    | <<KK0010>>
+|===
