@@ -25,10 +25,10 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 |Repräsentiert jede Person die zwar einen Account besitzt, aber momentan nicht angemeldet ist.
 
 |Staff
-|Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Staff" hat. Besitz nur eingeschränkte Zugriffsrechte.
+|Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Staff" hat. Besitzt nur eingeschränkte Zugriffsrechte.
 
 |Admin
-|Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Admin" hat. Hat uneingeschränkten Zugriff
+|Repräsentiert jeden angemeldeten Nutzer, der die Rolle "Admin" hat. Er hat uneingeschränkten Zugriff.
 |===
 
 === Überblick Anwendungsfalldiagramm
@@ -69,8 +69,8 @@ _Logout_: Benutzer ist authentifiziert
 |Wesentliche Schritte a|
 _Login_:
 
-1. Benutzerzugriffe auf "Einloggen" in der Navigationsleiste
-2. Benutzer gibt seine Zugangsdaten ein
+1. Benutzerzugriffe auf "Einloggen" in der Navigationsleiste.
+2. Benutzer gibt seine Zugangsdaten ein.
 3. Der Benutzer drückt auf die Schaltfläche "Anmelden".
 
 _Logout_:
@@ -95,7 +95,7 @@ _Logout_:
 1. Der Admin drückt "Registrieren".
 2. Er gibt den gewünschten Benutzernamen, das Passwort und die Adresse ein.
 3. System prüft die Eindeutigkeit des Benutzernamens
-. Wenn einzigartig: Es wird ein Konto mit den angegebenen Daten angelegt.
+. Falls valide: Es wird ein Konto mit den angegebenen Daten angelegt.
 . Andernfalls: Es wird eine Fehlermeldung angezeigt.|Erweiterungen                 |-
 |Funktionale Anforderungen    |<<MK0020>>
 |===
@@ -110,8 +110,8 @@ _Logout_:
 |Auslöser                    |Admin öffnet die Bilanzübersicht und lässt sich die Bilanzen anzeigen.
 |Vorbedingung           a|Admin kann sich Bilanzübersicht anzeigen lassen.
 |Wesentliche Schritte           a|
-1. Admin wählt "Bilanzen anzeigen" in der Bilanzübersicht aus
-2. Admin bekommt die Bilanzen angezeigt
+1. Admin wählt "Bilanzen anzeigen" in der Bilanzübersicht aus.
+2. Admin bekommt die Bilanzen angezeigt.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<MK0080>>
 |===
@@ -129,8 +129,8 @@ image::models/Finance.png[Sequenzdiagramm: Bilanzübersicht abrufen,100%,100%,pd
 |Auslöser                    |Admin öffnet die Bilanzübersicht und lässt sich Gewinn anzeigen.
 |Vorbedingung           a|Admin lässt sich Bilanzübersicht anzeigen.
 |Wesentliche Schritte           a|
-1. Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus
-2. Admin bekommt den Gewinn angezeigt und kann ihn abführen
+1. Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus.
+2. Admin bekommt den Gewinn angezeigt und kann ihn abführen.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<MK0080>>
 |===
@@ -142,15 +142,15 @@ image::models/Finance.png[Sequenzdiagramm: Bilanzübersicht abrufen,100%,100%,pd
 |Name                        |Auftrag erstellen
 |Beschreibung                |Ein Kunde gibt bei einem Mitarbeiter einen Auftrag ab und dieser soll ihn dem System überstellen.
 |Akteure                     |Mitarbeiter
-|Auslöser                    |Mitarbeiter gibt Auftrag in das Sytsem ein.
+|Auslöser                    |Mitarbeiter gibt Auftrag in das System ein.
 |Vorbedingung               a|Mitarbeiter ist eingeloggt und hat Zugriff auf die Komponente zur Auftragsverwaltung.
 |Wesentliche Schritte       a|
-1. Mitarbeiter loggt sich ein
-2. Mitarbeiter gibt Daten in das System ein
-3. System verarbeitet Auftrag und gibt Ticket für den Kunden aus
+1. Mitarbeiter loggt sich ein.
+2. Mitarbeiter gibt Daten in das System ein.
+3. System verarbeitet Auftrag und gibt Ticket für den Kunden aus.
 |Erweiterungen                a|
-- Nur Angemeldete Mitarbeiter dürfen Aufträge erstellem und Stornieren
-- Jeder Mitarbeiter kann nur seine eigenen Aufträge stornieren
+- Nur Angemeldete Mitarbeiter dürfen Aufträge erstellem und Stornieren.
+- Jeder Mitarbeiter kann nur seine eigenen Aufträge stornieren.
 |Funktionale Anforderungen    | <<MK0030>>, <<MK0170>>
 |===
 
@@ -167,9 +167,9 @@ image::models/Hand_In.png[Sequenzdiagramm: Auftrag erstellen,100%,100%,pdfwidth=
 |Auslöser                    |Mitarbeiter bestätigt Abholung der Ware im System
 |Vorbedingung           a|Ware liegt fertig bearbeitet im Lager
 |Wesentliche Schritte           a|
-1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft
-2. Bei Abholung wird auf Verspätung der Abholung geprüft
-3. Die nötigen Schritte werden eingeleitet
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft.
+2. Bei Abholung wird auf Verspätung der Abholung geprüft.
+3. Die nötigen Schritte werden eingeleitet.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<MK0050>>, <<MK0040>>
 |===
@@ -187,9 +187,9 @@ image::models/Hand_In.png[Sequenzdiagramm: Ware abholen,100%,100%,pdfwidth=100%,
 |Auslöser                    |Mitarbeiter bestätigt Abholung der Ware im System
 |Vorbedingung           a|Ware liegt fertig bearbeitet im Lager
 |Wesentliche Schritte           a|
-1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft
-2. Bei Abholung wird auf Verspätung der Abholung geprüft
-3. Gebühren werden auf den Preis aufegschlagen
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft.
+2. Bei Abholung wird auf Verspätung der Abholung geprüft.
+3. Gebühren werden auf den Preis aufgeschlagen.
 4. Mitarbeiter kassiert die Gebühr
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<MK0050>>, <<MK0040>>
@@ -205,10 +205,10 @@ image::models/Hand_In.png[Sequenzdiagramm: Ware abholen,100%,100%,pdfwidth=100%,
 |Auslöser                    |Mitarbeiter bestätigt Abholung der Ware im System
 |Vorbedingung           a|Ware liegt fertig bearbeitet, aber zu spät, im Lager
 |Wesentliche Schritte           a|
-1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft
-2. Bei Abholung wird auf Verspätung der Abholung geprüft
-3. Preis wird verringert
-4. Mitarbeiter tätigt Ausgleichszahlung
+1. Bei Abholung wird auf Verspätung der Bearbeitung geprüft.
+2. Bei Abholung wird auf Verspätung der Abholung geprüft.
+3. Preis wird verringert.
+4. Mitarbeiter tätigt Ausgleichszahlung.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<MK0060>>
 |===
@@ -224,8 +224,8 @@ image::models/Hand_In.png[Sequenzdiagramm: Ware abholen,100%,100%,pdfwidth=100%,
 |Vorbedingung           a|
 Ware wurde nicht fristgerecht abgeholt
 |Wesentliche Schritte           a|
-1. Ware wird automatisch zur Abgabe markiert
-2. Karitative Organisation holt die bis dato markierte Ware ab
+1. Ware wird automatisch zur Abgabe markiert.
+2. Karitative Organisation holt die bis dato markierte Ware ab.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<MK0090>>
 |===
@@ -238,17 +238,17 @@ image::models/Charity.png[Sequenzdiagramm: Karitative Abgabe,100%,100%,pdfwidth=
 |===
 |ID                         |**<<UC0060>>**
 |Name                       |Materialien nachbestellen
-|Beschreibung                |Fehlende Maerialien sollen automatisch nachbestellt werden
+|Beschreibung                |Fehlende Materialien sollen automatisch nachbestellt werden
 |Akteure                     |-
 |Auslöser                    |Sollwert für den nächsten Monat wird unterschritten
 |Vorbedingung           a|
 - Material wurde diesen Monat aufgefüllt
 - Material ist verfügbar
 |Wesentliche Schritte           a|
-1. Material wird als fehlend markiert
-2. Auftrage mit diesem Material werden pausiert
-3. Bestellliste wird zusammengetragen
-4. Material wird bestellt
+1. Material wird als fehlend markiert.
+2. Aufträge mit diesem Material werden pausiert.
+3. Bestellliste wird zusammengetragen.
+4. Material wird bestellt.
 |Erweiterungen                 |
 |Funktionale Anforderungen    | <<MK0110>>
 |===
@@ -280,10 +280,10 @@ image::models/Charity.png[Sequenzdiagramm: Karitative Abgabe,100%,100%,pdfwidth=
 |Auslöser                    |Admin löst Löschung des Raumes aus der Datenbank aus
 |Vorbedingung           a|Raum befindet sich in der Datenbank
 |Wesentliche Schritte           a|
-1. Admin wählt die Löschung des Raumes aus
-2. Raum wird gelöscht
-3. Raum kann neu erstellt werden
-4. Raum kann mit Ressourcen verknüpft werden
+1. Admin wählt die Löschung des Raumes aus.
+2. Raum wird gelöscht.
+3. Raum kann neu erstellt werden.
+4. Raum kann mit Ressourcen verknüpft werden.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    |
 |===
@@ -298,9 +298,9 @@ image::models/Charity.png[Sequenzdiagramm: Karitative Abgabe,100%,100%,pdfwidth=
 |Auslöser                    |Admin löst Hinzufügen eines Raums in die Datenbank aus
 |Vorbedingung           a|Raum mit dem selben Namen befindet sich *nicht* in der Datenbank
 |Wesentliche Schritte           a|
-1. Admin wählt die Hinzufügung eines Raumes aus
-2. Admin trägt Daten des Raumes ein
-3. Raum wird erstellt
+1. Admin wählt die Hinzufügung eines Raumes aus.
+2. Admin trägt Daten des Raumes ein.
+3. Raum wird erstellt.
 |Erweiterungen                 |Aufträge können umverteilt werden.
 |Funktionale Anforderungen    | <<KK0080>>
 |===
@@ -322,10 +322,10 @@ image::models/Add_Room.png[Sequenzdiagramm: Hinzufügen eines Raumes mit Umsorti
 - Arbeitsgerät wurde diesen Monat aufgefüllt
 - Arbeitsgerät ist verfügbar
 |Wesentliche Schritte           a|
-1. Arbeitsgerät wird als fehlend markiert
-2. Auftrage mit diesem Arbeitsgerät werden pausiert
-3. Bestellliste wird zusammengetragen
-4. Arbeitsgerät wird bestellt
+1. Arbeitsgerät wird als fehlend markiert.
+2. Auftrage mit diesem Arbeitsgerät werden pausiert.
+3. Bestellliste wird zusammengetragen.
+4. Arbeitsgerät wird bestellt.
 |Erweiterungen                 |-
 |Funktionale Anforderungen    | <<KK0010>>
 |===

@@ -127,13 +127,13 @@ Die Person, die für die Miss Mint Filiale verantwortlich ist und höchste Recht
 Ressourcen sind Mitarbeiter, Material und Räume.
 
 |Bestellung     |
-Die Bestellung ist ein einzelner Auftrag, den ein Kunde am Annahmeschalter aufgegeben hat.Jeder Auftrag gehört zu einer Dienstleistung und ist mit dem abgegebenen Gegenstand verbunden. Wenn der Auftrag gerade bearbeitet wird, ist ihm ein Mitarbeiter und ein Raum zugeordnet.
+Die Bestellung ist ein einzelner Auftrag, den ein Kunde am Annahmeschalter aufgegeben hat. Jeder Auftrag gehört zu einer Dienstleistung und ist mit dem abgegebenen Gegenstand verbunden. Wenn der Auftrag gerade bearbeitet wird, ist ihm ein Mitarbeiter und ein Raum zugeordnet.
 
 |Service        |
 Ist eine Dienstleistung mit einen Namen, einen Preis und gehört zu einer Kategorie.
 
 |Time Table     |
-Jeder Raum hat einen Zeit-Plan, in dem feste Slots für jeden Tag sind. Die zu bearbeitenden Aufträge werden in die Slots eingeschrieben.
+Jeder Raum hat einen Zeitplan, in dem feste Slots für jeden Tag sind. Die zu bearbeitenden Aufträge werden in die Slots eingeschrieben.
 
 |Finanzmanagement      |
 verwaltet alle Einnahmen und Ausgaben. Zudem erlaubt es die akkumulierten Bilanzen aufzuzeigen.

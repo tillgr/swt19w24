@@ -92,7 +92,7 @@ eine karitative Organisation weitergeben werden.
 |Mitarbeiter können sich die Aufträge im System anzeigen lassen.
 
 |[[MK0180]]<<MK0180>>
-|monatliche Reingewinn
+|monatlicher Reingewinn
 |Der monatliche Reingewinn soll an die Zentrale geschickt werden.
 
 |===
@@ -117,25 +117,25 @@ eine karitative Organisation weitergeben werden.
 
 |[[KK0030]]<<KK0030>>
 |Nachbestellung
-|System bestellt automatisch Materialien nach
+|System bestellt automatisch Materialien nach.
 
 |[[KK0040]]<<KK0040>>
 |Bearbeitungsstand einsehen
-|Kunde kann Bearbeitungsstand einsehen mit ID
+|Kunde kann Bearbeitungsstand einsehen mit ID.
 
 |[[KK0050]]<<KK0050>>
 |Benachrichtigung des Kunden
-|Kunde wird bei Verspätung benachrichtigt
+|Kunde wird bei Verspätung benachrichtigt.
 
 |[[KK0060]]<<KK0060>>
-|BEarbeitungsdauer kalkulieren
-|Bearbeitungsdauer wird automatisch kalkuliert
+|Bearbeitungsdauer kalkulieren
+|Bearbeitungsdauer wird automatisch kalkuliert.
 
 |[[KK0070]]<<KK0070>>
 |Zeiten aufzeichnen
-|Arbeitszeiten der Mitarbeiter werden aufgezeichnet
+|Arbeitszeiten der Mitarbeiter werden aufgezeichnet.
 
 |[[KK0080]]<<KK0080>>
 |effektivster Raum
-|System wählt automatisch den Raum mit der effektivsten Bearbeitung aus
+|System wählt automatisch den Raum mit der effektivsten Bearbeitung aus.
 |===

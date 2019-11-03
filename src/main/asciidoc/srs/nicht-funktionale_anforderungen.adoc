@@ -45,14 +45,14 @@ um Diebstahl zu verhindern.
 |[[NF0030]]<<NF0030>>
 |Responsive Design
 a|
-Das Design der Anwendung soll responsive auf verschiedene Display-Größen
+Das Design der Anwendung soll dynamisch auf verschiedene Display-Größen
 reagieren und dort benutzbar dargestellt werden.
 
 |[[NF0040]]<<NF0040>>
-|Hilfreiche Fehlermeldungen
+|Verständliche Fehlermeldungen
 a|
 Wenn Formulare mit falschen Daten abgeschickt werden,
-sollen dem Nutzer hilfreiche Fehlermeldungen angezeigt werden.
+sollen dem Nutzer verständliche Fehlermeldungen angezeigt werden.
 
 |[[NF0041]]<<NF0041>>
 |Zusätzliche Client-Side-Validation

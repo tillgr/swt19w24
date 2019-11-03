@@ -57,7 +57,7 @@ Mitarbeiter können entweder Angestellte oder Administratoren sein.
 Der Administrator könnte der Filialleiter sein. Das erlaubt Rechte-Verwaltung.
 
 |Room                |
-Jeder Raum hat einen Zeit-Plan, mit einer festen Anzahl von Slots pro Tag.
+Jeder Raum hat einen Zeitplan, mit einer festen Anzahl von Slots pro Tag.
 Jeder Auftrag, an dem gearbeitet werden muss, wird dann in einen freien Slot eines Raum eingetragen.
 
 |Service              |
