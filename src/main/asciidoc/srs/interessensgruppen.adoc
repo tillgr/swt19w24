@@ -1,6 +1,9 @@
 == Interessensgruppen (Stakeholders)
 
-Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+In dieser Tabelle sind alle realen und juristischen Personen(-gruppen) die Einfluss auf die Anforderungen dieses Projektes haben vermerkt.
+Dabei wird jedem Akteur eine Priorität, von 1 (niedrigste) bis zu 5 (höchste), zugewiesen.
+Dies erleichtert, für den Fall das sich Anforderungen widersprechen, die Einscheidungsfindung.
+Die Hauptziele der einzelnen Akteure werden ebenfalls beschrieben
 
 [options="header"]
 [cols="2,^1,4,4"]
