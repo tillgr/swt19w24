@@ -22,7 +22,7 @@ a|
 |4
 |Hauptsächliche Nutzer der Anwendung, sind für das Tagesgeschäft verantwortlich.
 a|
-- einfach zu bediende Nutzerobrfläche
+- einfach zu bedienende Nutzeroberfläche
 - schnelle Verarbeitung der Aufträge
 
 |Administratoren
@@ -30,7 +30,7 @@ a|
 |Benutzer die die Anwendung verwalten (Übersicht über alle Bestellungen/Finanzen etc.)
 a|
 - Überblick über alle Abläufe/Vorgänge (Bestellungen, Lagerzustand, Finanzen, Mitarbeiter)
-- Verwaltung o.g. Prozesse
+- Verwaltung o. g. Prozesse
 
 |Entwickler
 |2
