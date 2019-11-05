@@ -5,6 +5,10 @@
 |...	| ... | ...
 |===
 
+:project_name: Entwicklerdokumentation
+:toc: left
+:numbered:
+
 = Entwicklerdokumentation
 
 == Einführung und Ziele
