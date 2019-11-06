@@ -16,9 +16,37 @@
 * Qualitätsziele
 
 == Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+
+=== Hardware-Vorgaben
+Eine Liste von Geräten/Hardware, die benötigt werden um die Software zu benutzen.
+
+* Server
+* Computer
+* Tastatur
+* Maus
+
+=== Software-Vorgaben
+
+Die Anwendung setzt folgende Software voraus:
+
+* Java 11 oder neuer
+* Mozilla Firefox 70+
+* Chromium 78+
+
+=== Vorgaben zum Betrieb des Software
+
+Die Software wird ausschließlich von _Miss Mint Mending Points_ Mitarbeiter verwendet.
+Das System stellt Funktionen für die Annahme, Reparaturplanung, Ausgabe und Lagerung der Ware,
+sowie die Verwaltung der Ressourcen zur Verfügung. Zudem erhält der Filialleiter Einsicht auf
+die Finanzen.
+
+Die Software soll rund um die Uhr in Betrieb sein und nur über das interne Firmennetz erreichbar sein.
+
+Die Hauptnutzer der Software sind Mitarbeiter, die typische Website-Navigationsschemata kennen, sowie ein Filialleiter (Admin), der nicht unbedingt über einen technischen Hintergrund verfügt.
+
+Das System muss nicht technisch gewartet werden.
+Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein (z.B. sollten für einen Filialleiter keine SQL-Kenntnisse erforderlich sein).
+
 
 == Kontextabgrenzung
 * Kontextdiagramm
