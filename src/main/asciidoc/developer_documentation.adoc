@@ -50,6 +50,7 @@ Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die A
 
 == Kontextabgrenzung
 * Kontextdiagramm
+image:srs/models/context_diagram.png [context diagram]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
@@ -61,6 +62,7 @@ Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die A
 
 === Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
+image:srs/models/top-level_archtitecture.png [tla]
 
 === Entwurfsentscheidungen
 * Verwendete Muster
