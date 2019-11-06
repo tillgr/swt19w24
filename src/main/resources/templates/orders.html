@@ -1,0 +1,145 @@
+<!doctype html>
+<!--suppress HtmlUnknownTarget -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <title>Aufträge</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1>Aufträge</h1>
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <em>
+                Blauer Frack
+            </em>
+            - 8adfdf53-0e11-499f-af36-efbc9db8a7f9
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nähservice (Knöpfe)</h5>
+            <div class="card-text">
+                <table class="table table-borderless table-sm">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Eingang</th>
+                        <td>13.03.2019</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Kunde</th>
+                        <td>Mark Zuckerberg</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bearbeitung</th>
+                        <td>in B103-E von Sebastian Müller</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Materialien</th>
+                        <td>Knopf, Faden</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>In Bearbeitung</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <em>
+                Alter Garagen-Schlüssel
+            </em>
+            - b1f26414-a8ab-468a-b2f1-22f60e2f2f7b
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Schlüsseldienst (Schlüssel kopieren)</h5>
+            <div class="card-text">
+                <table class="table table-borderless table-sm">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Eingang</th>
+                        <td>12.05.2019</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Kunde</th>
+                        <td>Karl Schuster</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Materialien</th>
+                        <td>Schlüsselrohling</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>In Warteschlange</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <em>
+                Hemd waschen
+            </em>
+            - d5496d4c-ae0f-47b3-a701-0e65f13d64b9
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"> Schnellreinigung und Heißmangel (Wäsche)</h5>
+            <div class="card-text">
+                <table class="table table-borderless table-sm">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Eingang</th>
+                        <td>12.01.2019</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Kunde</th>
+                        <td>Annalena Frei</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Materialien</th>
+                        <td>Waschmittel</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>In Aufbewahrungsstelle</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <a class="btn btn-warning" href="#">Auslösen für 1,50€</a>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
