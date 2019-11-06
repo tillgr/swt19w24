@@ -21,7 +21,6 @@ public class ServiceDataInitializer implements DataInitializer {
 	private Catalog catalog;
 	private ServiceRepository serviceRepository;
 
-	@Autowired
 	public ServiceDataInitializer(Catalog catalog, ServiceRepository serviceRepository) {
 		this.catalog = catalog;
 		this.serviceRepository = serviceRepository;
