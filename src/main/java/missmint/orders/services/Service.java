@@ -27,4 +27,8 @@ public class Service {
 	public Product getProduct() {
 		return product;
 	}
+
+	public long getId() {
+		return id;
+	}
 }

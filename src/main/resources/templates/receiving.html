@@ -17,7 +17,7 @@
 
 <div class="container mt-md-5">
     <h1>Annahme</h1>
-    <form action="cost.html">
+    <form action="cost.html" th:object="${form}">
         <h3>Auftrag</h3>
         <div class="form-group">
             <label for="name">Name des Kunden</label>
@@ -30,13 +30,9 @@
 
         <h3>Dienstleistung</h3>
         <div class="form-group">
-            <label for="service-category">Dienstleistungs-Kategorie</label>
-            <select class="form-control" id="service-category">
-                <option selected>Flickschusterei (Absätze)</option>
-                <option selected>Flickschusterei (Sohlen)</option>
-                <option>Nähservice (Knöpfe)</option>
-                <option>Schlüsseldienst (Schlüssel kopieren)</option>
-                <option>...</option>
+            <label for="service">Dienstleistung</label>
+            <select class="form-control" id="service" th:field="*{service}">
+                <option th:each="service : ${services}" th:value="${service.getId()}" th:text="${service.getProduct().getName()}"></option>
             </select>
         </div>
 

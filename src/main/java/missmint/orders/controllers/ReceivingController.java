@@ -1,8 +1,10 @@
 package missmint.orders.controllers;
 
+import missmint.orders.forms.ReceivingForm;
 import missmint.orders.services.ServiceRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,9 +15,11 @@ public class ReceivingController {
 		this.serviceRepository = serviceRepository;
 	}
 
-	@RequestMapping("/receiving")
+	@GetMapping("/receiving")
 	//TODO @PreAuthorize("isAuthenticated()")
-	public String listOrders(Model model) {
+	public String listOrders(Model model, ReceivingForm form) {
+		model.addAttribute("form", form);
+		model.addAttribute("services", serviceRepository.findAll());
 		return "receiving";
 	}
 }
