@@ -54,10 +54,30 @@ image:srs/models/context_diagram.png[context diagram]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
-[options="header"]
+[options="header", cols="1,1"]
 |=== 
-|Qualitätsziel |Lösungsansatz
-|... |...
+|Qualitätsziel
+|Lösungsansatz
+
+|Wartbarkeit
+a|
+- *Modularität*: Zusammensetzen der Anwendung aus möglichst eigenständigen Modulen um den Einfluss den die Änderung eines Moduls auf andere Module hat zu minimieren.
+- *Wiederverwendbarkeit*: Sicherstellung der Wiederverwendbarkeit von Modulen durch andere Systemkomponenten
+- *Modifizierbarkeit*: Die Anwendung sollte ohne Verschlechterung der Code-Qualität oder Auftreten von Fehlern veränderbar  und/oder erweiterbar sein.
+|Nutzerfreundlichkeit
+a|
+- *Erlernbarkeit*: Das System sollte verständlich und einfach bedienbar sein. Das lääst sich z.B. durch eindeutige Beschreibung von Eingaben mit Hilfe von Tooltips und/oder Labels realisieren. 
+- *Handhabung von Fehlern*: Nutzer sollten vor Fehlern geschützt werden. Eingaben dürfen unter keinen Umständen zu ungültigen Systemzuständen führen.
+- *Ästhetik der Nutzerschnittstelle*: Bereitstellung einer ansprechenden und zufriedenstellenden Interaktion für den Nutzer
+- *Zugänglichkeit*: Es sollte, z.B. durch die Nutzung passender Schriftgrößen und Kontraste, sichergestellt werden dass Menschen mit einer möglichst großen Bandbreite von Eigenschaften die Möglichkeiten des Systems vollständig nutzen können.
+
+|Sicherheit
+a|
+- *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden. Dies kann mit Spring Security und dem Thymeleaf (sec:authorize - tag) realisiert werden.
+- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Däfur kann die Spring Security (@PreAuthorize - annotation) verwendet werden.
+- *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
+// TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop
+
 |===
 
 === Softwarearchitektur
