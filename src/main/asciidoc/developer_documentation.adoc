@@ -73,8 +73,8 @@ a|
 
 |Sicherheit
 a|
-- *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden. Dies kann mit Spring Security und dem Thymeleaf (sec:authorize - tag) realisiert werden.
-- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Däfur kann die Spring Security (@PreAuthorize - annotation) verwendet werden.
+- *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden. Dies kann mit Spring Security und dem Thymeleaf (`sec:authorize` - tag) realisiert werden.
+- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Däfur kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
 - *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
 // TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop
 
