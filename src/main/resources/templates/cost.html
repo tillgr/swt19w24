@@ -15,7 +15,7 @@
 
 <div class="container mt-md-5">
     <h1>Annahme - Kosten</h1>
-    <form action="ticket.html" th:action="@{/orders/ticket}">
+    <form action="ticket.html" th:action="@{/orders/ticket}" method="post">
         <div class="form-group form-check">
             <input class="form-check-input" id="paid" required type="checkbox">
             <label class="form-check-label" for="paid">Der Kunde hat <strong th:text="${total}"></strong> bezahlt.</label>

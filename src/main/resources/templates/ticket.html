@@ -10,7 +10,7 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
-    <title>Auftragszettel für bb46124d-aeb3-4d85-9f2f-db957b45cebb</title>
+    <title>Auftragszettel</title>
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
@@ -21,19 +21,15 @@
         <tbody>
         <tr>
             <th scope="row">Auftragsnummer</th>
-            <td>bb46124d-aeb3-4d85-9f2f-db957b45cebb</td>
+            <td th:text="${missMintOrder.getId()}">bb46124d-aeb3-4d85-9f2f-db957b45cebb</td>
         </tr>
         <tr>
             <th scope="row">Kunde</th>
-            <td>Max Mustermann</td>
-        </tr>
-        <tr>
-            <th scope="row">Dienstleistung</th>
-            <td>Flickschusterei (Sohlen)</td>
+            <td th:text="${missMintOrder.getCustomer()}">Max Mustermann</td>
         </tr>
         <tr>
             <th scope="row">Preis</th>
-            <td>1,54€</td>
+            <td th:text="${missMintOrder.getTotal()}">1,54€</td>
         </tr>
         <tr>
             <th scope="row">Vorraussichtlicher Fertigstellungstermin</th>

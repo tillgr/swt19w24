@@ -28,10 +28,12 @@ import javax.validation.Valid;
 public class ReceivingController {
 	private Catalog<Product> catalog;
 	private BusinessTime time;
+	private OrderManager<MissMintOrder> orderManager;
 
-	public ReceivingController(Catalog<Product> catalog, @Qualifier("defaultBusinessTime") BusinessTime time) {
+	public ReceivingController(Catalog<Product> catalog, @Qualifier("defaultBusinessTime") BusinessTime time, OrderManager<MissMintOrder> orderManager) {
 		this.catalog = catalog;
 		this.time = time;
+		this.orderManager = orderManager;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -59,10 +61,8 @@ public class ReceivingController {
 
 	@PostMapping("/orders/ticket")
 	@PreAuthorize("isAuthenticated()")
-	public String ticket(@ModelAttribute MissMintOrder missMintOrder) {
-		//orderManager.save(missMintOrder.getOrder().);
-
-		//model.addAttribute("total", order.getTotal());
-		return "cost";
+	public String ticket(@ModelAttribute MissMintOrder missMintOrder, Model model) {
+		orderManager.save(missMintOrder);
+		return "ticket";
 	}
 }
