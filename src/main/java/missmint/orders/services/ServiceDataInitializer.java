@@ -6,6 +6,7 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Stream;
@@ -18,32 +19,33 @@ public class ServiceDataInitializer implements DataInitializer {
 	@Value("${orders.services.currency}")
 	private String currency;
 
-	private Catalog catalog;
+	private Catalog<Product> catalog;
 
-	public ServiceDataInitializer(Catalog<Service> catalog) {
+	public ServiceDataInitializer(Catalog<Product> catalog) {
 		this.catalog = catalog;
 	}
 
 	@Override
 	public void initialize() {
 		Stream.of(
-			new Service("heels", Money.of(price, currency), ServiceCategory.KLUDGE),
-			new Service("sole", Money.of(price, currency), ServiceCategory.KLUDGE),
-			new Service("seam", Money.of(price, currency), ServiceCategory.KLUDGE),
-			new Service("buttons", Money.of(price, currency), ServiceCategory.SEWING),
-			new Service("seam", Money.of(price, currency), ServiceCategory.SEWING),
-			new Service("patch", Money.of(price, currency), ServiceCategory.SEWING),
-			new Service("copy", Money.of(price, currency), ServiceCategory.LOCKSMITH),
-			new Service("engrave", Money.of(price, currency), ServiceCategory.LOCKSMITH),
-			new Service("laundry", Money.of(price, currency), ServiceCategory.CLEANING),
-			new Service("suits", Money.of(price, currency), ServiceCategory.CLEANING),
-			new Service("leather", Money.of(price, currency), ServiceCategory.CLEANING),
-			new Service("replace", Money.of(price, currency), ServiceCategory.ELECTRONICS),
-			new Service("brazing", Money.of(price, currency), ServiceCategory.ELECTRONICS),
-			new Service("scissors", Money.of(price, currency), ServiceCategory.GRINDERY),
-			new Service("knifes", Money.of(price, currency), ServiceCategory.GRINDERY)
-		).forEach(service -> {
-			catalog.save(service);
+			Pair.of(new Product("heels", Money.of(price, currency)), "KLUDGE"),
+			Pair.of(new Product("sole", Money.of(price, currency)), "KLUDGE"),
+			Pair.of(new Product("seam", Money.of(price, currency)), "KLUDGE"),
+			Pair.of(new Product("buttons", Money.of(price, currency)), "SEWING"),
+			Pair.of(new Product("seam", Money.of(price, currency)), "SEWING"),
+			Pair.of(new Product("patch", Money.of(price, currency)), "SEWING"),
+			Pair.of(new Product("copy", Money.of(price, currency)), "LOCKSMITH"),
+			Pair.of(new Product("engrave", Money.of(price, currency)), "LOCKSMITH"),
+			Pair.of(new Product("laundry", Money.of(price, currency)), "CLEANING"),
+			Pair.of(new Product("suits", Money.of(price, currency)), "CLEANING"),
+			Pair.of(new Product("leather", Money.of(price, currency)), "CLEANING"),
+			Pair.of(new Product("replace", Money.of(price, currency)), "ELECTRONICS"),
+			Pair.of(new Product("brazing", Money.of(price, currency)), "ELECTRONICS"),
+			Pair.of(new Product("scissors", Money.of(price, currency)), "GRINDERY"),
+			Pair.of(new Product("knifes", Money.of(price, currency)), "GRINDERY")
+		).forEach(pair -> {
+			pair.getFirst().addCategory(pair.getSecond());
+			catalog.save(pair.getFirst());
 		});
 	}
 }

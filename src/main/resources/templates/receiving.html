@@ -30,7 +30,8 @@
         <div class="form-group">
             <label for="service">Dienstleistung</label>
             <select class="form-control" id="service" th:field="*{service}">
-                <option th:each="service : ${services}" th:value="${service.getId()}" th:text="${service.getName()}"></option>
+                <option th:each="service : ${services}" th:value="${service.getId()}"
+                        th:text="${service.getCategories().iterator().next() + ' - ' + service.getName()}"></option>
             </select>
         </div>
 
