@@ -2,8 +2,11 @@ package missmint.orders.controllers;
 
 import missmint.orders.forms.ReceivingForm;
 import missmint.orders.order.MissMintOrder;
-import missmint.orders.services.ServiceRepository;
+import missmint.orders.services.Service;
+import org.salespointframework.catalog.Catalog;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.order.Order;
+import org.salespointframework.order.OrderManager;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.time.BusinessTime;
 import org.salespointframework.useraccount.UserAccount;
@@ -15,29 +18,33 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @SessionAttributes("missMintOrder")
 public class ReceivingController {
-	private ServiceRepository serviceRepository;
+	private Catalog<Service> catalog;
 	private BusinessTime time;
+	private OrderManager orderManager;
 
-	public ReceivingController(ServiceRepository serviceRepository, @Qualifier("defaultBusinessTime") BusinessTime time) {
-		this.serviceRepository = serviceRepository;
+	public ReceivingController(Catalog<Service> catalog, @Qualifier("defaultBusinessTime") BusinessTime time) {
+		this.catalog = catalog;
 		this.time = time;
+		this.orderManager = orderManager;
 	}
 
 	@GetMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
 	public String receiving(Model model, ReceivingForm form) {
 		model.addAttribute("form", form);
-		model.addAttribute("services", serviceRepository.findAll());
+		model.addAttribute("services", catalog.findAll());
 		return "receiving";
 	}
 
@@ -48,11 +55,20 @@ public class ReceivingController {
 			return receiving(model, form);
 		}
 
-		Order order = new Order(userAccount);
-		order.addOrderLine(serviceRepository.findById(form.getService()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)).getProduct(), Quantity.of(1));
-		MissMintOrder missMintOrder = new MissMintOrder(form.getCustomer(), order, time.getTime().toLocalDate());
+		Service service = catalog.findById(form.getService()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+		MissMintOrder missMintOrder = new MissMintOrder(userAccount, form.getCustomer(), time.getTime().toLocalDate(), service);
 		session.setAttribute("missMintOrder", missMintOrder);
 
+		model.addAttribute("total", missMintOrder.getTotal());
+		return "cost";
+	}
+
+	@PostMapping("/orders/ticket")
+	@PreAuthorize("isAuthenticated()")
+	public String ticket(@ModelAttribute MissMintOrder missMintOrder) {
+		//orderManager.save(missMintOrder.getOrder().);
+
+		//model.addAttribute("total", order.getTotal());
 		return "cost";
 	}
 }

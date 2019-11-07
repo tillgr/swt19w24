@@ -1,5 +1,6 @@
 package missmint.orders.forms;
 
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.NotBlank;
@@ -9,9 +10,9 @@ public class ReceivingForm {
 	@NotBlank
 	private String customer;
 	@NotNull
-	private Long service;
+	private ProductIdentifier service;
 
-	public ReceivingForm(String customer, Long service) {
+	public ReceivingForm(String customer, ProductIdentifier service) {
 		this.customer = customer;
 		this.service = service;
 	}
@@ -20,7 +21,7 @@ public class ReceivingForm {
 		return customer;
 	}
 
-	public Long getService() {
+	public ProductIdentifier getService() {
 		return service;
 	}
 }

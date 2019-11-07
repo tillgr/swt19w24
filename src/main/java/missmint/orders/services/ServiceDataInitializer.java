@@ -19,35 +19,31 @@ public class ServiceDataInitializer implements DataInitializer {
 	private String currency;
 
 	private Catalog catalog;
-	private ServiceRepository serviceRepository;
 
-	public ServiceDataInitializer(Catalog catalog, ServiceRepository serviceRepository) {
+	public ServiceDataInitializer(Catalog<Service> catalog) {
 		this.catalog = catalog;
-		this.serviceRepository = serviceRepository;
 	}
 
 	@Override
 	public void initialize() {
 		Stream.of(
-			new Service(new Product("heels", Money.of(price, currency)), ServiceCategory.KLUDGE),
-			new Service(new Product("sole", Money.of(price, currency)), ServiceCategory.KLUDGE),
-			new Service(new Product("seam", Money.of(price, currency)), ServiceCategory.KLUDGE),
-			new Service(new Product("buttons", Money.of(price, currency)), ServiceCategory.SEWING),
-			new Service(new Product("seam", Money.of(price, currency)), ServiceCategory.SEWING),
-			new Service(new Product("patch", Money.of(price, currency)), ServiceCategory.SEWING),
-			new Service(new Product("copy", Money.of(price, currency)), ServiceCategory.LOCKSMITH),
-			new Service(new Product("engrave", Money.of(price, currency)), ServiceCategory.LOCKSMITH),
-			new Service(new Product("laundry", Money.of(price, currency)), ServiceCategory.CLEANING),
-			new Service(new Product("suits", Money.of(price, currency)), ServiceCategory.CLEANING),
-			new Service(new Product("leather", Money.of(price, currency)), ServiceCategory.CLEANING),
-			new Service(new Product("replace", Money.of(price, currency)), ServiceCategory.ELECTRONICS),
-			new Service(new Product("brazing", Money.of(price, currency)), ServiceCategory.ELECTRONICS),
-			new Service(new Product("scissors", Money.of(price, currency)), ServiceCategory.GRINDERY),
-			new Service(new Product("knifes", Money.of(price, currency)), ServiceCategory.GRINDERY)
+			new Service("heels", Money.of(price, currency), ServiceCategory.KLUDGE),
+			new Service("sole", Money.of(price, currency), ServiceCategory.KLUDGE),
+			new Service("seam", Money.of(price, currency), ServiceCategory.KLUDGE),
+			new Service("buttons", Money.of(price, currency), ServiceCategory.SEWING),
+			new Service("seam", Money.of(price, currency), ServiceCategory.SEWING),
+			new Service("patch", Money.of(price, currency), ServiceCategory.SEWING),
+			new Service("copy", Money.of(price, currency), ServiceCategory.LOCKSMITH),
+			new Service("engrave", Money.of(price, currency), ServiceCategory.LOCKSMITH),
+			new Service("laundry", Money.of(price, currency), ServiceCategory.CLEANING),
+			new Service("suits", Money.of(price, currency), ServiceCategory.CLEANING),
+			new Service("leather", Money.of(price, currency), ServiceCategory.CLEANING),
+			new Service("replace", Money.of(price, currency), ServiceCategory.ELECTRONICS),
+			new Service("brazing", Money.of(price, currency), ServiceCategory.ELECTRONICS),
+			new Service("scissors", Money.of(price, currency), ServiceCategory.GRINDERY),
+			new Service("knifes", Money.of(price, currency), ServiceCategory.GRINDERY)
 		).forEach(service -> {
-			Product product = service.getProduct();
-			catalog.save(product);
-			serviceRepository.save(service);
+			catalog.save(service);
 		});
 	}
 }

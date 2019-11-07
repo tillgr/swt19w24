@@ -2,28 +2,28 @@ package missmint.orders.order;
 
 import missmint.orders.services.Service;
 import org.salespointframework.order.Order;
+import org.salespointframework.quantity.Quantity;
+import org.salespointframework.useraccount.UserAccount;
 
+import javax.money.MonetaryAmount;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
-public class MissMintOrder {
-	private @Id @GeneratedValue long id;
+public class MissMintOrder extends Order {
 	private String customer;
 	private LocalDate inbound;
 	private LocalDate expectedFinished;
 	private LocalDate finished;
 
-	@OneToOne
-	private Order order;
-
 	public MissMintOrder() {
 	}
 
-	public MissMintOrder(String customer, Order order, LocalDate inbound) {
+	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, Service service) {
+		super(userAccount);
 		this.customer = customer;
-		this.order = order;
 		this.inbound = inbound;
+		addOrderLine(service, Quantity.of(1));
 	}
 }
