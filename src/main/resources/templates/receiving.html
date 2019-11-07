@@ -15,11 +15,11 @@
 
 <div class="container mt-md-5">
     <h1>Annahme</h1>
-    <form action="cost.html" th:object="${form}" method="post" th:action="/orders/cost">
+    <form action="cost.html" th:object="${form}" method="post" th:action="@{/orders/receiving}">
         <h3>Auftrag</h3>
         <div class="form-group">
-            <label for="name">Name des Kunden</label>
-            <input class="form-control" id="name" placeholder="Name" required type="text">
+            <label for="customer">Name des Kunden</label>
+            <input class="form-control" id="customer" placeholder="Name" required type="text" th:field="*{customer}">
         </div>
         <div class="form-group">
             <label for="description">Kurzbeschreibung des Gegstandes</label>
