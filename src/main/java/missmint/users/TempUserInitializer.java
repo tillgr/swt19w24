@@ -1,10 +1,15 @@
 package missmint.users;
 
+import com.mysema.commons.lang.Assert;
+import missmint.users.forms.RegistrationForm;
+import missmint.users.model.UserManagement;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * ONLY TEMPORARY
@@ -13,14 +18,34 @@ import org.springframework.stereotype.Component;
 public class TempUserInitializer implements DataInitializer {
 
 	private UserAccountManager accountManager;
+	private UserManagement userManagement;
 
-	public TempUserInitializer(UserAccountManager userAccountManager) {
+	public TempUserInitializer(UserAccountManager userAccountManager, UserManagement userManagement) {
+
+		Assert.notNull(userAccountManager, "UserAccountManager must not be null");
+		Assert.notNull(userManagement, "UserManagement must not be null");
+
 		this.accountManager = userAccountManager;
+		this.userManagement = userManagement;
 	}
 
+	/**
+	 * Initialize user database with dummy accounts for testing purposes
+	 */
 	@Override
 	public void initialize() {
+
 		UserAccount userAccount = accountManager.create("user", Password.UnencryptedPassword.of("test"));
 		accountManager.save(userAccount);
+
+		var password = "123";
+
+		List.of(
+			new RegistrationForm("hans", password),
+			new RegistrationForm("dextermorgan", password),
+			new RegistrationForm("earlhickey", password),
+			new RegistrationForm("mclovinfogell", password)
+		).forEach(userManagement::createUserAsEmployee);
+
 	}
 }

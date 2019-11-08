@@ -4,6 +4,7 @@ import missmint.users.forms.RegistrationForm;
 import missmint.users.repositories.UserRepository;
 import missmint.users.roles.AccountRole;
 import org.salespointframework.useraccount.Password;
+import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,9 +37,10 @@ public class UserManagement {
 	public User createUserAsEmployee(RegistrationForm form) {
 
 		Assert.notNull(form, "RegistrationForm cannot be null.");
+		var role = Role.of(AccountRole.EMPLOYEE.toString());
 
 		var password = Password.UnencryptedPassword.of(form.getPassword());
-		var userAccount = userAccountManager.create(form.getName(), password, AccountRole.EMPLOYEE.toString());
+		var userAccount = userAccountManager.create(form.getName(), password, role);
 
 		return userRepository.save(new User(userAccount));
 	}
