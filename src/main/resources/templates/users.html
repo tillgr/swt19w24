@@ -10,13 +10,13 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
-    <title>Nutzerverwaltung</title>
+    <title th:text="#{users.title}">Nutzerverwaltung</title>
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container mt-md-5">
-    <h1>Nutzerverwaltung</h1>
+    <h1 th:text="#{users.title}">Nutzerverwaltung</h1>
     <table class="table">
         <thead>
         <tr>
@@ -28,21 +28,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">Peters</th>
-            <td>Petra</td>
-            <td>pperters</td>
+        <tr  th:each="user : ${users}">
+            <th scope="row" th:text="${user.getUserName()}">Peter</th>
+            <td th:text="${user.getUserName()}">Pan</td>
+            <td th:text="${user.getUserName()}">pperters</td>
             <td>Nähservice, Elektrowerkstatt</td>
-            <td>
-                <a class="btn btn-primary" href="#" role="button">Bearbeiten</a>
-                <a class="btn btn-danger" href="#" role="button">Entlassen</a>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">André</th>
-            <td>Carlo</td>
-            <td>candre</td>
-            <td>Schlüsseldienst, Elektrowerkstatt</td>
             <td>
                 <a class="btn btn-primary" href="#" role="button">Bearbeiten</a>
                 <a class="btn btn-danger" href="#" role="button">Entlassen</a>
