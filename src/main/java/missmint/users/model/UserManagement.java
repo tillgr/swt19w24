@@ -42,4 +42,8 @@ public class UserManagement {
 
 		return userRepository.save(new User(userAccount));
 	}
+
+	public Iterable<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 }
