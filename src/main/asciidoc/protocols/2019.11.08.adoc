@@ -1,0 +1,70 @@
+= Protokoll Gruppe 24
+
+Treffen am 08.11.2019
+
+Ort:      Ort des Treffens +
+Beginn:   15:00 Uhr +
+Ende:     16:30 Uhr
+
+__Schriftführer:__ Viktor Reusch
+
+*Nächstes Treffen:* +
+14.11.2019, 16:20 Uhr, WIL
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+== Infos
+- Jeder seien eigenen Prototypen auf einem eigenen Branch.
+- Jeder hardcoded, die Funktionen und Daten, die nicht zu seinem Gebiet gehören.
+
+== Aufgaben-Verteilung
+* Raumplanung mit Zeitslots - Till
+* Material - Tobias
+* Aufträge - Viktor
+* Mitarbeiter - Kien
+* Finanzen - Anna
+
+== Aufgaben
+- Prototypen
+- DevDoc
+- Testplan
+
+== Pflichteheft
+- keine Reklamationen
+- gut abgeschlossen
+
+//== Bemerkungen
+//Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+//== Retrospektive des letzten Sprints
+//*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+//[option="headers"]
+//|===
+//|Issue |Aufgabe |Status |Bemerkung
+//|…     |…       |…      |…
+//|===
+
+
+//== Aktueller Stand
+//Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+//Dokumenten.
+
+//== Planung des nächsten Sprints
+//*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+//[option="headers"]
+//|===
+//|Issue |Titel |Beschreibung |Verantwortlicher |Status
+//|…     |…     |…            |…                |…
+//|===
