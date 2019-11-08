@@ -33,6 +33,18 @@ Grad des Schutzes von Informationen und Daten durch ein Produkt oder System,
 sodass Personen oder andere Produkte oder Systeme über den Datenzugriff verfügen,
 der für ihre Art und ihre Berechtigungsstufe angemessen ist.
 
+1 = Nicht wichtig ..
+5 = Sehr wichtig
+
+[options="header",cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Qualitätsanspruch        | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit              |   |   |   | x |
+|Benutzerfreundlichkeit   |   |   |   |   | x
+|Sicherheit               |   |   |   | x |
+|Design                   |   | x |   |   |
+|===
+
 
 == Randbedingungen
 
