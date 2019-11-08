@@ -40,12 +40,12 @@ public class UserManagement {
 		var role = Role.of(AccountRole.EMPLOYEE.toString());
 
 		var password = Password.UnencryptedPassword.of(form.getPassword());
-		var userAccount = userAccountManager.create(form.getName(), password, role);
+		var userAccount = userAccountManager.create(form.getUserName(), password, role);
 
-		return userRepository.save(new User(userAccount));
+		return userRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName()));
 	}
 
-	public Iterable<User> getAllUsers() {
+	public Iterable<Staff> getAllUsers() {
 		return userRepository.findAll();
 	}
 }

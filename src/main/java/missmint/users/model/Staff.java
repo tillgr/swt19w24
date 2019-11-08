@@ -12,26 +12,31 @@ import javax.persistence.Entity;
 @Entity
 public class Staff extends User implements Resource {
 
-	private String name;
+	private String lastName;
 	private String firstName;
 
 	// empty constructor for Entity
 	public Staff() {}
 
-	public Staff(UserAccount userAccount, String name, String firstName) {
+	public Staff(UserAccount userAccount, String firstName, String lastName) {
 
 		super(userAccount);
 
-		Assert.hasText(name, "Name cannot be null or empty.");
+		Assert.hasText(lastName, "Name cannot be null or empty.");
 		Assert.hasText(firstName, "Name cannot be null or empty.");
 
-		this.name = name;
+		this.lastName = lastName;
 		this.firstName = firstName;
 	}
 
+	/**
+	 * Returns last name for now.
+	 *
+	 * @return last name
+	 */
 	@Override
 	public String getName() {
-		return name;
+		return lastName;
 	}
 
 	/**

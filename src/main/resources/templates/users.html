@@ -28,10 +28,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr  th:each="user : ${users}">
-            <th scope="row" th:text="${user.getUserName()}">Peter</th>
-            <td th:text="${user.getUserName()}">Pan</td>
-            <td th:text="${user.getUserName()}">pperters</td>
+        <tr  th:each="staff : ${users}">
+            <th scope="row" th:text="${staff.getFirstName()}">Peter</th>
+            <td th:text="${staff.getName()}">Pan</td>
+            <td th:text="${staff.getUserName()}">pperters</td>
             <td>Nähservice, Elektrowerkstatt</td>
             <td>
                 <a class="btn btn-primary" href="#" role="button">Bearbeiten</a>

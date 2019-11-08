@@ -41,10 +41,9 @@ public class TempUserInitializer implements DataInitializer {
 		var password = "123";
 
 		List.of(
-			new RegistrationForm("hans", password),
-			new RegistrationForm("dextermorgan", password),
-			new RegistrationForm("earlhickey", password),
-			new RegistrationForm("mclovinfogell", password)
+			new RegistrationForm("Hans","Müller","hans", password),
+			new RegistrationForm("Dexter", "Morgan","dextermorgan", password),
+			new RegistrationForm("Drax", "The Destroyer", "XXXDestroyerXXX", password)
 		).forEach(userManagement::createUserAsEmployee);
 
 	}
