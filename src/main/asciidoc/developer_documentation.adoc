@@ -15,6 +15,25 @@
 * Aufgabenstellung
 * Qualitätsziele
 
+=== Wartbarkeit
+
+Dieses Merkmal gibt den Grad an Effektivität und Effizienz an,
+mit dem ein Produkt oder System modifiziert werden kann, um es zu verbessern,
+zu korrigieren oder an Änderungen in der Umgebung und in den Anforderungen anzupassen.
+
+=== Nutzerfreundlichkeit
+
+Grad, in dem ein Produkt oder System von bestimmten Benutzern verwendet werden kann,
+um bestimmte Ziele mit Effektivität, Effizienz und Zufriedenheit in einem bestimmten Verwendungskontext zu erreichen.
+
+
+=== Sicherheit
+
+Grad des Schutzes von Informationen und Daten durch ein Produkt oder System,
+sodass Personen oder andere Produkte oder Systeme über den Datenzugriff verfügen,
+der für ihre Art und ihre Berechtigungsstufe angemessen ist.
+
+
 == Randbedingungen
 
 === Hardware-Vorgaben
