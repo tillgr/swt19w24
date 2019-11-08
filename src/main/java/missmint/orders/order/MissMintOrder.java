@@ -24,4 +24,12 @@ public class MissMintOrder extends Order {
 		this.inbound = inbound;
 		addOrderLine(service, Quantity.of(1));
 	}
+
+	public LocalDate getInbound() {
+		return inbound;
+	}
+
+	public String getCustomer() {
+		return customer;
+	}
 }
