@@ -1,3 +1,4 @@
+= Entwicklerdokumentation
 [options="header"]
 [cols="1, 3, 3"]
 |===
@@ -9,29 +10,31 @@
 :toc: left
 :numbered:
 
-= Entwicklerdokumentation
-
 == Einführung und Ziele
-* Aufgabenstellung
-* Qualitätsziele
+=== Aufgabenstellung
+*TODO*
 
-=== Wartbarkeit
+=== Qualitätsziele
 
+Wartbarkeit::
 Dieses Merkmal gibt den Grad an Effektivität und Effizienz an,
 mit dem ein Produkt oder System modifiziert werden kann, um es zu verbessern,
 zu korrigieren oder an Änderungen in der Umgebung und in den Anforderungen anzupassen.
 
-=== Nutzerfreundlichkeit
-
+Nutzerfreundlichkeit::
 Grad, in dem ein Produkt oder System von bestimmten Benutzern verwendet werden kann,
 um bestimmte Ziele mit Effektivität, Effizienz und Zufriedenheit in einem bestimmten Verwendungskontext zu erreichen.
 
-
-=== Sicherheit
-
+Sicherheit::
 Grad des Schutzes von Informationen und Daten durch ein Produkt oder System,
 sodass Personen oder andere Produkte oder Systeme über den Datenzugriff verfügen,
 der für ihre Art und ihre Berechtigungsstufe angemessen ist.
+
+Desgin::
+Gestaltung der Benutzeroberfläche, um die visuelle Wahrnehmung des Kunden zu beeinflussen,
+und so die Informationsvermittlung und Nutzerfreundlichkeit zu steigern.
+Dies beinhaltet Optimierungen für verschiedene Auflösungen und verschiedene Browser.
+Wichtig ist auch die visuelle Differenzierung von Inhalten, um die Informationsaufnahme des Kunden zu lenken.
 
 1 = Nicht wichtig ..
 5 = Sehr wichtig
@@ -85,7 +88,7 @@ image:srs/models/context_diagram.png[context diagram]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
-[options="header", cols="1,1"]
+[options="header", cols="1,4"]
 |=== 
 |Qualitätsziel
 |Lösungsansatz
@@ -107,16 +110,27 @@ a|
 - *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden. Dies kann mit Spring Security und dem Thymeleaf (`sec:authorize` - tag) realisiert werden.
 - *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Däfur kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
 - *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
-// TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop
+
+*TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop*
 
 |===
 
 === Softwarearchitektur
 
-image:srs/models/top-level_architecture.png[tla]
+image:srs/models/top-level_architecture.png[Top-Level-Architekur]
+
+// Client-Server-Diagramm nicht notwendig, da Top-Level-Architektur vorhanden.
 
 === Entwurfsentscheidungen
-* Verwendete Muster
+==== Verwendete Muster
+* *Model View Controller* mit Spring MVC
+* *Singleton mit Springs* `@Component` etc.
+* *Value Object* mit `MonetaryAmount` etc.
+* *Data Transfer Object* mit `OrderDTO`, um Daten für Templates zu aggregieren.
+* *Dependency Injection* über die Konstruktoren in Spring-Komponenten
+* *Repository* mit den Spring-Repositories
+
+==== TODO
 * Persistenz
 * Benutzeroberfläche
 * Verwendung externer Frameworks
