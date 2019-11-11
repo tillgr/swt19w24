@@ -132,6 +132,11 @@ image:srs/models/top-level_architecture.png[Top-Level-Architekur]
 
 ==== TODO
 * Persistenz
+
+Die Anwendung verwendet Hibernate-Annotation-basiertes Mapping,
+um Java-Klassen Datenbanktabellen zuzuordnen.
+Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
+
 * Benutzeroberfläche
 * Verwendung externer Frameworks
 
