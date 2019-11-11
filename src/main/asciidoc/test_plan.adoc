@@ -1,6 +1,6 @@
 = Test-Plan
 
-Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
+// Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
 Wozu dient das Dokument? Zielgruppe?
@@ -29,10 +29,28 @@ z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnitt
 *Integrationstest nach Bottom-Up Prinzip*
 
 == Umgebungsvoraussetzungen
-* Wird spezielle Hardware benötigt?
-* Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
-* Wird zusätzliche Software für das Testen benötigt?
-* Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+Hardware::
+// * Wird spezielle Hardware benötigt?
+* Computer mit einer Architektur und einem Betriebssystem, unter dem Java 11 lauffähig ist.
+* Zum Starten des Tests bzw. zum einrichten von automatischen Tests sind Tastatur, Maus und Bildschirm (ggf. über eine Netzwerkverbindung) nötig.
+
+Bereitzustellende Daten::
+// * Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
+* Die gesamten Projektdaten der Miss-Mint-Filialmanagement-Software müssen vorhanden seien. Diese können mit Git aus dem Repository geholt werden.
+* Weitere Daten (z. B. Datenbanken) sind nicht nötig.
+
+
+Zusätzliche Software::
+// * Wird zusätzliche Software für das Testen benötigt?
+* Neben den Projektdaten ist auch Java 11 von nöten.
+* Zusätzlich muss Maven installiert sein, um Tests auszuführen.
+* Abhängigkeiten des Projektes, wie Spring, Salespoint etc. können mit Maven heruntergeladen werden.
+
+Kommunikation::
+// * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+* Die Software benötigt während der Tests keine Netzwerkverbindung. Alle Tests in Spring laufen intern ab.
+* Eine Internet-Verbindung ist demzufolge auch nicht notwendig,
+da insbesondere die Miss-Mint-Filialmanagement-Software keine Kommunikation nach außen tätigt.
 
 == Testfälle und Verantwortlichkeit
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
