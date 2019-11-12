@@ -154,6 +154,40 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 |Klasse/Enumeration |Description
 |===
 
+=== Orders
+image::models/design/images/orders_design.png[Klassendiagramm für das orders Package,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Package",align=center]
+[options="header", cols="1, 4"]
+|===
+|Klasse/Enumeration |Description
+|OrdersController |
+Ein Spring MVC Controller, der Anfragen für die Anzeige der aktuellen Aufträge `MissMintOrder` beantwortet.
+|OrderDTO |
+Diese Klasse dient nur dem Datentransfer zum `orders.html`-Template.
+|PickUpController |
+Ein Spring MVC Controller, der Anfragen für die Rückgabe von Gegenständen an den Kunden handhabt.
+Dazu berechnet die Klasse auch anfallende Kosten.
+|ReceivingController |
+Ein Spring MVC Controller, der Anfragen für die Aufnahme von Aufträgen `MissMintOrder` in das System beantwortet.
+Dazu berechnet die Klasse auch anfallende Kosten.
+|ReceivingForm |
+Eine Klasse, um die Mitarbeiter-Eingaben für die Annahme zu validieren.
+|MissMintOrder |
+Diese Klasse ist eine Erweiterung der Salespoint `Order`. Sie enthält Kunden-, Dienstleistungens- und Zeit-Informationen.
+Zudem hat der Auftrag einen Zustand.
+|OrderDataInitializer |
+Eine Implementation des ``DataInitializer``s, um einige vordefinierten Aufträge zum Testen anzulegen.
+|OrderService |
+Ein Dienst, der Hilfsfunktionen für die Auftrags-Verwaltung bereitstellt.
+|OrderState  |
+Eine Enumeration für die Zustände der Aufträge.
+|Service |
+Erweiterung des Salespoint ``Product``s, um es von anderen Produkten in der späteren Software abzugrenzen.
+Im Prototypen speichert es auch noch das Material.
+|ServiceDataInitializer  |
+Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen anzulegen.
+|===
+
+
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
 [options="header"]
