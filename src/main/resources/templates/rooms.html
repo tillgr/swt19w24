@@ -18,33 +18,42 @@
 <div class="container mt-md-5">
     <h1>Räume</h1>
 
-    <div class="card mt-2">
+    <div class="card mt-2" th:each="room : ${rooms}">
         <div class="card-header">
-            <h3>B103-E</h3>
+            <h3 th:text="${room.name}"></h3>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><strong>Belegt</strong> von 8adfdf53-0e11-499f-af36-efbc9db8a7f9</h5>
+            <h5 class="card-title"><strong th:text="${room.belegung}"></strong></h5>
         </div>
         <div class="card-footer text-muted">
-            <a class="btn btn-info" href="#">Belegplan</a> <a class="btn btn-danger" href="#">Raum löschen</a>
+            <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
+                <button class="btn btn-danger">Raum löschen</button> <a class="btn btn-info" href="#">Belegplan</a>
+            </form>
         </div>
     </div>
 
+    <br>
+    <br>
+
+    <form method="post" th:object="${form}" th:action="@{/rooms/add}">
     <div class="card mt-2">
         <div class="card-header">
-            <h3>R104-Q</h3>
+            <h3>Name eingeben</h3>
+            <input th:field="*{name}" type="text">
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><strong>Frei</strong></h5>
-            <p class="card-text">Dieser Raum gehört zur Dienstleistung Elektrowerkstatt.</p>
-            <!-- Ob Räume nur bestimme Dienstleistungen können, ist mit dem Kunden zu bereden -->
+            <h5 class="card-title"><strong>Belegung eingeben</strong></h5>
+            <input th:field="*{belegung}" type="text">
+            <div th:if="${#fields.hasErrors('belegung')}" th:errors="*{belegung}"></div>
         </div>
         <div class="card-footer text-muted">
-            <a class="btn btn-info" href="#">Belegplan</a> <a class="btn btn-danger" href="#">Raum löschen</a>
+            <button class="btn btn-info" type="submit">Hinzufügen</button>
         </div>
     </div>
+    </form>
 
-    <a class="btn btn-primary mt-2" href="#">Raum hinzufügen</a>
+
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
