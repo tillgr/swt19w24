@@ -26,9 +26,15 @@
             <h5 class="card-title"><strong th:text="${room.belegung}"></strong></h5>
         </div>
         <div class="card-footer text-muted">
-            <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
-                <button class="btn btn-danger">Raum löschen</button> <a class="btn btn-info" href="#">Belegplan</a>
-            </form>
+            <div class = "btn-toolbar">
+                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
+                    <button class="btn btn-danger">Raum löschen</button>
+                </form>
+                <button class="btn btn-info">Belegplan</button>
+
+
+            </div>
+
         </div>
     </div>
 
@@ -38,12 +44,12 @@
     <form method="post" th:object="${form}" th:action="@{/rooms/add}">
     <div class="card mt-2">
         <div class="card-header">
-            <h3>Name eingeben</h3>
+            <h3>Raumname eingeben</h3>
             <input th:field="*{name}" type="text">
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><strong>Belegung eingeben</strong></h5>
+            <h5 class="card-title"><strong>Beleger eingeben</strong></h5>
             <input th:field="*{belegung}" type="text">
             <div th:if="${#fields.hasErrors('belegung')}" th:errors="*{belegung}"></div>
         </div>
@@ -55,6 +61,21 @@
 
 
 </div>
+<div class="container mt-md-5">
+    <h1>Belegplan</h1>
+
+    <div class="card mt-2" th:each="entry : ${entries}">
+        <div class="card-header">
+            <h3 th:text="${entry.name}"></h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><strong th:text="${entry.belegung}"></strong></h5>
+        </div>
+        <div class="card-footer text-muted"></div>
+    </div>
+
+</div>
+</body>
 
 <footer th:replace="fragments :: footer"></footer>
 

@@ -13,9 +13,11 @@ import java.util.Optional;
 public class RoomController {
 
 	private RoomsRepository rooms;
+	private EntriesRepository entries;
 
-	RoomController(RoomsRepository rooms){
+	RoomController(RoomsRepository rooms, EntriesRepository entries){
 		this.rooms = rooms;
+		this.entries = entries;
 	}
 
 	@GetMapping("/rooms")
@@ -25,6 +27,8 @@ public class RoomController {
 
 		model.addAttribute("form", form);
 		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
+
 		return "rooms";
 	}
 
@@ -46,8 +50,13 @@ public class RoomController {
 			}
 		);
 
-
 		return "redirect:/rooms";
 	}
+
+	public String listFreeSlots(){}
+
+	public String bookFreeRoom(){}
+
+	public String addEntry(){}
 
 }
