@@ -154,7 +154,7 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 |Klasse/Enumeration |Description
 |===
 
-=== Orders
+=== Aufträge
 image::models/design/images/orders_design.png[Klassendiagramm für das orders Package,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Package",align=center]
 [options="header", cols="1, 4"]
 |===
@@ -196,7 +196,13 @@ Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen 
 |===
 
 == Laufzeitsicht
-* Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
+// * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
+
+=== Aufträge
+image::models/design/images/sd__orders_list__orders_list.jpg[]
+image::models/design/images/sd__orders_receiving__orders_receiving.jpg[]
+image::models/design/images/sd__orders_pick_up__orders_pick_up.jpg[]
+image::models/design/images/sd__orders_update__orders_update.jpg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
