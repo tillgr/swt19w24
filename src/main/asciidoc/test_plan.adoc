@@ -6,13 +6,21 @@
 Wozu dient das Dokument? Zielgruppe?
 
 == Aufbau der Testbezeichner
-Nach welchem Schema sind die Tests benannt?
+//Nach welchem Schema sind die Tests benannt?
 
-*Bsp.*
+``[U|I]-[Klasse]-[Methode]-[Nr.]``
 
-*U - Unit Test, I - Integrationstest*
+U::
+    Unit Test
 
-*U-1, U-2, I-1*
+I::
+    Integrationstest
+
+Nr.::
+    Von `0` startende Nummer des Tests für diese Kombination aus Klasse und Methode.
+
+Bsp.::
+    ``U-OrderController-list-2``
 
 == Test Gegenstände
 
@@ -39,7 +47,6 @@ Bereitzustellende Daten::
 * Die gesamten Projektdaten der Miss-Mint-Filialmanagement-Software müssen vorhanden seien. Diese können mit Git aus dem Repository geholt werden.
 * Weitere Daten (z. B. Datenbanken) sind nicht nötig.
 
-
 Zusätzliche Software::
 // * Wird zusätzliche Software für das Testen benötigt?
 * Neben den Projektdaten ist auch Java 11 von nöten.
@@ -53,9 +60,25 @@ Kommunikation::
 da insbesondere die Miss-Mint-Filialmanagement-Software keine Kommunikation nach außen tätigt.
 
 == Testfälle und Verantwortlichkeit
-Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
+// Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
+=== Aufträge
+*Viktor Reusch*
+[options="headers"]
+|===
+|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|…  |…              |…              |…       |…
+|===
+
+=== Finanzen
+[options="headers"]
+|===
+|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|…  |…              |…              |…       |…
+|===
+
+=== etc...
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
