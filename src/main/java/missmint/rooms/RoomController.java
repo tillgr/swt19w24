@@ -41,10 +41,6 @@ public class RoomController {
 		rooms.save(room5);
 		rooms.save(room6);
 
-
-		 */
-
-		/*
 		TimeTableEntry entry1 = new TimeTableEntry("1","2", room1);
 		TimeTableEntry entry2 = new TimeTableEntry("2","3", room2);
 		TimeTableEntry entry3 = new TimeTableEntry("3","4",room3);
@@ -58,8 +54,7 @@ public class RoomController {
 		entries.save(entry4);
 		entries.save(entry5);
 		entries.save(entry6);
-
-		 */
+		*/
 
 		model.addAttribute("form", form);
 		model.addAttribute("rooms", rooms.findAll());
@@ -69,12 +64,16 @@ public class RoomController {
 		return "rooms";
 	}
 
-	@PostMapping("/rooms/add")
+	@PostMapping("/rooms/add") //TODO beim einfügen werden entries zurückgesetzt
 	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors){
 		if(errors.hasErrors()){
 			return "rooms";
 		}
 		rooms.save(form.createRoom());
+
+		model.addAttribute("form", form);
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
 
 		return "redirect:/rooms";
 	}
@@ -92,7 +91,7 @@ public class RoomController {
 	}
 
 
-	@GetMapping("/rooms/listFreeSlots")
+	@GetMapping("/rooms/listFreeSlots")	//TODO sortiert nicht aus, zeigt einfach alles an
 	public String listFreeSlots(Model model){
 		AddRoomForm form = new AddRoomForm("", "");
 
@@ -104,7 +103,7 @@ public class RoomController {
 	}
 
 
-	@PostMapping("/rooms/{id}/bookFreeSlot")
+	@PostMapping("/rooms/{id}/bookFreeSlot") //TODO bookt nur den ersten slot und keine weiteren
 	public String bookFreeSlot(Model model, @PathVariable("id") long id){
 		Iterator<TimeTableEntry> it = entries.findAll().iterator();
 
@@ -131,7 +130,7 @@ public class RoomController {
 	}
 
 
-	@PostMapping("/rooms/addEntry")
+	@PostMapping("/rooms/addEntry") //TODO bookings werden zurückgesetzt
 	public String addEntry(){
 		Iterator<TimeTableEntry> it = entries.findAll().iterator();
 		int time = 0;
