@@ -5,7 +5,6 @@ public class TimeTable {
 
 	private TimeTableEntry entry;
 
-
 	public TimeTable (TimeTableEntry entry){
 		this.entry = entry;
 	}

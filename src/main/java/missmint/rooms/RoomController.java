@@ -7,6 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Iterator;
 import java.util.Optional;
 
 @Controller
@@ -25,9 +26,45 @@ public class RoomController {
 	public String showRooms(Model model) {
 		AddRoomForm form = new AddRoomForm("", "");
 
+		/*
+		Room room1 = new Room("Raum1", "Dienstleistung A");
+		Room room2 = new Room("Raum2", "Dienstleistung B");
+		Room room3 = new Room("Raum3", "Dienstleistung C");
+		Room room4 = new Room("Raum4", "Dienstleistung D");
+		Room room5 = new Room("Raum5", "Dienstleistung E");
+		Room room6 = new Room("Raum6", "Dienstleistung F");
+
+		rooms.save(room1);
+		rooms.save(room2);
+		rooms.save(room3);
+		rooms.save(room4);
+		rooms.save(room5);
+		rooms.save(room6);
+
+
+		 */
+
+		/*
+		TimeTableEntry entry1 = new TimeTableEntry("1","2", room1);
+		TimeTableEntry entry2 = new TimeTableEntry("2","3", room2);
+		TimeTableEntry entry3 = new TimeTableEntry("3","4",room3);
+		TimeTableEntry entry4 = new TimeTableEntry("4","5",room4);
+		TimeTableEntry entry5 = new TimeTableEntry("5","6",room5);
+		TimeTableEntry entry6 = new TimeTableEntry("6","7", room6);
+
+		entries.save(entry1);
+		entries.save(entry2);
+		entries.save(entry3);
+		entries.save(entry4);
+		entries.save(entry5);
+		entries.save(entry6);
+
+		 */
+
 		model.addAttribute("form", form);
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("entries", entries.findAll());
+
 
 		return "rooms";
 	}
@@ -42,6 +79,7 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
+
 	@PostMapping("/rooms/{id}/delete")
 	public String deleteRoom(@PathVariable("id") long id){
 		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
@@ -53,10 +91,73 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
-	public String listFreeSlots(){}
 
-	public String bookFreeRoom(){}
+	@GetMapping("/rooms/listFreeSlots")
+	public String listFreeSlots(Model model){
+		AddRoomForm form = new AddRoomForm("", "");
 
-	public String addEntry(){}
+		model.addAttribute("form", form);
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
+
+		return "rooms";
+	}
+
+
+	@PostMapping("/rooms/{id}/bookFreeSlot")
+	public String bookFreeSlot(Model model, @PathVariable("id") long id){
+		Iterator<TimeTableEntry> it = entries.findAll().iterator();
+
+		AddRoomForm form = new AddRoomForm("", "");
+
+		while(it.hasNext()){
+			TimeTableEntry currentEntry = it.next();
+			if(currentEntry.getBooking().equals(TimeTableEntry.Booking.FREE)){
+				currentEntry.setBooking(TimeTableEntry.Booking.BOOKED);
+				rooms.findById(id).map(room -> {
+					currentEntry.setRoom(room);
+					return 1;
+				}
+				);
+				break;
+			}
+		}
+
+		model.addAttribute("form", form);
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
+
+		return "rooms";
+	}
+
+
+	@PostMapping("/rooms/addEntry")
+	public String addEntry(){
+		Iterator<TimeTableEntry> it = entries.findAll().iterator();
+		int time = 0;
+		while(it.hasNext()){
+			TimeTableEntry currentEntry = it.next();
+			if(currentEntry.getEnd()>time){
+				time = currentEntry.getEnd();
+			}
+		}
+		TimeTableEntry entry = new TimeTableEntry(time, time + 1, null);
+		entries.save(entry);
+
+		return "redirect:/rooms";
+	}
+
+	@PostMapping("/rooms/entries/{id}/delete")
+	public String deleteEntry(@PathVariable("id") long id){
+		entries.findById(id).map(entry -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
+				entries.delete(entry);
+				return 1;
+			}
+		);
+
+		return "redirect:/rooms";
+	}
+
+
 
 }

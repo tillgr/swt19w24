@@ -30,8 +30,9 @@
                 <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
                     <button class="btn btn-danger">Raum löschen</button>
                 </form>
-                <button class="btn btn-info">Belegplan</button>
-
+                <form method="post" th:action="@{/rooms/{room}/bookFreeSlot(room=${room.id})}">
+                    <button class="btn btn-info">Slot Buchen</button>
+                </form>
 
             </div>
 
@@ -49,7 +50,7 @@
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><strong>Beleger eingeben</strong></h5>
+            <h5 class="card-title"><strong>Dienstleistung eingeben</strong></h5>
             <input th:field="*{belegung}" type="text">
             <div th:if="${#fields.hasErrors('belegung')}" th:errors="*{belegung}"></div>
         </div>
@@ -64,17 +65,43 @@
 <div class="container mt-md-5">
     <h1>Belegplan</h1>
 
-    <div class="card mt-2" th:each="entry : ${entries}">
-        <div class="card-header">
-            <h3 th:text="${entry.name}"></h3>
+    <div class="card-group">
+        <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}">
+            <div class="card-header" th:text="${entry.id}"></div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="'Beginn: ' + ${entry.start}"></h5>
+                <h5 class="card-title" th:text="'Ende: ' + ${entry.end}"></h5>
+                <h5 class="card-title" th:text="${entry.booking}"></h5>
+            </div>
+            <div class="card-footer text-muted">
+                <form method="post" th:action="@{/rooms/entries/{entry}/delete(entry=${entry.id})}">
+                    <button class="btn btn-danger">Eintrag löschen</button>
+                </form>
+            </div>
         </div>
-        <div class="card-body">
-            <h5 class="card-title"><strong th:text="${entry.belegung}"></strong></h5>
-        </div>
-        <div class="card-footer text-muted"></div>
     </div>
+    <br>
+    <form method="post" th:object="${form}" th:action="@{/rooms/addEntry}">
+        <button class="btn btn-info" type="submit">Eintrag hinzufügen</button>
+    </form>
+</div>
+
+<div class="container mt-md-5">
+    <h1>Freie Slots</h1>
+
+    <form method="get" th:action="@{/rooms/listFreeSlots}">
+        <button class="btn btn-info" type="submit">anzeigen</button>
+        <div class="card-group">
+            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}" th:if="${entry.booking.FREE}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="'ID: ' + ${entry.id}"></h5>
+                </div>
+            </div>
+        </div>
+    </form>
 
 </div>
+
 </body>
 
 <footer th:replace="fragments :: footer"></footer>
