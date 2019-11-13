@@ -3,7 +3,8 @@
 // Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
-Wozu dient das Dokument? Zielgruppe?
+
+Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests. Es enthält noch keine konreten Daten, sondern nur Fallunterscheidungen, nach aktuellem Kenntnisstand. Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht.
 
 == Aufbau der Testbezeichner
 //Nach welchem Schema sind die Tests benannt?
