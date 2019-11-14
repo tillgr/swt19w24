@@ -26,16 +26,24 @@ Bsp.::
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
+* Getter, Setter und Konstruktoren
+* interne Methoden unserer Software
+* Controller unserer Software unter Nutzung der ``Model``-Klasse
+* Zusammenspiel der eigenen Methoden mit Bibliotheken
 
 == Nicht zu testende Funktionalitäten
-z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
+* clientseitige Darstellung des HTML und CSS
+* JavaScript
+* clientseitige Seiteninteraktion (Formulare etc.)
+* Tests, die nur Bibliotheken von Drittanbietern miteinbeziehen
 
 == Herangehensweise
-*Bsp.:*
+Die einzelnen Methoden einer Klasse werden mit JUnit in Unit-Tests getestet.
 
-*Klassen werden mit JUnit getestet.*
+Die Nutzer-Interaktion wird über die Integrationtests der Controller überprüft.
+Hierzu wird nur das Model, das an das Template übergeben wird, und der Template-Name bzw. Redirect überprüft.
 
-*Integrationstest nach Bottom-Up Prinzip*
+Überprüfung der Browser-Darstellung ist nicht Bestandteil der Tests.
 
 == Umgebungsvoraussetzungen
 Hardware::
