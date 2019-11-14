@@ -85,23 +85,23 @@ da insbesondere die Miss-Mint-Filialmanagement-Software keine Kommunikation nach
 
 |U-MissMintOrder-getLatestFinished-2 |UC0041-UC0043 |Fertigstellungsdatum liegt nach dem erwartetem Fertigstellungsdatum |- | Fertigstellungsdatum
 
-|U-MissMintOrder-canPickUp-0 |UC0041-UC0043 |Zustand ist `FINISHED`. |- | `true`
+|U-MissMintOrder-canPickUp-0 |UC0041-UC0043 |Zustand ist `FINISHED`. |- | `true` -> Gegenstand kann abgeholt werden
 
-|U-MissMintOrder-canPickUp-1 |UC0041-UC0043 |Zustand ist `STORED`. |- | `true`
+|U-MissMintOrder-canPickUp-1 |UC0041-UC0043 |Zustand ist `STORED`. |- | `true` -> Gegenstand kann abgeholt werden
 
-|U-MissMintOrder-canPickUp-2 |UC0041-UC0043 |Zustand ist weder `FINISHED` noch `STORED`. |- | `false`
+|U-MissMintOrder-canPickUp-2 |UC0041-UC0043 |Zustand ist weder `FINISHED` noch `STORED`. |- | `false` -> Gegenstand kann nicht abgeholt werden
 
-|I-OrderService-calculateCharge-0 |UC0041-UC0043 |Auftrag kann nicht abgeholt werden |- | _Exception_
+|U-OrderService-calculateCharge-0 |UC0041-UC0043 |Auftrag kann nicht abgeholt werden |- | _Exception_ -> Gebühr sollte jetzt nicht berechnet werden
 
-|I-OrderService-calculateCharge-1 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird pünktlich abgeholt. |- | -3€
+|U-OrderService-calculateCharge-1 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird pünktlich abgeholt. |- | -3€ -> 3€ bekommt der Kunde Entschädigung
 
-|I-OrderService-calculateCharge-2 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird pünktlich abgeholt. |- | 0€
+|U-OrderService-calculateCharge-2 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird pünktlich abgeholt. |- | 0€ -> keine Transaktion
 
-|I-OrderService-calculateCharge-3 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 2 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | 0€
+|U-OrderService-calculateCharge-3 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 2 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | 0€ -> keine Transaktion
 
-|I-OrderService-calculateCharge-4 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | -1€
+|U-OrderService-calculateCharge-4 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | -1€ -> 1€ bekommt der Kunde Entschädigung
 
-|I-OrderService-calculateCharge-4 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | 2€
+|U-OrderService-calculateCharge-4 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | 2€ muss der Kunde nachzahlen
 |===
 
 === Finanzen
