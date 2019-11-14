@@ -8,7 +8,7 @@ public class TimeTableEntry {
 	private @Id @GeneratedValue long id;
 	private int start;
 	private int end;
-	enum Booking {FREE, BOOKED}
+
 	private Booking booking;
 
 	@ManyToOne

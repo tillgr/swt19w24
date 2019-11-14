@@ -24,7 +24,7 @@ public class slotInitializer implements DataInitializer {
 		if (entries.findAll().iterator().hasNext()) {
 			return;
 		}
-
+		/*
 		TimeTableEntry entry1 = new TimeTableEntry(1,2, null);
 		TimeTableEntry entry2 = new TimeTableEntry(2,3, null);
 		TimeTableEntry entry3 = new TimeTableEntry(3,4,null);
@@ -39,6 +39,7 @@ public class slotInitializer implements DataInitializer {
 		entries.save(entry5);
 		entries.save(entry6);
 
+		 */
 
 	}
 

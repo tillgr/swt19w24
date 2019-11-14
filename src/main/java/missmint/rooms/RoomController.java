@@ -77,6 +77,7 @@ public class RoomController {
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("entries", entries.findAll());
 
+
 		return "redirect:/rooms";
 	}
 
@@ -103,7 +104,7 @@ public class RoomController {
 
 		while(it.hasNext()){
 			TimeTableEntry currentEntry = it.next();
-			if(currentEntry.getBooking().equals(TimeTableEntry.Booking.FREE)){
+			if(currentEntry.getBooking().equals(Booking.FREE)){
 				freeSlots.add(currentEntry);
 			}
 		}
@@ -125,8 +126,8 @@ public class RoomController {
 
 		while(it.hasNext()){
 			TimeTableEntry currentEntry = it.next();
-			if(currentEntry.getBooking().equals(TimeTableEntry.Booking.FREE)){
-				currentEntry.setBooking(TimeTableEntry.Booking.BOOKED);
+			if(currentEntry.getBooking().equals(Booking.FREE) && rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)){
+				currentEntry.setBooking(Booking.BOOKED);
 				rooms.findById(id).map(room -> {
 					currentEntry.setRoom(room);
 					entries.save(currentEntry);
@@ -146,7 +147,7 @@ public class RoomController {
 
 
 	@PostMapping("/rooms/addEntry")
-	public String addEntry(){
+	public String addEntry(Model model, Room room){
 		Iterator<TimeTableEntry> it = entries.findAll().iterator();
 		int time = 0;
 		while(it.hasNext()){
@@ -155,7 +156,7 @@ public class RoomController {
 				time = currentEntry.getEnd();
 			}
 		}
-		TimeTableEntry entry = new TimeTableEntry(time, time + 1, null);
+		TimeTableEntry entry = new TimeTableEntry(time, time + 1, room);
 		entries.save(entry);
 
 		return "redirect:/rooms";

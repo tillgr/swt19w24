@@ -66,22 +66,35 @@
     <h1>Belegplan</h1>
 
     <div class="card-group">
-        <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}">
-            <div class="card-header" th:text="${entry.id}"></div>
-            <div class="card-body">
-                <h5 class="card-title" th:text="'Beginn: ' + ${entry.start}"></h5>
-                <h5 class="card-title" th:text="'Ende: ' + ${entry.end}"></h5>
-                <h5 class="card-title" th:text="${entry.booking}"></h5>
-            </div>
-            <div class="card-footer text-muted">
-                <form method="post" th:action="@{/rooms/entries/{entry}/delete(entry=${entry.id})}">
-                    <button class="btn btn-danger">Eintrag löschen</button>
-                </form>
+        <div class="card mt-sm-2" style="width: auto" th:each="room : ${rooms}">
+            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}">
+                <div class="card-header" th:text="${entry.id}"></div>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${entry.booking}"></h5>
+                </div>
+                <div class="card-footer text-muted">
+                    <form method="post" th:action="@{/rooms/entries/{entry}/delete(entry=${entry.id})}">
+                        <button class="btn btn-danger">Eintrag löschen</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     <br>
     <form method="post" th:object="${form}" th:action="@{/rooms/addEntry}">
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <select class="form-control" id="subject" name="subject">
+                    <option value="">Select Room</option>
+                    <option
+                            th:each="room : ${rooms}"
+                            th:value="${room}"
+                            th:text="${room.id}">
+                    </option>
+                </select>
+            </div>
+        </div>
         <button class="btn btn-info" type="submit">Eintrag hinzufügen</button>
     </form>
 </div>
