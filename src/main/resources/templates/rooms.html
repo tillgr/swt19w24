@@ -92,7 +92,7 @@
     <form method="get" th:action="@{/rooms/listFreeSlots}">
         <button class="btn btn-info" type="submit">anzeigen</button>
         <div class="card-group">
-            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}" th:if="${entry.booking.FREE}">   <!--TODO sortiert nicht aus, zeigt einfach alles an-->
+            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${freeSlots}">
                 <div class="card-body">
                     <h5 class="card-title" th:text="'ID: ' + ${entry.id}"></h5>
                 </div>

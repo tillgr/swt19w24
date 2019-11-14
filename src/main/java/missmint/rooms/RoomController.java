@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -64,7 +66,7 @@ public class RoomController {
 		return "rooms";
 	}
 
-	@PostMapping("/rooms/add") //TODO beim einfügen werden entries zurückgesetzt
+	@PostMapping("/rooms/add")
 	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors){
 		if(errors.hasErrors()){
 			return "rooms";
@@ -82,6 +84,7 @@ public class RoomController {
 	@PostMapping("/rooms/{id}/delete")
 	public String deleteRoom(@PathVariable("id") long id){
 		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
+
 			rooms.delete(room);
 			return 1;
 			}
@@ -91,19 +94,30 @@ public class RoomController {
 	}
 
 
-	@GetMapping("/rooms/listFreeSlots")	//TODO sortiert nicht aus, zeigt einfach alles an
+	@GetMapping("/rooms/listFreeSlots")
 	public String listFreeSlots(Model model){
+		Iterator<TimeTableEntry> it = entries.findAll().iterator();
+
 		AddRoomForm form = new AddRoomForm("", "");
+		List<TimeTableEntry> freeSlots = new LinkedList<>();
+
+		while(it.hasNext()){
+			TimeTableEntry currentEntry = it.next();
+			if(currentEntry.getBooking().equals(TimeTableEntry.Booking.FREE)){
+				freeSlots.add(currentEntry);
+			}
+		}
 
 		model.addAttribute("form", form);
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("entries", entries.findAll());
+		model.addAttribute("freeSlots", freeSlots);
 
 		return "rooms";
 	}
 
 
-	@PostMapping("/rooms/{id}/bookFreeSlot") //TODO bookt nur den ersten slot und keine weiteren
+	@PostMapping("/rooms/{id}/bookFreeSlot")
 	public String bookFreeSlot(Model model, @PathVariable("id") long id){
 		Iterator<TimeTableEntry> it = entries.findAll().iterator();
 
@@ -115,6 +129,7 @@ public class RoomController {
 				currentEntry.setBooking(TimeTableEntry.Booking.BOOKED);
 				rooms.findById(id).map(room -> {
 					currentEntry.setRoom(room);
+					entries.save(currentEntry);
 					return 1;
 				}
 				);
@@ -130,7 +145,7 @@ public class RoomController {
 	}
 
 
-	@PostMapping("/rooms/addEntry") //TODO bookings werden zurückgesetzt
+	@PostMapping("/rooms/addEntry")
 	public String addEntry(){
 		Iterator<TimeTableEntry> it = entries.findAll().iterator();
 		int time = 0;
