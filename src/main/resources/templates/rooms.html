@@ -85,13 +85,9 @@
         <div class="dropdown">
             <button class="dropbtn">Dropdown</button>
             <div class="dropdown-content">
-                <select class="form-control" id="subject" name="subject">
+                <select th:field="*{room}" class="form-control" id="subject" name="subject">
                     <option value="">Select Room</option>
-                    <option
-                            th:each="room : ${rooms}"
-                            th:value="${room}"
-                            th:text="${room.id}">
-                    </option>
+                    <option th:each="room : ${rooms}" th:value="${room.id}" th:text="${room.id}"></option>
                 </select>
             </div>
         </div>
