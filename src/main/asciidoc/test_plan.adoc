@@ -4,7 +4,7 @@
 
 == Einführung
 
-Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests. Er enthält noch keine konreten Daten, sondern nur Fallunterscheidungen, nach aktuellem Kenntnisstand. Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht.
+Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests mit JUnit. Er enthält noch keine konreten Daten, sondern  Plant nur Fallunterscheidungen für die Integrationstests. Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht. Überprüfung der Browser-Darstellung ist nicht geplant.
 
 == Aufbau der Testbezeichner
 //Nach welchem Schema sind die Tests benannt?
