@@ -77,31 +77,272 @@ da insbesondere die Miss-Mint-Filialmanagement-Software keine Kommunikation nach
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|U-MissMintOrder-MissMintOrder-0 |UC0040 |- |ein UserAccount, Customer, Eingangs-Datum, erwartetes Fertigstellungsdatum, Dienstleistung, Beschreibung |Zustand wird auf `WAITING` gesetzt und Quantity der Dienstleistung ist 1
+|U-MissMintOrder-MissMintOrder-0
+|UC0040
+|-
+|ein UserAccount, Customer, Eingangs-Datum, erwartetes Fertigstellungsdatum, Dienstleistung, Beschreibung
+|Zustand wird auf `WAITING` gesetzt und Quantity der Dienstleistung ist 1
 
-|U-MissMintOrder-getLatestFinished-0 |UC0041-UC0043 |Fertigstellungsdatum liegt vor dem erwartetem Fertigstellungsdatum |- | erwartetes Fertigstellungsdatum
+|U-MissMintOrder-getLatestFinished-0
+|UC0041-UC0043
+|Fertigstellungsdatum liegt vor dem erwartetem Fertigstellungsdatum
+|-
+| erwartetes Fertigstellungsdatum
 
-|U-MissMintOrder-getLatestFinished-1 |UC0041-UC0043 |Fertigstellungsdatum ist gleich dem erwarteten Fertigstellungsdatum |- | eines der beiden
+|U-MissMintOrder-getLatestFinished-1
+|UC0041-UC0043
+|Fertigstellungsdatum ist gleich dem erwarteten Fertigstellungsdatum
+|-
+| eines der beiden
 
-|U-MissMintOrder-getLatestFinished-2 |UC0041-UC0043 |Fertigstellungsdatum liegt nach dem erwartetem Fertigstellungsdatum |- | Fertigstellungsdatum
+|U-MissMintOrder-getLatestFinished-2
+|UC0041-UC0043
+|Fertigstellungsdatum liegt nach dem erwartetem Fertigstellungsdatum
+|-
+| Fertigstellungsdatum
 
-|U-MissMintOrder-canPickUp-0 |UC0041-UC0043 |Zustand ist `FINISHED`. |- | `true` -> Gegenstand kann abgeholt werden
+|U-MissMintOrder-canPickUp-0
+|UC0041-UC0043
+|Zustand ist `FINISHED`.
+|-
+| `true` -> Gegenstand kann abgeholt werden
 
-|U-MissMintOrder-canPickUp-1 |UC0041-UC0043 |Zustand ist `STORED`. |- | `true` -> Gegenstand kann abgeholt werden
+|U-MissMintOrder-canPickUp-1
+|UC0041-UC0043
+|Zustand ist `STORED`.
+|-
+| `true` -> Gegenstand kann abgeholt werden
 
-|U-MissMintOrder-canPickUp-2 |UC0041-UC0043 |Zustand ist weder `FINISHED` noch `STORED`. |- | `false` -> Gegenstand kann nicht abgeholt werden
+|U-MissMintOrder-canPickUp-2
+|UC0041-UC0043
+|Zustand ist weder `FINISHED` noch `STORED`.
+|-
+| `false` -> Gegenstand kann nicht abgeholt werden
 
-|U-OrderService-calculateCharge-0 |UC0041-UC0043 |Auftrag kann nicht abgeholt werden |- | _Exception_ -> Gebühr sollte jetzt nicht berechnet werden
+|U-OrderService-calculateCharge-0
+|UC0041-UC0043
+|Auftrag kann nicht abgeholt werden
+|-
+| _Exception_ -> Gebühr sollte jetzt nicht berechnet werden
 
-|U-OrderService-calculateCharge-1 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird pünktlich abgeholt. |- | -3€ -> 3€ bekommt der Kunde Entschädigung
+|U-OrderService-calculateCharge-1
+|UC0041-UC0043
+|Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird pünktlich abgeholt.
+|-
+| -3€ -> 3€ bekommt der Kunde Entschädigung
 
-|U-OrderService-calculateCharge-2 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird pünktlich abgeholt. |- | 0€ -> keine Transaktion
+|U-OrderService-calculateCharge-2
+|UC0041-UC0043
+|Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird pünktlich abgeholt.
+|-
+| 0€ -> keine Transaktion
 
-|U-OrderService-calculateCharge-3 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 2 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | 0€ -> keine Transaktion
+|U-OrderService-calculateCharge-3
+|UC0041-UC0043
+|Auftrag, der 10€ kostet, wurde 2 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt.
+|-
+| 0€ -> keine Transaktion
 
-|U-OrderService-calculateCharge-4 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | -1€ -> 1€ bekommt der Kunde Entschädigung
+|U-OrderService-calculateCharge-4
+|UC0041-UC0043
+|Auftrag, der 10€ kostet, wurde 3 Tage zu spät fertig. Er wird 4 Wochen zu spät abgeholt abgeholt.
+|-
+| -1€ -> 1€ bekommt der Kunde Entschädigung
 
-|U-OrderService-calculateCharge-4 |UC0041-UC0043 |Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird 4 Wochen zu spät abgeholt abgeholt. |- | 2€ muss der Kunde nachzahlen
+|U-OrderService-calculateCharge-5
+|UC0041-UC0043
+|Auftrag, der 10€ kostet, wurde pünktlich fertig. Er wird 4 Wochen zu spät abgeholt abgeholt.
+|-
+| 2€ muss der Kunde nachzahlen
+
+|U-OrderService-updateOrders-0
+|UC0042, UC0043, UC0050
+|Auftrag, der jetzt seinen Raum-Slot zur Bearbeitung hat.
+|-
+| Der Auftrag wird auf `IN_PROGRESS` gesetzt.
+
+|U-OrderService-updateOrders-1
+|UC0042, UC0043, UC0050
+|Auftrag, dessen Bearbeitung jetzt abgeschlossen wird.
+|-
+| Der Auftrag wird auf `FINISHED` gesetzt und das Fertigstellungsdatum gespeichert.
+
+|U-OrderService-updateOrders-2
+|UC0042, UC0043, UC0050
+|Auftrag, der seit einer Woche fertig ist.
+|-
+| Der Auftrag wird auf `STORED` gesetzt.
+
+|U-OrderService-updateOrders-3
+|UC0042, UC0043, UC0050
+|Auftrag, der seit einer Woche und drei Monaten fertig ist.
+|-
+| Der Auftrag wird auf `CHARITABLE_USED` gesetzt und der Gegenstand aus dem Inventar gelöscht.
+
+|U-ServiceDataInitializer-initialize-0
+|-
+|Es existieren noch keine Dienstleistungen in der Datenbank.
+|-
+| Die 15 Dienstleistungen werden angelegt.
+
+|U-ServiceDataInitializer-initialize-1
+|-
+|Es existieren schon alle Dienstleistungen in der Datenbank.
+|-
+| Keine neuen Dienstleistungen werden angelegt.
+
+|U-ServiceDataInitializer-initialize-2
+|-
+|Es existieren schon alle Dienstleistungen in der Datenbank.
+|-
+| Keine neuen Dienstleistungen werden angelegt.
+
+|I-OrdersController-listOrders-0
+|UC0010
+|Der Nutzer ist nicht angemeldet.
+|-
+|Anfrage wird wegen `@PreAuthorize` abgelehnt.
+
+|I-OrdersController-listOrders-1
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet.
+|-
+|Alle Aufträge aus dem System werden zusammen mit der zugehörigen Dienstleistung dem Nutzer über das Template angezeigt.
+
+|I-OrdersController-listOrders-2
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet. Es gibt keine Aufträge im System
+|-
+|Die Auflistung der Aufträge bleibt leer.
+
+|I-PickUpController-pickupPage-0
+|UC0010
+|Der Nutzer ist nicht angemeldet.
+|-
+|Anfrage wird wegen `@PreAuthorize` abgelehnt.
+
+|I-PickUpController-pickupPage-1
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet.
+|Ein leeres `Optional`, da der Auftrag nicht existiert.
+|Anfrage abgelehnt mit `BAD_REQUEST`.
+
+|I-PickUpController-pickupPage-2
+|UC0041
+|Der Mitarbeiter ist angemeldet.
+|Ein Auftrag, der pünktlich fertig wurde und nicht zu spät abgeholt wird.
+|Ein Template zur Bestätigung der Abgabe ohne die Aufforderung einer Transaktion.
+
+|I-PickUpController-pickupPage-3
+|UC0042
+|Der Mitarbeiter ist angemeldet.
+|Ein Auftrag, der pünktlich fertig wurde und 3 Wochen zu spät abgeholt wird.
+|Ein Template zur Bestätigung der Abgabe und die Aufforderung 1,50€ zu kassieren.
+
+|I-PickUpController-pickupPage-4
+|UC0042
+|Der Mitarbeiter ist angemeldet. Es existiert ein Auftrag, der 10€ gekostet hat.
+|Dieser Auftrag, der 3 Tage zu spät fertig wurde und pünktlich abgeholt wird.
+|Ein Template zur Bestätigung der Abgabe und die Aufforderung 3€ Entschädigung zu zahlen.
+
+|I-PickUpController-pickupPage-5
+|UC0042, UC0042
+|Der Mitarbeiter ist angemeldet. Es existiert ein Auftrag, der 10€ gekostet hat.
+|Dieser Auftrag, der 3 Tage zu spät fertig wurde und 6 Wochen zu spät abgeholt wird.
+|Ein Template zur Bestätigung der Abgabe ohne die Aufforderung einer Transaktion.
+
+|I-PickUpController-pickupPage-6
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet.
+|Ein Auftrag, der noch in Bearbeitung ist.
+|Anfrage abgelehnt mit `BAD_REQUEST`.
+
+|I-PickUpController-pickupForm-0
+|UC0010
+|Der Nutzer ist nicht angemeldet.
+|-
+|Anfrage wird wegen `@PreAuthorize` abgelehnt.
+
+|I-PickUpController-pickupForm-1
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet.
+|Ein Auftrag, der noch in Bearbeitung ist.
+|Anfrage abgelehnt mit `BAD_REQUEST`.
+
+|I-PickUpController-pickupPage-2
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet.
+|Ein leeres `Optional`, da der Auftrag nicht existiert.
+|Anfrage abgelehnt mit `BAD_REQUEST`.
+
+|I-PickUpController-pickupPage-3
+|UC0041-UC0043
+|Der Mitarbeiter ist angemeldet.
+|Ein Auftrag.
+|Der Auftragszustand wird auf `PICKED_UP` gesetzt. Eine Umleitung wird zurückgegeben.
+
+|I-ReceivingController-receiving-0
+|UC0010
+|Der Nutzer ist nicht angemeldet.
+|-
+|Anfrage wird wegen `@PreAuthorize` abgelehnt.
+
+|I-ReceivingController-receiving-1
+|UC0040
+|Der Mitarbeiter ist angemeldet.
+|-
+|Ein Formular zum Erstellen eines neuen Auftrags.
+
+|I-ReceivingController-cost-0
+|UC0010
+|Der Nutzer ist nicht angemeldet.
+|-
+|Anfrage wird wegen `@PreAuthorize` abgelehnt.
+
+|I-ReceivingController-cost-1
+|UC0040
+|Der Mitarbeiter ist angemeldet.
+|Ein ungültiges Erstellformular.
+|Die Seite mit dem Formular mit einer Fehler-Meldung. Das Formular ist immer noch ausgefüllt.
+
+|I-ReceivingController-cost-2
+|UC0040
+|Der Mitarbeiter ist angemeldet.
+|Ein Formular mit einer nicht existierenden Dienstleistung.
+|Anfrage abgelehnt mit `BAD_REQUEST`.
+
+|I-ReceivingController-cost-3
+|UC0040
+|Der Mitarbeiter ist angemeldet.
+|Ein valides Formular.
+|Ein entsprechender Auftrag wird erstellt aber nicht gespeichert.
+Eine Seite, die das Kosten-Formular darstellt, wird angezeigt.
+
+|I-ReceivingController-cost-4
+|UC0040
+|Der Mitarbeiter ist angemeldet. Es gibt keine Räume oder keinen Mitarbeiter für die Dienstleistung.
+|Ein valides Formular.
+|Ein Fehler, der über den Missstand informiert wird angezeigt.
+
+|I-ReceivingController-ticket-0
+|UC0010
+|Der Nutzer ist nicht angemeldet.
+|-
+|Anfrage wird wegen `@PreAuthorize` abgelehnt.
+
+|I-ReceivingController-ticket-1
+|UC0040
+|Der Mitarbeiter ist angemeldet.
+|Eine Sitzung mit einem Auftrag.
+|Der Auftrag wird mit berechnetem Fertigstellungsdatum gespeichert, ein Raum gebucht und ein Mitarbeiter verplant.
+Das Ticket wird angezeigt.
+
+|I-ReceivingController-ticket-2
+|UC0040
+|Der Mitarbeiter ist angemeldet.
+|Eine Sitzung ohne einem Auftrag.
+|Anfrage abgelehnt mit `BAD_REQUEST`.
+
 |===
 
 === Finanzen
