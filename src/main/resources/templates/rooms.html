@@ -65,23 +65,37 @@
 <div class="container mt-md-5">
     <h1>Belegplan</h1>
 
+    <div class="container mt-md-5">
+        <form method="get" th:action="@{/rooms/listFreeSlots}">
+            <button class="btn btn-info" type="submit">Freie Slots anzeigen</button>
+            <div class="card-group">
+                <div class="card mt-sm-2" style="width: auto" th:each="entry : ${freeSlots}">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="'ID: ' + ${entry.id}"></h5>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
     <div class="card-group">
         <div class="card mt-sm-2" style="width: auto" th:each="room : ${rooms}">
-            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}">
+            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}" th:if="${entry.getRoom() == room}"> <!--T(missmint.rooms.TimeTableEntry.room)-->
                 <div class="card-header" th:text="${entry.id}"></div>
                 <div class="card-body">
                     <h5 class="card-title" th:text="${entry.booking}"></h5>
                 </div>
+                <!--
                 <div class="card-footer text-muted">
                     <form method="post" th:action="@{/rooms/entries/{entry}/delete(entry=${entry.id})}">
                         <button class="btn btn-danger">Eintrag löschen</button>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
-    <br>
-    <form method="post" th:object="${form}" th:action="@{/rooms/addEntry}">
+    <!--<form method="post" th:object="${form}" th:action="@{/rooms/addEntry}">-->
+        <!--
         <div class="dropdown">
             <button class="dropbtn">Dropdown</button>
             <div class="dropdown-content">
@@ -91,24 +105,10 @@
                 </select>
             </div>
         </div>
+
         <button class="btn btn-info" type="submit">Eintrag hinzufügen</button>
     </form>
-</div>
-
-<div class="container mt-md-5">
-    <h1>Freie Slots</h1>
-
-    <form method="get" th:action="@{/rooms/listFreeSlots}">
-        <button class="btn btn-info" type="submit">anzeigen</button>
-        <div class="card-group">
-            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${freeSlots}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="'ID: ' + ${entry.id}"></h5>
-                </div>
-            </div>
-        </div>
-    </form>
-
+    -->
 </div>
 
 </body>

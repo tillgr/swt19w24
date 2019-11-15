@@ -1,5 +1,6 @@
 package missmint.rooms;
 
+import org.salespointframework.useraccount.QUserAccount;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,12 +72,28 @@ public class RoomController {
 		if(errors.hasErrors()){
 			return "rooms";
 		}
-		rooms.save(form.createRoom());
+		rooms.save(form.createRoom(entries, rooms));
 
+		/*
+		Iterator<TimeTableEntry> it = entries.findAll().iterator();
+
+		for (int i = 0; i < 7; i++){
+			TimeTableEntry currentEntry = it.next();
+			if(currentEntry.getRoom() == null){		//&& rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)
+				rooms.findById(form.createRoom().getId()).map(room -> {	//TODO beim erstellen eines raumes sollen die nächsten 6 entries den raum zugewiesen bekommen
+						currentEntry.setRoom(room);
+						entries.save(currentEntry);
+						return 1;
+					}
+				);
+			}
+		}
+
+
+		 */
 		model.addAttribute("form", form);
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("entries", entries.findAll());
-
 
 		return "redirect:/rooms";
 	}
@@ -85,7 +102,9 @@ public class RoomController {
 	@PostMapping("/rooms/{id}/delete")
 	public String deleteRoom(@PathVariable("id") long id){
 		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
-
+			/*for(TimeTableEntry entry : room.getEntrySet()){
+				entries.delete(entry);
+			}*/
 			rooms.delete(room);
 			return 1;
 			}
@@ -126,14 +145,18 @@ public class RoomController {
 
 		while(it.hasNext()){
 			TimeTableEntry currentEntry = it.next();
-			if(currentEntry.getBooking().equals(Booking.FREE) && rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)){
+			if(currentEntry.getBooking().equals(Booking.FREE) && rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)){		//&& rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)
 				currentEntry.setBooking(Booking.BOOKED);
+				entries.save(currentEntry);
+				/*
 				rooms.findById(id).map(room -> {
-					currentEntry.setRoom(room);
-					entries.save(currentEntry);
+					//currentEntry.setRoom(room);
+						entries.save(currentEntry);
 					return 1;
 				}
 				);
+
+				 */
 				break;
 			}
 		}
@@ -145,9 +168,9 @@ public class RoomController {
 		return "rooms";
 	}
 
-
+	/*
 	@PostMapping("/rooms/addEntry")
-	public String addEntry(Model model, Room room){
+	public String addEntry(Model model){
 		Iterator<TimeTableEntry> it = entries.findAll().iterator();
 		int time = 0;
 		while(it.hasNext()){
@@ -156,11 +179,13 @@ public class RoomController {
 				time = currentEntry.getEnd();
 			}
 		}
-		TimeTableEntry entry = new TimeTableEntry(time, time + 1, room);
+		TimeTableEntry entry = new TimeTableEntry(time, time + 1, null);
 		entries.save(entry);
 
 		return "redirect:/rooms";
 	}
+
+	 */
 
 	@PostMapping("/rooms/entries/{id}/delete")
 	public String deleteEntry(@PathVariable("id") long id){

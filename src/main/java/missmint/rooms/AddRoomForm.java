@@ -19,7 +19,7 @@ public class AddRoomForm {
 		return belegung;
 	}
 
-	public Room createRoom(){
-		return new Room(name, belegung);
+	public Room createRoom(EntriesRepository entries, RoomsRepository rooms){
+		return new Room(name, belegung, entries, rooms);
 	}
 }
