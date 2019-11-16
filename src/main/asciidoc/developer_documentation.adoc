@@ -12,7 +12,37 @@
 
 == Einführung und Ziele
 === Aufgabenstellung
-*TODO*
+Für _Miss-Mint Mending Points_ soll für die Mitarbeiter eine Software bereitgestellt werden.
+Mitarbeiter (_Staff_) können über den Admin (_ADMIN_) registriert (_register_) und entfernt (_delete_) werden.
+Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen.
+Der Betrieb stellt folgende Dienstleistungen (_ServiceCategory_) bereit:
+
+* eine Flickschusterei (_KLUDGE_)
+* einen Nähservice (_SEWINGSERVICE_)
+* einen Schlüsseldienst (_LOCKSMITH_)
+* eine Schnellreinigung (_EXPRESS_DRY_CLEANING_)
+* eine Elektrowerkstatt (_ELECTRONICWORKSHOP_)
+* eine Scherenschleiferei (_SCISSORSGRINDERY_)
+
+Nachdem der Kunde eine Dienstleistung ausgewählt und im Voraus bezahlt hat, wird ein
+Auftrag (_MissMintOrder_) mit einer Auftragsnummer (_OrderIdentifier_) im System angelegt.
+Zusätzlich wird ein erwartetes Fertigstellungsdatum (_getExpectedFinished_) berechnet.
+Der Auftrag kann sich in verschiedenen Zuständen (_OrderState_) befinden.
+
+Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan (_TimeTable_) zur Verfügung gestellt.
+Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht (_BOOKING_). Für die Dienste
+wird i.A. Material (_Material_) benötigt. Diese können, falls nötig, nachbestellt werden und die
+Kosten (_getPrice_) werden automatisch vom System erfasst.
+
+Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden.
+Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter Vorlage des Auftragszettels
+durch Zahlung einer Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden kann. Waren, die
+auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation.
+Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% erstattet.
+
+Jegliches Einkommen bzw. Ausgaben (_FinanceItem_) sind für den Filialleiter sichtbar. Dabei werden sowohl die
+Gesamtkosten (_calculateTotalPrice_) als auch der Reingewinn erfasst.
+
 
 === Qualitätsziele
 
