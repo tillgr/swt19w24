@@ -111,7 +111,7 @@ a|
 - *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Däfur kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
 - *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
 
-*TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop*
+//*TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop*
 
 |===
 
@@ -138,12 +138,52 @@ um Java-Klassen Datenbanktabellen zuzuordnen.
 Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 
 * Benutzeroberfläche
-* Verwendung externer Frameworks
+
+==== Verwendung externer Frameworks
 
 [options="header", cols="1,3,3"]
 |===
 |Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
-|... |... |...
+|Catalog |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog |OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer
+|ProductIdentifier |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier |OrdersController, ReceivingForm
+|OrderManager |org.{zwsp}salespointframework.{zwsp}order.{zwsp}OrderManager |OrdersController, PickUpController, ReceivingController, OrderDataInitializer, OrderService
+|Page |org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Page |OrdersController
+|Pageable |org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Pageable |OrdersController, OrderService
+|PreAuthorize |org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize |OrdersController, PickUpController, ReceivingController
+|Controller |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller |OrdersController, PickUpController, ReceivingController
+|Model |org.{zwsp}springframework.{zwsp}ui.{zwsp}Model |OrdersController, PickUpController, ReceivingController
+|RequestMapping |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping |OrdersController
+|HttpStatus |org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus |PickUpController, ReceivingController
+|GetMapping |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping |PickUpController, ReceivingController
+|PathVariable |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable |PickUpController
+|PostMapping |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping |PickUpController, ReceivingController
+|ResponseStatusException |org.{zwsp}springframework.{zwsp}web.{zwsp}server.{zwsp}ResponseStatusException |PickUpController, ReceivingController
+|BusinessTime |org.{zwsp}salespointframework.{zwsp}time.{zwsp}BusinessTime |ReceivingController, OrderDataInitializer, OrderService
+|UserAccount |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount |ReceivingController, MissMintOrder, OrderDataInitializer
+|UserAccountManager |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccountManager |OrderDataInitializer
+|LoggedIn |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}web.{zwsp}LoggedIn |ReceivingController
+|Qualifier |org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Qualifier |ReceivingController
+|Errors |org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors |ReceivingController
+|Order |org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order |MissMintOrder, ServiceDataInitializer
+|Quantity |org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity |MissMintOrder
+|DataInitializer |org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer |OrderDataInitializer, ServiceDataInitializer
+|Order |org.{zwsp}springframework.{zwsp}core.{zwsp}annotation.{zwsp}Order |OrderDataInitializer
+|Component |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component |OrderDataInitializer, ServiceDataInitializer
+|Money |org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money |OrderService, ServiceDataInitializer
+|Value |org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value |OrderService, ServiceDataInitializer
+|Service |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service |OrderService
+|Product |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product |Service
+|Pair |ServiceDataInitializer
+
+|===
+
+== Bausteinsicht
+* Entwurfsklassendiagramme der einzelnen Packages
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |org.springframework.data.util.Pair |ServiceDataInitializer
+
 |===
 
 == Bausteinsicht
@@ -204,6 +244,7 @@ image::models/design/images/sd__orders_receiving__orders_receiving.jpg[]
 image::models/design/images/sd__orders_pick_up__orders_pick_up.jpg[]
 image::models/design/images/sd__orders_update__orders_update.jpg[]
 
+////
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
-
+////
