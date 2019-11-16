@@ -297,6 +297,9 @@ der Mitarbeiterdaten.
 |Order Management |OrderManager
 |Service Category |String
 |OrderTicket |-
+|User |User
+|Staff |Staff
+|- |UserManagement
 |===
 
 == Laufzeitsicht
