@@ -218,7 +218,7 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 image::models/design/images/orders_design.png[Klassendiagramm für das orders Package,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Package",align=center]
 [options="header", cols="1, 4"]
 |===
-|Klasse/Enumeration |Description
+|Klasse/Enumeration |Beschreibung
 |OrdersController |
 Ein Spring MVC Controller, der Anfragen für die Anzeige der aktuellen Aufträge `MissMintOrder` beantwortet.
 |OrderDTO |
@@ -247,6 +247,44 @@ Im Prototypen speichert es auch noch das Material.
 Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen anzulegen.
 |===
 
+=== Mitarbeiter
+image::models/design/images/users.png[]
+|===
+|Klasse/Enumeration/Schnittstelle |Beschreibung
+
+|UserConstroller
+|Ein Spring MVC Controller, der Anfragen bzgl. Mitarbeiterübersicht und zudem Erstellung, Bearbeitung
+und Löschen von Mitarbeitern verarbeitet.
+
+|User
+|Jeder User hat eine eindeutige `Id`,
+einen `UserAccount` von _SalesPoint_ und eine `UserAccountRole`.
+
+|Staff
+|Diese Klasse erweitert die `User` Klasse und implementiert das `Resource` `Interface`. Der Mitarbeiter hat Vor- und
+Nachname und kann Fertigkeiten in eine oder mehrere der Dienstleistungen haben.
+
+|UserManagement
+|Ein Dienst, der die Mitarbeiter im System verwaltet.
+
+|StaffRepository
+|Die Schnittstelle erweitert die `CrudRepository` von Spring. Sie ist verantwortlich für die Persistenz
+der Mitarbeiterdaten.
+
+|AccountRole
+|Jeder Mitarbeiter wird eine Rolle zugewiesen um verschiedene Nutzerrechte zu handhaben.
+
+|ServiceCategory
+|Stellt die verschiedenen Dienstleistungen von _Miss Mint_-Betrieben dar.
+
+|RegistrationForm
+|Ein Formular für die Registrierung von neuen Mitarbeitern.
+
+|EditStaffForm
+|Ein Formular um Mitarbeiterdaten zu bearbeiten.
+
+|===
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -269,6 +307,9 @@ image::models/design/images/sd__orders_list__orders_list.jpg[]
 image::models/design/images/sd__orders_receiving__orders_receiving.jpg[]
 image::models/design/images/sd__orders_pick_up__orders_pick_up.jpg[]
 image::models/design/images/sd__orders_update__orders_update.jpg[]
+
+=== Mitarbeiter
+image::models/design/images/add_and_delete_staff.png[]
 
 ////
 == Technische Schulden
