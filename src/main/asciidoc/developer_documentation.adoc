@@ -173,17 +173,7 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 |Value |org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value |OrderService, ServiceDataInitializer
 |Service |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service |OrderService
 |Product |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product |Service
-|Pair |ServiceDataInitializer
-
-|===
-
-== Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
-
-[options="header"]
-|=== 
-|Klasse/Enumeration |org.springframework.data.util.Pair |ServiceDataInitializer
-
+|Pair |org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair |ServiceDataInitializer
 |===
 
 == Bausteinsicht
@@ -233,6 +223,12 @@ Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen 
 [options="header"]
 |===
 |Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell)
+|Order |Order
+|Service |Service
+|State |OrderState
+|Order Management |OrderManager
+|Service Category |String
+|OrderTicket |-
 |===
 
 == Laufzeitsicht
