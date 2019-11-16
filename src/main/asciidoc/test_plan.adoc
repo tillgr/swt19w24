@@ -357,49 +357,49 @@ Das Ticket wird angezeigt.
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |U-UserController-login-01
-|**<<UC0010>>**
+|UC0010
 |Benutzer ist nicht authentifiziert.
 |richtiger Benutzername und richtiges Passwort
 |Benutzer wird auf die Homepage verlinkt und ist angemeldet.
 
 |U-UserController-login-02
-|**<<UC0010>>**
+|UC0010
 |Benutzer ist nicht authentifiziert.
 |Benutzername oder Passwort ist falsch
 |Es erfolgt eine Fehlermeldung.
 
 |U-UserController-logout-01
-|**<<UC0010>>**
+|UC0010
 |Benutzer authentifiziert.
 |Logout in der Navigationsleiste
 |Benutzer wird auf die Homepage verlinkt und ist abgemeldet.
 
 |I-UserController-registration-01
-|**<<UC0020>>**
+|UC0020
 |Neuer Mitarbeiter ist noch nicht im System registriert.
 |Admin gibt neue Benutzerdaten bei der Registrierung ein. Benutzername ist noch nicht im System.
 |Ein neues Benutzerkonto wird angelegt
 
 |I-UserController-registration-02
-|**<<UC0020>>**
+|UC0020
 |Neuer Mitarbeiter ist noch nicht im System registriert.
 |Admin gibt neue Benutzerdaten bei der Registrierung ein. Benutzername ist schon im System.
 |Es erfolgt eine Fehlermeldung und es wird kein neues Benutzerkonto angelegt.
 
 |U-UserController-users-01
-|
+|-
 |Ein authorisierter Mitarbeiter, der aber kein Admin ist.
 |Anfrage zur Mitarbeiterübersicht
 |Anfrage wird wegen `@PreAuthorize` abgelehnt.
 
 |U-UserController-users-02
-|
+|-
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
 |Anfrage zur Mitarbeiterübersicht
 |Mitarbeiterübersicht wird angezeigt.
 
 |U-UserController-delete-01
-|
+|-
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
 |Entfernen eines Mitarbeiters
 |Mitarbeiter wird aus dem System entfernt.
