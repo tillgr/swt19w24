@@ -179,7 +179,7 @@ application.properties nicht kommentiert werden:
 ....
 
 ==== Benutzeroberfläche
-*TODO*
+image::models/design/images/dialog.png[]
 
 ==== Verwendung externer Frameworks
 
