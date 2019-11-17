@@ -173,37 +173,130 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 
 [options="header", cols="1,3,3"]
 |===
-|Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
-|Catalog |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog |OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer
-|ProductIdentifier |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier |OrdersController, ReceivingForm
-|OrderManager |org.{zwsp}salespointframework.{zwsp}order.{zwsp}OrderManager |OrdersController, PickUpController, ReceivingController, OrderDataInitializer, OrderService
-|Page |org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Page |OrdersController
-|Pageable |org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Pageable |OrdersController, OrderService
-|PreAuthorize |org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize |OrdersController, PickUpController, ReceivingController, UserController
-|Controller |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller |OrdersController, PickUpController, ReceivingController, UserController
-|Model |org.{zwsp}springframework.{zwsp}ui.{zwsp}Model |OrdersController, PickUpController, ReceivingController, UserController
-|RequestMapping |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping |OrdersController
-|HttpStatus |org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus |PickUpController, ReceivingController
-|GetMapping |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping |PickUpController, ReceivingController, UserController
-|PathVariable |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable |PickUpController, UserController
-|PostMapping |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping |PickUpController, ReceivingController, UserController
-|ResponseStatusException |org.{zwsp}springframework.{zwsp}web.{zwsp}server.{zwsp}ResponseStatusException |PickUpController, ReceivingController
-|BusinessTime |org.{zwsp}salespointframework.{zwsp}time.{zwsp}BusinessTime |ReceivingController, OrderDataInitializer, OrderService
-|UserAccount |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount |ReceivingController, MissMintOrder, OrderDataInitializer, User, UserManagement
-|UserAccountManager |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccountManager |OrderDataInitializer, UserManagement
-|LoggedIn |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}web.{zwsp}LoggedIn |ReceivingController
-|Qualifier |org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Qualifier |ReceivingController
-|Errors |org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors |ReceivingController, UserController
-|Order |org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order |MissMintOrder, ServiceDataInitializer
-|Quantity |org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity |MissMintOrder
-|DataInitializer |org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer |OrderDataInitializer, ServiceDataInitializer
-|Order |org.{zwsp}springframework.{zwsp}core.{zwsp}annotation.{zwsp}Order |OrderDataInitializer
-|Component |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component |OrderDataInitializer, ServiceDataInitializer
-|Money |org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money |OrderService, ServiceDataInitializer
-|Value |org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value |OrderService, ServiceDataInitializer
-|Service |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service |OrderService, UserManagement
-|Product |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product |Service
-|Pair |org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair |ServiceDataInitializer
+|Externe Klasse 
+|Pfad der externen Klasse 
+|Verwendet von (Klasse der eigenen Anwendung)
+
+|BusinessTime 
+|org.{zwsp}salespointframework.{zwsp}time.{zwsp}BusinessTime 
+|ReceivingController, OrderDataInitializer, OrderService
+
+|Catalog 
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog 
+|OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer
+
+|Component 
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component 
+|OrderDataInitializer, ServiceDataInitializer
+
+|Controller 
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller 
+|OrdersController, PickUpController, ReceivingController, UserController
+
+|DataInitializer 
+|org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer 
+|OrderDataInitializer, ServiceDataInitializer
+
+|Errors 
+|org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors 
+|ReceivingController, UserController
+
+|GetMapping 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping 
+|PickUpController, ReceivingController, UserController
+
+|HttpStatus 
+|org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus 
+|PickUpController, ReceivingController
+
+|LoggedIn
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}web.{zwsp}LoggedIn
+|ReceivingController
+
+|Model 
+|org.{zwsp}springframework.{zwsp}ui.{zwsp}Model 
+|OrdersController, PickUpController, ReceivingController, UserController
+
+|Money 
+|org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money 
+|OrderService, ServiceDataInitializer
+
+|Order 
+|org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order 
+|MissMintOrder, ServiceDataInitializer
+
+|Order 
+|org.{zwsp}springframework.{zwsp}core.{zwsp}annotation.{zwsp}Order 
+|OrderDataInitializer
+
+|OrderManager 
+|org.{zwsp}salespointframework.{zwsp}order.{zwsp}OrderManager 
+|OrdersController, PickUpController, ReceivingController, OrderDataInitializer, OrderService
+
+|Page 
+|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Page 
+|OrdersController
+
+|Pageable 
+|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Pageable 
+|OrdersController, OrderService
+
+|Pair 
+|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair 
+|ServiceDataInitializer
+
+|PathVariable 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable 
+|PickUpController, UserController
+
+|Product 
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product 
+|Service
+
+|ProductIdentifier 
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier 
+|OrdersController, ReceivingForm
+
+|PostMapping
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping 
+|PickUpController, ReceivingController, UserController
+
+|PreAuthorize 
+|org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize 
+|OrdersController, PickUpController, ReceivingController, UserController
+
+|Qualifier 
+|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Qualifier 
+|ReceivingController
+
+|Quantity 
+|org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity 
+|MissMintOrder
+
+|RequestMapping 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping 
+|OrdersController
+
+|ResponseStatusException 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}server.{zwsp}ResponseStatusException
+|PickUpController, ReceivingController
+
+|Service 
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service 
+|OrderService, UserManagement
+
+|UserAccount 
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount 
+|ReceivingController, MissMintOrder, OrderDataInitializer, User, UserManagement
+
+|UserAccountManager 
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccountManager
+|OrderDataInitializer, UserManagement
+
+|Value 
+|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value 
+|OrderService, ServiceDataInitializer
+
 |===
 
 == Bausteinsicht
