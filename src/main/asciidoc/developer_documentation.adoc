@@ -491,6 +491,18 @@ image::models/design/images/Inventory.png[]
 |Resource
 |UltimateProduct
 
+|Room
+|Room
+
+|TimeTable
+|TimeTable Controller
+
+|-
+|Booking
+
+|TimeTableEntry
+|TimeTableEntry
+
 |===
 
 == Laufzeitsicht
