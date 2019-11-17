@@ -168,6 +168,37 @@ public class RoomController {
 		return "rooms";
 	}
 
+	@PostMapping("/rooms/{id}/debookFreeSlot")
+	public String debookFreeSlot(Model model, @PathVariable("id") long id){
+		Iterator<TimeTableEntry> it = entries.findAll().iterator();
+
+		AddRoomForm form = new AddRoomForm("", "");
+
+		while(it.hasNext()){
+			TimeTableEntry currentEntry = it.next();
+			if(currentEntry.getBooking().equals(Booking.BOOKED) && rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)){		//&& rooms.findById(id).map(room -> {return currentEntry.getRoom().equals(room); }).orElse(false)
+				currentEntry.setBooking(Booking.FREE);
+				entries.save(currentEntry);
+				/*
+				rooms.findById(id).map(room -> {
+					//currentEntry.setRoom(room);
+						entries.save(currentEntry);
+					return 1;
+				}
+				);
+
+				 */
+				break;
+			}
+		}
+
+		model.addAttribute("form", form);
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
+
+		return "rooms";
+	}
+
 	/*
 	@PostMapping("/rooms/addEntry")
 	public String addEntry(Model model){
