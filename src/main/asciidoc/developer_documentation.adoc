@@ -114,7 +114,7 @@ Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die A
 
 == Kontextabgrenzung
 
-image:srs/models/context_diagram.png[context diagram]
+image:srs/models/Context_Diagram.png[context diagram]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
@@ -152,7 +152,7 @@ Dafür kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
 
 === Softwarearchitektur
 
-image:srs/models/top-level_architecture.png[Top-Level-Architekur]
+image:srs/models/Top-level_architecture.png[Top-Level-Architekur]
 
 // Client-Server-Diagramm nicht notwendig, da Top-Level-Architektur vorhanden.
 
