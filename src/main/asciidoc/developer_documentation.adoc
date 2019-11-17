@@ -421,7 +421,7 @@ der Mitarbeiterdaten.
 |===
 
 === Inventar
-image::models/design/images/Inventory.png[]
+image::models/design/images/Inventory.small.png[]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration/Schnittstelle 
