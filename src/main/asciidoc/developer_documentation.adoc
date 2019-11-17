@@ -13,7 +13,7 @@
 == Einführung und Ziele
 === Aufgabenstellung
 Für _Miss-Mint Mending Points_ soll für die Mitarbeiter eine Software bereitgestellt werden.
-Mitarbeiter (_Staff_) können über den Admin (_ADMIN_) registriert (_register_) und entfernt (_delete_) werden.
+Mitarbeiter (_Staff_) können über den Admin (_ADMIN_) registriert (_registerUser_) und entfernt (_deleteUser_) werden.
 Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen.
 Der Betrieb stellt folgende Dienstleistungen (_ServiceCategory_) bereit:
 
@@ -82,7 +82,7 @@ Wichtig ist auch die visuelle Differenzierung von Inhalten, um die Informationsa
 == Randbedingungen
 
 === Hardware-Vorgaben
-Eine Liste von Geräten/Hardware, die benötigt werden um die Software zu benutzen.
+Eine Liste von Geräten/Hardware, die benötigt werden um die Software zu benutzen:
 
 * Server
 * Computer
@@ -130,7 +130,7 @@ a|
 - *Modifizierbarkeit*: Die Anwendung sollte ohne Verschlechterung der Code-Qualität oder Auftreten von Fehlern veränderbar  und/oder erweiterbar sein.
 |Nutzerfreundlichkeit
 a|
-- *Erlernbarkeit*: Das System sollte verständlich und einfach bedienbar sein. Das lääst sich z.B. durch eindeutige Beschreibung von Eingaben mit Hilfe von Tooltips und/oder Labels realisieren. 
+- *Erlernbarkeit*: Das System sollte verständlich und einfach bedienbar sein. Das lässt sich z.B. durch eindeutige Beschreibung von Eingaben mit Hilfe von Tooltips und/oder Labels realisieren.
 - *Handhabung von Fehlern*: Nutzer sollten vor Fehlern geschützt werden. Eingaben dürfen unter keinen Umständen zu ungültigen Systemzuständen führen.
 - *Ästhetik der Nutzerschnittstelle*: Bereitstellung einer ansprechenden und zufriedenstellenden Interaktion für den Nutzer
 - *Zugänglichkeit*: Es sollte, z.B. durch die Nutzung passender Schriftgrößen und Kontraste, sichergestellt werden dass Menschen mit einer möglichst großen Bandbreite von Eigenschaften die Möglichkeiten des Systems vollständig nutzen können.
@@ -138,7 +138,7 @@ a|
 |Sicherheit
 a|
 - *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden. Dies kann mit Spring Security und dem Thymeleaf (`sec:authorize` - tag) realisiert werden.
-- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Däfur kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
+- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Dafur kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
 - *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
 
 //*TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop*
@@ -160,7 +160,7 @@ image:srs/models/top-level_architecture.png[Top-Level-Architekur]
 * *Dependency Injection* über die Konstruktoren in Spring-Komponenten
 * *Repository* mit den Spring-Repositories
 
-* Persistenz
+==== Persistenz
 
 Die Anwendung verwendet Hibernate-Annotation-basiertes Mapping,
 um Java-Klassen Datenbanktabellen zuzuordnen.
@@ -168,8 +168,10 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 Um den Persistenzspeicher zu aktivieren, müssen die folgenden zwei Zeilen in der Datei
 application.properties nicht kommentiert werden:
 
+....
 # spring.datasource.url=jdbc:h2:./db/videoshop
 # spring.jpa.hibernate.ddl-auto=update
+....
 
 * Benutzeroberfläche
 
@@ -370,7 +372,7 @@ Zudem hat der Auftrag einen Zustand.
 |OrderDataInitializer |
 Eine Implementation des ``DataInitializer``s, um einige vordefinierten Aufträge zum Testen anzulegen.
 |OrderService |
-Ein Dienst, der Hilfsfunktionen für die Auftrags-Verwaltung bereitstellt.
+Ein Dienst, der Hilfsfunktionen für die Auftragsverwaltung bereitstellt.
 |OrderState  |
 Eine Enumeration für die Zustände der Aufträge.
 |Service |
@@ -395,10 +397,10 @@ einen `UserAccount` von _SalesPoint_ und eine `UserAccountRole`.
 
 |Staff
 |Diese Klasse erweitert die `User` Klasse und implementiert das `Resource` `Interface`. Der Mitarbeiter hat Vor- und
-Nachname und kann Fertigkeiten in eine oder mehrere der Dienstleistungen haben.
+Nachname. Er kann Fertigkeiten in einer oder mehreren Dienstleistungen haben.
 
 |UserManagement
-|Ein Dienst, der die Mitarbeiter im System verwaltet.
+|Ein Dienst, der zuständig ist, die Mitarbeiter im System zu verwalten.
 
 |StaffRepository
 |Die Schnittstelle erweitert die `CrudRepository` von Spring. Sie ist verantwortlich für die Persistenz
