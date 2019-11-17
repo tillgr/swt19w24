@@ -453,6 +453,36 @@ image::models/design/images/Inventory.small.png[]
 
 |===
 
+=== Räume
+image::models/design/images/rooms.png[]
+[options="header", cols="1, 4"]
+|===
+|Klasse/Enumeration/Schnittstelle
+|Beschreibung
+
+|Room
+|Klasse die die Räume repräsentiert. Räume stehen in enger Verbindung mit den Timeslots, wobei jeder Raum seine eigenen TimeSlots besitzt.
+
+|Booking
+|Enumeration für die verschiedenen Buchungsfälle der Timeslots.
+
+|TimeTableEntry
+|Diese Klasse repräsentiert Timeslots, die durch Buchung von Räumen in einer bestimmten Zeit zu vollwertigen Einträgen werden können.
+
+|RoomController
+|Ein Spring MVC Controller, der die Verwaltung von Räumen und das buchen von TimeSlots ermöglicht.
+
+|AddRoomForm
+|Diese Klasse prüft die Nutzereingabe auf fehler und erstellt ggf. einen neuen Raum.
+
+|RoomsRepository
+|Interface welches das Crud Repository von Spring erbt. Es speichert Raumeinträge.
+
+|EntriesRepository
+|Interface welches das Crud Repository von Spring erbt. Es speichert Einträge in TimeSlots.
+
+|===
+
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
 [options="header", cols="1, 1"]
