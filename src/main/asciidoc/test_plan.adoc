@@ -4,10 +4,7 @@
 
 == Einführung
 
-Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests mit _JUnit_.
-Er enthält noch keine konreten Daten, sondern  Plant nur Fallunterscheidungen für die Integrationstests.
-Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht.
-Überprüfung der Browser-Darstellung ist nicht geplant.
+Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests mit JUnit. Er enthält noch keine konreten Daten, sondern  Plant nur Fallunterscheidungen für die Integrationstests. Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht. Überprüfung der Browser-Darstellung ist nicht geplant.
 
 == Aufbau der Testbezeichner
 //Nach welchem Schema sind die Tests benannt?
@@ -27,10 +24,6 @@ Bsp.::
     ``U-OrderController-list-2``
 
 == Test Gegenstände
-Zu testen ist der gesamte Java-Code, der für unsere Software geschrieben wurde.
-
-Zudem muss das Zusammenspiel zwischen unserem Code und dem Client getestet werden.
-Auch das Zusammenarbeiten der einzelnen Pakete und der Pakete mit anderen Frameworks ist zu testen.
 
 == Zu testende Funktionalitäten
 * Getter, Setter und Konstruktoren
@@ -45,7 +38,7 @@ Auch das Zusammenarbeiten der einzelnen Pakete und der Pakete mit anderen Framew
 * Tests, die nur Bibliotheken von Drittanbietern miteinbeziehen
 
 == Herangehensweise
-Die einzelnen Methoden einer Klasse werden mit _JUnit_ in Unit-Tests getestet.
+Die einzelnen Methoden einer Klasse werden mit JUnit in Unit-Tests getestet.
 
 Die Nutzer-Interaktion wird über die Integrationtests der Controller überprüft.
 Hierzu wird nur das Model, das an das Template übergeben wird, und der Template-Name bzw. Redirect überprüft.
@@ -81,7 +74,7 @@ da insbesondere die Miss-Mint-Filialmanagement-Software keine Kommunikation nach
 // See http://asciidoctor.org/docs/user-manual/#tables
 === Aufträge
 *Viktor Reusch*
-[options="header"]
+[options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |U-MissMintOrder-MissMintOrder-0
@@ -353,15 +346,14 @@ Das Ticket wird angezeigt.
 |===
 
 === Finanzen
-[options="header"]
+[options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |…  |…              |…              |…       |…
 |===
 
 === Mitarbeiter
-*Kien Dang Tran*
-[options="header"]
+[options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |U-UserController-login-01
@@ -426,9 +418,83 @@ Das Ticket wird angezeigt.
 |…
 |===
 
-=== etc...
-[options="header"]
+
+=== Inventar
+[options="header", cols="1,2,2,2,2"]
 |===
-|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+
+|ID 
+|Anwendungsfall
+|Vorbedingungen
+|Eingabe
+|Ausgabe
+
+|U-CatalogDataInitializer-save-01 
+|…    
+|Admin
+|Produkt wird mit null als Name erzeugt      
+|IllegalArgumentException
+
+|U-CatalogDataInitializer-save-02 
+|…    
+|Admin
+|Produkt wird mit "" als Name erzeugt      
+|IllegalArgumentException
+
+|U-CatalogDataInitializer-save-03 
+|…    
+|Admin
+|Produkt wird mit null als Preis erzeugt      
+|IllegalArgumentException
+
+|U-CatalogDataInitializer-save-04 
+|…    
+|Admin
+|Produkt wird mit null als Metrixerzeugt      
+|IllegalArgumentException
+
+|U-CatalogDataInitializer-save-05
+|…    
+|Admin
+|Katalog wird mit null initialisiert     
+|IllegalArgumentException
+
+|U-CatalogDataInitializer-save-06
+|…    
+|Admin
+|Produkt wird mit validen Attributen gesaved.    
+|Produkt landet im Katalog
+
+|U-InventoryInitializer-01
+|
+|Admin
+|Ein Inventar wird mit null initialisiert
+|IllegalArgumentException
+
 |===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
