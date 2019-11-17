@@ -501,7 +501,7 @@ image::models/design/images/Inventory.small.png[]
 |Room
 
 |TimeTable
-|TimeTable Controller
+|-
 
 |-
 |Booking
