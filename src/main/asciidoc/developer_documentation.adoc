@@ -195,7 +195,11 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 
 |Controller 
 |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller 
-|OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController 
+|OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController
+
+|CrudRepository
+|org.{zwsp}springframework.{zwsp}data.{zwsp}repository.{zwsp}CrudRepository
+|EntriesRepository, RoomsRepository
 
 |DataInitializer 
 |org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer 
@@ -232,6 +236,14 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 |Money 
 |org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money 
 |OrderService, ServiceDataInitializer, UltimateProduct, CatalogDataInitializer
+
+|OnDelete
+|org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDelete;
+|Room, TimeTableEntry
+
+|OnDeleteAction
+|org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDeleteAction;
+|Room, TimeTableEntry
 
 |Order 
 |org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order 
