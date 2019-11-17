@@ -160,7 +160,7 @@ image:srs/models/top-level_architecture.png[Top-Level-Architekur]
 * *Dependency Injection* über die Konstruktoren in Spring-Komponenten
 * *Repository* mit den Spring-Repositories
 
-* Persistenz
+==== Persistenz
 
 Die Anwendung verwendet Hibernate-Annotation-basiertes Mapping,
 um Java-Klassen Datenbanktabellen zuzuordnen.
@@ -168,8 +168,10 @@ Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 Um den Persistenzspeicher zu aktivieren, müssen die folgenden zwei Zeilen in der Datei
 application.properties nicht kommentiert werden:
 
+```
 # spring.datasource.url=jdbc:h2:./db/videoshop
 # spring.jpa.hibernate.ddl-auto=update
+```
 
 * Benutzeroberfläche
 
