@@ -416,39 +416,76 @@ Das Ticket wird angezeigt.
 |===
 
 === Räume
+*Till Große*
 [options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 
-|U-
-|
-|
-|
-|
+|U-RoomController-addRoom-01
+|UC0010
+|Es wurden noch keine Räume hinzugefügt.
+|Valider Name, valide Dienstleistung
+|Raum wird hinzugefügt
 
-|
-|
-|
-|
-|
+|U-RoomController-addRoom-02
+|UC0010
+|Es wurden noch keine Räume hinzugefügt.
+|Ein Eingabefeld leer
+|IllegalArgumentException, Error Meldung wird angezeigt
 
-|
-|
-|
-|
-|
+|I-RoomController-addRoom-02
+|UC0010
+|Es wurden Räume hinzugefügt.
+|Valider Name, valide Dienstleistung
+|Raum wird hinzugefügt, Slots werden automatisch
 
-|
-|
-|
-|
-|
+|I-RoomController-deleteRoom-01
+|UC0020
+|Es wurden Räume hinzugefügt, Slots erstellt.
+|Raum löschen
+|Raum wird gelöscht, Slots werden gelöscht
 
-|
-|
-|
-|
-|
+|U-RoomController-deleteRoom-02
+|UC0020
+|Es existieren keine Räume.
+|keine Eingabe möglich
+|Es können keine Räume gelöscht werden.
+
+|U-RoomController-listFreeSlots-01
+|UC0030
+|Es existieren Räume und Slots.
+|Freie Slots anzeigen
+|Alle ungebuchten Slots werden angezeigt.
+
+|U-RoomController-listFreeSlots-02
+|UC0030
+|Es existieren Räume aber alle Slots sind gebucht.
+|Freie Slots anzeigen
+|Es gibt keine Slots zum anzeigen.
+
+|U-RoomController-bookFreeSlot-01
+|UC0040
+|Es existieren Räume mit freien Slots.
+|Freien Slot Buchen
+|Der nächste freie Slot bekommt einen Eintrag von einem Raum und wird auf gebucht gesetzt.
+
+|U-RoomController-bookFreeSlot-02
+|UC0040
+|Es existieren Räume, aber alle Slots sind gebucht.
+|Freien Slot Buchen
+|Kein Slots verändert sich.
+
+|U-RoomController-debookFreeSlot-01
+|UC0050
+|Es existieren Räume mit freien Slots.
+|Slot Buchen zurückbuchen
+|Der nächste freie Slot verliert seinen Eintrag von einem Raum und wird auf frei gesetzt.
+
+|U-RoomController-debookFreeSlot-02
+|UC0050
+|Es existieren Räume und kein Slot ist gebucht.
+|Slot Buchen zurückbuchen
+|Kein Slots verändert sich.
 |===
 
 
