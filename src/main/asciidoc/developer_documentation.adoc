@@ -3,7 +3,7 @@
 [cols="1, 3, 3"]
 |===
 |Version | Bearbeitungsdatum   | Autor 
-|...	| ... | ...
+|1.0.0	 | 17.11.2019          | Till Große, Tobias Köllner, Anna Lopatkina, Kien Dang Tran, Viktor Reusch
 |===
 
 :project_name: Entwicklerdokumentation
