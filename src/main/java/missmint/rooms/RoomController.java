@@ -185,7 +185,7 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
-	 */
+	 
 
 	@PostMapping("/rooms/entries/{id}/delete")
 	public String deleteEntry(@PathVariable("id") long id){
@@ -197,7 +197,7 @@ public class RoomController {
 
 		return "redirect:/rooms";
 	}
-
+	*/
 
 
 }
