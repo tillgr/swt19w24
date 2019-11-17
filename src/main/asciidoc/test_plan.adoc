@@ -4,7 +4,10 @@
 
 == Einführung
 
-Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests mit JUnit. Er enthält noch keine konreten Daten, sondern  Plant nur Fallunterscheidungen für die Integrationstests. Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht. Überprüfung der Browser-Darstellung ist nicht geplant.
+Dieser Testplan ist lediglich eine Übersicht über die zum aktuellen Zeitpunkt geplanten Tests mit _JUnit_.
+Er enthält noch keine konreten Daten, sondern  Plant nur Fallunterscheidungen für die Integrationstests.
+Der Testplan ist damit nur als ein Leitfaden der Entwickler für die späteren Test gedacht.
+Überprüfung der Browser-Darstellung ist nicht geplant.
 
 == Aufbau der Testbezeichner
 //Nach welchem Schema sind die Tests benannt?
@@ -24,6 +27,10 @@ Bsp.::
     ``U-OrderController-list-2``
 
 == Test Gegenstände
+Zu testen ist der gesamte Java-Code, der für unsere Software geschrieben wurde.
+
+Zudem muss das Zusammenspiel zwischen unserem Code und dem Client getestet werden.
+Auch das Zusammenarbeiten der einzelnen Pakete und der Pakete mit anderen Frameworks ist zu testen.
 
 == Zu testende Funktionalitäten
 * Getter, Setter und Konstruktoren
@@ -38,7 +45,7 @@ Bsp.::
 * Tests, die nur Bibliotheken von Drittanbietern miteinbeziehen
 
 == Herangehensweise
-Die einzelnen Methoden einer Klasse werden mit JUnit in Unit-Tests getestet.
+Die einzelnen Methoden einer Klasse werden mit _JUnit_ in Unit-Tests getestet.
 
 Die Nutzer-Interaktion wird über die Integrationtests der Controller überprüft.
 Hierzu wird nur das Model, das an das Template übergeben wird, und der Template-Name bzw. Redirect überprüft.
@@ -74,7 +81,7 @@ da insbesondere die Miss-Mint-Filialmanagement-Software keine Kommunikation nach
 // See http://asciidoctor.org/docs/user-manual/#tables
 === Aufträge
 *Viktor Reusch*
-[options="headers"]
+[options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |U-MissMintOrder-MissMintOrder-0
@@ -346,14 +353,15 @@ Das Ticket wird angezeigt.
 |===
 
 === Finanzen
-[options="headers"]
+[options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |…  |…              |…              |…       |…
 |===
 
 === Mitarbeiter
-[options="headers"]
+*Kien Dang Tran*
+[options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |U-UserController-login-01
@@ -419,7 +427,7 @@ Das Ticket wird angezeigt.
 |===
 
 === etc...
-[options="headers"]
+[options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |…  |…              |…              |…       |…

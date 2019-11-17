@@ -1,6 +1,6 @@
 = Entwicklerdokumentation
-[options="header"]
-[cols="1, 3, 3"]
+
+[options="header", cols="1, 3, 3"]
 |===
 |Version | Bearbeitungsdatum   | Autor 
 |1.0.0	 | 17.11.2019          | Till Große, Tobias Köllner, Anna Lopatkina, Kien Dang Tran, Viktor Reusch
@@ -31,14 +31,14 @@ Der Auftrag kann sich in verschiedenen Zuständen (_OrderState_) befinden.
 
 Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan (_TimeTable_) zur Verfügung gestellt.
 Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht (_BOOKING_). Für die Dienste
-wird i.A. Material (_Material_) benötigt. Diese können, falls nötig, nachbestellt werden und die
+wird i. A. Material (_Material_) benötigt. Diese können, falls nötig, nachbestellt werden und die
 Kosten (_getPrice_) werden automatisch vom System erfasst.
 
 Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden.
 Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter Vorlage des Auftragszettels
 durch Zahlung einer Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden kann. Waren, die
 auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation.
-Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% erstattet.
+Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet.
 
 Jegliches Einkommen bzw. Ausgaben (_FinanceItem_) sind für den Filialleiter sichtbar. Dabei werden sowohl die
 Gesamtkosten (_calculateTotalPrice_) als auch der Reingewinn erfasst.
@@ -108,7 +108,7 @@ Die Software soll rund um die Uhr in Betrieb sein und nur über das interne Firm
 
 Die Hauptnutzer der Software sind Mitarbeiter, die typische Website-Navigationsschemata kennen, sowie ein Filialleiter (Admin), der nicht unbedingt über einen technischen Hintergrund verfügt.
 
-Das System muss nicht technisch gewartet werden.
+Das System muss technisch gewartet werden, da Sicherheitsupdates für Java aber auch die verwendeten Frameworks eingespielt werden müssen.
 Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein (z.B. sollten für einen Filialleiter keine SQL-Kenntnisse erforderlich sein).
 
 
@@ -125,24 +125,29 @@ image:srs/models/context_diagram.png[context diagram]
 
 |Wartbarkeit
 a|
-- *Modularität*: Zusammensetzen der Anwendung aus möglichst eigenständigen Modulen um den Einfluss den die Änderung eines Moduls auf andere Module hat zu minimieren.
+- *Modularität*: Zusammensetzen der Anwendung aus möglichst eigenständigen Modulen um den Einfluss
+den die Änderung eines Moduls auf andere Module hat zu minimieren.
 - *Wiederverwendbarkeit*: Sicherstellung der Wiederverwendbarkeit von Modulen durch andere Systemkomponenten
-- *Modifizierbarkeit*: Die Anwendung sollte ohne Verschlechterung der Code-Qualität oder Auftreten von Fehlern veränderbar  und/oder erweiterbar sein.
+- *Modifizierbarkeit*: Die Anwendung sollte ohne Verschlechterung der Code-Qualität oder Auftreten von Fehlern veränderbar
+und/oder erweiterbar sein.
 |Nutzerfreundlichkeit
 a|
-- *Erlernbarkeit*: Das System sollte verständlich und einfach bedienbar sein. Das lässt sich z.B. durch eindeutige Beschreibung von Eingaben mit Hilfe von Tooltips und/oder Labels realisieren.
-- *Handhabung von Fehlern*: Nutzer sollten vor Fehlern geschützt werden. Eingaben dürfen unter keinen Umständen zu ungültigen Systemzuständen führen.
-- *Ästhetik der Nutzerschnittstelle*: Bereitstellung einer ansprechenden und zufriedenstellenden Interaktion für den Nutzer
-- *Zugänglichkeit*: Es sollte, z.B. durch die Nutzung passender Schriftgrößen und Kontraste, sichergestellt werden dass Menschen mit einer möglichst großen Bandbreite von Eigenschaften die Möglichkeiten des Systems vollständig nutzen können.
+- *Erlernbarkeit*: Das System sollte verständlich und einfach bedienbar sein.
+Das lässt sich z.B. durch eindeutige Beschreibung von Eingaben mit Hilfe von Tooltips und/oder Labels realisieren.
+- *Handhabung von Fehlern*: Nutzer sollten vor Fehlern geschützt werden.
+Eingaben dürfen unter keinen Umständen zu ungültigen Systemzuständen führen.
+- *Ästhetik der Nutzerschnittstelle*: Bereitstellung einer ansprechenden und
+zufriedenstellenden Interaktion für den Nutzer
+- *Zugänglichkeit*: Es sollte, z.B. durch die Nutzung passender Schriftgrößen und Kontraste,
+sichergestellt werden dass Menschen mit einer möglichst großen Bandbreite von Eigenschaften die Möglichkeiten des Systems vollständig nutzen können.
 
 |Sicherheit
 a|
-- *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden. Dies kann mit Spring Security und dem Thymeleaf (`sec:authorize` - tag) realisiert werden.
-- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden. Dafur kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
+- *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden.
+Dies kann mit Spring Security und dem Thymeleaf (``sec:authorize``-Tag) realisiert werden.
+- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden.
+Dafür kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
 - *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
-
-//*TO DO: Applikationsspezifische Verlinkung hinzufügen siehe Videoshop*
-
 |===
 
 === Softwarearchitektur
@@ -173,7 +178,8 @@ application.properties nicht kommentiert werden:
 # spring.jpa.hibernate.ddl-auto=update
 ....
 
-* Benutzeroberfläche
+==== Benutzeroberfläche
+*TODO*
 
 ==== Verwendung externer Frameworks
 
@@ -342,15 +348,15 @@ application.properties nicht kommentiert werden:
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+//* Entwurfsklassendiagramme der einzelnen Packages
 
-[options="header"]
-|=== 
-|Klasse/Enumeration |Beschreibung
-|===
+//[options="header"]
+//|===
+//|Klasse/Enumeration |Beschreibung
+//|===
 
 === Aufträge
-image::models/design/images/orders_design.png[Klassendiagramm für das orders Package,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Package",align=center]
+image::models/design/images/orders_design.png[Klassendiagramm für das orders Paket,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Paket",align=center]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration |Beschreibung
