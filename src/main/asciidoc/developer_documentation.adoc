@@ -559,6 +559,8 @@ image::models/design/images/rooms bookFreeSlot.png[]
 image::models/design/images/rooms deleteRoom.png[]
 image::models/design/images/rooms listFreeSlots.png[]
 
+=== Inventar
+image::models/design/images/sd_restock_Product.png[]
 
 ////
 == Technische Schulden
