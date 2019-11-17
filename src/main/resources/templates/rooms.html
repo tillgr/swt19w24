@@ -23,7 +23,7 @@
             <h3 th:text="${room.name}"></h3>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><strong th:text="${room.belegung}"></strong></h5>
+            <h5 class="card-title"><strong th:text="${room.service}"></strong></h5>
         </div>
         <div class="card-footer text-muted">
             <div class = "btn-toolbar">
@@ -51,8 +51,8 @@
         </div>
         <div class="card-body">
             <h5 class="card-title"><strong>Dienstleistung eingeben</strong></h5>
-            <input th:field="*{belegung}" type="text">
-            <div th:if="${#fields.hasErrors('belegung')}" th:errors="*{belegung}"></div>
+            <input th:field="*{service}" type="text">
+            <div th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></div>
         </div>
         <div class="card-footer text-muted">
             <button class="btn btn-info" type="submit">Hinzufügen</button>

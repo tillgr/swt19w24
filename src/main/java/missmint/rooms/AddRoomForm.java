@@ -15,7 +15,7 @@ public class AddRoomForm {
 		return name;
 	}
 
-	public String getBelegung() {
+	public String getService() {
 		return service;
 	}
 

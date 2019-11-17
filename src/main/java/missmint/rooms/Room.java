@@ -50,7 +50,7 @@ public class Room {
 		return RoomId;
 	}*/
 
-	public String getBelegung() {
+	public String getService() {
 		return service;
 	}
 
