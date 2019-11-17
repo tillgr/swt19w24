@@ -4,11 +4,11 @@ import javax.validation.constraints.NotBlank;
 
 public class AddRoomForm {
 	private final @NotBlank(message="Darf nicht leer sein!") String name;
-	private final @NotBlank(message="Darf nicht leer sein!") String belegung;
+	private final @NotBlank(message="Darf nicht leer sein!") String service;
 
-	public AddRoomForm(String name, String belegung){
+	public AddRoomForm(String name, String service){
 		this.name = name;
-		this.belegung = belegung;
+		this.service = service;
 	}
 
 	public String getName(){
@@ -16,10 +16,10 @@ public class AddRoomForm {
 	}
 
 	public String getBelegung() {
-		return belegung;
+		return service;
 	}
 
 	public Room createRoom(EntriesRepository entries, RoomsRepository rooms){
-		return new Room(name, belegung, entries, rooms);
+		return new Room(name, service, entries, rooms);
 	}
 }

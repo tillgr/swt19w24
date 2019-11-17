@@ -15,15 +15,15 @@ public class Room {
 	private @Id @GeneratedValue long id;
 	//private Material UsedMaterial;
 	private String name;
-	private String belegung;
+	private String service;
 
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private Set<TimeTableEntry> entrySet;
 
-	public Room (String name, String belegung, EntriesRepository entries, RoomsRepository rooms){
+	public Room (String name, String service, EntriesRepository entries, RoomsRepository rooms){
 		//this.UsedMaterial = UsedMaterial;
 		this.name = name;
-		this.belegung = belegung;
+		this.service = service;
 		entrySet = new HashSet<>();
 		rooms.save(this);
 		for(int i=0; i<7; i++){
@@ -36,7 +36,7 @@ public class Room {
 	private Room (){
 		//this.UsedMaterial = UsedMaterial;
 		this.name = null;
-		this.belegung = null;
+		this.service = null;
 	}
 
 	//Getter
@@ -51,7 +51,7 @@ public class Room {
 	}*/
 
 	public String getBelegung() {
-		return belegung;
+		return service;
 	}
 
 	public String getName() {
