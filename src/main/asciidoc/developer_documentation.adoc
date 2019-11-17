@@ -447,10 +447,9 @@ image::models/design/images/Inventory.png[]
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
-[options="header"]
+[options="header", cols="1, 1"]
 |===
-|Klasse/Enumeration (Analysemodell) 
-|Klasse/Enumeration (Entwurfsmodell)
+|Klasse/Enumeration (Analysemodell)|Klasse/Enumeration (Entwurfsmodell)
 
 |Order 
 |Order
@@ -489,8 +488,6 @@ image::models/design/images/Inventory.png[]
 
 |Resource
 |UltimateProduct
-
-
 
 |===
 
