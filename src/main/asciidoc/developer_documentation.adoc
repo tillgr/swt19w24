@@ -169,7 +169,7 @@ Um den Persistenzspeicher zu aktivieren, müssen die folgenden zwei Zeilen in de
 application.properties nicht kommentiert werden:
 
 ....
-# spring.datasource.url=jdbc:h2:./db/videoshop
+# spring.datasource.url=jdbc:h2:./db/missmint
 # spring.jpa.hibernate.ddl-auto=update
 ....
 
@@ -205,11 +205,11 @@ application.properties nicht kommentiert werden:
 
 |CrudRepository
 |org.{zwsp}springframework.{zwsp}data.{zwsp}repository.{zwsp}CrudRepository
-|EntriesRepository, RoomsRepository
+|EntriesRepository, RoomsRepository, StaffRepository
 
 |DataInitializer 
 |org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer 
-|OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer
+|OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer, TempUserInitializer
 
 |Errors 
 |org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors 
@@ -346,7 +346,7 @@ application.properties nicht kommentiert werden:
 
 [options="header"]
 |=== 
-|Klasse/Enumeration |Description
+|Klasse/Enumeration |Beschreibung
 |===
 
 === Aufträge
@@ -365,12 +365,12 @@ Dazu berechnet die Klasse auch anfallende Kosten.
 Ein Spring MVC Controller, der Anfragen für die Aufnahme von Aufträgen `MissMintOrder` in das System beantwortet.
 Dazu berechnet die Klasse auch anfallende Kosten.
 |ReceivingForm |
-Eine Klasse, um die Mitarbeiter-Eingaben für die Annahme zu validieren.
+Eine Klasse, um die Mitarbeitereingaben für die Annahme zu validieren.
 |MissMintOrder |
-Diese Klasse ist eine Erweiterung der Salespoint `Order`. Sie enthält Kunden-, Dienstleistungens- und Zeit-Informationen.
+Diese Klasse ist eine Erweiterung der Salespoint `Order`. Sie enthält Kunden-, Dienstleistungen- und Zeit-Informationen.
 Zudem hat der Auftrag einen Zustand.
 |OrderDataInitializer |
-Eine Implementation des ``DataInitializer``s, um einige vordefinierten Aufträge zum Testen anzulegen.
+Eine Implementation des ``DataInitializer``s, um einige vordefinierte Aufträge zum Testen anzulegen.
 |OrderService |
 Ein Dienst, der Hilfsfunktionen für die Auftragsverwaltung bereitstellt.
 |OrderState  |
@@ -407,10 +407,10 @@ Nachname. Er kann Fertigkeiten in einer oder mehreren Dienstleistungen haben.
 der Mitarbeiterdaten.
 
 |AccountRole
-|Jeder Mitarbeiter wird eine Rolle zugewiesen um verschiedene Nutzerrechte zu handhaben.
+|Eine Enumeration um Mitarbeiter verschiedene Nutzerrechte zu geben.
 
 |ServiceCategory
-|Stellt die verschiedenen Dienstleistungen von _Miss Mint_-Betrieben dar.
+|Die Enumeration stellt die verschiedenen Dienstleistungen von _Miss Mint_-Betrieben dar.
 
 |RegistrationForm
 |Ein Formular für die Registrierung von neuen Mitarbeitern.
@@ -434,7 +434,7 @@ image::models/design/images/Inventory.png[]
 |Implementation des ``DataInitializer``s für den Produktkatalog
 
 |InventoryCatalog
-|Erweiterung des Salespoint``Catalog``s der Sortierung nach Producttype ermöglicht.
+|Erweiterung des Salespoint``Catalog``s der Sortierung nach `ProductType` ermöglicht.
 
 |InventoryController
 |Ein Spring MVC Controller, der Anfragen bezüglich des Materialinventars annimmt.
