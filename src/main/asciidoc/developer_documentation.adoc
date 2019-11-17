@@ -402,6 +402,32 @@ der Mitarbeiterdaten.
 
 |===
 
+=== Inventar
+image::models/design/images/Inventory.png[]
+[options="header", cols="1, 4"]
+|===
+|Klasse/Enumeration/Schnittstelle 
+|Beschreibung
+
+|CatalogController
+|Ein Spring MVC Controller, der die zu den Bestellungen gehörenden Gegenstände anzeigt.
+
+|CatalogDataInitializer
+|Implementation des ``DataInitializer``s für den Produktkatalog
+
+|InventoryCatalog
+|Erweiterung des Salespoint``Catalog``s der Sortierung nach Producttype ermöglicht.
+
+|InventoryController
+|Ein Spring MVC Controller, der Anfragen bezüglich des Materialinventars annimmt.
+
+|InventoryInitializer
+|Implementation des ``DataInitializer``s für die Inventare der jeweiligen Produkte.
+
+|UltimateProduct
+|Erweiterung des Salespoint ``Product``s , mit zusätzlichen Eigenschaften um Filtern nach eigenen Attributen zu ermöglichen.
+
+|===
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
