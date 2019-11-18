@@ -203,23 +203,23 @@ image::models/design/images/dialog.png[]
 
 |Component 
 |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component 
-|OrderDataInitializer, ServiceDataInitializer, InventoryInitializer, CatalogDataInitializer
+|OrderDataInitializer, ServiceDataInitializer, InventoryInitializer, CatalogDataInitializer, FinanceEntryDataInitializer
 
 |Controller 
 |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller 
-|OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController
+|OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController, FinanceController
 
 |CrudRepository
 |org.{zwsp}springframework.{zwsp}data.{zwsp}repository.{zwsp}CrudRepository
-|EntriesRepository, RoomsRepository, StaffRepository
+|EntriesRepository, RoomsRepository, StaffRepository, FinanceRepository
 
 |DataInitializer 
 |org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer 
-|OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer, TempUserInitializer
+|OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer, TempUserInitializer,FinanceEntryDataInitializer
 
 |Errors 
 |org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors 
-|ReceivingController, UserController
+|ReceivingController, UserController, FinanceController
 
 |EURO
 |org.salespointframework.core.Currencies.EURO
@@ -227,7 +227,7 @@ image::models/design/images/dialog.png[]
 
 |GetMapping 
 |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping 
-|PickUpController, ReceivingController, UserController, CatalogController
+|PickUpController, ReceivingController, UserController, CatalogController, FinanceController
 
 |HttpStatus 
 |org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus 
@@ -243,7 +243,7 @@ image::models/design/images/dialog.png[]
 
 |Model 
 |org.{zwsp}springframework.{zwsp}ui.{zwsp}Model 
-|OrdersController, PickUpController, ReceivingController, UserController, CatalogController
+|OrdersController, PickUpController, ReceivingController, UserController, CatalogController, FinanceController
 
 |Money 
 |org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money 
@@ -319,11 +319,15 @@ image::models/design/images/dialog.png[]
 
 |Service 
 |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service 
-|OrderService, UserManagement
+|OrderService, UserManagement, FinanceManager
 
 |Sort
 |org.springframework.data.domain.Sort
 |InventoryCatalog
+
+|Streamable
+|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Streamable
+|FinanceManager
 
 |UniqueInventory
 |org.salespointframework.inventory.UniqueInventory
