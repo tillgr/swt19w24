@@ -1,65 +1,568 @@
-[options="header"]
-[cols="1, 3, 3"]
-|===
-|Version | Bearbeitungsdatum   | Autor 
-|...	| ... | ...
-|===
-
 = Entwicklerdokumentation
 
+[options="header", cols="1, 3, 3"]
+|===
+|Version | Bearbeitungsdatum   | Autor 
+|1.0.0	 | 17.11.2019          | Till Große, Tobias Köllner, Anna Lopatkina, Kien Dang Tran, Viktor Reusch
+|===
+
+:project_name: Entwicklerdokumentation
+:toc: left
+:numbered:
+
 == Einführung und Ziele
-* Aufgabenstellung
-* Qualitätsziele
+=== Aufgabenstellung
+Für _Miss-Mint Mending Points_ soll für die Mitarbeiter eine Software bereitgestellt werden.
+Mitarbeiter (_Staff_) können über den Admin (_ADMIN_) registriert (_registerUser_) und entfernt (_deleteUser_) werden.
+Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen.
+Der Betrieb stellt folgende Dienstleistungen (_ServiceCategory_) bereit:
+
+* eine Flickschusterei (_KLUDGE_)
+* einen Nähservice (_SEWINGSERVICE_)
+* einen Schlüsseldienst (_LOCKSMITH_)
+* eine Schnellreinigung (_EXPRESS_DRY_CLEANING_)
+* eine Elektrowerkstatt (_ELECTRONICWORKSHOP_)
+* eine Scherenschleiferei (_SCISSORSGRINDERY_)
+
+Nachdem der Kunde eine Dienstleistung ausgewählt und im Voraus bezahlt hat, wird ein
+Auftrag (_MissMintOrder_) mit einer Auftragsnummer (_OrderIdentifier_) im System angelegt.
+Zusätzlich wird ein erwartetes Fertigstellungsdatum (_getExpectedFinished_) berechnet.
+Der Auftrag kann sich in verschiedenen Zuständen (_OrderState_) befinden.
+
+Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan (_TimeTable_) zur Verfügung gestellt.
+Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht (_BOOKING_). Für die Dienste
+wird i. A. Material (_Material_) benötigt. Diese können, falls nötig, nachbestellt werden und die
+Kosten (_getPrice_) werden automatisch vom System erfasst.
+
+Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden.
+Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter Vorlage des Auftragszettels
+durch Zahlung einer Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden kann. Waren, die
+auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation.
+Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet.
+
+Jegliches Einkommen bzw. Ausgaben (_FinanceItem_) sind für den Filialleiter sichtbar. Dabei werden sowohl die
+Gesamtkosten (_calculateTotalPrice_) als auch der Reingewinn erfasst.
+
+
+=== Qualitätsziele
+
+Wartbarkeit::
+Dieses Merkmal gibt den Grad an Effektivität und Effizienz an,
+mit dem ein Produkt oder System modifiziert werden kann, um es zu verbessern,
+zu korrigieren oder an Änderungen in der Umgebung und in den Anforderungen anzupassen.
+
+Nutzerfreundlichkeit::
+Grad, in dem ein Produkt oder System von bestimmten Benutzern verwendet werden kann,
+um bestimmte Ziele mit Effektivität, Effizienz und Zufriedenheit in einem bestimmten Verwendungskontext zu erreichen.
+
+Sicherheit::
+Grad des Schutzes von Informationen und Daten durch ein Produkt oder System,
+sodass Personen oder andere Produkte oder Systeme über den Datenzugriff verfügen,
+der für ihre Art und ihre Berechtigungsstufe angemessen ist.
+
+Desgin::
+Gestaltung der Benutzeroberfläche, um die visuelle Wahrnehmung des Kunden zu beeinflussen,
+und so die Informationsvermittlung und Nutzerfreundlichkeit zu steigern.
+Dies beinhaltet Optimierungen für verschiedene Auflösungen und verschiedene Browser.
+Wichtig ist auch die visuelle Differenzierung von Inhalten, um die Informationsaufnahme des Kunden zu lenken.
+
+1 = Nicht wichtig ..
+5 = Sehr wichtig
+
+[options="header",cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Qualitätsanspruch        | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit              |   |   |   | x |
+|Benutzerfreundlichkeit   |   |   |   |   | x
+|Sicherheit               |   |   |   | x |
+|Design                   |   | x |   |   |
+|===
+
 
 == Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+
+=== Hardware-Vorgaben
+Eine Liste von Geräten/Hardware, die benötigt werden um die Software zu benutzen:
+
+* Server
+* Computer
+* Tastatur
+* Maus
+
+=== Software-Vorgaben
+
+Die Anwendung setzt folgende Software voraus:
+
+* Java 11 oder neuer
+* Mozilla Firefox 70+
+* Chromium 78+
+
+=== Vorgaben zum Betrieb des Software
+
+Die Software wird ausschließlich von _Miss Mint Mending Points_ Mitarbeiter verwendet.
+Das System stellt Funktionen für die Annahme, Reparaturplanung, Ausgabe und Lagerung der Ware,
+sowie die Verwaltung der Ressourcen zur Verfügung. Zudem erhält der Filialleiter Einsicht auf
+die Finanzen.
+
+Die Software soll rund um die Uhr in Betrieb sein und nur über das interne Firmennetz erreichbar sein.
+
+Die Hauptnutzer der Software sind Mitarbeiter, die typische Website-Navigationsschemata kennen, sowie ein Filialleiter (Admin), der nicht unbedingt über einen technischen Hintergrund verfügt.
+
+Das System muss technisch gewartet werden, da Sicherheitsupdates für Java aber auch die verwendeten Frameworks eingespielt werden müssen.
+Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein (z.B. sollten für einen Filialleiter keine SQL-Kenntnisse erforderlich sein).
+
 
 == Kontextabgrenzung
-* Kontextdiagramm
+
+image:srs/models/Context_Diagram.png[context diagram]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
-[options="header"]
+[options="header", cols="1,4"]
 |=== 
-|Qualitätsziel |Lösungsansatz
-|... |...
+|Qualitätsziel
+|Lösungsansatz
+
+|Wartbarkeit
+a|
+- *Modularität*: Zusammensetzen der Anwendung aus möglichst eigenständigen Modulen um den Einfluss
+den die Änderung eines Moduls auf andere Module hat zu minimieren.
+- *Wiederverwendbarkeit*: Sicherstellung der Wiederverwendbarkeit von Modulen durch andere Systemkomponenten
+- *Modifizierbarkeit*: Die Anwendung sollte ohne Verschlechterung der Code-Qualität oder Auftreten von Fehlern veränderbar
+und/oder erweiterbar sein.
+|Nutzerfreundlichkeit
+a|
+- *Erlernbarkeit*: Das System sollte verständlich und einfach bedienbar sein.
+Das lässt sich z.B. durch eindeutige Beschreibung von Eingaben mit Hilfe von Tooltips und/oder Labels realisieren.
+- *Handhabung von Fehlern*: Nutzer sollten vor Fehlern geschützt werden.
+Eingaben dürfen unter keinen Umständen zu ungültigen Systemzuständen führen.
+- *Ästhetik der Nutzerschnittstelle*: Bereitstellung einer ansprechenden und
+zufriedenstellenden Interaktion für den Nutzer
+- *Zugänglichkeit*: Es sollte, z.B. durch die Nutzung passender Schriftgrößen und Kontraste,
+sichergestellt werden dass Menschen mit einer möglichst großen Bandbreite von Eigenschaften die Möglichkeiten des Systems vollständig nutzen können.
+
+|Sicherheit
+a|
+- *Vertraulichkeit*: Daten dürfen nur von Menschen mit den dafür nötigen Zugriffsrechten eingesehen werden.
+Dies kann mit Spring Security und dem Thymeleaf (``sec:authorize``-Tag) realisiert werden.
+- *Integrität*: Nicht-autorisierte Modifikationen sollten verhindert werden.
+Dafür kann die Spring Security (`@PreAuthorize` - annotation) verwendet werden.
+- *Verantwortung*: Nachverfolgbarkeit von Aktionen oder Ereignissen zu einer eindeutigen Entität oder Person.
 |===
 
 === Softwarearchitektur
-* Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
+
+image:srs/models/Top-level_architecture.png[Top-Level-Architekur]
+
+// Client-Server-Diagramm nicht notwendig, da Top-Level-Architektur vorhanden.
 
 === Entwurfsentscheidungen
-* Verwendete Muster
-* Persistenz
-* Benutzeroberfläche
-* Verwendung externer Frameworks
+==== Verwendete Muster
+* *Model View Controller* mit Spring MVC
+* *Singleton mit Springs* `@Component` etc.
+* *Value Object* mit `MonetaryAmount` etc.
+* *Data Transfer Object* mit `OrderDTO`, um Daten für Templates zu aggregieren.
+* *Dependency Injection* über die Konstruktoren in Spring-Komponenten
+* *Repository* mit den Spring-Repositories
+
+==== Persistenz
+
+Die Anwendung verwendet Hibernate-Annotation-basiertes Mapping,
+um Java-Klassen Datenbanktabellen zuzuordnen.
+Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
+Um den Persistenzspeicher zu aktivieren, müssen die folgenden zwei Zeilen in der Datei
+application.properties nicht kommentiert werden:
+
+....
+# spring.datasource.url=jdbc:h2:./db/missmint
+# spring.jpa.hibernate.ddl-auto=update
+....
+
+==== Benutzeroberfläche
+image::models/design/images/dialog.png[]
+
+==== Verwendung externer Frameworks
 
 [options="header", cols="1,3,3"]
 |===
-|Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
-|... |... |...
+|Externe Klasse 
+|Pfad der externen Klasse 
+|Verwendet von (Klasse der eigenen Anwendung)
+
+|Assert
+|org.springframework.util.Assert
+|CatalogDataInitializer, InventoryInitializer
+
+|BusinessTime 
+|org.{zwsp}salespointframework.{zwsp}time.{zwsp}BusinessTime 
+|ReceivingController, OrderDataInitializer, OrderService
+
+|Catalog 
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog 
+|OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer, InventoryCatalog
+
+|Component 
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component 
+|OrderDataInitializer, ServiceDataInitializer, InventoryInitializer, CatalogDataInitializer
+
+|Controller 
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller 
+|OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController
+
+|CrudRepository
+|org.{zwsp}springframework.{zwsp}data.{zwsp}repository.{zwsp}CrudRepository
+|EntriesRepository, RoomsRepository, StaffRepository
+
+|DataInitializer 
+|org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer 
+|OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer, TempUserInitializer
+
+|Errors 
+|org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors 
+|ReceivingController, UserController
+
+|EURO
+|org.salespointframework.core.Currencies.EURO
+|CatalogDataInitializer
+
+|GetMapping 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping 
+|PickUpController, ReceivingController, UserController, CatalogController
+
+|HttpStatus 
+|org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus 
+|PickUpController, ReceivingController
+
+|LoggedIn
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}web.{zwsp}LoggedIn
+|ReceivingController
+
+|Metric
+|org.salespointframework.quantity.Metric
+|UltimateProduct,CatalogDataInitializer 
+
+|Model 
+|org.{zwsp}springframework.{zwsp}ui.{zwsp}Model 
+|OrdersController, PickUpController, ReceivingController, UserController, CatalogController
+
+|Money 
+|org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money 
+|OrderService, ServiceDataInitializer, UltimateProduct, CatalogDataInitializer
+
+|OnDelete
+|org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDelete;
+|Room, TimeTableEntry
+
+|OnDeleteAction
+|org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDeleteAction;
+|Room, TimeTableEntry
+
+|Order 
+|org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order 
+|MissMintOrder, ServiceDataInitializer
+
+|Order 
+|org.{zwsp}springframework.{zwsp}core.{zwsp}annotation.{zwsp}Order 
+|OrderDataInitializer
+
+|OrderManager 
+|org.{zwsp}salespointframework.{zwsp}order.{zwsp}OrderManager 
+|OrdersController, PickUpController, ReceivingController, OrderDataInitializer, OrderService
+
+|Page 
+|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Page 
+|OrdersController
+
+|Pageable 
+|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Pageable 
+|OrdersController, OrderService
+
+|Pair 
+|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair 
+|ServiceDataInitializer
+
+|PathVariable 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable 
+|PickUpController, UserController
+
+|Product 
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product 
+|Service, UltimateProduct
+
+|ProductIdentifier 
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier 
+|OrdersController, ReceivingForm
+
+|PostMapping
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping 
+|PickUpController, ReceivingController, UserController
+
+|PreAuthorize 
+|org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize 
+|OrdersController, PickUpController, ReceivingController, UserController
+
+|Qualifier 
+|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Qualifier 
+|ReceivingController
+
+|Quantity 
+|org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity 
+|MissMintOrder, InventoryInitializer
+
+|RequestMapping 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping 
+|OrdersController
+
+|ResponseStatusException 
+|org.{zwsp}springframework.{zwsp}web.{zwsp}server.{zwsp}ResponseStatusException
+|PickUpController, ReceivingController
+
+|Service 
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service 
+|OrderService, UserManagement
+
+|Sort
+|org.springframework.data.domain.Sort
+|InventoryCatalog
+
+|UniqueInventory
+|org.salespointframework.inventory.UniqueInventory
+|InventoryInitializer
+
+|UniqueInventoryItem
+|org.salespointframework.inventory.UniqueInventoryItem
+|InventoryInitializer, InventoryController, CatalogController
+
+|UserAccount 
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount 
+|ReceivingController, MissMintOrder, OrderDataInitializer, User, UserManagement
+
+|UserAccountManager 
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccountManager
+|OrderDataInitializer, UserManagement
+
+|Value 
+|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value 
+|OrderService, ServiceDataInitializer
+
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+//* Entwurfsklassendiagramme der einzelnen Packages
 
-[options="header"]
-|=== 
-|Klasse/Enumeration |Description
+//[options="header"]
+//|===
+//|Klasse/Enumeration |Beschreibung
+//|===
+
+=== Aufträge
+image::models/design/images/orders_design.png[Klassendiagramm für das orders Paket,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Paket",align=center]
+[options="header", cols="1, 4"]
+|===
+|Klasse/Enumeration |Beschreibung
+|OrdersController |
+Ein Spring MVC Controller, der Anfragen für die Anzeige der aktuellen Aufträge `MissMintOrder` beantwortet.
+|OrderDTO |
+Diese Klasse dient nur dem Datentransfer zum `orders.html`-Template.
+|PickUpController |
+Ein Spring MVC Controller, der Anfragen für die Rückgabe von Gegenständen an den Kunden handhabt.
+Dazu berechnet die Klasse auch anfallende Kosten.
+|ReceivingController |
+Ein Spring MVC Controller, der Anfragen für die Aufnahme von Aufträgen `MissMintOrder` in das System beantwortet.
+Dazu berechnet die Klasse auch anfallende Kosten.
+|ReceivingForm |
+Eine Klasse, um die Mitarbeitereingaben für die Annahme zu validieren.
+|MissMintOrder |
+Diese Klasse ist eine Erweiterung der Salespoint `Order`. Sie enthält Kunden-, Dienstleistungen- und Zeit-Informationen.
+Zudem hat der Auftrag einen Zustand.
+|OrderDataInitializer |
+Eine Implementation des ``DataInitializer``s, um einige vordefinierte Aufträge zum Testen anzulegen.
+|OrderService |
+Ein Dienst, der Hilfsfunktionen für die Auftragsverwaltung bereitstellt.
+|OrderState  |
+Eine Enumeration für die Zustände der Aufträge.
+|Service |
+Erweiterung des Salespoint ``Product``s, um es von anderen Produkten in der späteren Software abzugrenzen.
+Im Prototypen speichert es auch noch das Material.
+|ServiceDataInitializer  |
+Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen anzulegen.
+|===
+
+=== Mitarbeiter
+image::models/design/images/users.png[]
+|===
+|Klasse/Enumeration/Schnittstelle |Beschreibung
+
+|UserConstroller
+|Ein Spring MVC Controller, der Anfragen bzgl. Mitarbeiterübersicht und zudem Erstellung, Bearbeitung
+und Löschen von Mitarbeitern verarbeitet.
+
+|User
+|Jeder User hat eine eindeutige `Id`,
+einen `UserAccount` von _SalesPoint_ und eine `UserAccountRole`.
+
+|Staff
+|Diese Klasse erweitert die `User` Klasse und implementiert das `Resource` `Interface`. Der Mitarbeiter hat Vor- und
+Nachname. Er kann Fertigkeiten in einer oder mehreren Dienstleistungen haben.
+
+|UserManagement
+|Ein Dienst, der zuständig ist, die Mitarbeiter im System zu verwalten.
+
+|StaffRepository
+|Die Schnittstelle erweitert die `CrudRepository` von Spring. Sie ist verantwortlich für die Persistenz
+der Mitarbeiterdaten.
+
+|AccountRole
+|Eine Enumeration um Mitarbeiter verschiedene Nutzerrechte zu geben.
+
+|ServiceCategory
+|Die Enumeration stellt die verschiedenen Dienstleistungen von _Miss Mint_-Betrieben dar.
+
+|RegistrationForm
+|Ein Formular für die Registrierung von neuen Mitarbeitern.
+
+|EditStaffForm
+|Ein Formular um Mitarbeiterdaten zu bearbeiten.
+
+|===
+
+=== Inventar
+image::models/design/images/Inventory.small.png[]
+[options="header", cols="1, 4"]
+|===
+|Klasse/Enumeration/Schnittstelle 
+|Beschreibung
+
+|CatalogController
+|Ein Spring MVC Controller, der die zu den Bestellungen gehörenden Gegenstände anzeigt.
+
+|CatalogDataInitializer
+|Implementation des ``DataInitializer``s für den Produktkatalog
+
+|InventoryCatalog
+|Erweiterung des Salespoint``Catalog``s der Sortierung nach `ProductType` ermöglicht.
+
+|InventoryController
+|Ein Spring MVC Controller, der Anfragen bezüglich des Materialinventars annimmt.
+
+|InventoryInitializer
+|Implementation des ``DataInitializer``s für die Inventare der jeweiligen Produkte.
+
+|UltimateProduct
+|Erweiterung des Salespoint ``Product``s , mit zusätzlichen Eigenschaften um Filtern nach eigenen Attributen zu ermöglichen.
+
+|===
+
+=== Räume
+image::models/design/images/rooms.png[]
+[options="header", cols="1, 4"]
+|===
+|Klasse/Enumeration/Schnittstelle
+|Beschreibung
+
+|Room
+|Klasse die die Räume repräsentiert. Räume stehen in enger Verbindung mit den Timeslots, wobei jeder Raum seine eigenen TimeSlots besitzt.
+
+|Booking
+|Enumeration für die verschiedenen Buchungsfälle der Timeslots.
+
+|TimeTableEntry
+|Diese Klasse repräsentiert Timeslots, die durch Buchung von Räumen in einer bestimmten Zeit zu vollwertigen Einträgen werden können.
+
+|RoomController
+|Ein Spring MVC Controller, der die Verwaltung von Räumen und das buchen von TimeSlots ermöglicht.
+
+|AddRoomForm
+|Diese Klasse prüft die Nutzereingabe auf fehler und erstellt ggf. einen neuen Raum.
+
+|RoomsRepository
+|Interface welches das Crud Repository von Spring erbt. Es speichert Raumeinträge.
+
+|EntriesRepository
+|Interface welches das Crud Repository von Spring erbt. Es speichert Einträge in TimeSlots.
+
 |===
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
-[options="header"]
+[options="header", cols="1, 1"]
 |===
-|Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell)
+|Klasse/Enumeration (Analysemodell)|Klasse/Enumeration (Entwurfsmodell)
+
+|Order 
+|Order
+
+|Service
+|Service
+
+|State
+|OrderState
+
+|Order Management
+|OrderManager
+
+|Service Category 
+|String
+
+|OrderTicket
+|-
+|User 
+|User
+
+|Staff 
+|Staff
+
+|- 
+|UserManagement
+
+|Storage
+|Inventory
+
+|Material
+|Inventory
+
+|ResourceManagement
+|-
+
+|Resource
+|UltimateProduct
+
+|Room
+|Room
+
+|TimeTable
+|-
+
+|-
+|Booking
+
+|TimeTableEntry
+|TimeTableEntry
+
 |===
 
 == Laufzeitsicht
-* Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
+// * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
 
+=== Aufträge
+image::models/design/images/sd__orders_list__orders_list.jpg[]
+image::models/design/images/sd__orders_receiving__orders_receiving.jpg[]
+image::models/design/images/sd__orders_pick_up__orders_pick_up.jpg[]
+image::models/design/images/sd__orders_update__orders_update.jpg[]
+
+=== Mitarbeiter
+image::models/design/images/add_and_delete_staff.png[]
+
+=== Räume
+image::models/design/images/rooms addRoom.png[]
+image::models/design/images/rooms bookFreeSlot.png[]
+image::models/design/images/rooms deleteRoom.png[]
+image::models/design/images/rooms listFreeSlots.png[]
+
+=== Inventar
+image::models/design/images/sd_restock_Product.png[]
+
+////
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
-
+////

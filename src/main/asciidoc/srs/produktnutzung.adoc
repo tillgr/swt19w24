@@ -16,4 +16,4 @@ Das System muss für die folgenden Browser zugänglich und optisch optimiert sei
 Die Hauptnutzer der Software sind Mitarbeiter, die typische Website-Navigationsschemata kennen, sowie ein Filialleiter (Admin), der nicht unbedingt über einen technischen Hintergrund verfügt.
 
 Das System muss nicht technisch gewartet werden.
-Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein (z. B. sollten für einen Filialleiter keine SQL-Kenntnisse erforderlich sein).
+Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein (z.B. sollten für einen Filialleiter keine SQL-Kenntnisse erforderlich sein).
