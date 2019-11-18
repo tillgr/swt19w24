@@ -484,7 +484,8 @@ image::models/design/images/rooms.png[]
 |===
 
 === Finanzen
-image::models/design/images/finance.png[]
+image::models/design/images/finance.jpg[]
+
 |===
 |Klasse/Enumeration/Schnittstelle |Beschreibung
 
@@ -494,7 +495,7 @@ und Löschen von FinanceEinträge verarbeitet.
 
 |FinanceItem
 |Jeder FinanceItem hat eine eindeutige `id`,
-eine `price` , einen `name`, einen `amount`und eine `date`.
+eine `price` , einen `name`, einen `amount` und eine `date` .
 
 |FinaceManager
 |Ein Dienst, der zuständig ist, die FinanceItem im System zu verwalten. Man kann dort FinanceItem Löschen und Hinfügen.
