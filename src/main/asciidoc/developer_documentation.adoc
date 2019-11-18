@@ -568,6 +568,12 @@ der Financedaten.
 |TimeTableEntry
 |TimeTableEntry
 
+|FinancialManagement
+|FinanceManager
+
+|FinancialItem
+|FinancialItem
+
 |===
 
 == Laufzeitsicht
