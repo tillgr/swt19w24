@@ -15,7 +15,6 @@ public class Room {
 	private @Id @GeneratedValue long id;
 	//private Material UsedMaterial;
 	private String name;
-	private String service;
 
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private Set<TimeTableEntry> entrySet;
@@ -23,7 +22,6 @@ public class Room {
 	public Room (String name, String service, EntriesRepository entries, RoomsRepository rooms){
 		//this.UsedMaterial = UsedMaterial;
 		this.name = name;
-		this.service = service;
 		entrySet = new HashSet<>();
 		rooms.save(this);
 		for(int i=0; i<7; i++){
@@ -36,7 +34,6 @@ public class Room {
 	private Room (){
 		//this.UsedMaterial = UsedMaterial;
 		this.name = null;
-		this.service = null;
 	}
 
 	//Getter
@@ -49,10 +46,6 @@ public class Room {
 	/*public int getRoomId() {
 		return RoomId;
 	}*/
-
-	public String getService() {
-		return service;
-	}
 
 	public String getName() {
 		return name;
