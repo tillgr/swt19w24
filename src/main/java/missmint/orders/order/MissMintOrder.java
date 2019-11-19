@@ -8,7 +8,6 @@ import org.springframework.util.Assert;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 public class MissMintOrder extends Order {
@@ -48,5 +47,21 @@ public class MissMintOrder extends Order {
 
 	public String getCustomer() {
 		return customer;
+	}
+
+	public LocalDate getInbound() {
+		return inbound;
+	}
+
+	public LocalDate getExpectedFinished() {
+		return expectedFinished;
+	}
+
+	public LocalDate getFinished() {
+		return finished;
+	}
+
+	public OrderState getOrderState() {
+		return orderState;
 	}
 }

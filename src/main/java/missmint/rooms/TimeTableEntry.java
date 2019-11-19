@@ -1,16 +1,13 @@
 package missmint.rooms;
 
 import missmint.orders.order.MissMintOrder;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Optional;
-import java.util.Date;
 
 @Entity
 public class TimeTableEntry {
 	private @Id @GeneratedValue long id;
+	@ManyToOne
 	private MissMintOrder order;
 	//private Mitarbeiter mitarbeiter;	//TODO von kien einfügen
 	private long slotId;	//TODO noch hinzufügen

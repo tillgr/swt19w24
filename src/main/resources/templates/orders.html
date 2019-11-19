@@ -15,27 +15,27 @@
 <div class="container mt-md-5">
     <h1 th:text="#{orders}">Aufträge</h1>
 
-    <table class="table" th:each="order : ${orders}">
+    <table class="table">
         <thead>
-            <tr>
-                <th scope="col" th:text="#{general.id}">ID</th>
-                <th scope="col" th:text="#{general.customer}">Customer</th>
-                <th scope="col" th:text="#{orders.customer.item}">Customer Item</th>
-                <th scope="col" th:text="#{general.actions}">Aktionen</th>
-            </tr>
+        <tr>
+            <th scope="col" th:text="#{general.id}">ID</th>
+            <th scope="col" th:text="#{general.customer}">Customer</th>
+            <th scope="col" th:text="#{orders.customer.item}">Customer Item</th>
+            <th scope="col" th:text="#{general.actions}">Aktionen</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="order : ${orders}">
-                <td th:text="${order.getId()}">8adfdf53-0e11-499f-af36-efbc9db8a7f9</td>
-                <td th:text="${order.getCustomer()}">Mark Zuckerberg</td>
-                <td th:text="TODO">Blauer Frack</td>
-                <td>
-                    <!--
-                        <a role="button" class="btn btn-info" href="orderdetails.html" th:href="@{/orders/pickup/{id}(id=${order.getId()})}">Infos</a>
-                        <a role="button" class="btn btn-primary" href="pickup.html" th:href="@{/orders/pickup/{id}(id=${order.getOrder().getId()})}" th:if="${order.getOrder().canPickUp()>Zurückgeben</a>
-                    -->
-                </td>
-            </tr>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.getId()}">8adfdf53-0e11-499f-af36-efbc9db8a7f9</td>
+            <td th:text="${order.getCustomer()}">Mark Zuckerberg</td>
+            <td th:text="TODO">Blauer Frack</td>
+            <td>
+                <!--
+                    <a role="button" class="btn btn-info" href="orderdetails.html" th:href="@{/orders/pickup/{id}(id=${order.getId()})}">Infos</a>
+                    <a role="button" class="btn btn-primary" href="pickup.html" th:href="@{/orders/pickup/{id}(id=${order.getOrder().getId()})}" th:if="${order.getOrder().canPickUp()>Zurückgeben</a>
+                -->
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
