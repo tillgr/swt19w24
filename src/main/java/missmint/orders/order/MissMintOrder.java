@@ -45,4 +45,8 @@ public class MissMintOrder extends Order {
 	public boolean canPickUp() {
 		return orderState == OrderState.FINISHED || orderState == OrderState.STORED;
 	}
+
+	public String getCustomer() {
+		return customer;
+	}
 }

@@ -19,9 +19,11 @@ import org.salespointframework.EnableSalespoint;
 import org.salespointframework.SalespointSecurityConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 @EnableSalespoint
+@PropertySource("classpath:missmint.properties")
 public class Application {
 
 	public static void main(String[] args) {
