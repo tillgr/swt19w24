@@ -14,6 +14,7 @@ public class TimeTableEntry {
 	private MissMintOrder order;
 	//private Mitarbeiter mitarbeiter;	//TODO von kien einfügen
 	private long slotId;	//TODO noch hinzufügen
+	private int pos;
 
 	@ManyToOne
 	private Room room;
@@ -39,5 +40,15 @@ public class TimeTableEntry {
 		this.room = room;
 	}
 
+	public int getPos() {
+		return pos;
+	}
 
+	public long getSlotId() {
+		return slotId;
+	}
+
+	public MissMintOrder getOrder() {
+		return order;
+	}
 }
