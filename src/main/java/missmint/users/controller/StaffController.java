@@ -98,7 +98,7 @@ public class StaffController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("users/edit/{id}")
+	@GetMapping("users/edit/{id}")
 	public String editUserPage(@PathVariable Long id, EditStaffForm form , Model model) {
 
 		var staff = staffManagement.findStaffById(id).orElseThrow(NoSuchElementException::new);

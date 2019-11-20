@@ -34,7 +34,7 @@
             </td>
             <td>
                 <div class="btn-group">
-                    <form class="button" method="post" th:action="@{/users/edit/{id}(id=${staff.getId()})}">
+                    <form class="button" th:action="@{/users/edit/{id}(id=${staff.getId()})}">
                         <button type="submit" class="btn btn-primary mr-1" th:text="#{users.edit}">Bearbeiten</button>
                     </form>
                     <form class="button" method="post" th:action="@{/users/delete/{userName}/{id}(userName=${staff.getUserName()}, id=${staff.getId()})}">
