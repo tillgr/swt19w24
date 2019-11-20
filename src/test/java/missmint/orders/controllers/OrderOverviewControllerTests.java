@@ -68,8 +68,9 @@ class OrderOverviewControllerTests {
 
 		mvc.perform(get("/orders"))
 			.andExpect(status().isOk())
-		.andExpect(content().string(containsString(String.valueOf(order.getId()))))
-		.andExpect(content().string(containsString(order.getCustomer())));
+			.andExpect(content().string(containsString(String.valueOf(order.getId()))))
+			.andExpect(content().string(containsString(order.getCustomer())))
+			.andExpect(content().string(containsString(String.format("/orders/%s", order.getId()))));
 		// TODO Customer Item test
 		// TODO button tests
 	}
