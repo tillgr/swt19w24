@@ -49,7 +49,7 @@ class OrderOverviewControllerTests {
 			.andExpect(status().is3xxRedirection())
 			.andExpect(redirectedUrlPattern("**/login"));
 
-		mvc.perform(get("/orders/123"))
+		mvc.perform(get("/orders/detail/123"))
 			.andExpect(status().is3xxRedirection())
 			.andExpect(redirectedUrlPattern("**/login"));
 	}
@@ -68,8 +68,9 @@ class OrderOverviewControllerTests {
 
 		mvc.perform(get("/orders"))
 			.andExpect(status().isOk())
-		.andExpect(content().string(containsString(String.valueOf(order.getId()))))
-		.andExpect(content().string(containsString(order.getCustomer())));
+			.andExpect(content().string(containsString(String.valueOf(order.getId()))))
+			.andExpect(content().string(containsString(order.getCustomer())))
+			.andExpect(content().string(containsString(String.format("/orders/%s", order.getId()))));
 		// TODO Customer Item test
 		// TODO button tests
 	}
@@ -77,7 +78,7 @@ class OrderOverviewControllerTests {
 	@Test
 	@WithMockUser()
 	void orderDetailNoOrder() throws Exception {
-		mvc.perform(get("/orders/123"))
+		mvc.perform(get("/orders/detail/123"))
 			.andExpect(status().is5xxServerError());
 	}
 
@@ -86,7 +87,7 @@ class OrderOverviewControllerTests {
 	void orderDetail() throws Exception {
 		MissMintOrder order = createOrder();
 
-		mvc.perform(get(String.format("/orders/%s", order.getId())).locale(Locale.ROOT))
+		mvc.perform(get(String.format("/orders/detail/%s", order.getId())).locale(Locale.ROOT))
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString(String.valueOf(order.getId()))))
 			.andExpect(content().string(containsString(order.getCustomer())))
