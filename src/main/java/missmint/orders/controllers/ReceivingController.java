@@ -1,9 +1,13 @@
 package missmint.orders.controllers;
 
+import missmint.Utils;
 import missmint.orders.forms.ReceivingForm;
+import missmint.orders.order.MissMintOrder;
 import missmint.orders.service.Service;
 import org.salespointframework.catalog.Catalog;
-import org.springframework.http.HttpStatus;
+import org.salespointframework.time.BusinessTime;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +15,20 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Controller
 public class ReceivingController {
 
 	private final Catalog<Service> catalog;
+	private final BusinessTime time;
 
-	public ReceivingController(Catalog<Service> catalog) {
+	public ReceivingController(Catalog<Service> catalog, BusinessTime businessTime) {
 		this.catalog = catalog;
+		time = businessTime;
 	}
 
 	@RequestMapping("/orders/receiving")
@@ -33,11 +40,20 @@ public class ReceivingController {
 
 	@PostMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
-	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model/*, @LoggedIn UserAccount userAccount, HttpSession session*/) {
+	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session) {
 		if (errors.hasErrors()) {
 			return receiving(model, form);
 		}
 
-		throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
+		Service service = Utils.getOrThrow(catalog.findById(form.getService()));
+
+		LocalDate now = time.getTime().toLocalDate();
+		MissMintOrder order = new MissMintOrder(userAccount, form.getCustomer(), now, now.plusDays(1), service);
+		session.setAttribute("order", order);
+
+		model.addAttribute("total", order.getTotal());
+		return "cost";
 	}
+
+	// TODO time table planning, creating customer item, finance
 }
