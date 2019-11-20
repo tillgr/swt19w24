@@ -16,7 +16,6 @@ public class RoomController {
 
 	private RoomsRepository rooms;
 	private EntriesRepository entries;
-	private Set<TimeTableEntry> existingEntries;
 
 	RoomController(RoomsRepository rooms, EntriesRepository entries){
 		this.rooms = rooms;
@@ -47,27 +46,5 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
-	//Entries
 
-	@PostMapping("/rooms/{id}/showEntries")
-	public String showEntries(Model model, @PathVariable("id") long id){
-		 existingEntries= new HashSet<>();
-
-		//TODO entries existieren nur, wenn gebucht worden ist
-		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
-			for (TimeTableEntry entry : room.getEntrySet())	{
-				if (entry.getOrder().getInbound().equals(LocalDate.now())){
-					existingEntries.add(entry);
-				}
-			}
-			return 1;
-			}
-		);
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-		model.addAttribute("existingEntries", existingEntries);
-
-		return "entries";
-	}
-	
 }
