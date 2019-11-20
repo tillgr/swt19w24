@@ -15,6 +15,7 @@ public class TimeTableController {
 	private RoomsRepository rooms;
 	private EntriesRepository entries;
 	private Set<TimeTableEntry> existingEntries;
+	private LocalDate date;
 
 
 	public TimeTableController(RoomsRepository rooms, EntriesRepository entries){
@@ -30,6 +31,48 @@ public class TimeTableController {
 		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
 				for (TimeTableEntry entry : room.getEntrySet())	{
 					if (entry.getOrder().getInbound().equals(LocalDate.now())){
+						existingEntries.add(entry);
+					}
+				}
+				return 1;
+			}
+		);
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
+		model.addAttribute("existingEntries", existingEntries);
+
+		return "entries";
+	}
+
+	@PostMapping("/rooms/{id}/showPreviousEntries")
+	public String showPreviousEntries (Model model, @PathVariable("id") long id){
+		existingEntries= new HashSet<>();
+		date = date = date.minusDays(1);
+
+		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
+				for (TimeTableEntry entry : room.getEntrySet())	{
+					if (entry.getOrder().getInbound().equals(date)){	//TODO wie kann man auf den nächsten Tag zugreifen?
+						existingEntries.add(entry);
+					}
+				}
+				return 1;
+			}
+		);
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
+		model.addAttribute("existingEntries", existingEntries);
+
+		return "entries";
+	}
+
+	@PostMapping("/rooms/{id}/showNextEntries")
+	public String showNextEntries (Model model, @PathVariable("id") long id){
+		existingEntries= new HashSet<>();
+		date = date = date.plusDays(1);
+
+			rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
+				for (TimeTableEntry entry : room.getEntrySet())	{
+					if (entry.getOrder().getInbound().equals(date)){	//TODO wie kann man auf den vorherigen Tag zugreifen?
 						existingEntries.add(entry);
 					}
 				}

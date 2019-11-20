@@ -18,13 +18,21 @@
 <div class="container mt-md-5">
     <h1>Einträge</h1>
 
-
-    <div class="card mt-2" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
-    <div class="card-header">
-        <h3 th:text="${entry.id}"></h3>
+    <div>
+        <form method="post" th:action="@{/rooms/{id}/showPreviousEntries}">
+            <button class="btn btn-danger float-left">vorherige Einträge</button>
+        </form>
+        <form method="post" th:action="@{/rooms/{id}/showNextEntries}" th:href="entries.html">
+            <button class="btn btn-primary float-right">nächste Einträge</button>
+        </form>
     </div>
-    <div class="card-footer text-muted"></div>
-</div>
+
+    <br>
+    <br>
+
+    <ul class="list-group" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
+        <li class="list-group-item" th:text="${entry.id}"></li>
+    </ul>
 
 </div>
 
