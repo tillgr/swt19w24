@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -78,12 +79,12 @@ public class StaffController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/users/registration")
-	public String registerStaff(@Valid RegistrationForm form, Errors result) {
+	public String registerStaff(@Valid @ModelAttribute("form") RegistrationForm form, Errors result, Model model) {
 
 		if (result.hasErrors() ||
 			staffManagement.findByUserName(form.getUserName()).isPresent()
 		) {
-			return "redirect:/users/registration";
+			return registrationForm(model, form);
 		}
 
 
@@ -109,7 +110,16 @@ public class StaffController {
 
 	@PreAuthorize(("hasRole('ADMIN')"))
 	@PostMapping("/users/{id}")
-	public String saveUser(@PathVariable Long id, @Valid EditStaffForm form) {
+	public String saveUser(
+		@PathVariable Long id,
+		@Valid @ModelAttribute("form") EditStaffForm form,
+		Errors result,
+		Model model
+	) {
+
+		if (result.hasErrors()) {
+			return editUserPage(id, form, model);
+		}
 
 		staffManagement.editStaff(id, form.getFirstName(), form.getLastName(), form.getNewSkill());
 

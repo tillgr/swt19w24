@@ -2,15 +2,16 @@ package missmint.users.forms;
 
 import missmint.orders.service.ServiceCategory;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 public class EditStaffForm {
 	private final ServiceCategory newSkill;
 
-	@NotEmpty
+	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String firstName;
 
-	@NotEmpty
+	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String lastName;
 
 	public EditStaffForm(String firstName, String lastName, ServiceCategory newSkill) {

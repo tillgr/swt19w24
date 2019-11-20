@@ -1,16 +1,17 @@
 package missmint.users.forms;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 public class RegistrationForm {
 
-	@NotEmpty(message = "{RegistrationForm.name.NotEmpty}")
+	@NotBlank(message = "{RegistrationForm.name.NotBlank}")
 	private final String firstName;
 
-	@NotEmpty(message = "{RegistrationForm.name.NotEmpty}")
+	@NotBlank(message = "{RegistrationForm.name.NotBlank}")
 	private final String lastName;
 
-	@NotEmpty(message = "{RegistrationForm.name.NotEmpty}")
+	@NotBlank(message = "{RegistrationForm.name.NotBlank}")
 	private final String userName;
 
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
