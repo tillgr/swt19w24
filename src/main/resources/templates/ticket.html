@@ -6,6 +6,8 @@
 
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link href="../static/resources/ticket_print.css"
+          rel="stylesheet" th:href="@{/resources/ticket_print.css}">
 
     <title>Auftragszettel</title>
 </head>
@@ -38,7 +40,7 @@
         </tr>
         </tbody>
     </table>
-    <button class="btn btn-primary" th:text="#{general.print}">Print</button>
+    <button class="btn btn-primary" th:text="#{general.print}" id="print">Print</button>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
@@ -52,5 +54,7 @@
 <script crossorigin="anonymous"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="../static/resources/ticket_print.js"
+        th:src="@{/resources/ticket_print.js}"></script>
 </body>
 </html>
