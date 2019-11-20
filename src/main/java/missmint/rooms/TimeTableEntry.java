@@ -1,21 +1,22 @@
 package missmint.rooms;
 
 import missmint.orders.order.MissMintOrder;
+import missmint.users.model.Staff;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class TimeTableEntry {
 	private @Id @GeneratedValue long id;
 	@ManyToOne
 	private MissMintOrder order;
-	//private Mitarbeiter mitarbeiter;	//TODO von kien einfügen
-	private long slotId;	//TODO noch hinzufügen
-	private int pos;
+	@ManyToMany		//TODO stimmt das?
+	private Staff staff;
+	private int slotsPos;
 
 	@ManyToOne
 	private Room room;
-	//private Order order;
 
 	public TimeTableEntry (int start, int end, Room room){
 		this.room = room;
@@ -37,12 +38,20 @@ public class TimeTableEntry {
 		this.room = room;
 	}
 
-	public int getPos() {
-		return pos;
+	public int getSlotsPos() {
+		return slotsPos;
 	}
 
-	public long getSlotId() {
-		return slotId;
+	public void setSlotsPos(int slotsPos) {
+		this.slotsPos = slotsPos;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 
 	public MissMintOrder getOrder() {
