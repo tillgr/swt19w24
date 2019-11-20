@@ -1,13 +1,15 @@
 package missmint.inventory.controller;
 
-import org.salespointframework.inventory.*;
+
+import org.salespointframework.inventory.InventoryItemIdentifier;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
-
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,7 +29,14 @@ public class InventoryController {
 
 	@GetMapping("/material")
 	String material(Model model) {
-		model.addAttribute("material", materialInventory.findAll());
+		model.addAttribute("material", Streamable.of(
+			getMaterialInventory().findAll()).filter(it ->
+			it.getProduct().getCategories().toList().get(0).equals("QUANTIFIABLE_MATERIAL"))
+			.and(Streamable.of(getMaterialInventory().findAll()).filter(it ->
+			it.getProduct().getCategories().toList().get(0).equals("NON_QUANTIFIABLE_MATERIAL"))));
+
+
+
 		return "material";
 	}
 

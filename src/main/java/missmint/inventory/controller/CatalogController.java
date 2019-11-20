@@ -1,8 +1,6 @@
 package missmint.inventory.controller;
 
-import missmint.inventory.Material;
-
-import missmint.inventory.orderItem;
+import missmint.inventory.products.orderItem;
 import org.salespointframework.catalog.Catalog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
