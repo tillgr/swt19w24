@@ -69,24 +69,5 @@ public class RoomController {
 
 		return "entries";
 	}
-
-
-	@PostMapping("/rooms/{id}/createEntry")
-	public String createEntry(Model model, @PathVariable("id") long id){
-
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-
-		return "rooms";
-	}
-
-	@PostMapping("/rooms/{id}/deleteEntry")
-	public String deleteEntry(Model model, @PathVariable("id") long id){
-
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-
-		return "rooms";
-	}
-
+	
 }
