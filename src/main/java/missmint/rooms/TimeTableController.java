@@ -21,6 +21,7 @@ public class TimeTableController {
 	public TimeTableController(RoomsRepository rooms, EntriesRepository entries){
 		this.entries=entries;
 		this.rooms=rooms;
+		this.date=LocalDate.now();
 	}
 
 	@PostMapping("/rooms/{id}/showEntries")
