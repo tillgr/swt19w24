@@ -19,7 +19,7 @@ public class Room {
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private Set<TimeTableEntry> entrySet;
 
-	public Room (String name, String service, EntriesRepository entries, RoomsRepository rooms){
+	public Room (String name, EntriesRepository entries, RoomsRepository rooms){
 		//this.UsedMaterial = UsedMaterial;
 		this.name = name;
 		entrySet = new HashSet<>();

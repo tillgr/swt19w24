@@ -22,9 +22,6 @@
         <div class="card-header">
             <h3 th:text="${room.name}"></h3>
         </div>
-        <div class="card-body">
-            <h5 class="card-title"><strong th:text="${room.service}"></strong></h5>
-        </div>
         <div class="card-footer text-muted">
             <div class = "btn-toolbar">
                 <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
@@ -42,76 +39,6 @@
         </div>
     </div>
 
-    <br>
-    <br>
-
-    <form method="post" th:object="${form}" th:action="@{/rooms/add}">
-    <div class="card mt-2">
-        <div class="card-header">
-            <h3>Raumname eingeben</h3>
-            <input th:field="*{name}" type="text">
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title"><strong>Dienstleistung eingeben</strong></h5>
-            <input th:field="*{service}" type="text">
-            <div th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></div>
-        </div>
-        <div class="card-footer text-muted">
-            <button class="btn btn-info" type="submit">Hinzufügen</button>
-        </div>
-    </div>
-    </form>
-
-
-</div>
-<div class="container mt-md-5">
-    <h1>Belegplan</h1>
-
-    <div class="container mt-md-5">
-        <form method="get" th:action="@{/rooms/listFreeSlots}">
-            <button class="btn btn-info" type="submit">Freie Slots anzeigen</button>
-            <div class="card-group">
-                <div class="card mt-sm-2" style="width: auto" th:each="entry : ${freeSlots}">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="'ID: ' + ${entry.id}"></h5>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="card-group">
-        <div class="card mt-sm-2" style="width: auto" th:each="room : ${rooms}">
-            <div class="card mt-sm-2" style="width: auto" th:each="entry : ${entries}" th:if="${entry.getRoom() == room}"> <!--T(missmint.rooms.TimeTableEntry.room)-->
-                <div class="card-header" th:text="${entry.id}"></div>
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${entry.booking}"></h5>
-                </div>
-                <!--
-                <div class="card-footer text-muted">
-                    <form method="post" th:action="@{/rooms/entries/{entry}/delete(entry=${entry.id})}">
-                        <button class="btn btn-danger">Eintrag löschen</button>
-                    </form>
-                </div> -->
-            </div>
-        </div>
-    </div>
-    <!--<form method="post" th:object="${form}" th:action="@{/rooms/addEntry}">-->
-        <!--
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <select th:field="*{room}" class="form-control" id="subject" name="subject">
-                    <option value="">Select Room</option>
-                    <option th:each="room : ${rooms}" th:value="${room.id}" th:text="${room.id}"></option>
-                </select>
-            </div>
-        </div>
-
-        <button class="btn btn-info" type="submit">Eintrag hinzufügen</button>
-    </form>
-    -->
 </div>
 
 </body>

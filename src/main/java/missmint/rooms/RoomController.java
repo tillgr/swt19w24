@@ -25,7 +25,7 @@ public class RoomController {
 	}
 
 	@GetMapping("/rooms")
-	@PreAuthorize("isAuthenticated()")
+	//@PreAuthorize("isAuthenticated()")
 	public String showRooms(Model model) {
 
 		model.addAttribute("rooms", rooms.findAll());
