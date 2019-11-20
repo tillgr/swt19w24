@@ -1,14 +1,11 @@
 <!doctype html>
-<!--suppress HtmlUnknownTarget -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <!-- Bootstrap CSS -->
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 
     <title>Materialien</title>
 </head>
@@ -21,24 +18,26 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Material</th>
-            <th scope="col">Anzahl</th>
+            <th scope="col">Name</th>
+            <th scope="col">Menge</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
         <tbody>
-            <tr th:each=" i : ${material}">
-            <td th:text="${i.name}">Test</td>
-            <!--<td th:text="${{i.quantity}}">10</td> -->
-            <td>
-            <form class="ui form" method="post" th:action="@{/consume}">
-                <a class="btn btn-primary" role="button" >Verbrauchen</a>
-            </form>
-            </td>
-        </tr>
-        <td>
-            <a class="btn btn-secondary"  role="button"  th:action="@{/restock}">Nachbestellen</a>
-        </td>
+            <tr th:each="item : ${material}">
+                <td th:text="${item.product.name}"></td>
+                <td th:text="${{item.quantity}}"></td>
+                <td>
+                    <form class="ui form" method="post" th:action="@{material/consume/{q}/{id}(id=${item.id},q=${item.quantity})}">
+                        <button class="btn btn-primary" role="button" >Verbrauchen</button>
+                    </form>
+
+                    <form  class="ui form" method="post" th:action="@{material/restock/{q}/{id}(id=${item.id},q=${item.quantity})}">
+                        <button class="btn btn-secondary"  role="button">Nachbestellen</button>
+                    </form>
+                </td>
+            </tr>
+
         </tbody>
     </table>
 

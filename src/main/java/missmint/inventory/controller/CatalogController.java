@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CatalogController {
 
-	private final Catalog<Material> materialCatalog;
 	private final Catalog<orderItem> orderItemCatalog;
 
-	CatalogController(Catalog<Material> materialCatalog, Catalog<orderItem> orderItemCatalog){
+	CatalogController(Catalog<orderItem> orderItemCatalog){
 		this.orderItemCatalog = orderItemCatalog;
-		this.materialCatalog = materialCatalog;
 	}
 
 
