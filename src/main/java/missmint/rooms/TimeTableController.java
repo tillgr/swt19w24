@@ -16,6 +16,12 @@ public class TimeTableController {
 	private EntriesRepository entries;
 	private Set<TimeTableEntry> existingEntries;
 
+
+	public TimeTableController(RoomsRepository rooms, EntriesRepository entries){
+		this.entries=entries;
+		this.rooms=rooms;
+	}
+
 	@PostMapping("/rooms/{id}/showEntries")
 	public String showEntries(Model model, @PathVariable("id") long id){
 		existingEntries= new HashSet<>();

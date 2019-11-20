@@ -19,7 +19,7 @@
     <h1>Einträge</h1>
 
 
-    <div class="card mt-2" th:each="entry : ${entrySet}" th:action="@{/rooms/{id}/showEntries}">
+    <div class="card mt-2" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
     <div class="card-header">
         <h3 th:text="${entry.id}"></h3>
     </div>
