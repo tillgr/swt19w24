@@ -358,36 +358,36 @@ Das Ticket wird angezeigt.
 [options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|U-FinanceController-Finanzen ansehen-01
+|I-FinanceController-showFinanceForm-01
 |UC0030
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
 |Admin wählt "Bilanzen anzeigen" in der Bilanzübersicht aus.
 |Admin bekommt die Bilanzen angezeigt.
 
 
-|U-FinanceController-Finanzen ansehen-02
+|I-FinanceController-showFinanceForm-02
 |UC0030
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
 |Admin wählt "Gewinn anzeigen" in der Bilanzübersicht aus.
 |Admin bekommt den Gewinn angezeigt und kann ihn abführen.
 
 
-|U-FinanceController-Finanze Einträge hinfügen-01
-|...
+|I-FinanceController-AddNewFinanceItemInForm-01
+|UC0030
 |Ein authorisierter Mitarbeiter hat neue Finanz Eintrag noch nicht hingefügt.
 |Mitarbeiter wählt "Finance item hinzufügen" in der Bilanzübersicht aus.
 |Finance Eintrag wird hingefügt
 
 
-|U-FinanceController-Finanze Einträge hinfügen-02
-|...
+|U-FinanceController-AddNewFinanceItemInForm-02
+|UC0030
 |Ein authorisierter Mitarbeiter hat neue Finanz Eintrag noch nicht hingefügt.
 |Mitarbeiter wählt "Finance item hinzufügen" in der Bilanzübersicht aus. Finance Eintrag ist schon in System.
 |Fehler Meldung. Finance Eintrag wird nicht noch mal hingefügt.
 
 
-|U-FinanceController-Finanze Einträge Löschen-01
-|...
+|U-FinanceController-removeFinanceItem-01
+|UC0030
 |Finanz Eintrag ist in Bilanzübersicht scheinbar.
 |Authorisierte Mitarbeiter wählt "Finance item löschen" in der Bilanzübersicht aus.
 |Finance Eintrag wird gelöscht.
