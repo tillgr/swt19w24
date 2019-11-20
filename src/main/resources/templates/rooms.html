@@ -18,6 +18,21 @@
 <div class="container mt-md-5">
     <h1>Räume</h1>
 
+    <ul class="list-group" th:each="room : ${rooms}">
+        <li class="list-group-item" th:text="${room.name}"></li>
+        <li class="list-group-item">
+            <div class = "btn-toolbar">
+                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
+                    <button class="btn btn-danger">Raum löschen</button>
+                </form>
+                <form method="post" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
+                    <button class="btn btn-primary">Einträge anzeigen</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!---
     <div class="card mt-2" th:each="room : ${rooms}">
         <div class="card-header">
             <h3 th:text="${room.name}"></h3>
@@ -34,6 +49,7 @@
 
         </div>
     </div>
+    --->
 
 </div>
 

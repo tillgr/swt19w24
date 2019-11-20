@@ -11,8 +11,8 @@ public class TimeTableEntry {
 	private @Id @GeneratedValue long id;
 	@ManyToOne
 	private MissMintOrder order;
-	@ManyToMany		//TODO stimmt das?
-	private Staff staff;
+	//@ManyToMany		//TODO stimmt das?
+	//private Staff staff;
 	private int slotsPos;
 
 	@ManyToOne
@@ -46,6 +46,7 @@ public class TimeTableEntry {
 		this.slotsPos = slotsPos;
 	}
 
+	/*
 	public Staff getStaff() {
 		return staff;
 	}
@@ -53,6 +54,8 @@ public class TimeTableEntry {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
+
+	 */
 
 	public MissMintOrder getOrder() {
 		return order;
