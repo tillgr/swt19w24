@@ -12,9 +12,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,7 +31,7 @@ public class ReceivingController {
 		time = businessTime;
 	}
 
-	@RequestMapping("/orders/receiving")
+	@GetMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
 	public String receiving(Model model, @ModelAttribute("form") ReceivingForm form) {
 		model.addAttribute("services", catalog.findByAllCategories());

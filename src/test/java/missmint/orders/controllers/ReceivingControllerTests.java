@@ -1,6 +1,7 @@
 package missmint.orders.controllers;
 
 import missmint.orders.order.MissMintOrder;
+import missmint.orders.order.OrderState;
 import missmint.orders.service.Service;
 import org.assertj.core.api.Assertions;
 import org.hamcrest.beans.HasPropertyWithValue;
@@ -90,7 +91,12 @@ class ReceivingControllerTests {
 			.andExpect(content().string(containsString(String.format("The customer paid %s.", service.getPrice()))))
 			.andExpect(request().sessionAttribute("order",
 				allOf(isA(MissMintOrder.class),
-					HasPropertyWithValue.hasProperty("customer", equalTo("Lagrange")))));
+					HasPropertyWithValue.hasProperty("customer", equalTo("Lagrange")),
+					HasPropertyWithValue.hasProperty("inbound", notNullValue()),
+					HasPropertyWithValue.hasProperty("expectedFinished", notNullValue()),
+					HasPropertyWithValue.hasProperty("finished", nullValue()),
+					HasPropertyWithValue.hasProperty("orderState", equalTo(OrderState.WAITING))
+				)));
 		// TODO link to ticket
 	}
 }
