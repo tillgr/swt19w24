@@ -8,10 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Controller
 public class RoomController {
@@ -25,7 +23,7 @@ public class RoomController {
 	}
 
 	@GetMapping("/rooms")
-	@PreAuthorize("isAuthenticated()")
+	//@PreAuthorize("isAuthenticated()")
 	public String showRooms(Model model) {
 
 		model.addAttribute("rooms", rooms.findAll());
@@ -48,35 +46,5 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
-
-	@GetMapping("/rooms/listEntries")
-	public String listEntries(Model model){
-
-		//TODO entries existieren nur, wenn gebucht worden ist
-
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-
-		return "rooms";
-	}
-
-
-	@PostMapping("/rooms/{id}/createEntry")
-	public String createEntry(Model model, @PathVariable("id") long id){
-
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-
-		return "rooms";
-	}
-
-	@PostMapping("/rooms/{id}/deleteEntry")
-	public String deleteEntry(Model model, @PathVariable("id") long id){
-
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-
-		return "rooms";
-	}
 
 }

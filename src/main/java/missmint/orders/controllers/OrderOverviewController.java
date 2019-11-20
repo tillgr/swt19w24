@@ -36,7 +36,7 @@ public class OrderOverviewController {
 	}
 
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-	@RequestMapping("/orders/{pathOrder}")
+	@RequestMapping("/orders/detail/{pathOrder}")
 	@PreAuthorize("isAuthenticated()")
 	public String orderDetail(Model model, @PathVariable Optional<MissMintOrder> pathOrder) {
 		MissMintOrder order = Utils.getOrThrow(pathOrder);

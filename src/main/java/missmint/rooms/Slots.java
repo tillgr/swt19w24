@@ -5,11 +5,11 @@ import com.mysema.commons.lang.Pair;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-public class Slot {
+public class Slots {
 	private @GeneratedValue @Id long id;
 	private Pair<Integer, Integer> slots[]  = new Pair[5];
 
-	public Slot (long id, Pair<Integer, Integer> slots[]){
+	public Slots(long id, Pair<Integer, Integer> slots[]){
 		slots[0] = new Pair<>(1,2);
 		slots[1] = new Pair<>(2,3);
 		slots[2] = new Pair<>(3,4);
