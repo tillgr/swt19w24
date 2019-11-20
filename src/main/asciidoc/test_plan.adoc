@@ -399,23 +399,90 @@ Das Ticket wird angezeigt.
 [options="headerr"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|U-UserController-login-01
+
+|U-Staff-salary-01
+|-
+|Mitarbeiter bekommt Lohn.
+|-
+|Korrekter Lohn.
+
+|U-Staff-salary-02
+|-
+|Mitarbeiter bekommt kein Lohn.
+|-
+|0
+
+|U-Staff-creation-01
+|UC0020
+|Mitarbeiter existiert noch nicht im System.
+|`UserAccount`, nichtleerer Vor- und Nachname
+|Staff Objekt wird erstellt.
+
+|U-Staff-creation-02
+|UC0020
+|Mitarbeiter existiert noch nicht im System.
+|`UserAccount`, leerer Vor- oder Nachname
+|`Assert.hasText` Fehlermeldung
+
+|I-UserManagement-createUser-01
+|UC0020
+|Mitarbeiter ist noch nicht registriert.
+|Valides `RegistrationForm`
+|`Staff` mit `UserAccount` wird angelegt.
+
+|I-UserManagement-createUser-02
+|UC0020
+|Mitarbeiter ist noch nicht registriert.
+|`RegistrationForm` ist `null`
+|`Assert.notNull` Fehlermeldung
+
+|I-UserManagement-deleteUser-01
+|-
+|Mitarbeiter ist im System.
+|korrekter `userName` und `id`
+|Mitarbeiter wird aus `StaffRepository` und `UserAccountManager` entfernt.
+
+|I-UserManagement-deleteUser-02
+|-
+|Mitarbeiter ist nicht im System.
+|`userName` und `id`
+|Nichts
+
+|I-UserManagement-findByUserName-01
+|-
+|Mitarbeiter ist im System.
+|richtiger `userName`
+|korrekter `UserAccount`
+
+|I-UserManagement-findByUserName-02
+|-
+|Mitarbeiter ist im System.
+|falscher `userName`
+|kein `UserAccount`
+
+|I-UserManagement-getAllUsers-01
+|-
+|Mitarbeiter existieren im System.
+|-
+|Alle `Staff` Objekte im System
+
+|I-UserController-login-01
 |UC0010
 |Benutzer ist nicht authentifiziert.
 |richtiger Benutzername und richtiges Passwort
 |Benutzer wird auf die Homepage verlinkt und ist angemeldet.
 
-|U-UserController-login-02
+|I-UserController-login-02
 |UC0010
 |Benutzer ist nicht authentifiziert.
 |Benutzername oder Passwort ist falsch
 |Es erfolgt eine Fehlermeldung.
 
-|U-UserController-logout-01
+|I-UserController-logout-01
 |UC0010
 |Benutzer authentifiziert.
 |Logout in der Navigationsleiste
-|Benutzer wird auf die Homepage verlinkt und ist abgemeldet.
+|Benutzer wird abgemeldet und wird auf Login verlinkt.
 
 |I-UserController-registration-01
 |UC0020
@@ -429,19 +496,19 @@ Das Ticket wird angezeigt.
 |Admin gibt neue Benutzerdaten bei der Registrierung ein. Benutzername ist schon im System.
 |Es erfolgt eine Fehlermeldung und es wird kein neues Benutzerkonto angelegt.
 
-|U-UserController-users-01
+|I-UserController-users-01
 |-
 |Ein authorisierter Mitarbeiter, der aber kein Admin ist.
 |Anfrage zur Mitarbeiterübersicht
 |Anfrage wird wegen `@PreAuthorize` abgelehnt.
 
-|U-UserController-users-02
+|I-UserController-users-02
 |-
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
 |Anfrage zur Mitarbeiterübersicht
 |Mitarbeiterübersicht wird angezeigt.
 
-|U-UserController-delete-01
+|I-UserController-delete-01
 |-
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
 |Entfernen eines Mitarbeiters
