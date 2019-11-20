@@ -27,13 +27,6 @@
                 <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
                     <button class="btn btn-danger">Raum löschen</button>
                 </form>
-                <form method="post" th:action="@{/rooms/{room}/bookFreeSlot(room=${room.id})}">
-                    <button class="btn btn-info">Slot Buchen</button>
-                </form>
-                <form method="post" th:action="@{/rooms/{room}/debookFreeSlot(room=${room.id})}">
-                    <button class="btn btn-danger">Slot zurückbuchen</button>
-                </form>
-
             </div>
 
         </div>

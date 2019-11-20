@@ -48,7 +48,6 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
-
 	@GetMapping("/rooms/listEntries")
 	public String listEntries(Model model){
 

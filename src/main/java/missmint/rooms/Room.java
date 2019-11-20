@@ -24,11 +24,6 @@ public class Room {
 		this.name = name;
 		entrySet = new HashSet<>();
 		rooms.save(this);
-		for(int i=0; i<7; i++){
-			TimeTableEntry entry = new TimeTableEntry(i, i+1, this);
-			entrySet.add(entry);
-			entries.save(entry);
-		}
 	}
 
 	private Room (){
