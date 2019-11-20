@@ -15,7 +15,9 @@ import java.util.Locale;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -49,5 +51,19 @@ class ReceivingControllerTests {
 			.andExpect(content().string(containsString("Cleaning (Suits)")))
 			.andExpect(content().string(containsString("Grindery (Knifes)")))
 			.andExpect(content().string(containsString(String.valueOf(service.getId()))));
+	}
+
+	@Test
+	@WithMockUser
+	void receivingFormErrors() throws Exception {
+		mvc.perform(post("/orders/receiving").locale(Locale.ROOT).with(csrf())
+			.param("customer", " ")
+			.param("description", "\t")
+		)
+			.andExpect(status().isOk())
+			.andExpect(view().name("receiving"))
+			.andExpect(content().string(containsString("The customer&#39;s name must not be empty.")))
+			.andExpect(content().string(containsString("The item description must not be empty.")))
+			.andExpect(content().string(containsString("Please select a service.")));
 	}
 }

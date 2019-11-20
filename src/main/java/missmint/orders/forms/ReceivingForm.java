@@ -6,11 +6,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ReceivingForm {
-	@NotBlank
+	@NotBlank(message = "{ReceivingForm.customer.NotBlank}")
 	private String customer;
-	@NotBlank
+	@NotBlank(message = "{ReceivingForm.description.NotBlank}")
 	private String description;
-	@NotNull
+	@NotNull(message = "{ReceivingForm.service.NotNull}")
 	private ProductIdentifier service;
 
 	public ReceivingForm(String customer, String description, ProductIdentifier service) {
