@@ -48,13 +48,15 @@
                     </div>
                 </td>
                 <td th:text="${staff.getUserName()}">pperters</td>
-                <td th:text="${#strings.listJoin(staff.getSkills(), ', ')}">
+                <td th:if="${staff.getSkills().isEmpty()}" text="">
+                <td th:unless="${staff.getSkills().isEmpty()}" th:text="${#strings.setJoin(#messages.listMsg(#strings.setPrepend(staff.getServices(), 'orders.service.')), ', ')}">
                 <td>
                     <div class="form-group">
                         <select class="form-control" id="service" th:field="*{newSkill}">
                             <option th:value="null" text="Please Select"></option>
-                            <option th:each="service : ${services}" th:value="${service.name()}"
-                                    th:text="${service.name()}"></option>
+                            <option th:each="service : ${services}" th:value="${service.getId()}"
+                                    th:text="#{'orders.service.' + ${service.getName()}}">
+                            </option>
                         </select>
                     </div>
                 </td>

@@ -1,11 +1,12 @@
 package missmint.users.model;
 
-import missmint.orders.service.ServiceCategory;
+import missmint.orders.service.Service;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,8 +22,8 @@ public class Staff {
 	private String lastName;
 	private String firstName;
 
-	@ElementCollection
-	private Set<ServiceCategory> skills = Collections.emptySet();
+	@ManyToMany
+	private Set<Service> skills = Collections.emptySet();
 
 	// empty constructor for Entity
 	public Staff() {}
@@ -66,12 +67,20 @@ public class Staff {
 		return userAccount.getUsername();
 	}
 
-	public boolean addSkill(ServiceCategory category) {
-		return skills.add(category);
+	public boolean addSkill(Service service) {
+		return skills.add(service);
 	}
 
-	public Set<ServiceCategory> getSkills() {
+	public Set<Service> getSkills() {
 		return skills;
+	}
+
+	public Set<String> getServices() {
+		var services = new HashSet<String>();
+		for (Service service : skills) {
+			services.add(service.getName());
+		}
+		return services;
 	}
 
 	public Double calculateSalary() {
