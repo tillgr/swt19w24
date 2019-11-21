@@ -13,7 +13,7 @@ public class AddRoomForm {
 		return name;
 	}
 
-	public Room createRoom(EntriesRepository entries, RoomsRepository rooms){
+	public Room createRoom(EntryRepository entries, RoomRepository rooms){
 		return new Room(name, entries, rooms);
 	}
 }
