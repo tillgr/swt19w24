@@ -593,14 +593,16 @@ image::models/design/images/sd__orders_update__orders_update.jpg[]
 === Mitarbeiter
 image::models/design/images/add_and_delete_staff.png[]
 
+
+=== Inventar
+image::models/design/images/sd_consume_UniqiueInventoryItem.png[]
+image::models/design/images/sd_restock_UniqueInventoryItem.png[]
+
 === Räume
 image::models/design/images/rooms addRoom.png[]
 image::models/design/images/rooms bookFreeSlot.png[]
 image::models/design/images/rooms deleteRoom.png[]
 image::models/design/images/rooms listFreeSlots.png[]
-
-=== Inventar
-image::models/design/images/sd_restock_Product.png[]
 
 ////
 == Technische Schulden
