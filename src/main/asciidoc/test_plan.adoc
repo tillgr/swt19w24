@@ -592,63 +592,63 @@ Das Ticket wird angezeigt.
 
 === Inventar
 *Tobias Köllner*
-[width="80%", cols"1,^2,^2,10,1", options="header, pgwide"]
+[width="100%", cols"1,^2,^2,10,1", options="header, pgwide"]
 |===
 
 |ID |Anwendungsfall|Vorbedingungen|Eingabe|Ausgabe
 
 |I-Catalog<Material> findAll
 |
-|Catalog<Material>
 |Sicherstellung das alle nötigen Materialen im Catalog sind.
+|Catalog<Material>
 |Alle Materialen sind vorhanden.
 
 |I-Catalog<Material> correctCategory
 |
-|Catalog<Material>
 |Sicherstellung das alle Materialen der korrekten Kategorie zugeordnet sind.
+|Catalog<Material>
 |Alle Materialen haben die korrekte Kategorie.
 
 |I-CatalogController WebIntegration
 |
-|MockMvc, CatalogController
 |Simulation von Requests
+|MockMvc, CatalogController
 |Nicht-leerer Catalog wird angezeigt.
 
 |I-Catalog sampleController
 |
-|CatalogController
 |Überprüfung ob angezeigter Catalog stimmt mit tatsächlichem Catalog überein.
+|CatalogController
 |Korrekter Catalog wird angezeigt.
 
 |I-InventoryController publicAccess
 |
-|Nutzer ohne Adminrechte
 |Nutzer versucht auf Lager zuzugreifen.
+|Nutzer ohne Adminrechte
 |Zugriffsverweigerung aufgrund fehlender Rechte.
 
 |I-InventoryController adminAccess
 |
-|Adminrechte
 |Admin versucht auf Lager zuzugreifen.
+|Adminrechte
 |Zugriff wir zugelassen.
 
 |I-InventoryController restock
 |
-|Admin
 |Sicherstellung das das korrekte InventoryItem mit der korrekten QuantityMetric nachgefüllt wird.
+|Adminrechte
 |Quantity wird nachgefüllt.
 
 |I-InventoryController consume
 |
-|Admin
 |Sicherstellung das das korrekte InventoryItem mit der korrekten QuantityMetric verbraucht wird.
+|Adminrechte
 |Quantity wird verbraucht.
 
-|U-InventoryInitializer-01
+|U-InventoryInitializer
 |
-|Admin
 |Ein Inventar wird mit null initialisiert.
+|Adminrechte
 |IllegalArgumentException
 
 |===
