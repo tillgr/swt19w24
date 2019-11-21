@@ -49,7 +49,7 @@
                 </td>
                 <td th:text="${staff.getUserName()}">pperters</td>
                 <td th:if="${staff.getSkills().isEmpty()}" text="">
-                <td th:unless="${staff.getSkills().isEmpty()}" th:text="${#strings.setJoin(#messages.listMsg(#strings.setPrepend(staff.getServices(), 'orders.service.')), ', ')}">
+                <td th:unless="${staff.getSkills().isEmpty()}" th:text="${#strings.setJoin(#messages.listMsg(#strings.setPrepend(staff.getServicesNames(), 'orders.service.')), ', ')}">
                 <td>
                     <div class="form-group">
                         <select class="form-control" id="service" th:field="*{newSkill}">

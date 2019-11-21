@@ -1,13 +1,14 @@
 package missmint.users.model;
 
 import missmint.orders.service.Service;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Staff {
@@ -75,12 +76,8 @@ public class Staff {
 		return skills;
 	}
 
-	public Set<String> getServices() {
-		var services = new HashSet<String>();
-		for (Service service : skills) {
-			services.add(service.getName());
-		}
-		return services;
+	public Set<String> getServicesNames() {
+		return skills.stream().map(Product::getName).collect(Collectors.toSet());
 	}
 
 	public Double calculateSalary() {
