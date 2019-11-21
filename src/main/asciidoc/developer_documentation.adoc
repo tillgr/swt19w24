@@ -595,7 +595,7 @@ image::models/design/images/add_and_delete_staff.png[]
 
 
 === Inventar
-image::models/design/images/sd_consume_UniqiueInventoryItem.png[]
+image::models/design/images/sd_consume_UniqueInventoryItem.png[]
 image::models/design/images/sd_restock_UniqueInventoryItem.png[]
 
 === Räume
