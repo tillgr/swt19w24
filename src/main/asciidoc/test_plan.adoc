@@ -592,20 +592,10 @@ Das Ticket wird angezeigt.
 
 === Inventar
 *Tobias Köllner*
-[options="header", cols="1,1,1,4,1"]
+[options="header"]
 |===
 
-|ID 
-|Anwendungsfall
-|Vorbedingungen
-|Eingabe
-|Ausgabe
-
-|
-|
-|Admin
-|
-|
+|ID |Anwendungsfall|Vorbedingungen|Eingabe|Ausgabe
 
 |I-Catalog<Material>-findAll
 |
@@ -619,13 +609,13 @@ Das Ticket wird angezeigt.
 |Sicherstellung das alle Materialen der korrekten Kategorie zugeordnet sind.
 |Alle Materialen haben die korrekte Kategorie.
 
-|I-CatalogControllerWebIntegration
+|I-CatalogController-WebIntegration
 |
 |MockMvc, CatalogController
 |Simulation von Requests
 |Nicht-leerer Catalog wird angezeigt.
 
-|I-Catalog-sampleControllerIntegrationTest
+|I-Catalog-sampleController
 |
 |CatalogController
 |Überprüfung ob angezeigter Catalog stimmt mit tatsächlichem Catalog überein.
