@@ -1,6 +1,7 @@
 package missmint.orders.order;
 
-import missmint.orders.order.MissMintOrder;
+import missmint.rooms.RoomRepository;
+import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
@@ -11,20 +12,25 @@ import org.springframework.util.Assert;
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
+import java.util.Set;
 
 @Service
 public class OrderService {
 	private final OrderManager<MissMintOrder> orderManager;
 	private final BusinessTime businessTime;
+	private final RoomRepository rooms;
+	private final StaffRepository staffRepository;
 
 	@Value("${general.currency}")
 	private String currency;
 	@Value("${orders.pickup.compensation.percent}")
 	private long compensation;
 
-	public OrderService(OrderManager<MissMintOrder> orderManager, BusinessTime businessTime) {
+	public OrderService(OrderManager<MissMintOrder> orderManager, BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository) {
 		this.orderManager = orderManager;
 		this.businessTime = businessTime;
+		this.rooms = rooms;
+		this.staffRepository = staffRepository;
 	}
 
 	public MonetaryAmount calculateCharge(MissMintOrder order) {
@@ -44,5 +50,13 @@ public class OrderService {
 
 		Assert.isTrue(weeksStored > 0, "order has to be in the shop for a week or more to be stored");
 		return charge.add(Money.of(BigDecimal.valueOf(5, 1), currency).multiply(weeksStored));
+	}
+
+	public boolean isOrderAcceptable(missmint.orders.service.Service service) {
+		if (rooms.count() == 0) {
+			return false;
+		}
+
+		return staffRepository.countBySkillsContains(Set.of(service)) > 0;
 	}
 }
