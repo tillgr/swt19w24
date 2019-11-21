@@ -1,6 +1,7 @@
 package missmint.orders.controllers;
 
 import missmint.orders.order.MissMintOrder;
+import missmint.orders.order.OrderState;
 import missmint.orders.service.Service;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Catalog;
@@ -22,11 +23,12 @@ import java.util.Locale;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.Matchers.not;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @SpringBootTest
@@ -69,6 +71,66 @@ class PickUpControllerTests {
 			.andExpect(status().isBadRequest());
 	}
 
+	@Test
+	@WithMockUser
+	void pickupCosts() throws Exception {
+		MissMintOrder order = createOrder();
+		order.setFinished(time.getTime().toLocalDate().minusDays(15));
+		order.setOrderState(OrderState.STORED);
+		orderManager.save(order);
+
+		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
+			.andExpect(status().isOk())
+			.andExpect(content().string(containsString("Please charge the customer EUR 1.")))
+			.andExpect(content().string(not(containsString("compensation"))));
+	}
+
+	@Test
+	@WithMockUser
+	void pickupCompensation() throws Exception {
+		MissMintOrder order = createOrder();
+		order.setFinished(time.getTime().toLocalDate().minusDays(10));
+		order.setOrderState(OrderState.FINISHED);
+		orderManager.save(order);
+
+		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
+			.andExpect(status().isOk())
+			.andExpect(content().string(containsString("Please give the customer a compensation of EUR 5.")))
+			.andExpect(content().string(not(containsString("charge"))));
+	}
+
+	@Test
+	@WithMockUser
+	void pickupZero() throws Exception {
+		MissMintOrder order = createOrder();
+		order.setFinished(time.getTime().toLocalDate().minusDays(14));
+		order.setOrderState(OrderState.STORED);
+		orderManager.save(order);
+
+		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
+			.andExpect(status().isOk())
+			.andExpect(content().string(not(containsString("compensation"))))
+			.andExpect(content().string(not(containsString("charge"))));
+	}
+
+	@Test
+	@WithMockUser
+	void pickupPost() throws Exception {
+		MissMintOrder order = createOrder();
+		order.setFinished(time.getTime().toLocalDate().minusDays(0));
+		order.setOrderState(OrderState.FINISHED);
+		orderManager.save(order);
+
+		mvc.perform(post(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT).with(csrf()))
+			.andExpect(status().is3xxRedirection())
+			.andExpect(redirectedUrl("/orders"));
+
+		assertThat(order.getId()).isNotNull();
+		Optional<MissMintOrder> optionalOrder = orderManager.get(order.getId());
+		assertThat(optionalOrder).isNotEmpty();
+		assertThat(optionalOrder.get().getOrderState()).isEqualTo(OrderState.PICKED_UP);
+	}
+
 	private MissMintOrder createOrder() {
 		UserAccount userAccount = userAccountManager.create("alice", Password.UnencryptedPassword.of("password"));
 		Optional<Service> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
@@ -77,6 +139,6 @@ class PickUpControllerTests {
 
 		Service service = optionalService.get();
 		LocalDate now = time.getTime().toLocalDate();
-		return new MissMintOrder(userAccount, "Bob", now.minusMonths(1), now.minusDays(8), service);
+		return new MissMintOrder(userAccount, "Bob", now.minusMonths(1), now.minusDays(15), service);
 	}
 }

@@ -19,7 +19,7 @@
         Please give the customer a compensation of 1EUR.
     </div>
     <div class="alert alert-warning" role="alert" th:if="${charge.isPositive()}"
-    th:text="orders.pickup.extra_costs.request(${charge})">
+    th:text="#{orders.pickup.extra_costs.request(${charge})}">
         Please charge the customer 2EUR.
     </div>
     <form action="orders.html" th:action="@{/orders/pickup/{id}(id=${order.getId()})}" method="post">

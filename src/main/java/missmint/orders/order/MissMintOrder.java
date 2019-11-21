@@ -68,4 +68,8 @@ public class MissMintOrder extends Order {
 	public void setOrderState(OrderState orderState) {
 		this.orderState = orderState;
 	}
+
+	public void setFinished(LocalDate finished) {
+		this.finished = finished;
+	}
 }
