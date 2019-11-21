@@ -592,7 +592,7 @@ Das Ticket wird angezeigt.
 
 === Inventar
 *Tobias Köllner*
-[options="header", cols="1,2,2,2,2"]
+[options="header", cols="1,1,1,4,1"]
 |===
 
 |ID 
@@ -601,72 +601,64 @@ Das Ticket wird angezeigt.
 |Eingabe
 |Ausgabe
 
-|U-CatalogDataInitializer-save-01 
-|…    
+|
+|
 |Admin
-|Produkt wird mit null als Name erzeugt      
-|IllegalArgumentException
+|
+|
 
-|U-CatalogDataInitializer-save-02 
-|…    
-|Admin
-|Produkt wird mit "" als Name erzeugt      
-|IllegalArgumentException
+|I-Catalog<Material>-findAll
+|
+|Catalog<Material>
+|Sicherstellung das alle nötigen Materialen im Catalog sind.
+|Alle Materialen sind vorhanden.
 
-|U-CatalogDataInitializer-save-03 
-|…    
-|Admin
-|Produkt wird mit null als Preis erzeugt      
-|IllegalArgumentException
+|I-Catalog<Material>-correctCategory
+|
+|Catalog<Material>
+|Sicherstellung das alle Materialen der korrekten Kategorie zugeordnet sind.
+|Alle Materialen haben die korrekte Kategorie.
 
-|U-CatalogDataInitializer-save-04 
-|…    
-|Admin
-|Produkt wird mit null als Metrixerzeugt      
-|IllegalArgumentException
+|I-CatalogControllerWebIntegration
+|
+|MockMvc, CatalogController
+|Simulation von Requests
+|Nicht-leerer Catalog wird angezeigt.
 
-|U-CatalogDataInitializer-save-05
-|…    
-|Admin
-|Katalog wird mit null initialisiert     
-|IllegalArgumentException
+|I-Catalog-sampleControllerIntegrationTest
+|
+|CatalogController
+|Überprüfung ob angezeigter Catalog stimmt mit tatsächlichem Catalog überein.
+|Korrekter Catalog wird angezeigt.
 
-|U-CatalogDataInitializer-save-06
-|…    
+|I-InventoryController-publicAccess
+|
+|Nutzer ohne Adminrechte
+|Nutzer versucht auf Lager zuzugreifen.
+|Zugriffsverweigerung aufgrund fehlender Rechte.
+
+|I-InventoryController-AdminAccess
+|
+|Adminrechte
+|Admin versucht auf Lager zuzugreifen.
+|Zugriff wir zugelassen.
+
+|I-InventoryController-restock
+|
 |Admin
-|Produkt wird mit validen Attributen gesaved.    
-|Produkt landet im Katalog
+|Sicherstellung das das korrekte InventoryItem mit der korrekten QuantityMetric nachgefüllt wird.
+|Quantity wird nachgefüllt.
+
+|I-InventoryController-consume
+|
+|Admin
+|Sicherstellung das das korrekte InventoryItem mit der korrekten QuantityMetric verbraucht wird.
+|Quantity wird verbraucht.
 
 |U-InventoryInitializer-01
 |
 |Admin
-|Ein Inventar wird mit null initialisiert
+|Ein Inventar wird mit null initialisiert.
 |IllegalArgumentException
 
 |===
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
