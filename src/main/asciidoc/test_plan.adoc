@@ -592,54 +592,54 @@ Das Ticket wird angezeigt.
 
 === Inventar
 *Tobias Köllner*
-[options="header"]
+[width="80%", cols"1,^2,^2,10,1", options="header, pgwide"]
 |===
 
 |ID |Anwendungsfall|Vorbedingungen|Eingabe|Ausgabe
 
-|I-Catalog<Material>-findAll
+|I-Catalog<Material> findAll
 |
 |Catalog<Material>
 |Sicherstellung das alle nötigen Materialen im Catalog sind.
 |Alle Materialen sind vorhanden.
 
-|I-Catalog<Material>-correctCategory
+|I-Catalog<Material> correctCategory
 |
 |Catalog<Material>
 |Sicherstellung das alle Materialen der korrekten Kategorie zugeordnet sind.
 |Alle Materialen haben die korrekte Kategorie.
 
-|I-CatalogController-WebIntegration
+|I-CatalogController WebIntegration
 |
 |MockMvc, CatalogController
 |Simulation von Requests
 |Nicht-leerer Catalog wird angezeigt.
 
-|I-Catalog-sampleController
+|I-Catalog sampleController
 |
 |CatalogController
 |Überprüfung ob angezeigter Catalog stimmt mit tatsächlichem Catalog überein.
 |Korrekter Catalog wird angezeigt.
 
-|I-InventoryController-publicAccess
+|I-InventoryController publicAccess
 |
 |Nutzer ohne Adminrechte
 |Nutzer versucht auf Lager zuzugreifen.
 |Zugriffsverweigerung aufgrund fehlender Rechte.
 
-|I-InventoryController-AdminAccess
+|I-InventoryController adminAccess
 |
 |Adminrechte
 |Admin versucht auf Lager zuzugreifen.
 |Zugriff wir zugelassen.
 
-|I-InventoryController-restock
+|I-InventoryController restock
 |
 |Admin
 |Sicherstellung das das korrekte InventoryItem mit der korrekten QuantityMetric nachgefüllt wird.
 |Quantity wird nachgefüllt.
 
-|I-InventoryController-consume
+|I-InventoryController consume
 |
 |Admin
 |Sicherstellung das das korrekte InventoryItem mit der korrekten QuantityMetric verbraucht wird.
