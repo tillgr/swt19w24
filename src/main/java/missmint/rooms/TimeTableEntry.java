@@ -8,17 +8,16 @@ import java.time.LocalDate;
 
 @Entity
 public class TimeTableEntry {
-	private @Id @GeneratedValue long id;
+	@Id @GeneratedValue private long id;
 	@ManyToOne
 	private MissMintOrder order;
-	@ManyToOne		//TODO stimmt das?
+	@ManyToOne
 	private Staff staff;
 	private int slotsPos;
-
 	@ManyToOne
 	private Room room;
 
-	public TimeTableEntry (int start, int end, Room room){
+	public TimeTableEntry (Room room){
 		this.room = room;
 	}
 
@@ -45,17 +44,6 @@ public class TimeTableEntry {
 	public void setSlotsPos(int slotsPos) {
 		this.slotsPos = slotsPos;
 	}
-
-	/*
-	public Staff getStaff() {
-		return staff;
-	}
-
-	public void setStaff(Staff staff) {
-		this.staff = staff;
-	}
-
-	 */
 
 	public MissMintOrder getOrder() {
 		return order;

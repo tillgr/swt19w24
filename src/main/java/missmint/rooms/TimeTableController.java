@@ -12,13 +12,13 @@ import java.util.Set;
 @Controller
 public class TimeTableController {
 
-	private RoomsRepository rooms;
-	private EntriesRepository entries;
+	private RoomRepository rooms;
+	private EntryRepository entries;
 	private Set<TimeTableEntry> existingEntries;
 	private LocalDate date;
 
 
-	public TimeTableController(RoomsRepository rooms, EntriesRepository entries){
+	public TimeTableController(RoomRepository rooms, EntryRepository entries){
 		this.entries=entries;
 		this.rooms=rooms;
 		this.date=LocalDate.now();
