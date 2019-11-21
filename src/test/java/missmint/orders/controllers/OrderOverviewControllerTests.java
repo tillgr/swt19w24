@@ -17,6 +17,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -75,7 +76,6 @@ class OrderOverviewControllerTests {
 			.andExpect(content().string(not(containsString(String.format("/orders/pickup/%s", order.getId())))));
 
 		// TODO Customer Item test
-		// TODO button tests
 	}
 
 
@@ -130,7 +130,8 @@ class OrderOverviewControllerTests {
 		assertThat(optionalService).isNotEmpty();
 
 		Service service = optionalService.get();
-		MissMintOrder order = new MissMintOrder(userAccount, "Bob", time.getTime().toLocalDate(), time.getTime().toLocalDate().plusDays(1), service);
+		LocalDate now = time.getTime().toLocalDate();
+		MissMintOrder order = new MissMintOrder(userAccount, "Bob", now, now.plusDays(1), service);
 		orderManager.save(order);
 		return order;
 	}

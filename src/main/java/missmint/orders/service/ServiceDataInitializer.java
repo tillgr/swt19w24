@@ -17,7 +17,7 @@ public class ServiceDataInitializer implements DataInitializer {
 
 	@Value("${orders.services.price}")
 	private int price;
-	@Value("${orders.services.currency}")
+	@Value("${general.currency}")
 	private String currency;
 
 	private Catalog<Service> catalog;
