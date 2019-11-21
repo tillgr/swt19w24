@@ -199,7 +199,7 @@ image::models/design/images/dialog.png[]
 
 |Catalog 
 |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog 
-|OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer, InventoryCatalog
+|OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer, CatalogController, CatalogDataInitializer, InventoryInitializer
 
 |Component 
 |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component 
@@ -227,11 +227,15 @@ image::models/design/images/dialog.png[]
 
 |GetMapping 
 |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping 
-|PickUpController, ReceivingController, UserController, CatalogController, FinanceController
+|PickUpController, ReceivingController, UserController, CatalogController, InventoryController, FinanceController
 
 |HttpStatus 
 |org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus 
 |PickUpController, ReceivingController
+
+|InventoryItemIdentifier
+|org.salespointframework.inventory.InventoryItemIdentifier
+|InventoryController
 
 |LoggedIn
 |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}web.{zwsp}LoggedIn
@@ -239,15 +243,19 @@ image::models/design/images/dialog.png[]
 
 |Metric
 |org.salespointframework.quantity.Metric
-|UltimateProduct,CatalogDataInitializer 
+|orderItem, Material, CatalogDataInitializer, InventoryInitializer 
 
 |Model 
 |org.{zwsp}springframework.{zwsp}ui.{zwsp}Model 
-|OrdersController, PickUpController, ReceivingController, UserController, CatalogController, FinanceController
+|OrdersController, PickUpController, ReceivingController, UserController, CatalogController, InventoryController, FinanceController
 
 |Money 
 |org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money 
-|OrderService, ServiceDataInitializer, UltimateProduct, CatalogDataInitializer
+|OrderService, ServiceDataInitializer, CatalogDataInitializer
+
+|MonetaryAmount
+|import javax.money.MonetaryAmount
+|orderItem, Material
 
 |OnDelete
 |org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDelete;
@@ -279,15 +287,15 @@ image::models/design/images/dialog.png[]
 
 |Pair 
 |org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair 
-|ServiceDataInitializer
+|ServiceDataInitializer, CatalogDataInitializer
 
 |PathVariable 
 |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable 
-|PickUpController, UserController
+|PickUpController, UserController, InventoryController
 
 |Product 
 |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product 
-|Service, UltimateProduct
+|Service, orderItem, Material
 
 |ProductIdentifier 
 |org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier 
@@ -295,7 +303,7 @@ image::models/design/images/dialog.png[]
 
 |PostMapping
 |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping 
-|PickUpController, ReceivingController, UserController
+|PickUpController, ReceivingController, UserController, InventoryController
 
 |PreAuthorize 
 |org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize 
@@ -307,7 +315,7 @@ image::models/design/images/dialog.png[]
 
 |Quantity 
 |org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity 
-|MissMintOrder, InventoryInitializer
+|MissMintOrder, InventoryInitializer, InventoryController
 
 |RequestMapping 
 |org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping 
@@ -321,21 +329,17 @@ image::models/design/images/dialog.png[]
 |org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service 
 |OrderService, UserManagement, FinanceManager
 
-|Sort
-|org.springframework.data.domain.Sort
-|InventoryCatalog
-
 |Streamable
 |org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Streamable
-|FinanceManager
+|FinanceManager, InventoryController, CatalogDataInitializer
 
 |UniqueInventory
 |org.salespointframework.inventory.UniqueInventory
-|InventoryInitializer
+|InventoryInitializer, InventoryController
 
 |UniqueInventoryItem
 |org.salespointframework.inventory.UniqueInventoryItem
-|InventoryInitializer, InventoryController, CatalogController
+|InventoryInitializer, InventoryController
 
 |UserAccount 
 |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount 
@@ -443,17 +447,14 @@ image::models/design/images/Inventory.png[]
 |CatalogDataInitializer
 |Implementation des ``DataInitializer``s für den Produktkatalog
 
-|InventoryCatalog
-|Erweiterung des Salespoint``Catalog``s der Sortierung nach `ProductType` ermöglicht.
-
 |InventoryController
 |Ein Spring MVC Controller, der Anfragen bezüglich des Materialinventars annimmt.
 
 |InventoryInitializer
 |Implementation des ``DataInitializer``s für die Inventare der jeweiligen Produkte.
 
-|UltimateProduct
-|Erweiterung des Salespoint ``Product``s , mit zusätzlichen Eigenschaften um Filtern nach eigenen Attributen zu ermöglichen.
+|orderItem, Material
+|Erweiterung des Salespoint ``Product``s.
 
 |===
 
@@ -558,7 +559,7 @@ der Financedaten.
 |-
 
 |Resource
-|UltimateProduct
+|orderItem, Material
 
 |Room
 |Room
