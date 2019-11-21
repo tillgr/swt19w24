@@ -11,8 +11,8 @@ public class TimeTableEntry {
 	private @Id @GeneratedValue long id;
 	@ManyToOne
 	private MissMintOrder order;
-	//@ManyToMany		//TODO stimmt das?
-	//private Staff staff;
+	@ManyToOne		//TODO stimmt das?
+	private Staff staff;
 	private int slotsPos;
 
 	@ManyToOne
