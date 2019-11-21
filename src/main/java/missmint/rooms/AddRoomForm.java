@@ -14,6 +14,6 @@ public class AddRoomForm {
 	}
 
 	public Room createRoom(EntryRepository entries, RoomRepository rooms){
-		return new Room(name, entries, rooms);
+		return new Room(name);
 	}
 }
