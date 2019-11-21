@@ -1,6 +1,7 @@
 package missmint.orders.controllers;
 
 import missmint.orders.order.MissMintOrder;
+import missmint.orders.order.OrderState;
 import missmint.orders.service.Service;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Catalog;
@@ -70,9 +71,31 @@ class OrderOverviewControllerTests {
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString(String.valueOf(order.getId()))))
 			.andExpect(content().string(containsString(order.getCustomer())))
-			.andExpect(content().string(containsString(String.format("/orders/%s", order.getId()))));
+			.andExpect(content().string(containsString(String.format("/orders/detail/%s", order.getId()))))
+			.andExpect(content().string(not(containsString(String.format("/orders/pickup/%s", order.getId())))));
+
 		// TODO Customer Item test
 		// TODO button tests
+	}
+
+
+	@Test
+	@WithMockUser()
+	void ordersReturn() throws Exception {
+		UserAccount userAccount = userAccountManager.create("alice", Password.UnencryptedPassword.of("password"));
+		Optional<Service> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
+
+		assertThat(optionalService).isNotEmpty();
+
+		Service service = optionalService.get();
+		MissMintOrder order = new MissMintOrder(userAccount, "Bob", time.getTime().toLocalDate().minusWeeks(1), time.getTime().toLocalDate().plusDays(1), service);
+		order.setOrderState(OrderState.FINISHED);
+		orderManager.save(order);
+
+		mvc.perform(get("/orders/").locale(Locale.ROOT))
+			.andExpect(status().isOk())
+			.andExpect(content().string(containsString(String.valueOf(order.getId()))))
+			.andExpect(content().string(containsString(String.format("/orders/pickup/%s", order.getId()))));
 	}
 
 	@Test

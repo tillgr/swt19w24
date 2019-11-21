@@ -64,4 +64,8 @@ public class MissMintOrder extends Order {
 	public OrderState getOrderState() {
 		return orderState;
 	}
+
+	public void setOrderState(OrderState orderState) {
+		this.orderState = orderState;
+	}
 }
