@@ -18,6 +18,23 @@
 <div class="container mt-md-5">
     <h1>Räume</h1>
 
+
+
+    <form method="post" th:object="${form}" th:action="@{/rooms/add}">
+        <div class="card mt-2">
+            <div class="card-header">
+                <h3>Raumname eingeben</h3>
+                <input th:field="*{name}" type="text">
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            </div>
+            <div class="card-footer text-muted">
+                <button class="btn btn-warning" type="submit">Hinzufügen</button>
+            </div>
+        </div>
+    </form>
+    <br>
+
+
     <ul class="list-group" th:each="room : ${rooms}">
         <li class="list-group-item" th:text="${room.name}"></li>
         <li class="list-group-item">
