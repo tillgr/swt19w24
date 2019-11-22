@@ -1,6 +1,7 @@
 package missmint.inventory.controller;
 
 
+import missmint.inventory.products.Material;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Objects;
 
 
 @Controller
@@ -125,4 +128,14 @@ public class InventoryController {
 
 		return "redirect:/material";
 	}
+
+	public void consume(UniqueInventoryItem item1, Material material1){
+		var id1 = getMaterialInventory().findByProductIdentifier(Objects.requireNonNull(material1.getId())).stream().iterator().next().getId();
+		if (item1.getQuantity().getMetric().equals(Metric.UNIT)){
+			getMaterialInventory().findById(id1).ifPresent(itNQM ->
+				getMaterialInventory().save(itNQM.increaseQuantity(Quantity.of(5, Metric.SQUARE_METER)))
+			);
+		}
+	}
 }
+
