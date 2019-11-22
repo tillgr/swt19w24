@@ -25,25 +25,24 @@ _Teilnehmer:__
 Till zu spät
 
 == Aufgaben
-- Prototypen
 - DevDoc
-- Testplan vervollständigen/anpassen ( Till, Anna, Kien)
+- Testplan vervollständigen/anpassen ( Till, Anna, Kien) (Konstruktoren)
+- Basisfunktionen: es funktionert
 
-Zusatźaufgaben
-Admin kann order schließen.
-Kostenbegründung
+- Aktzeptierbarkeit
+- neu Orders in Zeitslot einsortieren
+- Zeitslot anlegen
+- eigene Finanzeneinträge hinzufügen
+- Materialen hinzufügen/entfernen
+- Mitarbeiter hinzufügen
+- Autoreorder von Materialen
+- 
 
+== Zusatzaufgaben
+- Admin kann order schließen.
+- Kostenbegründung
+- SpezialAuftrag
 == Aktueller Stand
 - Prototypen
 - DevDoc
 - Testplan
-
-== Planung des nächsten Sprints
-*Issue referenziert die Issue ID von GitHub*
-
-// See http://asciidoctor.org/docs/user-manual/=tables
-[option="headers"]
-|===
-|Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
-|===
