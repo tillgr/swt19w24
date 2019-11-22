@@ -1,0 +1,49 @@
+= Protokoll Gruppe 24
+
+Treffen am 22.11.2019
+
+Ort:      Ort des Treffens +
+Beginn:   xx:xx Uhr +
+Ende:     xx:xx Uhr
+
+__Schriftführer:__
+Tobias Köllner
+
+*Nächstes Treffen:* +
+29.11.2019, 15:00 Uhr,
+
+_Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+== Bemerkungen
+Till zu spät
+
+== Aufgaben
+- Prototypen
+- DevDoc
+- Testplan vervollständigen/anpassen ( Till, Anna, Kien)
+
+Zusatźaufgaben
+Admin kann order schließen.
+Kostenbegründung
+
+== Aktueller Stand
+- Prototypen
+- DevDoc
+- Testplan
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===
