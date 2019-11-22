@@ -534,13 +534,13 @@ Das Ticket wird angezeigt.
 |Ein Eingabefeld leer
 |IllegalArgumentException, Error Meldung wird angezeigt
 
-|I-RoomController-addRoom-02
+|U-RoomController-addRoom-02
 |UC0010
 |Es wurden Räume hinzugefügt.
 |Valider Name, valide Dienstleistung
 |Raum wird hinzugefügt, Slots werden automatisch
 
-|I-RoomController-deleteRoom-01
+|U-RoomController-deleteRoom-01
 |UC0020
 |Es wurden Räume hinzugefügt, Slots erstellt.
 |Raum löschen
@@ -587,6 +587,60 @@ Das Ticket wird angezeigt.
 |Es existieren Räume und kein Slot ist gebucht.
 |Slot Buchen zurückbuchen
 |Kein Slots verändert sich.
+
+|U-TimeTableEntry-Constructor-01
+|UC0060
+|Es existieren keine Einträge.
+|Raum erstellen, Startzeit = Endzeit
+|IllegalArgumentException
+
+|U-TimeTableEntry-Constructor-02
+|UC0060
+|Es existieren keine Einträge.
+|Raum erstellen, Startzeit > Endzeit
+|IllegalArgumentException
+
+|U-TimeTableEntry-Constructor-03
+|UC0060
+|Es existieren keine Einträge.
+|Raum erstellen, Startzeit < Endzeit
+|Eintrag wird erstellt.
+
+|U-TimeTableEntry-Constructor-04
+|UC0060
+|Es existieren keine Räume.
+|Raum erstellen, keine Eingabe
+|Kein Raum wird erstellt, Meldung im Frontend
+
+|U-TimeTableEntry-Constructor-05
+|UC0060
+|Es existieren Räume.
+|Raum erstellen, keine Eingabe
+|Kein Raum wird erstellt, Meldung im Frontend
+
+|U-Room-Constructor-01
+|UC0070
+|Es existieren keine Räume.
+|Raum erstellen, keine Eingabe
+|Kein Raum wird erstellt, keine Einträge werden erstellt, Meldung im Frontend
+
+|U-Room-Constructor-02
+|UC0070
+|Es existieren Räume.
+|Raum erstellen, keine Eingabe
+|Kein Raum wird erstellt, keine Einträge werden erstellt, Meldung im Frontend
+
+|U-Room-Constructor-03
+|UC0070
+|Es existieren keine Räume.
+|Raum erstellen, valide Eingabe
+|Räume werden, Einträge werden erstellt
+
+|U-Room-Constructor-04
+|UC0070
+|Es existieren Räume.
+|Raum erstellen, valide Eingabe
+|Räume werden, Einträge werden erstellt
 |===
 
 
