@@ -6,21 +6,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FinanceService {
-	private final FinanceRepository financeRepository;
+	//private final FinanceRepository financeRepository;
 	private final Accountancy accountancy;
 
-	public FinanceService(FinanceRepository financeRepository, Accountancy accountancy) {
-		this.financeRepository = financeRepository;
+	public FinanceService(Accountancy accountancy) {
+		//this.financeRepository = financeRepository;
 		this.accountancy = accountancy;
 	}
 
 	public Iterable <AccountancyEntry> showAllFinance(){
-		return financeRepository.findAll();
+		return accountancy.findAll();
 	}
 
 	public void add(AccountancyEntry accountancyEntry){
-		//accountancy.add(accountancyEntry);
-		financeRepository.save(accountancyEntry);
+		accountancy.add(accountancyEntry);
+		//financeRepository.save(accountancyEntry);
 	}
 
 }

@@ -25,7 +25,7 @@ public class FinanceDataInitializer implements DataInitializer {
 	public void initialize() {
 		LOG.info("Das hat funktioniert");
 
-		financeService.add(new AccountancyEntry(Money.of(12, "USD")));
+		financeService.add(new AccountancyEntry(Money.of(12, "USD"), "Knöpfe x 409"));
 
 	}
 }

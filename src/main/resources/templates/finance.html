@@ -27,9 +27,10 @@
         </thead>
         <tbody>
         <tr th:each="item: ${finance}">
-            <th scope="row" th:text="${item.Id}">1</th>
+            <th scope="row" th:text="${item.getId()}">1</th>
 
-            <td th:text="${item.Value}">12.01.2019</td>
+            <td th:text="${item.getValue()}">12.01.2019</td>
+            <td th:text="${item.getValue()}">12.01.2019</td>
         </tr>
         </tbody>
     </table>
