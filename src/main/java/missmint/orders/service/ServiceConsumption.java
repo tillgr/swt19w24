@@ -1,32 +1,43 @@
 package missmint.orders.service;
 
-import com.mysema.commons.lang.Assert;
-import javafx.util.Pair;
-import missmint.inventory.products.Material;
-import org.salespointframework.quantity.Quantity;
-import org.springframework.stereotype.Service;
+import org.salespointframework.catalog.ProductIdentifier;
+import org.springframework.util.Assert;
 
-import java.util.*;
+import javax.persistence.*;
+import java.util.Map;
 
-@Service
+@Entity
 public class ServiceConsumption {
+	@Id
+	@GeneratedValue
+	private Long id;
 
-	private Map<MissMintService, Set<Pair<Material, Quantity>>> serviceMatRelation;
+	@Enumerated(EnumType.STRING)
+	private ServiceCategory serviceCategory;
 
-	public ServiceConsumption() {
-		serviceMatRelation = new HashMap<>();
+	@ElementCollection
+	private Map<ProductIdentifier, Integer> materialCostMap;
+
+	public ServiceConsumption() {}
+
+	public ServiceConsumption(ServiceCategory serviceCategory, Map<ProductIdentifier, Integer> materialCostMap) {
+
+		Assert.notNull(serviceCategory, "ServiceCategory must not be null");
+		Assert.notNull(materialCostMap, "Map must not be null");
+
+		this.serviceCategory = serviceCategory;
+		this.materialCostMap = materialCostMap;
 	}
 
-	public Set<Pair<Material, Quantity>> getSetOfMaterialQuantity(MissMintService service) {
-		return serviceMatRelation.get(service);
+	public Long getId() {
+		return id;
 	}
 
-	public boolean setServiceMaterialCost(MissMintService service, Collection<Pair<Material, Quantity>> matCostSet) {
+	public ServiceCategory getServiceCategory() {
+		return serviceCategory;
+	}
 
-		Assert.notNull(service, "Service must not be null.");
-		Assert.notNull(matCostSet, "Collection must not be null.");
-
-		var set = serviceMatRelation.computeIfAbsent(service, k -> new HashSet<>());
-		return set.addAll(matCostSet);
+	public Map<ProductIdentifier, Integer> getMaterialCostMap() {
+		return materialCostMap;
 	}
 }
