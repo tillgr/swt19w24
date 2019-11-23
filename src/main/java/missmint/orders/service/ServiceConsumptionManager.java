@@ -13,27 +13,29 @@ import static org.salespointframework.core.Currencies.EURO;
 
 public class ServiceConsumptionManager {
 
-	public final static Map<ServiceCategory, Set<Pair<Material, Quantity>>> serviceMatRelation = Map.of(
+	public final static Map<ServiceCategory, Set<Pair<String, Quantity>>> serviceMatRelation = Map.of(
 		ServiceCategory.KLUDGE,
 		Set.of(
-			new Pair<>(new Material("Stoff", Money.of(1, EURO), Metric.UNIT), Quantity.of(2, Metric.UNIT))
+			new Pair<>("heel", Quantity.of(2, Metric.UNIT)),
+			new Pair<>("sole", Quantity.of(2, Metric.UNIT))
 		),
 		ServiceCategory.SEWING,
 		Set.of(
-			new Pair<>(new Material("Stoff", Money.of(1, EURO), Metric.UNIT), Quantity.of(2, Metric.UNIT)),
-			new Pair<>(new Material("Naht", Money.of(1, EURO), Metric.METER), Quantity.of(2, Metric.METER))
+			new Pair<>("string", Quantity.of(1, Metric.METER)),
+			new Pair<>("fabric", Quantity.of(1, Metric.SQUARE_METER))
 		),
 		ServiceCategory.LOCKSMITH,
-		Set.of(),
+		Set.of(new Pair<>("blank key", Quantity.of(1, Metric.UNIT))),
 		ServiceCategory.CLEANING,
-		Set.of(
-			new Pair<>(new Material("Reinigungsmittel", Money.of(1, EURO), Metric.LITER), Quantity.of(1, Metric.LITER))
-		),
+		Set.of(new Pair<>("detergent", Quantity.of(10, Metric.LITER))),
 		ServiceCategory.ELECTRONICS,
 		Set.of(
-			new Pair<>(new Material("Kabel", Money.of(1, EURO), Metric.METER), Quantity.of(5, Metric.METER))
+			new Pair<>("soldering wire", Quantity.of(2, Metric.METER)),
+			new Pair<>("soldering flux", Quantity.of(1, Metric.LITER)),
+			new Pair<>("screws", Quantity.of(1, Metric.UNIT)),
+			new Pair<>("nuts", Quantity.of(1, Metric.UNIT))
 		),
 		ServiceCategory.GRINDERY,
-		Set.of()
+		Set.of(new Pair<>("sanding-paper", Quantity.of(2, Metric.UNIT)))
 	);
 }
