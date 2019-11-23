@@ -1,5 +1,6 @@
 package missmint.orders.order;
 
+import missmint.orders.service.ServiceUtils;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;
@@ -52,13 +53,6 @@ public class OrderService {
 	}
 
 	public boolean isOrderAcceptable(missmint.orders.service.Service service) {
-		if (rooms.count() == 0) {
-			return false;
-		}
-
-		return true;
-
-		// TODO staff skills
-		//return staffRepository.countBySkillsContains(Set.of(service)) > 0;
+		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceUtils.getCategory(service));
 	}
 }
