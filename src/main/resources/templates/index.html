@@ -16,10 +16,13 @@
 <div class="container mt-md-3">
     <h1 th:text="#{general.projectname}">Miss-Mint store management</h1>
 
-    <p>
-        <strong th:text="#{index.pleaselogin}" sec:authorize="isAnonymous()">
+    <p sec:authorize="isAnonymous()">
+        <strong th:text="#{index.pleaselogin}">
             Please log in to use the management software.
         </strong>
+    </p>
+    <p sec:authorize="isAuthenticated()" th:text="#{general.current-time(${time})}">
+        Die aktuelle Zeit ist 2019-11-23.
     </p>
 </div>
 
