@@ -4,7 +4,7 @@ import missmint.Utils;
 import missmint.orders.forms.ReceivingForm;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
-import missmint.orders.service.Service;
+import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceManager;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
@@ -52,7 +52,7 @@ public class ReceivingController {
 			return receiving(model, form);
 		}
 
-		Service service = Utils.getOrThrow(serviceManager.findById(form.getService()));
+		MissMintService service = Utils.getOrThrow(serviceManager.findById(form.getService()));
 
 		if (!orderService.isOrderAcceptable(service)) {
 			model.addAttribute("notAcceptable", true);

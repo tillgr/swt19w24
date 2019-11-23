@@ -35,21 +35,21 @@ public class ServiceDataInitializer implements DataInitializer {
 		}
 
 		Stream.of(
-			Pair.of(new Service("kludge-heels", Money.of(price, currency)), ServiceCategory.KLUDGE.name()),
-			Pair.of(new Service("kludge-sole", Money.of(price, currency)), ServiceCategory.KLUDGE.name()),
-			Pair.of(new Service("kludge-seam", Money.of(price, currency)), ServiceCategory.KLUDGE.name()),
-			Pair.of(new Service("sewing-buttons", Money.of(price, currency)), ServiceCategory.SEWING.name()),
-			Pair.of(new Service("sewing-seam", Money.of(price, currency)), ServiceCategory.SEWING.name()),
-			Pair.of(new Service("sewing-patch", Money.of(price, currency)), ServiceCategory.SEWING.name()),
-			Pair.of(new Service("locksmith-copy", Money.of(price, currency)), ServiceCategory.LOCKSMITH.name()),
-			Pair.of(new Service("locksmith-engrave", Money.of(price, currency)), ServiceCategory.LOCKSMITH.name()),
-			Pair.of(new Service("cleaning-laundry", Money.of(price, currency)), ServiceCategory.CLEANING.name()),
-			Pair.of(new Service("cleaning-suits", Money.of(price, currency)), ServiceCategory.CLEANING.name()),
-			Pair.of(new Service("cleaning-leather", Money.of(price, currency)), ServiceCategory.CLEANING.name()),
-			Pair.of(new Service("electronics-replace", Money.of(price, currency)), ServiceCategory.ELECTRONICS.name()),
-			Pair.of(new Service("electronics-brazing", Money.of(price, currency)), ServiceCategory.ELECTRONICS.name()),
-			Pair.of(new Service("grindery-scissors", Money.of(price, currency)), ServiceCategory.GRINDERY.name()),
-			Pair.of(new Service("grindery-knifes", Money.of(price, currency)), ServiceCategory.GRINDERY.name())
+			Pair.of(new MissMintService("kludge-heels", Money.of(price, currency)), ServiceCategory.KLUDGE.name()),
+			Pair.of(new MissMintService("kludge-sole", Money.of(price, currency)), ServiceCategory.KLUDGE.name()),
+			Pair.of(new MissMintService("kludge-seam", Money.of(price, currency)), ServiceCategory.KLUDGE.name()),
+			Pair.of(new MissMintService("sewing-buttons", Money.of(price, currency)), ServiceCategory.SEWING.name()),
+			Pair.of(new MissMintService("sewing-seam", Money.of(price, currency)), ServiceCategory.SEWING.name()),
+			Pair.of(new MissMintService("sewing-patch", Money.of(price, currency)), ServiceCategory.SEWING.name()),
+			Pair.of(new MissMintService("locksmith-copy", Money.of(price, currency)), ServiceCategory.LOCKSMITH.name()),
+			Pair.of(new MissMintService("locksmith-engrave", Money.of(price, currency)), ServiceCategory.LOCKSMITH.name()),
+			Pair.of(new MissMintService("cleaning-laundry", Money.of(price, currency)), ServiceCategory.CLEANING.name()),
+			Pair.of(new MissMintService("cleaning-suits", Money.of(price, currency)), ServiceCategory.CLEANING.name()),
+			Pair.of(new MissMintService("cleaning-leather", Money.of(price, currency)), ServiceCategory.CLEANING.name()),
+			Pair.of(new MissMintService("electronics-replace", Money.of(price, currency)), ServiceCategory.ELECTRONICS.name()),
+			Pair.of(new MissMintService("electronics-brazing", Money.of(price, currency)), ServiceCategory.ELECTRONICS.name()),
+			Pair.of(new MissMintService("grindery-scissors", Money.of(price, currency)), ServiceCategory.GRINDERY.name()),
+			Pair.of(new MissMintService("grindery-knifes", Money.of(price, currency)), ServiceCategory.GRINDERY.name())
 		).forEach(pair -> {
 			pair.getFirst().addCategory(pair.getSecond());
 			pair.getFirst().addCategory("SERVICE");

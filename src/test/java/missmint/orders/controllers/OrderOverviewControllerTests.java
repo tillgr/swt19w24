@@ -2,7 +2,7 @@ package missmint.orders.controllers;
 
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
-import missmint.orders.service.Service;
+import missmint.orders.service.MissMintService;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
@@ -42,7 +42,7 @@ class OrderOverviewControllerTests {
 	@Autowired
 	private BusinessTime time;
 	@Autowired
-	private Catalog<Service> serviceCatalog;
+	private Catalog<MissMintService> serviceCatalog;
 
 	//@Test
 	void unauthenticated() throws Exception {
@@ -82,11 +82,11 @@ class OrderOverviewControllerTests {
 	@WithMockUser()
 	void ordersReturn() throws Exception {
 		UserAccount userAccount = userAccountManager.create("alice", Password.UnencryptedPassword.of("password"));
-		Optional<Service> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
+		Optional<MissMintService> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
 
 		assertThat(optionalService).isNotEmpty();
 
-		Service service = optionalService.get();
+		MissMintService service = optionalService.get();
 		MissMintOrder order = new MissMintOrder(userAccount, "Bob", time.getTime().toLocalDate().minusWeeks(1), time.getTime().toLocalDate().plusDays(1), service);
 		order.setOrderState(OrderState.FINISHED);
 		orderManager.save(order);
@@ -124,11 +124,11 @@ class OrderOverviewControllerTests {
 
 	private MissMintOrder createOrder() {
 		UserAccount userAccount = userAccountManager.create("alice", Password.UnencryptedPassword.of("password"));
-		Optional<Service> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
+		Optional<MissMintService> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
 
 		assertThat(optionalService).isNotEmpty();
 
-		Service service = optionalService.get();
+		MissMintService service = optionalService.get();
 		LocalDate now = time.getTime().toLocalDate();
 		MissMintOrder order = new MissMintOrder(userAccount, "Bob", now, now.plusDays(1), service);
 		orderManager.save(order);

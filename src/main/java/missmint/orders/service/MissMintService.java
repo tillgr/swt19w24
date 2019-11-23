@@ -6,11 +6,11 @@ import javax.money.MonetaryAmount;
 import javax.persistence.Entity;
 
 @Entity
-public class Service extends Product {
-	public Service() {
+public class MissMintService extends Product {
+	public MissMintService() {
 	}
 
-	public Service(String name, MonetaryAmount price) {
+	public MissMintService(String name, MonetaryAmount price) {
 		super(name, price);
 	}
 }

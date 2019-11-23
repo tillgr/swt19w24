@@ -2,8 +2,7 @@ package missmint.orders.controllers;
 
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
-import missmint.orders.service.Service;
-import org.junit.jupiter.api.Test;
+import missmint.orders.service.MissMintService;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +44,7 @@ class PickUpControllerTests {
 	@Autowired
 	private BusinessTime time;
 	@Autowired
-	private Catalog<Service> serviceCatalog;
+	private Catalog<MissMintService> serviceCatalog;
 
 	//@Test
 	void unauthenticated() throws Exception {
@@ -133,11 +131,11 @@ class PickUpControllerTests {
 
 	private MissMintOrder createOrder() {
 		UserAccount userAccount = userAccountManager.create("alice", Password.UnencryptedPassword.of("password"));
-		Optional<Service> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
+		Optional<MissMintService> optionalService = serviceCatalog.findByName("sewing-buttons").get().findAny();
 
 		assertThat(optionalService).isNotEmpty();
 
-		Service service = optionalService.get();
+		MissMintService service = optionalService.get();
 		LocalDate now = time.getTime().toLocalDate();
 		return new MissMintOrder(userAccount, "Bob", now.minusMonths(1), now.minusDays(15), service);
 	}

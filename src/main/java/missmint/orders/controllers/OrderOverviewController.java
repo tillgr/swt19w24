@@ -2,7 +2,7 @@ package missmint.orders.controllers;
 
 import missmint.Utils;
 import missmint.orders.order.MissMintOrder;
-import missmint.orders.service.Service;
+import missmint.orders.service.MissMintService;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.order.OrderManager;
@@ -19,9 +19,9 @@ import java.util.Optional;
 @Controller
 public class OrderOverviewController {
 	private final OrderManager<MissMintOrder> orderManager;
-	private final Catalog<Service> catalog;
+	private final Catalog<MissMintService> catalog;
 
-	public OrderOverviewController(OrderManager<MissMintOrder> orderManager, Catalog<Service> catalog) {
+	public OrderOverviewController(OrderManager<MissMintOrder> orderManager, Catalog<MissMintService> catalog) {
 		this.orderManager = orderManager;
 		this.catalog = catalog;
 	}
@@ -43,7 +43,7 @@ public class OrderOverviewController {
 		model.addAttribute("order", order);
 
 		ProductIdentifier productIdentifier = Utils.getOrThrow(order.getOrderLines().stream().findAny()).getProductIdentifier();
-		Service service = Utils.getOrThrow(catalog.findById(productIdentifier));
+		MissMintService service = Utils.getOrThrow(catalog.findById(productIdentifier));
 		model.addAttribute("service", service);
 
 		return "orderdetail";

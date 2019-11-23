@@ -1,15 +1,12 @@
 package missmint.users.model;
 
-import missmint.orders.service.Service;
 import missmint.orders.service.ServiceCategory;
-import org.salespointframework.catalog.Product;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 public class Staff {

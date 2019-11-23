@@ -1,6 +1,6 @@
 package missmint.orders.order;
 
-import missmint.orders.service.Service;
+import missmint.orders.service.MissMintService;
 import org.salespointframework.order.Order;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
@@ -20,7 +20,7 @@ public class MissMintOrder extends Order {
 	public MissMintOrder() {
 	}
 
-	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, LocalDate expectedFinished, Service service) {
+	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, LocalDate expectedFinished, MissMintService service) {
 		super(userAccount);
 
 		Assert.notNull(customer, "customer must not be null");

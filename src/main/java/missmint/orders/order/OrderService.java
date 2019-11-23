@@ -1,5 +1,6 @@
 package missmint.orders.order;
 
+import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceUtils;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
@@ -52,7 +53,7 @@ public class OrderService {
 		return charge.add(Money.of(BigDecimal.valueOf(5, 1), currency).multiply(weeksStored));
 	}
 
-	public boolean isOrderAcceptable(missmint.orders.service.Service service) {
+	public boolean isOrderAcceptable(MissMintService service) {
 		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceUtils.getCategory(service));
 	}
 }

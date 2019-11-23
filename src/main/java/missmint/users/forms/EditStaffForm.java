@@ -1,6 +1,5 @@
 package missmint.users.forms;
 
-import missmint.orders.service.Service;
 import missmint.orders.service.ServiceCategory;
 
 import javax.validation.constraints.NotBlank;

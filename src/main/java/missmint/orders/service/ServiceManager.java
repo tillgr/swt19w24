@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Service
 public class ServiceManager {
-	private Catalog<missmint.orders.service.Service> catalog;
+	private Catalog<MissMintService> catalog;
 
-	public ServiceManager(Catalog<missmint.orders.service.Service> catalog) {
+	public ServiceManager(Catalog<MissMintService> catalog) {
 		this.catalog = catalog;
 	}
 
@@ -19,7 +19,7 @@ public class ServiceManager {
 		return catalog.findByAllCategories("SERVICE");
 	}
 
-	public Optional<missmint.orders.service.Service> findById(ProductIdentifier id) {
+	public Optional<MissMintService> findById(ProductIdentifier id) {
 		return catalog.findById(id);
 	}
 }

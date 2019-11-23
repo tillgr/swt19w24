@@ -2,9 +2,8 @@ package missmint.orders.controllers;
 
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
-import missmint.orders.service.Service;
+import missmint.orders.service.MissMintService;
 import org.hamcrest.beans.HasPropertyWithValue;
-import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
@@ -42,7 +41,7 @@ class ReceivingControllerTests {
 	private OrderManager<MissMintOrder> orderManager;
 
 	@Autowired
-	private Catalog<Service> serviceCatalog;
+	private Catalog<MissMintService> serviceCatalog;
 
 	@Autowired
 	private UserAccountManager userAccountManager;
@@ -64,9 +63,9 @@ class ReceivingControllerTests {
 	//@Test
 	@WithMockUser
 	void serviceSelect() throws Exception {
-		Optional<Service> optionalService = serviceCatalog.findByName("grindery-knifes").get().findAny();
+		Optional<MissMintService> optionalService = serviceCatalog.findByName("grindery-knifes").get().findAny();
 		assertThat(optionalService).isNotEmpty();
-		Service service = optionalService.get();
+		MissMintService service = optionalService.get();
 
 		mvc.perform(get("/orders/receiving").locale(Locale.ROOT))
 			.andExpect(status().isOk())
@@ -92,9 +91,9 @@ class ReceivingControllerTests {
 	//@Test
 	@WithMockUser
 	void receivingForm() throws Exception {
-		Optional<Service> optionalService = serviceCatalog.findByName("grindery-knifes").get().findAny();
+		Optional<MissMintService> optionalService = serviceCatalog.findByName("grindery-knifes").get().findAny();
 		assertThat(optionalService).isNotEmpty();
-		Service service = optionalService.get();
+		MissMintService service = optionalService.get();
 
 		mvc.perform(post("/orders/receiving").locale(Locale.ROOT).with(csrf())
 			.param("customer", "Lagrange")
@@ -118,9 +117,9 @@ class ReceivingControllerTests {
 	//@Test
 	@WithMockUser
 	void ticket() throws Exception {
-		Optional<Service> optionalService = serviceCatalog.findByName("grindery-knifes").get().findAny();
+		Optional<MissMintService> optionalService = serviceCatalog.findByName("grindery-knifes").get().findAny();
 		assertThat(optionalService).isNotEmpty();
-		Service service = optionalService.get();
+		MissMintService service = optionalService.get();
 
 		UserAccount userAccount = userAccountManager.create("employee", Password.UnencryptedPassword.of("weakpwd"));
 
