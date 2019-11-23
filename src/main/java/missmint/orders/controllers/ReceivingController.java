@@ -3,14 +3,13 @@ package missmint.orders.controllers;
 import missmint.Utils;
 import missmint.orders.forms.ReceivingForm;
 import missmint.orders.order.MissMintOrder;
+import missmint.orders.order.OrderService;
 import missmint.orders.service.Service;
 import missmint.orders.service.ServiceManager;
-import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
-import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,19 +22,20 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Controller
 public class ReceivingController {
 
 	private final BusinessTime time;
 	private final OrderManager<MissMintOrder> orderManager;
+	private final OrderService orderService;
 	private final ServiceManager serviceManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager) {
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
 		this.orderManager = orderManager;
+		this.orderService = orderService;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -53,6 +53,11 @@ public class ReceivingController {
 		}
 
 		Service service = Utils.getOrThrow(serviceManager.findById(form.getService()));
+
+		if (!orderService.isOrderAcceptable(service)) {
+			model.addAttribute("notAcceptable", true);
+			return receiving(model, form);
+		}
 
 		LocalDate now = time.getTime().toLocalDate();
 		MissMintOrder order = new MissMintOrder(userAccount, form.getCustomer(), now, now.plusDays(1), service);

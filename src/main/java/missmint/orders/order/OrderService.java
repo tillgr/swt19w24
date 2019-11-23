@@ -12,7 +12,6 @@ import org.springframework.util.Assert;
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
 
 @Service
 public class OrderService {
@@ -57,6 +56,9 @@ public class OrderService {
 			return false;
 		}
 
-		return staffRepository.countBySkillsContains(Set.of(service)) > 0;
+		return true;
+
+		// TODO staff skills
+		//return staffRepository.countBySkillsContains(Set.of(service)) > 0;
 	}
 }
