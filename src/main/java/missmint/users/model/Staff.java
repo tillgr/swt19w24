@@ -1,6 +1,7 @@
 package missmint.users.model;
 
 import missmint.orders.service.Service;
+import missmint.orders.service.ServiceCategory;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
@@ -23,8 +24,8 @@ public class Staff {
 	private String lastName;
 	private String firstName;
 
-	@ManyToMany
-	private Set<Service> skills = Collections.emptySet();
+	@ElementCollection
+	private Set<ServiceCategory> skills = Collections.emptySet();
 
 	// empty constructor for Entity
 	public Staff() {}
@@ -68,16 +69,16 @@ public class Staff {
 		return userAccount.getUsername();
 	}
 
-	public boolean addSkill(Service service) {
+	public boolean addSkill(ServiceCategory service) {
 		return skills.add(service);
 	}
 
-	public Set<Service> getSkills() {
-		return skills;
+	public boolean removeSkill(ServiceCategory service) {
+		return skills.remove(service);
 	}
 
-	public Set<String> getServicesNames() {
-		return skills.stream().map(Product::getName).collect(Collectors.toSet());
+	public Set<ServiceCategory> getSkills() {
+		return skills;
 	}
 
 	public Double calculateSalary() {

@@ -1,5 +1,6 @@
 package missmint.users.service;
 
+import missmint.orders.service.ServiceCategory;
 import missmint.users.forms.RegistrationForm;
 import missmint.users.model.AccountRole;
 import missmint.users.model.Staff;
@@ -74,7 +75,7 @@ public class StaffManagement {
 		return staffRepository.findById(id);
 	}
 
-	public void editStaff(Long id, String firstName, String lastName, missmint.orders.service.Service service) {
+	public void editStaff(Long id, String firstName, String lastName, ServiceCategory service) {
 
 		staffRepository.findById(id).ifPresent(staff -> {
 			staff.setFirstName(firstName);
