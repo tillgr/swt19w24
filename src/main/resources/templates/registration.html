@@ -7,52 +7,47 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 
-    <title th:text="#{users.registration.title}">Nutzerregistrierung</title>
+    <title th:text="#{users.registration.title}">User Registration</title>
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container mt-md-5">
-    <h1 th:text="#{users.registration.title}">Nutzerregistrierung</h1>
+    <h1 th:text="#{users.registration.title}">User Registration</h1>
 
     <form method="post" role="form" id="form" th:action="@{/users/registration}" th:object="${form}">
 
-        <h3 class="ui dividing header" th:text="#{users.registration.userdata}">Nutzerdaten</h3>
-
-        <div class="ui negative message" th:if="${#fields.hasErrors('*')}">
-            <p>Einige Angaben sind nicht korrekt.</p>
-        </div>
+        <h3 class="ui dividing header" th:text="#{users.registration.userdata}">User Data</h3>
 
         <div class="form-group">
-            <label for="firstName">Vorname</label>
+            <label for="firstName" th:text="#{users.registration.firstname}">First Name</label>
             <input class="form-control" id="firstName" name="firstName" th:field="*{firstName}" th:errorclass="fieldError" type="text" required="required"/><br/>
             <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
-                <p>Der Vorname darf nicht leer sein.</p>
+                <p>The first name must not be empty.</p>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="lastName">Nachname</label>
+            <label for="lastName" th:text="#{users.registration.lastname}">Last Name</label>
             <input class="form-control" id="lastName" name="lastName" th:field="*{lastName}" th:errorclass="fieldError" type="text" required="required"/><br/>
             <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
-                <p>Der Nachname darf nicht leer sein.</p>
+                <p>The last name must not be empty.</p>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="userName">Benutzername</label>
+            <label for="userName" th:text="#{users.registration.username}">User Name</label>
             <input class="form-control" id="userName" name="userName" th:field="*{userName}" th:errorclass="fieldError" type="text" required="required"/><br/>
             <div class="alert-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">
-                <p>Der Benutzername darf nicht leer sein.</p>
+                <p>The user name must not be empty.</p>
             </div>
         </div>
 
         <div class="form-group">
-            <label th:text="#{users.registration.password}" for="password">Passwort</label>
+            <label th:text="#{users.registration.password}" for="password">Password</label>
             <input class="form-control" id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
                    required="required"/><br/>
-            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf
-                nicht leer sein.</p>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password must not be empty</p>
         </div>
 
         <button class="btn btn-primary" type="submit" th:text="#{users.registration.submit}">Registrieren</button>
