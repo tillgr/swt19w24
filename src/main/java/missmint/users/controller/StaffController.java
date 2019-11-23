@@ -1,12 +1,10 @@
 package missmint.users.controller;
 
-import missmint.orders.service.Service;
 import missmint.orders.service.ServiceCategory;
 import missmint.users.forms.EditStaffForm;
 import missmint.users.forms.RegistrationForm;
 import missmint.users.model.AccountRole;
 import missmint.users.service.StaffManagement;
-import org.salespointframework.catalog.Catalog;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,15 +24,12 @@ import java.util.NoSuchElementException;
 public class StaffController {
 
 	private final StaffManagement staffManagement;
-	private final Catalog<Service> catalog;
 
-	public StaffController(StaffManagement staffManagement, Catalog<Service> catalog) {
+	public StaffController(StaffManagement staffManagement) {
 
 		Assert.notNull(staffManagement, "StaffManagement must not be null");
-		Assert.notNull(catalog, "Catalog must not be null");
 
 		this.staffManagement = staffManagement;
-		this.catalog = catalog;
 	}
 
 	/**
@@ -105,7 +100,7 @@ public class StaffController {
 
 		model.addAttribute("staff", staff);
 
-		model.addAttribute("services", catalog.findByAllCategories());
+		model.addAttribute("services", new HashSet<>(EnumSet.allOf(ServiceCategory.class)));
 
 		model.addAttribute("form", form);
 

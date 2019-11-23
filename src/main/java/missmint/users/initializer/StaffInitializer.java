@@ -36,9 +36,9 @@ public class StaffInitializer implements DataInitializer {
 		userAccountManager.create("user", Password.UnencryptedPassword.of("test"), adminRole);
 
 		List.of(
-			new RegistrationForm("Hans","Müller","hans", password, AccountRole.EMPLOYEE.name()),
-			new RegistrationForm("Dexter", "Morgan","dextermorgan", password, AccountRole.EMPLOYEE.name()),
-			new RegistrationForm("Drax", "The Destroyer", "XXXDestroyerXXX", password, AccountRole.EMPLOYEE.name())
+			new RegistrationForm("Hans","Müller","hans", password),
+			new RegistrationForm("Dexter", "Morgan","dextermorgan", password),
+			new RegistrationForm("Drax", "The Destroyer", "XXXDestroyerXXX", password)
 		).forEach(staffManagement::createStaff);
 	}
 }

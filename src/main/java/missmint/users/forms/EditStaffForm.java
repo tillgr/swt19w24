@@ -6,7 +6,7 @@ import missmint.orders.service.ServiceCategory;
 import javax.validation.constraints.NotBlank;
 
 public class EditStaffForm {
-	private final Service newSkill;
+	private final ServiceCategory newSkill;
 
 	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String firstName;
@@ -14,7 +14,7 @@ public class EditStaffForm {
 	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String lastName;
 
-	public EditStaffForm(String firstName, String lastName, Service newSkill) {
+	public EditStaffForm(String firstName, String lastName, ServiceCategory newSkill) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.newSkill = newSkill;
@@ -28,7 +28,7 @@ public class EditStaffForm {
 		return lastName;
 	}
 
-	public Service getNewSkill() {
+	public ServiceCategory getNewSkill() {
 		return newSkill;
 	}
 }

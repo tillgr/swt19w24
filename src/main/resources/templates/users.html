@@ -29,8 +29,7 @@
             <th scope="row" th:text="${staff.lastName()}">Pan</th>
             <td th:text="${staff.getFirstName()}">Peter</td>
             <td th:text="${staff.getUserName()}">pperters</td>
-            <td th:if="${staff.getSkills().isEmpty()}" text="">
-            <td th:unless="${staff.getSkills().isEmpty()}" th:text="${#strings.setJoin(#messages.listMsg(#strings.setPrepend(staff.getServicesNames(), 'orders.service.')), ', ')}">
+            <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
             </td>
             <td>
                 <div class="btn-group">

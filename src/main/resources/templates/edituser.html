@@ -32,7 +32,7 @@
                         <label>
                             <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.lastName()}"/>
                         </label><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                        <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
                             <p>Der Nachname darf nicht leer sein.</p>
                         </div>
                     </div>
@@ -42,21 +42,19 @@
                         <label>
                             <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.getFirstName()}"/>
                         </label><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                        <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
                             <p>Der Vorname darf nicht leer sein.</p>
                         </div>
                     </div>
                 </td>
                 <td th:text="${staff.getUserName()}">pperters</td>
-                <td th:if="${staff.getSkills().isEmpty()}" text="">
-                <td th:unless="${staff.getSkills().isEmpty()}" th:text="${#strings.setJoin(#messages.listMsg(#strings.setPrepend(staff.getServicesNames(), 'orders.service.')), ', ')}">
+                <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
                 <td>
                     <div class="form-group">
                         <select class="form-control" id="service" th:field="*{newSkill}">
                             <option th:value="null" text="Please Select"></option>
-                            <option th:each="service : ${services}" th:value="${service.getId()}"
-                                    th:text="#{'orders.service.' + ${service.getName()}}">
-                            </option>
+                            <option th:each="service : ${services}" th:value="${service.name()}"
+                                    th:text="#{'users.service.' + ${service.name()}}"></option>
                         </select>
                     </div>
                 </td>
