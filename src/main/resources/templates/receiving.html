@@ -18,6 +18,9 @@
         <div class="alert alert-danger" role="alert" th:each="err : ${#fields.errors('*')}" th:text="${err}">
             The item description must not be empty.
         </div>
+        <div class="alert alert-danger" role="alert" th:text="#{orders.receiving.unavailable}" th:if="${notAcceptable != null}">
+            This service is currently unavailable.
+        </div>
 
         <h3 th:text="#{orders.order}">Order</h3>
         <div class="form-group">
