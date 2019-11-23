@@ -35,8 +35,9 @@
                     </a>
                     <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                         <a class="dropdown-item" href="rooms.html" th:text="#{rooms}" th:href="@{/rooms}">Rooms</a>
-                        <a class="dropdown-item" href="material.html" th:text="#{materials}">Materials</a>
+                        <a class="dropdown-item" href="material.html" th:href="@{material}">Materials</a>
                         <a class="dropdown-item" th:text="#{finance.balance}" th:href="@{/finance}">Balance</a>
+                        <a class="dropdown-item" href="orderItem.html" th:href="@{/orderItem}">Bestellgegenstände</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/users}">Nutzerverwaltung</a>
                     </div>
@@ -48,6 +49,9 @@
                     <a class="nav-link" href="#" th:href="@{/login}" th:text="#{security.logout}">Logout</a>
                 </li>
             </ul>
+            <form class="form-inline" method="post" th:action="@{/forward}" sec:authorize="isAuthenticated()">
+                <button class="btn btn-outline-warning" type="submit" th:text="#{general.forward}">Forward</button>
+            </form>
         </div>
     </div>
 </nav>

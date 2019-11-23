@@ -20,9 +20,9 @@ public class ServiceDataInitializer implements DataInitializer {
 	@Value("${general.currency}")
 	private String currency;
 
-	private Catalog<Service> catalog;
+	private Catalog catalog;
 
-	public ServiceDataInitializer(Catalog<Service> catalog) {
+	public ServiceDataInitializer(Catalog catalog) {
 		Assert.notNull(catalog, "catalog must not be null");
 
 		this.catalog = catalog;
@@ -52,6 +52,7 @@ public class ServiceDataInitializer implements DataInitializer {
 			Pair.of(new Service("grindery-knifes", Money.of(price, currency)), ServiceCategory.GRINDERY.name())
 		).forEach(pair -> {
 			pair.getFirst().addCategory(pair.getSecond());
+			pair.getFirst().addCategory("SERVICE");
 			catalog.save(pair.getFirst());
 		});
 	}

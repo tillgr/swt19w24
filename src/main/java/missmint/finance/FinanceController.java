@@ -9,20 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FinanceController {
 
-    private AccountancyEntry accountancyEntry;
+    private FinanceService financeService;
 
-	FinanceController() {
-	}
-
-	FinanceController(AccountancyEntry accountancyEntry){
-		Assert.notNull(accountancyEntry, "Finance Manager must not be Null");
-		this.accountancyEntry = accountancyEntry;
+	FinanceController(FinanceService financeService){
+		Assert.notNull(financeService, "Finance Manager must not be Null");
+		this.financeService = financeService;
 	}
 
 	@GetMapping("/finance")
 	public String showFinancePage(Model model)
 	{
-		model.addAttribute("finance" , accountancyEntry.findAll());
+		model.addAttribute("finance" , financeService.showAllFinance());
 		return "finance";
 	}
 }

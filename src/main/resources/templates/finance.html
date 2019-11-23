@@ -21,15 +21,16 @@
         <tr>
             <th scope="col">ID</th>
 
-            <th scope="col">Datum</th>
+            <th scope="col">Value</th>
 
         </tr>
         </thead>
         <tbody>
         <tr th:each="item: ${finance}">
-            <th scope="row" th:text="${item.id}">1</th>
+            <th scope="row" th:text="${item.getId()}">1</th>
 
-            <td th:text="${item.date}">12.01.2019</td>
+            <td th:text="${item.getValue()}">12.01.2019</td>
+            <td th:text="${item.getValue()}">12.01.2019</td>
         </tr>
         </tbody>
     </table>
