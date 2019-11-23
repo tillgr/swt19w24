@@ -7,7 +7,7 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 
-    <title th:text="#{finance.balance}">Financen</title>
+    <title th:text="#{finance.balance}">Finance</title>
 
 </head>
 <body>
@@ -35,24 +35,18 @@
         </tbody>
     </table>
 
-
 </div>
 
+<footer th:replace="fragments :: footer"></footer>
 
-
-
-
-
-    <footer th:replace="fragments :: footer"></footer>
-
-    <script crossorigin="anonymous"
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            th:src="@{/webjars/jquery/jquery.js}"></script>
-    <script crossorigin="anonymous"
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            th:src="@{/webjars/popper.js/umd/popper.js}"></script>
-    <script crossorigin="anonymous"
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
