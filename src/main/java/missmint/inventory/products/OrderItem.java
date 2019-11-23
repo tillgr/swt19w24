@@ -7,11 +7,11 @@ import javax.money.MonetaryAmount;
 import javax.persistence.Entity;
 
 @Entity
-public class orderItem extends Product {
+public class OrderItem extends Product {
 
-	private orderItem(){}
+	private OrderItem(){}
 
-	public orderItem(String name, MonetaryAmount price, Metric metric){
+	public OrderItem(String name, MonetaryAmount price, Metric metric){
 		super(name,price,metric);
 	}
 

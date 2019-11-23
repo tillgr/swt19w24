@@ -1,7 +1,7 @@
 package missmint.inventory.initializer;
 
 import missmint.inventory.products.Material;
-import missmint.inventory.products.orderItem;
+import missmint.inventory.products.OrderItem;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.UniqueInventory;
@@ -17,9 +17,9 @@ class InventoryInitializer implements DataInitializer {
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final UniqueInventory<UniqueInventoryItem> orderItemInventory;
 	private final Catalog<Material> materialCatalog ;
-	private final Catalog<orderItem> orderItemCatalog ;
+	private final Catalog<OrderItem> orderItemCatalog ;
 
-	InventoryInitializer(Catalog<Material> materialCatalog,Catalog<orderItem> orderItemCatalog, UniqueInventory<UniqueInventoryItem> orderItemInventory, UniqueInventory<UniqueInventoryItem> materialInventory) {
+	InventoryInitializer(Catalog<Material> materialCatalog, Catalog<OrderItem> orderItemCatalog, UniqueInventory<UniqueInventoryItem> orderItemInventory, UniqueInventory<UniqueInventoryItem> materialInventory) {
 
 		Assert.notNull(materialInventory, "materialInventory must not be null!");
 		Assert.notNull(orderItemInventory, "orderItemInventory must not be null");
@@ -36,15 +36,26 @@ class InventoryInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 
-		materialCatalog.findByCategory("QUANTIFIABLE_MATERIAL").forEach(material -> {
+		materialCatalog.findByCategory("UNIT_MATERIAL").forEach(material -> {
 			materialInventory.findByProduct(material)
-				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material,Quantity.of(10,Metric.UNIT))));
+				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material,Quantity.of(100,Metric.UNIT))));
 		});
 
-		materialCatalog.findByCategory("NON_QUANTIFIABLE_MATERIAL").forEach(material -> {
+		materialCatalog.findByCategory("SQUARE_METER_MATERIAL").forEach(material -> {
 			materialInventory.findByProduct(material)
-				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(10, Metric.SQUARE_METER))));
+				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.SQUARE_METER))));
 		});
+
+		materialCatalog.findByCategory("METER_MATERIAL").forEach(material -> {
+			materialInventory.findByProduct(material)
+				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.METER))));
+		});
+
+		materialCatalog.findByCategory("LITER_MATERIAL").forEach(material -> {
+			materialInventory.findByProduct(material)
+				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.LITER))));
+		});
+
 
 		orderItemCatalog.findByCategory("ORDER_ITEM").forEach(orderItem -> {
 			orderItemInventory.findByProduct(orderItem)
