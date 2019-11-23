@@ -1,5 +1,7 @@
 package missmint.rooms;
 
+import missmint.time.EntryRepository;
+
 import javax.validation.constraints.NotBlank;
 
 public class AddRoomForm {

@@ -1,11 +1,10 @@
 package missmint.orders.order;
 
 import missmint.orders.service.MissMintService;
-import missmint.orders.service.ServiceUtils;
+import missmint.orders.service.ServiceService;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;
-import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import java.time.temporal.ChronoUnit;
 
 @Service
 public class OrderService {
-	private final OrderManager<MissMintOrder> orderManager;
 	private final BusinessTime businessTime;
 	private final RoomRepository rooms;
 	private final StaffRepository staffRepository;
@@ -27,8 +25,7 @@ public class OrderService {
 	@Value("${orders.pickup.compensation.percent}")
 	private long compensation;
 
-	public OrderService(OrderManager<MissMintOrder> orderManager, BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository) {
-		this.orderManager = orderManager;
+	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository) {
 		this.businessTime = businessTime;
 		this.rooms = rooms;
 		this.staffRepository = staffRepository;
@@ -54,6 +51,6 @@ public class OrderService {
 	}
 
 	public boolean isOrderAcceptable(MissMintService service) {
-		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceUtils.getCategory(service));
+		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceService.getCategory(service));
 	}
 }

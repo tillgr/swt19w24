@@ -1,9 +1,13 @@
-package missmint.rooms;
+package missmint.time;
 
 import missmint.orders.order.MissMintOrder;
+import missmint.rooms.Room;
 import missmint.users.model.Staff;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -13,9 +17,18 @@ public class TimeTableEntry {
 	private MissMintOrder order;
 	@ManyToOne
 	private Staff staff;
-	private int slotsPos;
+	private int slot;
 	@ManyToOne
 	private Room room;
+	private LocalDate date;
+
+	public TimeTableEntry(MissMintOrder order, Staff staff, int slot, Room room, LocalDate date) {
+		this.order = order;
+		this.staff = staff;
+		this.slot = slot;
+		this.room = room;
+		this.date = date;
+	}
 
 	public TimeTableEntry (Room room){
 		this.room = room;
@@ -37,12 +50,12 @@ public class TimeTableEntry {
 		this.room = room;
 	}
 
-	public int getSlotsPos() {
-		return slotsPos;
+	public int getSlot() {
+		return slot;
 	}
 
-	public void setSlotsPos(int slotsPos) {
-		this.slotsPos = slotsPos;
+	public void setSlot(int slot) {
+		this.slot = slot;
 	}
 
 	public MissMintOrder getOrder() {

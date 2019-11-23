@@ -4,6 +4,7 @@ import missmint.Utils;
 import missmint.orders.forms.ReceivingForm;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
+import missmint.orders.order.ReceivingService;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceManager;
 import org.salespointframework.order.OrderManager;
@@ -29,13 +30,15 @@ public class ReceivingController {
 	private final BusinessTime time;
 	private final OrderManager<MissMintOrder> orderManager;
 	private final OrderService orderService;
+	private final ReceivingService receivingService;
 	private final ServiceManager serviceManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService) {
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
 		this.orderManager = orderManager;
 		this.orderService = orderService;
+		this.receivingService = receivingService;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -71,9 +74,7 @@ public class ReceivingController {
 	@PreAuthorize("isAuthenticated()")
 	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model) {
 		model.addAttribute("order", order);
-		orderManager.save(order);
+		receivingService.receiveOrder(order);
 		return "ticket";
-
-		// TODO time table planning, creating customer item, finance
 	}
 }
