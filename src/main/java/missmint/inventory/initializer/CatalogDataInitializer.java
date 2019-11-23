@@ -30,35 +30,27 @@ class CatalogDataInitializer implements DataInitializer {
 	public void initialize() {
 
 		Stream.of(
-			Pair.of(new Material("Absatz", Money.of(0.5, EURO), Metric.UNIT), "UNIT_MATERIAL"),
-			Pair.of(new Material("Sohle", Money.of(0.5, EURO), Metric.UNIT), "UNIT_MATERIAL"),
-			Pair.of(new Material("Faden", Money.of(0.02,EURO), Metric.METER), "METER_MATERIAL"),
+			Pair.of(new Material("heel", Money.of(0.5, EURO), Metric.UNIT), "UNIT_MATERIAL"),
+			Pair.of(new Material("sole", Money.of(0.5, EURO), Metric.UNIT), "UNIT_MATERIAL"),
+			Pair.of(new Material("string", Money.of(0.02,EURO), Metric.METER), "METER_MATERIAL"),
 
-			Pair.of(new Material("Faden", Money.of(0.01,EURO), Metric.UNIT), "UNIT_MATERIAL"),
-			Pair.of(new Material("Stoff", Money.of(0.02,EURO), Metric.SQUARE_METER), "SQUARE_METER_MATERIAL"),
+			Pair.of(new Material("fabric", Money.of(0.02,EURO), Metric.SQUARE_METER), "SQUARE_METER_MATERIAL"),
 
-			Pair.of(new Material("Schlüsselrohling", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL"),
+			Pair.of(new Material("blank key", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL"),
 
-			Pair.of(new Material("Waschmittel", Money.of(1,EURO), Metric.LITER), "LITER_MATERIAL"),
+			Pair.of(new Material("detergent", Money.of(1,EURO), Metric.LITER), "LITER_MATERIAL"),
 
-			Pair.of(new Material("Lötdraht", Money.of(1,EURO), Metric.METER), "METER_MATERIAL"),
-			Pair.of(new Material("Flussmittel", Money.of(1,EURO), Metric.LITER), "LITER_MATERIAL"),
-			Pair.of(new Material("Schrauben", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL"),
-			Pair.of(new Material("Muttern", Money.of(0.01,EURO), Metric.UNIT), "UNIT_MATERIAL"),
+			Pair.of(new Material("soldering wire", Money.of(1,EURO), Metric.METER), "METER_MATERIAL"),
+			Pair.of(new Material("soldering flux", Money.of(1,EURO), Metric.LITER), "LITER_MATERIAL"),
+			Pair.of(new Material("screws", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL"),
+			Pair.of(new Material("nut", Money.of(0.01,EURO), Metric.UNIT), "UNIT_MATERIAL"),
 
-			Pair.of(new Material("Schleifpapier", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL")
+			Pair.of(new Material("sanding-paper", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL")
 		).forEach(materialStringPair-> {
 				materialStringPair.getFirst().addCategory(materialStringPair.getSecond());
 				materialCatalog.save(materialStringPair.getFirst());
 			});
 
-		Stream.of(
-			Pair.of(new OrderItem("Schuhe", Money.of(0.0,EURO),Metric.UNIT),"ORDER_ITEM"),
-			Pair.of(new OrderItem("Hose", Money.of(0.0,EURO),Metric.UNIT), "ORDER_ITEM")
-		).forEach(orderItemStringPair -> {
-			orderItemStringPair.getFirst().addCategory(orderItemStringPair.getSecond());
-			orderItemCatalog.save(orderItemStringPair.getFirst());
-		});
 
 	}
 }
