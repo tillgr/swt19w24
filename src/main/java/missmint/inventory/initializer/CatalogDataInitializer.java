@@ -42,10 +42,10 @@ class CatalogDataInitializer implements DataInitializer {
 
 			Pair.of(new Material("soldering wire", Money.of(1,EURO), Metric.METER), "METER_MATERIAL"),
 			Pair.of(new Material("soldering flux", Money.of(1,EURO), Metric.LITER), "LITER_MATERIAL"),
-			Pair.of(new Material("screws", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL"),
+			Pair.of(new Material("screw", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL"),
 			Pair.of(new Material("nut", Money.of(0.01,EURO), Metric.UNIT), "UNIT_MATERIAL"),
 
-			Pair.of(new Material("sanding-paper", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL")
+			Pair.of(new Material("sanding paper", Money.of(1,EURO), Metric.UNIT), "UNIT_MATERIAL")
 		).forEach(materialStringPair-> {
 				materialStringPair.getFirst().addCategory(materialStringPair.getSecond());
 				materialCatalog.save(materialStringPair.getFirst());
