@@ -41,7 +41,7 @@ public class StaffManagement {
 
 		Assert.notNull(form, "RegistrationForm cannot be null.");
 
-		var role = Role.of(AccountRole.valueOf(form.getRole()).name());
+		var role = Role.of(AccountRole.EMPLOYEE.name());
 
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);

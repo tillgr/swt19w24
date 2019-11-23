@@ -17,16 +17,12 @@ public class RegistrationForm {
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private final String password;
 
-	@NotEmpty
-	private final String role;
-
-	public RegistrationForm(String firstName, String lastName, String userName, String password, String role) {
+	public RegistrationForm(String firstName, String lastName, String userName, String password) {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
-		this.role = role;
 	}
 
 
@@ -44,9 +40,5 @@ public class RegistrationForm {
 
 	public String getPassword() {
 		return password;
-	}
-
-	public String getRole() {
-		return role;
 	}
 }
