@@ -13,7 +13,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container mt-md-5">
-    <h1><span th:text="#{orders.pickup.give_back(${'TODO'}, ${order.getCustomer()})}">Give LaTeX back to Knuth</span></h1>
+    <h1><span th:text="#{orders.pickup.give_back(${order.getItem().getName()}, ${order.getCustomer()})}">Give LaTeX back to Knuth</span></h1>
     <div class="alert alert-info" role="alert" th:if="${charge.isNegative()}"
          th:text="#{orders.pickup.compensation.request(${charge.negate()})}">
         Please give the customer a compensation of 1EUR.

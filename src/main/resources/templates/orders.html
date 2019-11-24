@@ -28,7 +28,7 @@
         <tr th:each="order : ${orders}">
             <td th:text="${order.getId()}">8adfdf53-0e11-499f-af36-efbc9db8a7f9</td>
             <td th:text="${order.getCustomer()}">Mark Zuckerberg</td>
-            <td th:text="TODO">Blauer Frack</td>
+            <td th:text="${order.getItem()?.getName()}">Blauer Frack</td>
             <td>
                 <a role="button" class="btn btn-info" href="orderdetail.html" th:href="@{/orders/detail/{id}(id=${order.getId()})}" th:text="#{general.details}">Details</a>
                 <a role="button" class="btn btn-primary" href="pickup.html" th:href="@{/orders/pickup/{id}(id=${order.getId()})}" th:if="${order.canPickUp()}" th:text="#{orders.pickup.return}">Zurückgeben</a>

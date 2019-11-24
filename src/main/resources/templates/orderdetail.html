@@ -25,9 +25,9 @@
             <th scope="row" th:text="#{general.customer}">Customer</th>
             <td th:text="${order.getCustomer()}">Mark Zuckerberg</td>
         </tr>
-        <tr>
+        <tr th:if="${order.getItem() != null}">
             <th scope="row" th:text="#{orders.customer.item}">Customer Item</th>
-            <td th:text="TODO">Facebook</td>
+            <td th:text="${order.getItem().getName()}">Facebook</td>
         </tr>
         <tr>
             <th scope="col" th:text="#{orders.inbound}">Inbound Date</th>
