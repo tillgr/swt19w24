@@ -1,8 +1,8 @@
 package missmint.orders.service;
 
-import javafx.util.Pair;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
+import org.springframework.data.util.Pair;
 
 import java.util.Map;
 import java.util.Set;
@@ -12,26 +12,26 @@ public class ServiceConsumptionManager {
 	public final static Map<ServiceCategory, Set<Pair<String, Quantity>>> serviceMatRelation = Map.of(
 		ServiceCategory.KLUDGE,
 		Set.of(
-			new Pair<>("heel", Quantity.of(2, Metric.UNIT)),
-			new Pair<>("sole", Quantity.of(2, Metric.UNIT))
+			Pair.of("heel", Quantity.of(2, Metric.UNIT)),
+			Pair.of("sole", Quantity.of(2, Metric.UNIT))
 		),
 		ServiceCategory.SEWING,
 		Set.of(
-			new Pair<>("string", Quantity.of(1, Metric.METER)),
-			new Pair<>("fabric", Quantity.of(1, Metric.SQUARE_METER))
+			Pair.of("string", Quantity.of(1, Metric.METER)),
+			Pair.of("fabric", Quantity.of(1, Metric.SQUARE_METER))
 		),
 		ServiceCategory.LOCKSMITH,
-		Set.of(new Pair<>("blank key", Quantity.of(1, Metric.UNIT))),
+		Set.of(Pair.of("blank key", Quantity.of(1, Metric.UNIT))),
 		ServiceCategory.CLEANING,
-		Set.of(new Pair<>("detergent", Quantity.of(10, Metric.LITER))),
+		Set.of(Pair.of("detergent", Quantity.of(10, Metric.LITER))),
 		ServiceCategory.ELECTRONICS,
 		Set.of(
-			new Pair<>("soldering wire", Quantity.of(2, Metric.METER)),
-			new Pair<>("soldering flux", Quantity.of(1, Metric.LITER)),
-			new Pair<>("screw", Quantity.of(1, Metric.UNIT)),
-			new Pair<>("nuts", Quantity.of(1, Metric.UNIT))
+			Pair.of("soldering wire", Quantity.of(2, Metric.METER)),
+			Pair.of("soldering flux", Quantity.of(1, Metric.LITER)),
+			Pair.of("screw", Quantity.of(1, Metric.UNIT)),
+			Pair.of("nut", Quantity.of(1, Metric.UNIT))
 		),
 		ServiceCategory.GRINDERY,
-		Set.of(new Pair<>("sanding paper", Quantity.of(2, Metric.UNIT)))
+		Set.of(Pair.of("sanding paper", Quantity.of(2, Metric.UNIT)))
 	);
 }
