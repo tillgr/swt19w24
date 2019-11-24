@@ -14,7 +14,7 @@
 
 <div class="container mt-md-5">
     <h1>Einträge</h1>
-
+    <!--
     <div>
         <form method="post" th:action="@{/rooms/{id}/showPreviousEntries(id=${id})}">
             <button class="btn btn-danger float-left">vorherige Einträge</button>
@@ -26,6 +26,7 @@
 
     <br>
     <br>
+    -->
 
     <ul class="list-group" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
         <li class="list-group-item" th:text="${entry.id}"></li>

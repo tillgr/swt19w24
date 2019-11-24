@@ -46,6 +46,7 @@ public class TimeTableController {
 		return "entries";
 	}
 
+	/*
 	@PostMapping("/rooms/{id}/showPreviousEntries")
 	public String showPreviousEntries (Model model, @PathVariable("id") long id){
 		existingEntries= new HashSet<>();
@@ -87,4 +88,6 @@ public class TimeTableController {
 
 		return "entries";
 	}
+
+	 */
 }
