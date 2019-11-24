@@ -109,7 +109,7 @@ public class InventoryController {
 		int finalNumber;
 
 
-		if (new_quantity >= max_addable_quantity){
+		if (new_quantity >= max_quantity){
 			finalNumber = max_addable_quantity;
 		} else {
 			finalNumber = number;
