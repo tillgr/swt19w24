@@ -358,6 +358,7 @@ Das Ticket wird angezeigt.
 [options="header"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+
 |I-FinanceController-showFinanceForm-01
 |UC0030
 |Ein authorisierter Mitarbeiter, der als Admin angemeldet ist.
@@ -391,6 +392,48 @@ Das Ticket wird angezeigt.
 |Finanz Eintrag ist in Bilanzübersicht scheinbar.
 |Authorisierte Mitarbeiter wählt "Finance item löschen" in der Bilanzübersicht aus.
 |Finance Eintrag wird gelöscht.
+
+
+|U-FinanceController-CalculateTotalPrice-01
+|-
+|Die ganze Kost ist noch nicht berechnet.
+|-
+|Die ganze Price ist im BinaztÜbersicht angezeigt.
+
+
+|U-FinanceManager-addFinanceItem-01
+|UC0030
+|Ein authorisierter Mitarbeiter hat neue Finanz Eintrag noch nicht hingefügt.
+|Mitarbeiter wählt "Finance item hinzufügen" in der Bilanzübersicht aus. Finance Eintrag ist schon in System.
+|Fehler Meldung. Finance Eintrag wird nicht noch mal hingefügt.
+
+
+|U-FinanceManager-addFinanceItem-02
+|UC0030
+|Ein authorisierter Mitarbeiter hat neue Finanz Eintrag noch nicht hingefügt.
+|Mitarbeiter wählt "Finance item hinzufügen" in der Bilanzübersicht aus.
+|Finance Eintrag wird hingefügt.
+
+
+|U-FinanceManager-removeFinanceItem-01
+|UC0030
+|Finanz Eintrag ist in Bilanzübersicht scheinbar.
+|Authorisierte Mitarbeiter wählt "Finance item löschen" in der Bilanzübersicht aus.
+|Finance Eintrag wird gelöscht.
+
+
+|U-FinanceEntryDataInitializer-initialize-1
+|-
+|Es existieren noch keine FinanceEinträge in der Datenbank.
+|-
+| Die fünf FinanceItems werden angelegt.
+
+
+|U-ServiceDataInitializer-initialize-2
+|-
+|Es existieren schon alle FinanceEinträge in der Datenbank.
+|-
+| Keine neuen FinanceEinträge werden angelegt.
 
 |===
 
