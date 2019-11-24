@@ -32,10 +32,10 @@ public class ServiceConsumptionManager {
 		Set.of(
 			new Pair<>("soldering wire", Quantity.of(2, Metric.METER)),
 			new Pair<>("soldering flux", Quantity.of(1, Metric.LITER)),
-			new Pair<>("screws", Quantity.of(1, Metric.UNIT)),
+			new Pair<>("screw", Quantity.of(1, Metric.UNIT)),
 			new Pair<>("nuts", Quantity.of(1, Metric.UNIT))
 		),
 		ServiceCategory.GRINDERY,
-		Set.of(new Pair<>("sanding-paper", Quantity.of(2, Metric.UNIT)))
+		Set.of(new Pair<>("sanding paper", Quantity.of(2, Metric.UNIT)))
 	);
 }
