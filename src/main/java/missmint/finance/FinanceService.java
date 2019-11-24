@@ -6,11 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FinanceService {
-	//private final FinanceRepository financeRepository;
 	private final Accountancy accountancy;
 
 	public FinanceService(Accountancy accountancy) {
-		//this.financeRepository = financeRepository;
 		this.accountancy = accountancy;
 	}
 
@@ -20,7 +18,6 @@ public class FinanceService {
 
 	public void add(AccountancyEntry accountancyEntry){
 		accountancy.add(accountancyEntry);
-		//financeRepository.save(accountancyEntry);
 	}
 
 }

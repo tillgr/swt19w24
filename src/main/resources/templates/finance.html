@@ -22,6 +22,7 @@
             <th scope="col">ID</th>
 
             <th scope="col">Value</th>
+            <th scope="col">Description</th>
 
         </tr>
         </thead>
@@ -30,7 +31,7 @@
             <th scope="row" th:text="${item.getId()}">1</th>
 
             <td th:text="${item.getValue()}">12.01.2019</td>
-            <td th:text="${item.getValue()}">12.01.2019</td>
+            <td th:text="${item.getDescription()}">12.01.2019</td>
         </tr>
         </tbody>
     </table>
