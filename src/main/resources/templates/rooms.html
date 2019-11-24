@@ -17,16 +17,12 @@
 
 
     <form method="post" th:object="${form}" th:action="@{/rooms/add}">
-        <div class="card mt-2">
-            <div class="card-header">
-                <h3>Raumname eingeben</h3>
-                <input th:field="*{name}" type="text">
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-            </div>
-            <div class="card-footer text-muted">
-                <button class="btn btn-warning" type="submit">Hinzufügen</button>
-            </div>
+        <div class="form-group">
+            <label for="nameInput">Raumname</label>
+            <input th:field="*{name}" type="text" class="form-control" id="nameInput" placeholder="Raumname eingeben">
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
         </div>
+        <button class="btn btn-warning" type="submit">Hinzufügen</button>
     </form>
     <br>
 
