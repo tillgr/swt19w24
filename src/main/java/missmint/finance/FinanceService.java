@@ -28,4 +28,9 @@ public class FinanceService {
 		accountancy.add(accountancyEntry);
 	}
 
+	public void getDate(){
+		for(AccountancyEntry a: showAllFinance()){
+			a.getDate();
+		}
+	}
 }
