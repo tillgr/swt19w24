@@ -3,6 +3,7 @@ package missmint.finance;
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.AccountancyEntry;
 //import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -16,7 +17,9 @@ public class FinanceController {
 
     private FinanceService financeService;
 	ArrayList <MonetaryAmount> ma = new ArrayList<>();
-	Money sum = Money.of(0, "USD");
+
+	Money sum = Money.of(0, "EUR");
+
 	FinanceController(FinanceService financeService){
 		Assert.notNull(financeService, "Finance Manager must not be Null");
 		this.financeService = financeService;
