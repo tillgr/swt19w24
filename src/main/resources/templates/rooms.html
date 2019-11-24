@@ -31,9 +31,11 @@
         <li class="list-group-item" th:text="${room.name}"></li>
         <li class="list-group-item">
             <div class="btn-toolbar">
+                <!--
                 <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
                     <button class="btn btn-danger">Raum löschen</button>
                 </form>
+                -->
                 <form method="post" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
                     <button class="btn btn-primary">Einträge anzeigen</button>
                 </form>
