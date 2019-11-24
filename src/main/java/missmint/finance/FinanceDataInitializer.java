@@ -23,8 +23,7 @@ public class FinanceDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-		financeService.add(new AccountancyEntry(Money.of(2, "USD"), "200 Knöpfe kosten 400 USD"));
+		financeService.add(new AccountancyEntry(Money.of(27, "USD"), "200 Knöpfe kosten 400 USD"));
 		financeService.add(new AccountancyEntry(Money.of(18, "USD"), "30 Faden kosten 540 USD"));
-
 	}
 }

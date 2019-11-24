@@ -20,22 +20,19 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-
             <th scope="col">Value</th>
             <th scope="col">Description</th>
-
         </tr>
         </thead>
         <tbody>
         <tr th:each="item: ${finance}">
             <th scope="row" th:text="${item.getId()}">1</th>
-
             <td th:text="${item.getValue()}">12.01.2019</td>
             <td th:text="${item.getDescription()}">12.01.2019</td>
         </tr>
         </tbody>
     </table>
-
+    <p>Summe: <span th:text="${sum} + '' ">34</span></p>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
