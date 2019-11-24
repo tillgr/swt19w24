@@ -48,11 +48,23 @@ public class InventoryController {
 		return "material";
 	}
 
-	@PostMapping("/material/consume/{quantity}/{materialId}")
+	@PostMapping("/material/consume/{sQuantity}/{materialId}")
 	@PreAuthorize("isAuthenticated()")
-	String consume(@PathVariable InventoryItemIdentifier materialId, @PathVariable Quantity quantity, @RequestParam("consumeNumber") int number){
+	String consume(@PathVariable InventoryItemIdentifier materialId, @PathVariable String sQuantity, @RequestParam("consumeNumber") int number){
 		// TODO: 20.11.2019 fix for square meter - convert String into quantity?
 
+		String newQ = "";
+		for (int i = 0; i < sQuantity.length(); i++) {
+
+			if (sQuantity.charAt(i) == 'm' || sQuantity.charAt(i) == 'l') {
+				break;
+			}
+			newQ += sQuantity.charAt(i);
+		}
+
+		int iQuantity = Integer.parseInt(newQ);
+		Quantity quantity = Quantity.of(iQuantity);
+		Metric metric = getMaterialInventory().findById(materialId).get().getQuantity().getMetric();
 
 		int old_quantity = getMaterialInventory().findById(materialId).get().getQuantity().getAmount().toBigInteger().intValue();
 		int new_quantity = old_quantity - number;
@@ -63,37 +75,32 @@ public class InventoryController {
 
 		int finalNumber = number;
 
-			if ((quantity.getMetric().equals(Metric.SQUARE_METER)) && quantity.isGreaterThanOrEqualTo(Quantity.of(0, Metric.SQUARE_METER))) {
-				getMaterialInventory().findById(materialId).ifPresent(itQM ->
-					getMaterialInventory().save(itQM.decreaseQuantity(Quantity.of(finalNumber, Metric.SQUARE_METER)))
-				);
-			}
-
-			if (quantity.getMetric().equals(Metric.UNIT) && quantity.isGreaterThanOrEqualTo(Quantity.of(0, Metric.UNIT))) {
-				getMaterialInventory().findById(materialId).ifPresent(itQM ->
-					getMaterialInventory().save(itQM.decreaseQuantity(Quantity.of(finalNumber, Metric.UNIT)))
-				);
-			}
-
-			if (quantity.getMetric().equals(Metric.METER) && quantity.isGreaterThanOrEqualTo(Quantity.of(0, Metric.METER))) {
-				getMaterialInventory().findById(materialId).ifPresent(itQM ->
-					getMaterialInventory().save(itQM.decreaseQuantity(Quantity.of(finalNumber, Metric.METER)))
-				);
-			}
-
-		if (quantity.getMetric().equals(Metric.LITER) && quantity.isGreaterThanOrEqualTo(Quantity.of(0, Metric.LITER))) {
+		if (quantity.isGreaterThanOrEqualTo(Quantity.of(0))) {
 			getMaterialInventory().findById(materialId).ifPresent(itQM ->
-				getMaterialInventory().save(itQM.decreaseQuantity(Quantity.of(finalNumber, Metric.LITER)))
+				getMaterialInventory().save(itQM.decreaseQuantity(Quantity.of(finalNumber, metric)))
 			);
 		}
 
 		return "redirect:/material";
 	}
 
-	@PostMapping("/material/restock/{quantity}/{materialId}")
+	@PostMapping("/material/restock/{sQuantity}/{materialId}")
 	@PreAuthorize("isAuthenticated()")
-	String restock(@PathVariable InventoryItemIdentifier materialId, @PathVariable Quantity quantity, @RequestParam("restockNumber") int number){
+	String restock(@PathVariable InventoryItemIdentifier materialId, @PathVariable String sQuantity, @RequestParam("restockNumber") int number){
 		// TODO: 20.11.2019 fix for square meter - convert String into quantity?
+
+		String newQ = "";
+		for (int i = 0; i < sQuantity.length(); i++) {
+
+			if (sQuantity.charAt(i) == 'm' || sQuantity.charAt(i) == 'l') {
+				break;
+			}
+			newQ += sQuantity.charAt(i);
+		}
+
+		int iQuantity = Integer.parseInt(newQ);
+		Quantity quantity = Quantity.of(iQuantity);
+		Metric metric = getMaterialInventory().findById(materialId).get().getQuantity().getMetric();
 
 		int max_quantity = 900;
 		int max_addable_quantity = max_quantity - (quantity.getAmount().intValueExact());
@@ -103,38 +110,19 @@ public class InventoryController {
 
 
 		if (new_quantity >= max_addable_quantity){
-			 finalNumber = max_addable_quantity;
+			finalNumber = max_addable_quantity;
 		} else {
 			finalNumber = number;
 		}
 
 		if (0 <= finalNumber) {
-			if (quantity.getMetric().equals(Metric.SQUARE_METER)) {
-				getMaterialInventory().findById(materialId).ifPresent(itNQM ->
-					getMaterialInventory().save(itNQM.increaseQuantity(Quantity.of(finalNumber, Metric.SQUARE_METER)))
-				);
-			}
-
-			if (quantity.getMetric().equals(Metric.UNIT)) {
+			if (quantity.isGreaterThanOrEqualTo(Quantity.of(0))) {
 				getMaterialInventory().findById(materialId).ifPresent(itQM ->
-					getMaterialInventory().save(itQM.increaseQuantity(Quantity.of(finalNumber, Metric.UNIT)))
+					getMaterialInventory().save(itQM.increaseQuantity(Quantity.of(finalNumber, metric)))
 				);
 			}
-
-			if (quantity.getMetric().equals(Metric.METER)) {
-				getMaterialInventory().findById(materialId).ifPresent(itQM ->
-					getMaterialInventory().save(itQM.increaseQuantity(Quantity.of(finalNumber, Metric.METER)))
-				);
-			}
-
-			if (quantity.getMetric().equals(Metric.LITER)) {
-				getMaterialInventory().findById(materialId).ifPresent(itQM ->
-					getMaterialInventory().save(itQM.increaseQuantity(Quantity.of(finalNumber, Metric.LITER)))
-				);
-			}
-
-
 		}
+
 		return "redirect:/material";
 	}
 }
