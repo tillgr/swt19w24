@@ -61,4 +61,8 @@ public class TimeTableEntry {
 	public MissMintOrder getOrder() {
 		return order;
 	}
+
+	public LocalDate getDate() {
+		return date;
+	}
 }

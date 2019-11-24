@@ -32,7 +32,7 @@ public class TimeTableController {
 		//TODO entries existieren nur, wenn gebucht worden ist
 		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
 				for (TimeTableEntry entry : room.getEntrySet())	{
-					if (entry.getOrder().getInbound().equals(LocalDate.now())){
+					if (entry.getDate().equals(LocalDate.now())){
 						existingEntries.add(entry);
 					}
 				}
