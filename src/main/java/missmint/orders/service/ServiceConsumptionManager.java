@@ -1,15 +1,11 @@
 package missmint.orders.service;
 
 import javafx.util.Pair;
-import missmint.inventory.products.Material;
-import org.javamoney.moneta.Money;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 
 import java.util.Map;
 import java.util.Set;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 public class ServiceConsumptionManager {
 
