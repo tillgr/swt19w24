@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <th scope="row" th:text="#{orders.customer.item}">Customer Item</th>
-            <td th:text="TODO">Linux</td>
+            <td th:text="${order.getItem().getName()}">Linux</td>
         </tr>
         <tr>
             <th scope="row" th:text="#{general.price}">Price</th>
