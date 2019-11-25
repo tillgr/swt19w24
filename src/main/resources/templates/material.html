@@ -15,43 +15,35 @@
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
+<form method="post" th:action="@{material/restock}">
+
+        <div class="field">
+            <label for="materialName">Material:</label>
+            <input id="materialName" required type="text" name="materialName"  class="form-control">
+        </div>
+
+        <div class="field">
+        <label for="restockNumber">Menge: </label>
+        <input id="restockNumber" required type="number" name="restockNumber" min="1" max="900" step="1" value="1" class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit" >Nachbestellen</button>
+
+    </div>
+</form>
+
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Menge</th>
-            <th scope="col">Aktionen</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="item : ${material}">
                 <td th:text="${item.product.name}"></td>
                 <td th:text="${{item.quantity}}"></td>
-                <td>
-                    <form class="ui form" method="post" th:action="@{material/restock/{id}/{q} (id=${item.id},q=${item.quantity})}">
-                        <input type="hidden" name="pid" value="0"/>
-                        <div class="field">
-                            <label for="restockNumber">Menge: </label>
-                            <input id="restockNumber" type="number" name="restockNumber" min="1" max="900" step="1" value="1"/><br/>
-                        </div>
-                        <button  type="submit" class="ui labeled icon button">
-                            <span>Nachbestellen</span>
-                        </button>
-                    </form>
 
-                    <form class="ui form" method="post" th:action="@{material/consume/{id}/{q} (id=${item.id},q=${item.quantity})}">
-                        <input type="hidden" name="pid" value="0"/>
-                        <div class="field">
-                            <label for="consumeNumber">Menge: </label>
-                            <input id="consumeNumber" type="number" name="consumeNumber" min="1" max="900" step="1" value="1" /><br/>
-                        </div>
-                        <button  type="submit" class="ui labeled icon button">
-                            <span>Verbrauchen</span>
-                        </button>
-                    </form>
 
-                </td>
-            </tr>
 
         </tbody>
     </table>

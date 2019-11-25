@@ -13,10 +13,7 @@ import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
 
@@ -45,20 +42,22 @@ public class InventoryController {
 		return "material";
 	}
 
-	@PostMapping("/material/consume/{materialId}/{sQuantity}")
-	@PreAuthorize("isAuthenticated()")
-	String consume(@PathVariable InventoryItemIdentifier materialId, @PathVariable String sQuantity, @RequestParam("consumeNumber") int number){
 
-		materialManager.consume(materialId, sQuantity, number);
+
+	@PostMapping("/material/consume")
+	@PreAuthorize("isAuthenticated()")
+	String consume(@RequestParam("materialName") String materialName, @RequestParam("consumeNumber") int number){
+
+		materialManager.consume(materialName, number);
 
 		return "redirect:/material";
 	}
 
-	@PostMapping("/material/restock/{materialId}/{sQuantity}")
+	@PostMapping("/material/restock")
 	@PreAuthorize("isAuthenticated()")
-	String restock(@PathVariable InventoryItemIdentifier materialId, @PathVariable String sQuantity, @RequestParam("restockNumber") int number){
+	String restock(@RequestParam("materialName") String materialName, @RequestParam("restockNumber") int number){
 
-		materialManager.restock(materialId, sQuantity, number);
+		materialManager.restock(materialName, number);
 
 		return "redirect:/material";
 	}
