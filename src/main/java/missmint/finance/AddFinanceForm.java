@@ -8,20 +8,22 @@ import javax.money.MonetaryAmount;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class AddFinanceForm {
 
 	@NotEmpty
 	private String description;
 
-	private MonetaryAmount price;
+	@NotEmpty
+	private String price;
 
-	public AddFinanceForm(MonetaryAmount price, String description){
+	public AddFinanceForm(String price, String description){
 		this.price=price;
 		this.description=description;
 	}
 
-	public MonetaryAmount getPrice(){
+	public String getPrice(){
 		return this.price;
 	}
 
