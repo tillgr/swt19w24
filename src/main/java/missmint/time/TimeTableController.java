@@ -3,6 +3,7 @@ package missmint.time;
 import missmint.rooms.RoomRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -25,7 +26,7 @@ public class TimeTableController {
 		this.date=LocalDate.now();
 	}
 
-	@PostMapping("/rooms/{id}/showEntries")
+	@GetMapping("/rooms/{id}/showEntries")
 	public String showEntries(Model model, @PathVariable("id") long id){
 		existingEntries= new HashSet<>();
 
