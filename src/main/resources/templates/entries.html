@@ -38,23 +38,23 @@
         <tbody>
         <tr>
             <th scope="row" th:text="#{orders.ticket.id}">Order ID</th>
-            <td th:text="${entry.getOrder.getId()}">bb46124d-aeb3-4d85-9f2f-db957b45cebb</td>
+            <td th:text="${entry.getOrder().getId()}">bb46124d-aeb3-4d85-9f2f-db957b45cebb</td>
         </tr>
         <tr>
             <th scope="row" th:text="#{general.customer}">Customer</th>
-            <td th:text="${entry.getOrder.getCustomer()}">Linus Torvalds</td>
+            <td th:text="${entry.getOrder().getCustomer()}">Linus Torvalds</td>
         </tr>
         <tr>
             <th scope="row" th:text="#{orders.customer.item}">Customer Item</th>
-            <td th:text="${entry.getOrder.getItem().getName()}">Linux</td>
+            <td th:text="${entry.getOrder().getItem().getName()}">Linux</td>
         </tr>
         <tr>
             <th scope="row" th:text="#{general.price}">Price</th>
-            <td th:text="${entry.getOrder.getTotal()}">1.54EUR</td>
+            <td th:text="${entry.getOrder().getTotal()}">1.54EUR</td>
         </tr>
         <tr>
             <th scope="row" th:text="#{orders.expectedfinished}">Expected Finishing Date</th>
-            <td th:text="${entry.getOrder.getExpectedFinished()}">12.11.2019</td>
+            <td th:text="${entry.getOrder().getExpectedFinished()}">12.11.2019</td>
         </tr>
         </tbody>
     </table>

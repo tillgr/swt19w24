@@ -34,7 +34,7 @@ public class TimeTableService {
 		Pair.of(LocalTime.of(9, 30), LocalTime.of(10, 30)),
 		Pair.of(LocalTime.of(11, 0), LocalTime.of(12, 0)),
 		Pair.of(LocalTime.of(12, 30), LocalTime.of(13, 30)),
-		Pair.of(LocalTime.of(14, 0), LocalTime.of(15, 0))
+		Pair.of(LocalTime.of(14, 0), LocalTime.of(23, 0))
 	);
 
 	public TimeTableService(ServiceService serviceService, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository) {
