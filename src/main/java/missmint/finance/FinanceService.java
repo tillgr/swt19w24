@@ -4,6 +4,7 @@ import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
 public class FinanceService {
@@ -23,10 +24,10 @@ public class FinanceService {
 		accountancy.add(accountancyEntry);
 	}
 
-	public void getDate(){
-		for(AccountancyEntry a: showAllFinance()){
-			a.getDate();
-		}
+
+	public  AccountancyEntry createFinanceItemForm(AddFinanceForm form){
+		Assert.notNull(form, "AddFinanceForm cannot be null.");
+		return accountancy.add(new AccountancyEntry(form.getPrice(), form.getDescription()));
 	}
 
 }

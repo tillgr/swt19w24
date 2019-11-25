@@ -35,7 +35,12 @@
         </tbody>
     </table>
     <p>Summe: <span th:text="${sum} + '' ">34</span></p>
+
+    <div> <a class="btn btn-primary mt-2" th:href="@{/finance/addItem}">Finance item hinfügen</a> </div>
+
 </div>
+
+
 
 <footer th:replace="fragments :: footer"></footer>
 
