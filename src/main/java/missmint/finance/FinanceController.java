@@ -2,6 +2,8 @@ package missmint.finance;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.AccountancyEntry;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.util.StreamUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +18,7 @@ import java.util.ArrayList;
 
 @Controller
 public class FinanceController {
-
     private FinanceService financeService;
-	ArrayList <MonetaryAmount> ma = new ArrayList<>();
-
-	Money sum = Money.of(0, "EUR");
 
 	FinanceController(FinanceService financeService){
 		Assert.notNull(financeService, "Finance Manager must not be Null");
@@ -31,7 +29,7 @@ public class FinanceController {
 	public String showFinancePage(Model model)
 	{
 		model.addAttribute("finance" , financeService.showAllFinance());
-		model.addAttribute("sum", getSum());
+		model.addAttribute("sum", financeService.getSum());
 		return "finance";
 	}
 
@@ -46,23 +44,10 @@ public class FinanceController {
 	@PostMapping("/finance/addItem")
 	public String addItemInForm (@Valid AddFinanceForm form, Errors result){
 		if (result.hasErrors()){
-			return "redirect:/finance/addItem";
+			return "addItem";
 		}
 		financeService.createFinanceItemForm(form);
 		return "redirect:/finance";
 	}
 
-	public ArrayList<MonetaryAmount> getValue(){
-		for (AccountancyEntry a: financeService.showAllFinance()){
-			ma.add(a.getValue());
-		}
-		return  ma;
-	}
-
-	public Money getSum(){
-		for (MonetaryAmount monetaryAmount : getValue()) {
-			sum = sum.add(monetaryAmount);
-		}
-		return  sum;
-	}
 }

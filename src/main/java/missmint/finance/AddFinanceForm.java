@@ -1,8 +1,12 @@
 package missmint.finance;
 
 import org.javamoney.moneta.Money;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Description;
 
 import javax.money.MonetaryAmount;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 public class AddFinanceForm {

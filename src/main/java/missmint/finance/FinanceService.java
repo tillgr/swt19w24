@@ -1,5 +1,6 @@
 package missmint.finance;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +10,8 @@ import org.springframework.util.Assert;
 @Service
 public class FinanceService {
 	private final Accountancy accountancy;
-
+	@Value("${general.currency}")
+	private String currency;
 
 	public FinanceService(Accountancy accountancy) {
 		this.accountancy = accountancy;
@@ -28,6 +30,14 @@ public class FinanceService {
 	public  AccountancyEntry createFinanceItemForm(AddFinanceForm form){
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
 		return accountancy.add(new AccountancyEntry(form.getPrice(), form.getDescription()));
+	}
+
+	public Money getSum(){
+		Money sum = Money.of(0, currency);
+		for (AccountancyEntry entry : showAllFinance()) {
+			sum = sum.add(entry.getValue());
+		}
+		return  sum;
 	}
 
 }
