@@ -27,7 +27,7 @@
 
         <div class="field">
             <label for="price">Preis</label>
-            <input id="price" name="price" th:field="*{price}" th:errorclass="fieldError" type="text" required="required"/><br/>
+            <input id="price" name="price" th:field="*{price}" th:errorclass="fieldError" type="number" min="0.01" step="0.01" required="required"/><br/>
             <div class="ui negative message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
                 <p>Der Preis darf nicht leer sein.</p>
             </div>
