@@ -27,9 +27,10 @@ public class FinanceService {
 	}
 
 
-	public  AccountancyEntry createFinanceItemForm(AddFinanceForm form){
+	public void createFinanceItemForm(AddFinanceForm form){
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
-		return accountancy.add(new AccountancyEntry(form.getPrice(), form.getDescription()));
+
+		accountancy.add(new AccountancyEntry(Money.of(form.getPrice(), currency), form.getDescription()));
 	}
 
 	public Money getSum(){
