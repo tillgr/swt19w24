@@ -24,18 +24,16 @@ public class MissMintOrder extends Order {
 	public MissMintOrder() {
 	}
 
-	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, LocalDate expectedFinished, MissMintService service, OrderItem item) {
+	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, MissMintService service, OrderItem item) {
 		super(userAccount);
 
 		Assert.notNull(customer, "customer must not be null");
 		Assert.notNull(inbound, "inbound must not be null");
-		Assert.notNull(expectedFinished, "expectedFinished must not be null");
 		Assert.notNull(service, "service must not be null");
 		Assert.notNull(item, "item must not be null");
 
 		this.customer = customer;
 		this.inbound = inbound;
-		this.expectedFinished = expectedFinished;
 		this.orderState = OrderState.WAITING;
 		this.item = item;
 		addOrderLine(service, Quantity.of(1));
@@ -81,5 +79,9 @@ public class MissMintOrder extends Order {
 
 	public OrderItem getItem() {
 		return item;
+	}
+
+	public void setExpectedFinished(LocalDate expectedFinished) {
+		this.expectedFinished = expectedFinished;
 	}
 }

@@ -14,7 +14,7 @@ public class Room {
 	private long id;
 	private String name;
 
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "room")
 	private Set<TimeTableEntry> entrySet;
 
 	public Room() {

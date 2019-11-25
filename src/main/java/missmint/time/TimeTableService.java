@@ -46,13 +46,13 @@ public class TimeTableService {
 		this.staffRepository = staffRepository;
 	}
 
-	public void createEntry(MissMintOrder order) {
+	public TimeTableEntry createEntry(MissMintOrder order) {
 		MissMintService service = serviceService.getService(order);
 		ServiceCategory category = ServiceService.getCategory(service);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 
 		LocalDateTime now = time.getTime();
-		LongStream.range(0, Long.MAX_VALUE)
+		Optional<Optional<TimeTableEntry>> entry = LongStream.range(0, Long.MAX_VALUE)
 			.mapToObj(now.toLocalDate()::plusDays)
 			.flatMap(date ->
 				IntStream.range(0, SLOTS.size())
@@ -72,10 +72,9 @@ public class TimeTableService {
 					})
 			)
 			.filter(Optional::isPresent)
-			.findFirst().ifPresent(entry -> {
-				//noinspection OptionalGetWithoutIsPresent
-				entries.save(entry.get());
-			}
-		);
+			.findFirst();
+
+		//noinspection OptionalGetWithoutIsPresent
+		return entry.get().get();
 	}
 }
