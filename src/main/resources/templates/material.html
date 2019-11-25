@@ -28,7 +28,7 @@
                 <td th:text="${item.product.name}"></td>
                 <td th:text="${{item.quantity}}"></td>
                 <td>
-                    <form class="ui form" method="post" th:action="@{material/restock/{q}/{id}(id=${item.id},q=${item.quantity})}">
+                    <form class="ui form" method="post" th:action="@{material/restock/{id}/{q} (id=${item.id},q=${item.quantity})}">
                         <input type="hidden" name="pid" value="0"/>
                         <div class="field">
                             <label for="restockNumber">Menge: </label>
@@ -39,7 +39,7 @@
                         </button>
                     </form>
 
-                    <form class="ui form" method="post" th:action="@{material/consume/{q}/{id}(id=${item.id},q=${item.quantity})}">
+                    <form class="ui form" method="post" th:action="@{material/consume/{id}/{q} (id=${item.id},q=${item.quantity})}">
                         <input type="hidden" name="pid" value="0"/>
                         <div class="field">
                             <label for="consumeNumber">Menge: </label>
