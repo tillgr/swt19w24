@@ -5,7 +5,6 @@ import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceService;
 import missmint.rooms.RoomRepository;
 import missmint.time.TimeTableEntry;
-import missmint.time.TimeTableService;
 import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Catalog;
@@ -18,11 +17,11 @@ import org.springframework.util.Assert;
 
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static missmint.orders.order.OrderState.*;
+import static missmint.orders.order.OrderState.FINISHED;
+import static missmint.orders.order.OrderState.IN_PROGRESS;
 
 @Service
 public class OrderService {
@@ -91,7 +90,7 @@ public class OrderService {
 				case IN_PROGRESS:
 					if (entry != null && businessTime.getTime().isAfter(entry.getEnd())) {
 						order.setOrderState(FINISHED);
-						order.setFinished(businessTime.getTime().toLocalDate());
+						order.setFinished(entry.getDate());
 						changed.set(true);
 					}
 					break;
