@@ -18,29 +18,37 @@
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
-    <form class="input-group mb-3" method="post">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <a class="dropdown-item" type="button" th:each="item : ${material}" th:value="${item.id}" th:text="${item.product.name}" ></a>
-            </div>
-        </div>
+    <form class="input-group mb-3" method="post" th:action="@{material/consume}">
 
-        <label for="test" ></label>
-        <input id="test" required type="number" name="test" class="form-control">
-        <button class="btn btn-secondary"  type="submit" th:action="@{material/test}">Testbutton</button>
+        <label>
+            <select class="dropdown-menu-xl-right" name="material">
+                <option class="dropdown-item" th:each="item : ${material}"
+                        th:value="${item.id}"
+                        th:text="${item.product.name}"></option>
+            </select>
+        </label>
+
+
+
+        <label for="consumeNumber" ></label>
+        <input id="consumeNumber" required type="number" name="consumeNumber"  min="1" max="900" class="form-control">
+        <button class="btn btn-outline-primary"  type="submit">Verbrauchen</button>
     </form>
 
     <form class="input-group mb-3" method="post" th:action="@{material/restock}">
-    
-            <label for="materialName"></label>
-            <input id="materialName" required type="text" name="materialName"  class="form-control">
 
-            <label for="restockNumber"></label>
-            <input id="restockNumber" required type="number" name="restockNumber" min="1" max="900" step="1" value="1" class="form-control">
-            <button class="btn btn-primary" type="submit" >Nachbestellen</button>
+        <label>
+            <select class="dropdown-menu-xl-right" name="material">
+                <option class="dropdown-item" th:each="item : ${material}"
+                        th:value="${item.id}"
+                        th:text="${item.product.name}"></option>
+            </select>
+        </label>
 
-</form>
+        <label for="restockNumber" ></label>
+        <input id="restockNumber" required type="number" name="restockNumber"  min="1" max="900" class="form-control">
+        <button class="btn btn-outline-secondary"  type="submit">Nachbestellen</button>
+    </form>
 
 <form class="table-bordered">
     <table class="table">
