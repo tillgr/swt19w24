@@ -27,26 +27,8 @@ public class MaterialManager {
 	public UniqueInventory<UniqueInventoryItem> getMaterialInventory() {
 		return materialInventory;
 	}
+	
 
-	private Quantity convertToQuantity(String sQuantity){
-		StringBuilder newQuantity = new StringBuilder();
-
-		for (int i = 0; i < sQuantity.length(); i++) {
-			String test = "" + sQuantity.charAt(i);
-			if(!Pattern.matches("\\d+", test)){
-				break;
-			}
-			newQuantity.append(sQuantity.charAt(i));
-		}
-
-		String finalQuantity = newQuantity.toString();
-
-		int iQuantity = Integer.parseInt(finalQuantity);
-
-		//double dQuantity = Double.parseDouble(finalQuantity);
-
-		return Quantity.of(iQuantity);
-	}
 
 	public void restock(String materialName, int number){
 

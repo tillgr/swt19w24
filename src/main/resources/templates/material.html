@@ -12,25 +12,37 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
+
+
+
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
-<form method="post" th:action="@{material/restock}">
+    <form class="input-group mb-3" method="post">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" type="button" th:each="item : ${material}" th:value="${item.id}" th:text="${item.product.name}" ></a>
+            </div>
+        </div>
 
-        <div class="field">
-            <label for="materialName">Material:</label>
+        <label for="test" ></label>
+        <input id="test" required type="number" name="test" class="form-control">
+        <button class="btn btn-secondary"  type="submit" th:action="@{material/test}">Testbutton</button>
+    </form>
+
+    <form class="input-group mb-3" method="post" th:action="@{material/restock}">
+    
+            <label for="materialName"></label>
             <input id="materialName" required type="text" name="materialName"  class="form-control">
-        </div>
 
-        <div class="field">
-        <label for="restockNumber">Menge: </label>
-        <input id="restockNumber" required type="number" name="restockNumber" min="1" max="900" step="1" value="1" class="form-control">
-        </div>
-        <button class="btn btn-primary" type="submit" >Nachbestellen</button>
+            <label for="restockNumber"></label>
+            <input id="restockNumber" required type="number" name="restockNumber" min="1" max="900" step="1" value="1" class="form-control">
+            <button class="btn btn-primary" type="submit" >Nachbestellen</button>
 
-    </div>
 </form>
 
+<form class="table-bordered">
     <table class="table">
         <thead>
         <tr>
@@ -42,12 +54,9 @@
             <tr th:each="item : ${material}">
                 <td th:text="${item.product.name}"></td>
                 <td th:text="${{item.quantity}}"></td>
-
-
-
         </tbody>
     </table>
-
+</form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
