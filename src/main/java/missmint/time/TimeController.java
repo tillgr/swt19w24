@@ -20,7 +20,7 @@ public class TimeController {
 	@PostMapping("/forward")
 	@PreAuthorize("isAuthenticated()")
 	public String forward() {
-		time.forward(Duration.ofDays(100));
+		time.forward(Duration.ofDays(1));
 		timeService.onForward();
 		return "redirect:/";
 	}
