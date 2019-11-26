@@ -3,32 +3,42 @@ package missmint.orders.order;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceService;
 import missmint.rooms.RoomRepository;
+import missmint.time.TimeTableEntry;
+import missmint.time.TimeTableService;
 import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;
+import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static missmint.orders.order.OrderState.*;
 
 @Service
 public class OrderService {
 	private final BusinessTime businessTime;
 	private final RoomRepository rooms;
 	private final StaffRepository staffRepository;
+	private OrderManager<MissMintOrder> orderManager;
 
 	@Value("${general.currency}")
 	private String currency;
 	@Value("${orders.pickup.compensation.percent}")
 	private long compensation;
 
-	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository) {
+	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager) {
 		this.businessTime = businessTime;
 		this.rooms = rooms;
 		this.staffRepository = staffRepository;
+		this.orderManager = orderManager;
 	}
 
 	public MonetaryAmount calculateCharge(MissMintOrder order) {
@@ -53,4 +63,54 @@ public class OrderService {
 	public boolean isOrderAcceptable(MissMintService service) {
 		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceService.getCategory(service));
 	}
+
+	public void updateOrders() {
+		boolean updated;
+		do {
+			updated = updateOrdersOnce();
+		} while (updated);
+	}
+
+	private boolean updateOrdersOnce() {
+		AtomicBoolean changed = new AtomicBoolean(false);
+		
+		orderManager.findAll(Pageable.unpaged()).forEach(order -> {
+			TimeTableEntry entry = order.getEntry();
+
+			switch (order.getOrderState()) {
+				case WAITING:
+					if (entry != null && businessTime.getTime().isAfter(entry.getBeginning())) {
+						order.setOrderState(IN_PROGRESS);
+						changed.set(true);
+					}
+					break;
+				case IN_PROGRESS:
+					if (entry != null && businessTime.getTime().isAfter(entry.getEnd())) {
+						order.setOrderState(FINISHED);
+						order.setFinished(businessTime.getTime().toLocalDate());
+						changed.set(true);
+					}
+					break;
+				case FINISHED:
+					if (order.getLatestFinished().plusWeeks(1).isBefore(businessTime.getTime().toLocalDate())) {
+						order.setOrderState(OrderState.STORED);
+						changed.set(true);
+					}
+					break;
+				case STORED:
+					if (order.getLatestFinished().plusWeeks(1).plusMonths(3).isBefore(businessTime.getTime().toLocalDate())) {
+						order.setOrderState(OrderState.CHARITABLE_USED);
+						// TODO delete order item
+						changed.set(true);
+					}
+					break;
+				default:
+					break;
+			}
+			orderManager.save(order);
+		});
+
+		return changed.get();
+	}
+
 }

@@ -4,16 +4,16 @@ import missmint.orders.order.MissMintOrder;
 import missmint.rooms.Room;
 import missmint.users.model.Staff;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 
 @Entity
 public class TimeTableEntry {
 	@Id @GeneratedValue private long id;
-	@ManyToOne
+	@OneToOne
+	@JoinColumn(name="missmintorder")
 	private MissMintOrder order;
 	@ManyToOne
 	private Staff staff;
@@ -64,5 +64,13 @@ public class TimeTableEntry {
 
 	public LocalDate getDate() {
 		return date;
+	}
+
+	public LocalDateTime getBeginning() {
+		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getFirst());
+	}
+
+	public LocalDateTime getEnd() {
+		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}
 }

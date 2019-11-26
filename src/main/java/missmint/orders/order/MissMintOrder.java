@@ -2,6 +2,7 @@ package missmint.orders.order;
 
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
+import missmint.time.TimeTableEntry;
 import org.salespointframework.order.Order;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
@@ -20,6 +21,9 @@ public class MissMintOrder extends Order {
 	private OrderState orderState;
 	@OneToOne
 	private OrderItem item;
+
+	@OneToOne(mappedBy = "order")
+	private TimeTableEntry entry;
 
 	public MissMintOrder() {
 	}
@@ -83,5 +87,9 @@ public class MissMintOrder extends Order {
 
 	public void setExpectedFinished(LocalDate expectedFinished) {
 		this.expectedFinished = expectedFinished;
+	}
+
+	public TimeTableEntry getEntry() {
+		return entry;
 	}
 }
