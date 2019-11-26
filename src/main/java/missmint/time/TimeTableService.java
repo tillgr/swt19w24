@@ -31,10 +31,10 @@ public class TimeTableService {
 
 	public static final List<Pair<LocalTime, LocalTime>> SLOTS = List.of(
 		Pair.of(LocalTime.of(8, 0), LocalTime.of(9, 0)),
-		Pair.of(LocalTime.of(9, 30), LocalTime.of(10, 30)),
-		Pair.of(LocalTime.of(11, 0), LocalTime.of(12, 0)),
-		Pair.of(LocalTime.of(12, 30), LocalTime.of(13, 30)),
-		Pair.of(LocalTime.of(14, 0), LocalTime.of(23, 0))
+		Pair.of(LocalTime.of(11, 30), LocalTime.of(12, 30)),
+		Pair.of(LocalTime.of(14, 0), LocalTime.of(15, 0)),
+		Pair.of(LocalTime.of(17, 30), LocalTime.of(18, 30)),
+		Pair.of(LocalTime.of(22, 0), LocalTime.of(23, 0))
 	);
 
 	public TimeTableService(ServiceService serviceService, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository) {
