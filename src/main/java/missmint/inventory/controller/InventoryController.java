@@ -46,18 +46,24 @@ public class InventoryController {
 
 	@PostMapping("/material/consume")
 	@PreAuthorize("isAuthenticated()")
-	String consume(@RequestParam("materialName") String materialName, @RequestParam("consumeNumber") int number){
+	String consume(@RequestParam InventoryItemIdentifier material, @RequestParam("consumeNumber") int number){
 
-		materialManager.consume(materialName, number);
+		materialManager.consume(material, number);
 
 		return "redirect:/material";
 	}
 
 	@PostMapping("/material/restock")
 	@PreAuthorize("isAuthenticated()")
-	String restock(@RequestParam("materialName") String materialName, @RequestParam("restockNumber") int number){
+	String restock(@RequestParam InventoryItemIdentifier material, @RequestParam("restockNumber") int number){
 
-		materialManager.restock(materialName, number);
+		materialManager.restock(material, number);
+
+		return "redirect:/material";
+	}
+
+	@PostMapping("material/test")
+	String testString(){
 
 		return "redirect:/material";
 	}
