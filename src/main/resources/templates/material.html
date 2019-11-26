@@ -12,50 +12,51 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
+
+
+
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
+    <form class="input-group mb-3" method="post">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" type="button" th:each="item : ${material}" th:value="${item.id}" th:text="${item.product.name}" ></a>
+            </div>
+        </div>
+
+        <label for="test" ></label>
+        <input id="test" required type="number" name="test" class="form-control">
+        <button class="btn btn-secondary"  type="submit" th:action="@{material/test}">Testbutton</button>
+    </form>
+
+    <form class="input-group mb-3" method="post" th:action="@{material/restock}">
+    
+            <label for="materialName"></label>
+            <input id="materialName" required type="text" name="materialName"  class="form-control">
+
+            <label for="restockNumber"></label>
+            <input id="restockNumber" required type="number" name="restockNumber" min="1" max="900" step="1" value="1" class="form-control">
+            <button class="btn btn-primary" type="submit" >Nachbestellen</button>
+
+</form>
+
+<form class="table-bordered">
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Menge</th>
-            <th scope="col">Aktionen</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="item : ${material}">
                 <td th:text="${item.product.name}"></td>
                 <td th:text="${{item.quantity}}"></td>
-                <td>
-                    <form class="ui form" method="post" th:action="@{material/restock/{q}/{id}(id=${item.id},q=${item.quantity})}">
-                        <input type="hidden" name="pid" value="0"/>
-                        <div class="field">
-                            <label for="restockNumber">Menge: </label>
-                            <input id="restockNumber" type="number" name="restockNumber" min="1" max="900" step="1" value="1"/><br/>
-                        </div>
-                        <button  type="submit" class="ui labeled icon button">
-                            <span>Nachbestellen</span>
-                        </button>
-                    </form>
-
-                    <form class="ui form" method="post" th:action="@{material/consume/{q}/{id}(id=${item.id},q=${item.quantity})}">
-                        <input type="hidden" name="pid" value="0"/>
-                        <div class="field">
-                            <label for="consumeNumber">Menge: </label>
-                            <input id="consumeNumber" type="number" name="consumeNumber" min="1" max="900" step="1" value="1" /><br/>
-                        </div>
-                        <button  type="submit" class="ui labeled icon button">
-                            <span>Verbrauchen</span>
-                        </button>
-                    </form>
-
-                </td>
-            </tr>
-
         </tbody>
     </table>
-
+</form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
