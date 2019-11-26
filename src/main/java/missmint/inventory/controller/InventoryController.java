@@ -87,6 +87,15 @@ public class InventoryController {
 			);
 		}
 
+		//automatisch nachbestellen
+
+
+		if(new_quantity <= 10){
+
+			restock(materialId, quantity, 900);
+
+		}
+
 		return "redirect:/material";
 	}
 
@@ -135,6 +144,7 @@ public class InventoryController {
 
 
 		}
+
 		return "redirect:/material";
 	}
 }
