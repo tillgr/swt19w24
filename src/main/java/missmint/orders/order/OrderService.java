@@ -1,5 +1,6 @@
 package missmint.orders.order;
 
+import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceService;
 import missmint.rooms.RoomRepository;
@@ -7,6 +8,7 @@ import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
 import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,17 +30,19 @@ public class OrderService {
 	private final RoomRepository rooms;
 	private final StaffRepository staffRepository;
 	private OrderManager<MissMintOrder> orderManager;
+	private Catalog<OrderItem> itemCatalog;
 
 	@Value("${general.currency}")
 	private String currency;
 	@Value("${orders.pickup.compensation.percent}")
 	private long compensation;
 
-	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager) {
+	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager, Catalog<OrderItem> itemCatalog) {
 		this.businessTime = businessTime;
 		this.rooms = rooms;
 		this.staffRepository = staffRepository;
 		this.orderManager = orderManager;
+		this.itemCatalog = itemCatalog;
 	}
 
 	public MonetaryAmount calculateCharge(MissMintOrder order) {
@@ -100,7 +104,10 @@ public class OrderService {
 				case STORED:
 					if (order.getLatestFinished().plusWeeks(1).plusMonths(3).isBefore(businessTime.getTime().toLocalDate())) {
 						order.setOrderState(OrderState.CHARITABLE_USED);
-						// TODO delete order item
+						OrderItem item = order.getItem();
+						order.setItem(null);
+						orderManager.save(order);
+						itemCatalog.delete(item);
 						changed.set(true);
 					}
 					break;

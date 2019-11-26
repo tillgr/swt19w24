@@ -8,6 +8,7 @@ import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ public class MissMintOrder extends Order {
 	private LocalDate expectedFinished;
 	private LocalDate finished;
 	private OrderState orderState;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private OrderItem item;
 
 	@OneToOne(mappedBy = "order")
@@ -91,5 +92,9 @@ public class MissMintOrder extends Order {
 
 	public TimeTableEntry getEntry() {
 		return entry;
+	}
+
+	public void setItem(OrderItem item) {
+		this.item = item;
 	}
 }
