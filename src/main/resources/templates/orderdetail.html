@@ -42,7 +42,7 @@
             <td th:text="${order.getFinished()}">22.11.2019</td>
         </tr>
         <tr>
-            <th scope="col" th:text="#{orders.service}">Order State</th>
+            <th scope="col" th:text="#{orders.state}">Order State</th>
             <td th:text="#{'orders.state.' + ${order.getOrderState().name()}}">Waiting</td>
         </tr>
         <tr>
