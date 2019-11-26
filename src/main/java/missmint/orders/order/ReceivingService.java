@@ -1,11 +1,13 @@
 package missmint.orders.order;
 
+import missmint.finance.FinanceService;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceService;
 import missmint.time.EntryRepository;
 import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
+import org.salespointframework.accountancy.AccountancyEntry;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
 import org.springframework.stereotype.Service;
@@ -18,14 +20,24 @@ public class ReceivingService {
 	private final OrderManager<MissMintOrder> orderManager;
 	private final TimeTableService timeTableService;
 	private final Catalog<OrderItem> itemCatalog;
+	private final FinanceService financeService;
 	private EntryRepository entryRepository;
 
-	public ReceivingService(ServiceService serviceService, OrderService orderService, OrderManager<MissMintOrder> orderManager, TimeTableService timeTableService, Catalog<OrderItem> itemCatalog, EntryRepository entryRepository) {
+	public ReceivingService(
+		ServiceService serviceService,
+		OrderService orderService,
+		OrderManager<MissMintOrder> orderManager,
+		TimeTableService timeTableService,
+		Catalog<OrderItem> itemCatalog,
+		EntryRepository entryRepository,
+		FinanceService financeService
+	) {
 		this.serviceService = serviceService;
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
 		this.itemCatalog = itemCatalog;
+		this.financeService = financeService;
 		this.entryRepository = entryRepository;
 	}
 
@@ -33,6 +45,7 @@ public class ReceivingService {
 		MissMintService service = serviceService.getService(order);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 		itemCatalog.save(order.getItem());
+		financeService.add(createAccountancyEntry(order));
 
 		TimeTableEntry entry = timeTableService.createEntry(order);
 		order.setExpectedFinished(entry.getDate());
@@ -40,5 +53,10 @@ public class ReceivingService {
 		entryRepository.save(entry);
 
 		// TODO time table planning, creating customer item, finance
+	}
+
+	private AccountancyEntry createAccountancyEntry(MissMintOrder order) {
+		var orderItem = order.getItem();
+		return new AccountancyEntry(orderItem.getPrice(), orderItem.getName());
 	}
 }

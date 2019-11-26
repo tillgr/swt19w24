@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Controller
@@ -64,7 +65,12 @@ public class ReceivingController {
 		}
 
 		LocalDate now = time.getTime().toLocalDate();
-		MissMintOrder order = new MissMintOrder(userAccount, form.getCustomer(), now, service, new OrderItem(form.getDescription()));
+		MissMintOrder order = new MissMintOrder(
+			userAccount,
+			form.getCustomer(),
+			now, service,
+			new OrderItem(form.getDescription(), BigDecimal.valueOf(10))
+		);
 		session.setAttribute("order", order);
 
 		model.addAttribute("total", order.getTotal());
