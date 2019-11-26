@@ -71,6 +71,10 @@ public class StaffManagement {
 		return userAccountManager.findByUsername(userName);
 	}
 
+	public Optional<Staff> findStaffByUserName(String userName) {
+		return findByUserName("hans").flatMap(staffRepository::findByUserAccount);
+	}
+
 	public Optional<Staff> findStaffById(Long id) {
 		return staffRepository.findById(id);
 	}
