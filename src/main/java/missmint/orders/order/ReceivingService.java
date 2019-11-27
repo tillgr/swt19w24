@@ -39,6 +39,6 @@ public class ReceivingService {
 		orderManager.save(order);
 		entryRepository.save(entry);
 
-		// TODO time table planning, creating customer item, finance
+		// TODO use material, finance
 	}
 }
