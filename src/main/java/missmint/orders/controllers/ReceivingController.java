@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Controller
@@ -69,7 +68,7 @@ public class ReceivingController {
 			userAccount,
 			form.getCustomer(),
 			now, service,
-			new OrderItem(form.getDescription(), BigDecimal.valueOf(10))
+			new OrderItem(form.getDescription())
 		);
 		session.setAttribute("order", order);
 

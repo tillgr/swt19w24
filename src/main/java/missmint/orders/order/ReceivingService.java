@@ -45,7 +45,10 @@ public class ReceivingService {
 		MissMintService service = serviceService.getService(order);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 		itemCatalog.save(order.getItem());
-		financeService.add(createAccountancyEntry(order));
+
+		order.getOrderLines().forEach(orderLine ->
+				financeService.add(new AccountancyEntry(orderLine.getPrice(), orderLine.getProductName()))
+		);
 
 		TimeTableEntry entry = timeTableService.createEntry(order);
 		order.setExpectedFinished(entry.getDate());
@@ -53,10 +56,5 @@ public class ReceivingService {
 		entryRepository.save(entry);
 
 		// TODO time table planning, creating customer item, finance
-	}
-
-	private AccountancyEntry createAccountancyEntry(MissMintOrder order) {
-		var orderItem = order.getItem();
-		return new AccountancyEntry(orderItem.getPrice(), orderItem.getName());
 	}
 }
