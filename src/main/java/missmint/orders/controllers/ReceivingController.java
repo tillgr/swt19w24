@@ -76,6 +76,7 @@ public class ReceivingController {
 	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model) {
 		model.addAttribute("order", order);
 		receivingService.receiveOrder(order);
+
 		return "ticket";
 	}
 }

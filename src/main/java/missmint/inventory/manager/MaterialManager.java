@@ -83,7 +83,6 @@ public class MaterialManager {
 		Metric metric;
 
 
-
 		int old_quantity;
 		int new_quantity;
 		int finalNumber;
@@ -108,5 +107,4 @@ public class MaterialManager {
 			}
 		}
 	}
-
 }
