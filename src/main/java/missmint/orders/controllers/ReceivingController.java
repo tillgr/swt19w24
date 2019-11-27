@@ -39,21 +39,14 @@ public class ReceivingController {
 	private final OrderService orderService;
 	private final ReceivingService receivingService;
 	private final ServiceManager serviceManager;
-	private final UniqueInventory<UniqueInventoryItem> materialInventory;
-	private final Catalog<Material> materialCatalog;
-	private final MaterialManager materialManager;
-	private final ServiceConsumptionManager serviceConsumptionManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, MaterialManager materialManager, ServiceConsumptionManager serviceConsumptionManager) {
+
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
 		this.orderManager = orderManager;
 		this.orderService = orderService;
 		this.receivingService = receivingService;
-		this.materialInventory = materialInventory;
-		this.materialCatalog = materialCatalog;
-		this.materialManager = materialManager;
-		this.serviceConsumptionManager = serviceConsumptionManager;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -71,12 +64,6 @@ public class ReceivingController {
 		}
 
 		MissMintService service = Utils.getOrThrow(serviceManager.findById(form.getService()));
-
-		//automatisch nachbestellen
-
-		serviceConsumptionManager.serviceMatRelation.get(service).stream().forEach(x -> materialManager.checkQuantity(x.getFirst()));
-
-
 
 
 		if (!orderService.isOrderAcceptable(service)) {
