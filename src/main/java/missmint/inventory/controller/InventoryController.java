@@ -59,6 +59,7 @@ public class InventoryController {
 
 		materialManager.restock(material, number);
 
+
 		return "redirect:/material";
 	}
 

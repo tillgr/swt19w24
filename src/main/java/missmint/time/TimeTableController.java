@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.Collator;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class TimeTableController {
 
 	private RoomRepository rooms;
 	private EntryRepository entries;
-	private Set<TimeTableEntry> existingEntries;
+	private List<TimeTableEntry> existingEntries;
 	private LocalDate date;
 
 
@@ -28,7 +28,7 @@ public class TimeTableController {
 
 	@GetMapping("/rooms/{id}/showEntries")
 	public String showEntries(Model model, @PathVariable("id") long id){
-		existingEntries= new HashSet<>();
+		existingEntries= new LinkedList<>();
 
 		//TODO entries existieren nur, wenn gebucht worden ist
 		rooms.findById(id).ifPresent(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
@@ -39,6 +39,9 @@ public class TimeTableController {
 				}
 			}
 		);
+
+		model.addAttribute("rooms", rooms.findAll());
+		model.addAttribute("entries", entries.findAll());
 		model.addAttribute("existingEntries", existingEntries);
 
 		return "entries";

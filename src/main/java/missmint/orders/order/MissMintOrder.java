@@ -2,11 +2,13 @@ package missmint.orders.order;
 
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
+import missmint.time.TimeTableEntry;
 import org.salespointframework.order.Order;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
@@ -18,8 +20,11 @@ public class MissMintOrder extends Order {
 	private LocalDate expectedFinished;
 	private LocalDate finished;
 	private OrderState orderState;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private OrderItem item;
+
+	@OneToOne(mappedBy = "order")
+	private TimeTableEntry entry;
 
 	public MissMintOrder() {
 	}
@@ -83,5 +88,13 @@ public class MissMintOrder extends Order {
 
 	public void setExpectedFinished(LocalDate expectedFinished) {
 		this.expectedFinished = expectedFinished;
+	}
+
+	public TimeTableEntry getEntry() {
+		return entry;
+	}
+
+	public void setItem(OrderItem item) {
+		this.item = item;
 	}
 }
