@@ -6,6 +6,7 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class Staff {
 	private String firstName;
 
 	@ElementCollection
-	private Set<ServiceCategory> skills = Collections.emptySet();
+	private Set<ServiceCategory> skills = new HashSet<>();
 
 	// empty constructor for Entity
 	public Staff() {}

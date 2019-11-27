@@ -31,13 +31,12 @@ public class TimeTableController {
 		existingEntries= new LinkedList<>();
 
 		//TODO entries existieren nur, wenn gebucht worden ist
-		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
+		rooms.findById(id).ifPresent(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
 				for (TimeTableEntry entry : room.getEntrySet())	{
 					if (entry.getDate().equals(LocalDate.now())){
 						existingEntries.add(entry);
 					}
 				}
-				return 1;
 			}
 		);
 

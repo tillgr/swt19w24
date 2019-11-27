@@ -12,50 +12,59 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
+
+
+
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
+    <form class="input-group mb-3" method="post" th:action="@{material/consume}">
+
+        <label>
+            <select class="dropdown-menu-xl-right" name="material">
+                <option class="dropdown-item" th:each="item : ${material}"
+                        th:value="${item.id}"
+                        th:text="${item.product.name}"></option>
+            </select>
+        </label>
+
+
+
+        <label for="consumeNumber" ></label>
+        <input id="consumeNumber" required type="number" name="consumeNumber"  min="1" max="900" class="form-control">
+        <button class="btn btn-outline-primary"  type="submit">Verbrauchen</button>
+    </form>
+
+    <form class="input-group mb-3" method="post" th:action="@{material/restock}">
+
+        <label>
+            <select class="dropdown-menu-xl-right" name="material">
+                <option class="dropdown-item" th:each="item : ${material}"
+                        th:value="${item.id}"
+                        th:text="${item.product.name}"></option>
+            </select>
+        </label>
+
+        <label for="restockNumber" ></label>
+        <input id="restockNumber" required type="number" name="restockNumber"  min="1" max="900" class="form-control">
+        <button class="btn btn-outline-secondary"  type="submit">Nachbestellen</button>
+    </form>
+
+<form class="table-bordered">
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Menge</th>
-            <th scope="col">Aktionen</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="item : ${material}">
                 <td th:text="${item.product.name}"></td>
                 <td th:text="${{item.quantity}}"></td>
-                <td>
-                    <form class="ui form" method="post" th:action="@{material/restock/{q}/{id}(id=${item.id},q=${item.quantity})}">
-                        <input type="hidden" name="pid" value="0"/>
-                        <div class="field">
-                            <label for="restockNumber">Menge: </label>
-                            <input id="restockNumber" type="number" name="restockNumber" min="1" max="900" step="1" value="1"/><br/>
-                        </div>
-                        <button  type="submit" class="ui labeled icon button">
-                            <span>Nachbestellen</span>
-                        </button>
-                    </form>
-
-                    <form class="ui form" method="post" th:action="@{material/consume/{q}/{id}(id=${item.id},q=${item.quantity})}">
-                        <input type="hidden" name="pid" value="0"/>
-                        <div class="field">
-                            <label for="consumeNumber">Menge: </label>
-                            <input id="consumeNumber" type="number" name="consumeNumber" min="1" max="900" step="1" value="1" /><br/>
-                        </div>
-                        <button  type="submit" class="ui labeled icon button">
-                            <span>Verbrauchen</span>
-                        </button>
-                    </form>
-
-                </td>
-            </tr>
-
         </tbody>
     </table>
-
+</form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>

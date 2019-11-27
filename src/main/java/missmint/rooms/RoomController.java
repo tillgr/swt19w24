@@ -27,7 +27,6 @@ public class RoomController {
 
 		model.addAttribute("form", form);
 		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
 
 		return "rooms";
 	}
