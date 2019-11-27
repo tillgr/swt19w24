@@ -1,13 +1,19 @@
 package missmint.orders.controllers;
 
 import missmint.Utils;
+import missmint.inventory.manager.MaterialManager;
+import missmint.inventory.products.Material;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.forms.ReceivingForm;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
 import missmint.orders.order.ReceivingService;
 import missmint.orders.service.MissMintService;
+import missmint.orders.service.ServiceConsumptionManager;
 import missmint.orders.service.ServiceManager;
+import org.salespointframework.catalog.Catalog;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.salespointframework.useraccount.UserAccount;
@@ -33,13 +39,21 @@ public class ReceivingController {
 	private final OrderService orderService;
 	private final ReceivingService receivingService;
 	private final ServiceManager serviceManager;
+	private final UniqueInventory<UniqueInventoryItem> materialInventory;
+	private final Catalog<Material> materialCatalog;
+	private final MaterialManager materialManager;
+	private final ServiceConsumptionManager serviceConsumptionManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService) {
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, MaterialManager materialManager, ServiceConsumptionManager serviceConsumptionManager) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
 		this.orderManager = orderManager;
 		this.orderService = orderService;
 		this.receivingService = receivingService;
+		this.materialInventory = materialInventory;
+		this.materialCatalog = materialCatalog;
+		this.materialManager = materialManager;
+		this.serviceConsumptionManager = serviceConsumptionManager;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -51,12 +65,19 @@ public class ReceivingController {
 
 	@PostMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
-	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session) {
+	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session, UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, MaterialManager materialManager) {
 		if (errors.hasErrors()) {
 			return receiving(model, form);
 		}
 
 		MissMintService service = Utils.getOrThrow(serviceManager.findById(form.getService()));
+
+		//automatisch nachbestellen
+
+		materialManager.checkQuantity(serviceConsumptionManager.serviceMatRelation.get(service).stream().forEach(x -> x.getFirst()));
+
+
+
 
 		if (!orderService.isOrderAcceptable(service)) {
 			model.addAttribute("notAcceptable", true);
