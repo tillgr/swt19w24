@@ -74,7 +74,7 @@ public class ReceivingController {
 
 		//automatisch nachbestellen
 
-		materialManager.checkQuantity(serviceConsumptionManager.serviceMatRelation.get(service).stream().forEach(x -> x.getFirst()));
+		serviceConsumptionManager.serviceMatRelation.get(service).stream().forEach(x -> materialManager.checkQuantity(x.getFirst()));
 
 
 
