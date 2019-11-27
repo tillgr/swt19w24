@@ -64,7 +64,12 @@ public class ReceivingController {
 		}
 
 		LocalDate now = time.getTime().toLocalDate();
-		MissMintOrder order = new MissMintOrder(userAccount, form.getCustomer(), now, service, new OrderItem(form.getDescription()));
+		MissMintOrder order = new MissMintOrder(
+			userAccount,
+			form.getCustomer(),
+			now, service,
+			new OrderItem(form.getDescription())
+		);
 		session.setAttribute("order", order);
 
 		model.addAttribute("total", order.getTotal());

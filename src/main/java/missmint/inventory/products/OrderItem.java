@@ -11,7 +11,7 @@ public class OrderItem extends Product {
 	private OrderItem(){}
 
 	public OrderItem(String name) {
-		super(name, Money.of(0, "USD"));
+		super(name, Money.of(0, "EUR"));
 		addCategory("ORDER_ITEM");
 	}
 }
