@@ -17,28 +17,18 @@ public class FinanceService {
 		this.accountancy = accountancy;
 	}
 
-	public Iterable <AccountancyEntry> showAllFinance(){
-		return accountancy.findAll();
-	}
-
-
-	public void add(AccountancyEntry accountancyEntry){
-		accountancy.add(accountancyEntry);
-	}
-
-
-	public void createFinanceItemForm(AddFinanceForm form){
+	public void createFinanceItemForm(AddFinanceForm form) {
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
 
 		accountancy.add(new AccountancyEntry(Money.of(form.getPrice(), currency), form.getDescription()));
 	}
 
-	public Money getSum(){
+	public Money getSum() {
 		Money sum = Money.of(0, currency);
-		for (AccountancyEntry entry : showAllFinance()) {
+		for (AccountancyEntry entry : accountancy.findAll()) {
 			sum = sum.add(entry.getValue());
 		}
-		return  sum;
+		return sum;
 	}
 
 }

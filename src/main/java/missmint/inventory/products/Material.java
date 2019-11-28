@@ -7,11 +7,11 @@ import javax.money.MonetaryAmount;
 import javax.persistence.Entity;
 
 @Entity
-public class Material extends Product{
+public class Material extends Product {
+	private Material() {
+	}
 
-	private Material(){}
-
-	public Material(String name, MonetaryAmount price, Metric metric){
-		super(name,price,metric);
+	public Material(String name, MonetaryAmount price, Metric metric) {
+		super(name, price, metric);
 	}
 }

@@ -21,12 +21,10 @@ import java.util.Optional;
 @Controller
 public class PickUpController {
 	private final OrderService orderService;
-	private final OrderManager<MissMintOrder> orderManager;
 	private PickupService pickupService;
 
-	public PickUpController(OrderService orderService, OrderManager<MissMintOrder> orderManager, PickupService pickupService) {
+	public PickUpController(OrderService orderService, PickupService pickupService) {
 		this.orderService = orderService;
-		this.orderManager = orderManager;
 		this.pickupService = pickupService;
 	}
 

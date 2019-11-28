@@ -1,7 +1,6 @@
 package missmint.inventory.controller;
 
 
-
 import missmint.inventory.manager.MaterialManager;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
@@ -21,33 +20,22 @@ import java.util.regex.Pattern;
 @Controller
 public class InventoryController {
 
-	@Autowired
-	MaterialManager materialManager ;
+	private MaterialManager materialManager;
 
-
+	public InventoryController(MaterialManager materialManager) {
+		this.materialManager = materialManager;
+	}
 
 	@GetMapping("/material")
 	@PreAuthorize("isAuthenticated()")
-	String material(Model model) {
-		model.addAttribute("material", Streamable.of(
-			materialManager.getMaterialInventory().findAll()).filter(it ->
-			it.getProduct().getCategories().toList().get(0).equals("UNIT_MATERIAL"))
-			.and(Streamable.of(materialManager.getMaterialInventory().findAll()).filter(it ->
-				it.getProduct().getCategories().toList().get(0).equals("LITER_MATERIAL")))
-			.and(Streamable.of(materialManager.getMaterialInventory().findAll()).filter(it ->
-				it.getProduct().getCategories().toList().get(0).equals("METER_MATERIAL")))
-			.and(Streamable.of(materialManager.getMaterialInventory().findAll()).filter(it ->
-				it.getProduct().getCategories().toList().get(0).equals("SQUARE_METER_MATERIAL")))
-		);
+	public String material(Model model) {
+		model.addAttribute("material", materialManager.findMaterials());
 		return "material";
 	}
 
-
-
 	@PostMapping("/material/consume")
 	@PreAuthorize("isAuthenticated()")
-	String consume(@RequestParam InventoryItemIdentifier material, @RequestParam("consumeNumber") int number){
-
+	public String consume(@RequestParam InventoryItemIdentifier material, @RequestParam("consumeNumber") int number) {
 		materialManager.consume(material, number);
 
 		return "redirect:/material";
@@ -55,16 +43,8 @@ public class InventoryController {
 
 	@PostMapping("/material/restock")
 	@PreAuthorize("isAuthenticated()")
-	String restock(@RequestParam InventoryItemIdentifier material, @RequestParam("restockNumber") int number){
-
+	public String restock(@RequestParam InventoryItemIdentifier material, @RequestParam("restockNumber") int number) {
 		materialManager.restock(material, number);
-
-
-		return "redirect:/material";
-	}
-
-	@PostMapping("material/test")
-	String testString(){
 
 		return "redirect:/material";
 	}

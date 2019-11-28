@@ -5,17 +5,18 @@ import missmint.time.EntryRepository;
 import javax.validation.constraints.NotBlank;
 
 public class AddRoomForm {
-	private final @NotBlank(message="Darf nicht leer sein!") String name;
+	@NotBlank(message = "Darf nicht leer sein!")
+	private final String name;
 
-	public AddRoomForm(String name){
+	public AddRoomForm(String name) {
 		this.name = name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return name;
 	}
 
-	public Room createRoom(EntryRepository entries, RoomRepository rooms){
+	public Room createRoom() {
 		return new Room(name);
 	}
 }

@@ -35,9 +35,8 @@ public class StaffManagement {
 	 * Creates a new user with employee/admin role and saves it in the system
 	 *
 	 * @param form used to create account credentials
-	 * @return User
 	 */
-	public Staff createStaff(RegistrationForm form) {
+	public void createStaff(RegistrationForm form) {
 
 		Assert.notNull(form, "RegistrationForm cannot be null.");
 
@@ -46,7 +45,7 @@ public class StaffManagement {
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
 
-		return staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName()));
+		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName()));
 	}
 
 	/**
@@ -54,13 +53,12 @@ public class StaffManagement {
 	 * the StaffRepository
 	 *
 	 * @param userName of the UserAccount
-	 * @param id of the UserAccount
+	 * @param id       of the UserAccount
 	 */
 	public void deleteStaff(String userName, Long id) {
-
 		var userOptional = userAccountManager.findByUsername(userName);
 
-		userOptional.ifPresent( user -> {
+		userOptional.ifPresent(user -> {
 			staffRepository.deleteById(id);
 			userAccountManager.delete(user);
 		});
@@ -75,20 +73,13 @@ public class StaffManagement {
 		return findByUserName(userName).flatMap(staffRepository::findByUserAccount);
 	}
 
-	public Optional<Staff> findStaffById(Long id) {
-		return staffRepository.findById(id);
-	}
-
-	public void editStaff(Long id, String firstName, String lastName, ServiceCategory service) {
-
-		staffRepository.findById(id).ifPresent(staff -> {
-			staff.setFirstName(firstName);
-			staff.setLastName(lastName);
-			if (service != null) {
-				staff.addSkill(service);
-			}
-			staffRepository.save(staff);
-		});
+	public void editStaff(Staff staff, String firstName, String lastName, ServiceCategory service) {
+		staff.setFirstName(firstName);
+		staff.setLastName(lastName);
+		if (service != null) {
+			staff.addSkill(service);
+		}
+		staffRepository.save(staff);
 	}
 
 	public Iterable<Staff> getAllStaff() {

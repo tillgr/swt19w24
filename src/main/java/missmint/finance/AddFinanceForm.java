@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class AddFinanceForm {
-
 	@NotEmpty
 	private String description;
 

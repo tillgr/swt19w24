@@ -7,13 +7,14 @@ import missmint.users.model.Staff;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 
 @Entity
 public class TimeTableEntry {
-	@Id @GeneratedValue private long id;
+	@Id
+	@GeneratedValue
+	private long id;
 	@OneToOne
-	@JoinColumn(name="missmintorder")
+	@JoinColumn(name = "missmintorder")
 	private MissMintOrder order;
 	@ManyToOne
 	private Staff staff;
@@ -30,12 +31,7 @@ public class TimeTableEntry {
 		this.date = date;
 	}
 
-	public TimeTableEntry (Room room){
-		this.room = room;
-	}
-
-	private TimeTableEntry(){
-		this.room = null;
+	private TimeTableEntry() {
 	}
 
 	public Room getRoom() {
@@ -46,7 +42,7 @@ public class TimeTableEntry {
 		return id;
 	}
 
-	public void setRoom (Room room) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 

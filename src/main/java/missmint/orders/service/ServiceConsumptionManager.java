@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class ServiceConsumptionManager {
-
 	public final static Map<ServiceCategory, Set<Pair<String, Quantity>>> serviceMatRelation = Map.of(
 		ServiceCategory.KLUDGE,
 		Set.of(
