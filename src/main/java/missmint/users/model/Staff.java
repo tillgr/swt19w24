@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Entity
 public class Staff {
-
 	@Id
 	@GeneratedValue
 	private long id;

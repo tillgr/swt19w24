@@ -76,7 +76,7 @@ public class OrderService {
 
 	private boolean updateOrdersOnce() {
 		AtomicBoolean changed = new AtomicBoolean(false);
-		
+
 		orderManager.findAll(Pageable.unpaged()).forEach(order -> {
 			TimeTableEntry entry = order.getEntry();
 

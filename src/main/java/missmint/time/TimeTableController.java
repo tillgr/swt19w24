@@ -1,94 +1,30 @@
 package missmint.time;
 
+import missmint.Utils;
+import missmint.rooms.Room;
 import missmint.rooms.RoomRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.text.Collator;
-import java.time.LocalDate;
-import java.util.*;
 
 @Controller
 public class TimeTableController {
 
-	private RoomRepository rooms;
-	private EntryRepository entries;
-	private List<TimeTableEntry> existingEntries;
-	private LocalDate date;
+	private TimeTableService timeService;
+	private RoomRepository roomRepository;
 
-
-	public TimeTableController(RoomRepository rooms, EntryRepository entries){
-		this.entries=entries;
-		this.rooms=rooms;
-		this.date=LocalDate.now();
+	public TimeTableController(TimeTableService timeService, RoomRepository roomRepository) {
+		this.timeService = timeService;
+		this.roomRepository = roomRepository;
 	}
 
 	@GetMapping("/rooms/{id}/showEntries")
-	public String showEntries(Model model, @PathVariable("id") long id){
-		existingEntries= new LinkedList<>();
+	public String showEntries(Model model, @PathVariable("id") long id) {
+		Room room = Utils.getOrThrow(roomRepository.findById(id));
 
-		//TODO entries existieren nur, wenn gebucht worden ist
-		rooms.findById(id).ifPresent(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
-				for (TimeTableEntry entry : room.getEntrySet())	{
-					if (entry.getDate().equals(LocalDate.now())){
-						existingEntries.add(entry);
-					}
-				}
-			}
-		);
-
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-		model.addAttribute("existingEntries", existingEntries);
+		model.addAttribute("existingEntries", timeService.todaysEntries(room));
 
 		return "entries";
 	}
-
-	/*
-	@PostMapping("/rooms/{id}/showPreviousEntries")
-	public String showPreviousEntries (Model model, @PathVariable("id") long id){
-		existingEntries= new HashSet<>();
-		date = date = date.minusDays(1);
-
-		rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
-				for (TimeTableEntry entry : room.getEntrySet())	{
-					if (entry.getOrder().getInbound().equals(date)){	//TODO wie kann man auf den nächsten Tag zugreifen?
-						existingEntries.add(entry);
-					}
-				}
-				return 1;
-			}
-		);
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-		model.addAttribute("existingEntries", existingEntries);
-
-		return "entries";
-	}
-
-	@PostMapping("/rooms/{id}/showNextEntries")
-	public String showNextEntries (Model model, @PathVariable("id") long id){
-		existingEntries= new HashSet<>();
-		date = date = date.plusDays(1);
-
-			rooms.findById(id).map(room -> {	//nimmt Wert falls nicht leer, dann wird funktion delete aufgerufen
-				for (TimeTableEntry entry : room.getEntrySet())	{
-					if (entry.getOrder().getInbound().equals(date)){	//TODO wie kann man auf den vorherigen Tag zugreifen?
-						existingEntries.add(entry);
-					}
-				}
-				return 1;
-			}
-		);
-		model.addAttribute("rooms", rooms.findAll());
-		model.addAttribute("entries", entries.findAll());
-		model.addAttribute("existingEntries", existingEntries);
-
-		return "entries";
-	}
-
-	 */
 }

@@ -20,7 +20,6 @@ class InventoryInitializer implements DataInitializer {
 	private final Catalog<OrderItem> orderItemCatalog ;
 
 	InventoryInitializer(Catalog<Material> materialCatalog, Catalog<OrderItem> orderItemCatalog, UniqueInventory<UniqueInventoryItem> orderItemInventory, UniqueInventory<UniqueInventoryItem> materialInventory) {
-
 		Assert.notNull(materialInventory, "materialInventory must not be null!");
 		Assert.notNull(orderItemInventory, "orderItemInventory must not be null");
 		Assert.notNull(materialCatalog, "Catalog must not be null!");
@@ -35,7 +34,6 @@ class InventoryInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-
 		materialCatalog.findByCategory("UNIT_MATERIAL").forEach(material -> {
 			materialInventory.findByProduct(material)
 				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material,Quantity.of(100,Metric.UNIT))));
@@ -56,11 +54,9 @@ class InventoryInitializer implements DataInitializer {
 				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.LITER))));
 		});
 
-
 		orderItemCatalog.findByCategory("ORDER_ITEM").forEach(orderItem -> {
 			orderItemInventory.findByProduct(orderItem)
 				.orElseGet(() -> orderItemInventory.save(new UniqueInventoryItem(orderItem, Quantity.of(1,Metric.UNIT))));
 		});
-
 	}
 }

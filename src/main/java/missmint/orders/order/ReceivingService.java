@@ -7,6 +7,7 @@ import missmint.orders.service.ServiceService;
 import missmint.time.EntryRepository;
 import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
+import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.order.OrderManager;
@@ -20,8 +21,8 @@ public class ReceivingService {
 	private final OrderManager<MissMintOrder> orderManager;
 	private final TimeTableService timeTableService;
 	private final Catalog<OrderItem> itemCatalog;
-	private final FinanceService financeService;
 	private EntryRepository entryRepository;
+	private Accountancy accountancy;
 
 	public ReceivingService(
 		ServiceService serviceService,
@@ -30,15 +31,15 @@ public class ReceivingService {
 		TimeTableService timeTableService,
 		Catalog<OrderItem> itemCatalog,
 		EntryRepository entryRepository,
-		FinanceService financeService
+		Accountancy accountancy
 	) {
 		this.serviceService = serviceService;
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
 		this.itemCatalog = itemCatalog;
-		this.financeService = financeService;
 		this.entryRepository = entryRepository;
+		this.accountancy = accountancy;
 	}
 
 	public void receiveOrder(MissMintOrder order) {
@@ -47,7 +48,7 @@ public class ReceivingService {
 		itemCatalog.save(order.getItem());
 
 		order.getOrderLines().forEach(orderLine ->
-				financeService.add(new AccountancyEntry(orderLine.getPrice(), orderLine.getProductName()))
+			accountancy.add(new AccountancyEntry(orderLine.getPrice(), orderLine.getProductName()))
 		);
 
 		TimeTableEntry entry = timeTableService.createEntry(order);

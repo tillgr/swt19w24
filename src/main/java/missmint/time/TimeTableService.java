@@ -5,6 +5,7 @@ import missmint.orders.order.OrderService;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceCategory;
 import missmint.orders.service.ServiceService;
+import missmint.rooms.Room;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
 import org.salespointframework.time.BusinessTime;
@@ -15,6 +16,7 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -76,5 +78,9 @@ public class TimeTableService {
 
 		//noinspection OptionalGetWithoutIsPresent
 		return entry.get().get();
+	}
+
+	public Iterator<TimeTableEntry> todaysEntries(Room room) {
+		return room.getEntrySet().stream().filter(entry -> entry.getDate().equals(time.getTime().toLocalDate())).iterator();
 	}
 }

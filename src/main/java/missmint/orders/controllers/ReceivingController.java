@@ -29,15 +29,13 @@ import java.time.LocalDate;
 public class ReceivingController {
 
 	private final BusinessTime time;
-	private final OrderManager<MissMintOrder> orderManager;
 	private final OrderService orderService;
 	private final ReceivingService receivingService;
 	private final ServiceManager serviceManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService) {
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderService orderService, ReceivingService receivingService) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
-		this.orderManager = orderManager;
 		this.orderService = orderService;
 		this.receivingService = receivingService;
 	}

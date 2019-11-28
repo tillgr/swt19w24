@@ -11,13 +11,12 @@ public class CatalogController {
 
 	private final Catalog<OrderItem> OrderItemCatalog;
 
-	CatalogController(Catalog<OrderItem> OrderItemCatalog){
+	CatalogController(Catalog<OrderItem> OrderItemCatalog) {
 		this.OrderItemCatalog = OrderItemCatalog;
 	}
 
-
 	@GetMapping("/orderItem")
-	String orderItem(Model model) {
+	public String orderItem(Model model) {
 		model.addAttribute("orderItem", OrderItemCatalog.findByCategory("ORDER_ITEM"));
 		return "orderItem";
 	}

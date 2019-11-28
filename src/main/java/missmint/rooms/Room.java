@@ -8,7 +8,6 @@ import java.util.Set;
 
 @Entity
 public class Room {
-
 	@Id
 	@GeneratedValue
 	private long id;

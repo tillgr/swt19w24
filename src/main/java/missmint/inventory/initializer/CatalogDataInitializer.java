@@ -16,14 +16,11 @@ import org.springframework.util.Assert;
 @Component
 class CatalogDataInitializer implements DataInitializer {
 
-
 	private final Catalog<Material> materialCatalog;
-	private final Catalog<OrderItem> orderItemCatalog;
 
-	CatalogDataInitializer(Catalog<Material> materialCatalog, Catalog<OrderItem> orderItemCatalog) {
+	CatalogDataInitializer(Catalog<Material> materialCatalog) {
 		Assert.notNull(materialCatalog, "Catalog must not be null!");
 		this.materialCatalog = materialCatalog;
-		this.orderItemCatalog = orderItemCatalog;
 	}
 
 	@Override
