@@ -67,14 +67,18 @@ public class ReceivingController {
 
 		MissMintService service = Utils.getOrThrow(serviceManager.findById(form.getService()));
 
-
 		if (!orderService.isOrderAcceptable(service)) {
 			model.addAttribute("notAcceptable", true);
 			return receiving(model, form);
 		}
 
 		LocalDate now = time.getTime().toLocalDate();
-		MissMintOrder order = new MissMintOrder(userAccount, form.getCustomer(), now, service, new OrderItem(form.getDescription()));
+		MissMintOrder order = new MissMintOrder(
+			userAccount,
+			form.getCustomer(),
+			now, service,
+			new OrderItem(form.getDescription())
+		);
 		session.setAttribute("order", order);
 
 		model.addAttribute("total", order.getTotal());

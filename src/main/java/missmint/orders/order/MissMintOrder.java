@@ -20,6 +20,7 @@ public class MissMintOrder extends Order {
 	private LocalDate expectedFinished;
 	private LocalDate finished;
 	private OrderState orderState;
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private OrderItem item;
 

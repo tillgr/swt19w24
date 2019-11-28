@@ -8,10 +8,11 @@ import javax.persistence.Entity;
 @Entity
 public class OrderItem extends Product {
 
-	private OrderItem(){}
+	private OrderItem() {
+	}
 
 	public OrderItem(String name) {
-		super(name, Money.of(0, "USD"));
+		super(name, Money.of(0, "EUR"));
 		addCategory("ORDER_ITEM");
 	}
 }

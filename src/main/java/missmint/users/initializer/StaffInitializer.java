@@ -35,7 +35,6 @@ public class StaffInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-
 		var password = "123";
 
 		var adminRole = Role.of(AccountRole.ADMIN.name());

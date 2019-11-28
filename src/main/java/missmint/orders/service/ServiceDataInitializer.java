@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 @Component
 @Order(10)
 public class ServiceDataInitializer implements DataInitializer {
-
 	@Value("${orders.services.price}")
 	private int price;
 	@Value("${general.currency}")
