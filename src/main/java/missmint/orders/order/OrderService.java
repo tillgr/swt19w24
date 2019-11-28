@@ -2,7 +2,7 @@ package missmint.orders.order;
 
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
-import missmint.orders.service.ServiceService;
+import missmint.orders.service.ServiceManager;
 import missmint.rooms.RoomRepository;
 import missmint.time.TimeTableEntry;
 import missmint.users.repositories.StaffRepository;
@@ -64,7 +64,7 @@ public class OrderService {
 	}
 
 	public boolean isOrderAcceptable(MissMintService service) {
-		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceService.getCategory(service));
+		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceManager.getCategory(service));
 	}
 
 	public void updateOrders() {

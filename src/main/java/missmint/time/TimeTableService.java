@@ -4,7 +4,7 @@ import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceCategory;
-import missmint.orders.service.ServiceService;
+import missmint.orders.service.ServiceManager;
 import missmint.rooms.Room;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
@@ -24,7 +24,7 @@ import java.util.stream.LongStream;
 
 @Service
 public class TimeTableService {
-	private final ServiceService serviceService;
+	private final ServiceManager serviceManager;
 	private final BusinessTime time;
 	private final OrderService orderService;
 	private final RoomRepository rooms;
@@ -39,8 +39,8 @@ public class TimeTableService {
 		Pair.of(LocalTime.of(22, 0), LocalTime.of(23, 0))
 	);
 
-	public TimeTableService(ServiceService serviceService, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository) {
-		this.serviceService = serviceService;
+	public TimeTableService(ServiceManager serviceManager, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository) {
+		this.serviceManager = serviceManager;
 		this.time = businessTime;
 		this.orderService = orderService;
 		this.rooms = rooms;
@@ -49,8 +49,8 @@ public class TimeTableService {
 	}
 
 	public TimeTableEntry createEntry(MissMintOrder order) {
-		MissMintService service = serviceService.getService(order);
-		ServiceCategory category = ServiceService.getCategory(service);
+		MissMintService service = serviceManager.getService(order);
+		ServiceCategory category = ServiceManager.getCategory(service);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 
 		LocalDateTime now = time.getTime();

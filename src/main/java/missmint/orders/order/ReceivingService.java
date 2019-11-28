@@ -1,9 +1,8 @@
 package missmint.orders.order;
 
-import missmint.finance.FinanceService;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
-import missmint.orders.service.ServiceService;
+import missmint.orders.service.ServiceManager;
 import missmint.time.EntryRepository;
 import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
@@ -16,34 +15,34 @@ import org.springframework.util.Assert;
 
 @Service
 public class ReceivingService {
-	private final ServiceService serviceService;
 	private final OrderService orderService;
 	private final OrderManager<MissMintOrder> orderManager;
 	private final TimeTableService timeTableService;
 	private final Catalog<OrderItem> itemCatalog;
 	private EntryRepository entryRepository;
 	private Accountancy accountancy;
+	private final ServiceManager serviceManager;
 
 	public ReceivingService(
-		ServiceService serviceService,
 		OrderService orderService,
 		OrderManager<MissMintOrder> orderManager,
 		TimeTableService timeTableService,
 		Catalog<OrderItem> itemCatalog,
 		EntryRepository entryRepository,
-		Accountancy accountancy
+		Accountancy accountancy,
+		ServiceManager serviceManager
 	) {
-		this.serviceService = serviceService;
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
 		this.itemCatalog = itemCatalog;
 		this.entryRepository = entryRepository;
 		this.accountancy = accountancy;
+		this.serviceManager = serviceManager;
 	}
 
 	public void receiveOrder(MissMintOrder order) {
-		MissMintService service = serviceService.getService(order);
+		MissMintService service = serviceManager.getService(order);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 		itemCatalog.save(order.getItem());
 
