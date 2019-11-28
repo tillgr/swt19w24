@@ -4,6 +4,7 @@ import missmint.Utils;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
 import missmint.orders.order.OrderState;
+import missmint.orders.order.PickupService;
 import org.salespointframework.order.OrderManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +22,12 @@ import java.util.Optional;
 public class PickUpController {
 	private final OrderService orderService;
 	private final OrderManager<MissMintOrder> orderManager;
+	private PickupService pickupService;
 
-	public PickUpController(OrderService orderService, OrderManager<MissMintOrder> orderManager) {
+	public PickUpController(OrderService orderService, OrderManager<MissMintOrder> orderManager, PickupService pickupService) {
 		this.orderService = orderService;
 		this.orderManager = orderManager;
+		this.pickupService = pickupService;
 	}
 
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
@@ -52,8 +55,7 @@ public class PickUpController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 
-		order.setOrderState(OrderState.PICKED_UP);
-		orderManager.save(order);
+		pickupService.pickup(order);
 
 		return "redirect:/orders";
 	}
