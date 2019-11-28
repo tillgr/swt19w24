@@ -43,7 +43,7 @@ public class ReceivingService {
 		this.serviceConsumptionManager = serviceConsumptionManager;
 	}
 
-	public void receiveOrder(MissMintOrder order, UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, MaterialManager materialManager) {
+	public void receiveOrder(MissMintOrder order, MaterialManager materialManager) {
 		MissMintService service = serviceService.getService(order);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 		itemCatalog.save(order.getItem());

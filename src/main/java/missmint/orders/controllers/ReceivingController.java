@@ -39,14 +39,16 @@ public class ReceivingController {
 	private final OrderService orderService;
 	private final ReceivingService receivingService;
 	private final ServiceManager serviceManager;
+	private final MaterialManager materialManager;
 
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService) {
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, MaterialManager materialManager) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
 		this.orderManager = orderManager;
 		this.orderService = orderService;
 		this.receivingService = receivingService;
+		this.materialManager = materialManager;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -58,7 +60,7 @@ public class ReceivingController {
 
 	@PostMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
-	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session, UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, MaterialManager materialManager) {
+	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session) {
 		if (errors.hasErrors()) {
 			return receiving(model, form);
 		}
@@ -81,9 +83,9 @@ public class ReceivingController {
 
 	@PostMapping("/orders/ticket")
 	@PreAuthorize("isAuthenticated()")
-	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model) {
+	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model, MaterialManager materialManager) {
 		model.addAttribute("order", order);
-		receivingService.receiveOrder(order);
+		receivingService.receiveOrder(order, materialManager);
 		return "ticket";
 	}
 }
