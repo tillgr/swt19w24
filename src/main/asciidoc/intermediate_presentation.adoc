@@ -1,0 +1,36 @@
+= Zwischenpräsentation - Notizen
+
+== Entwicklungsprozess
+// für die Sicht des Tutors als Softwaretechnologie-Betreuer
+
+=== Teamvorstellung
+
+=== Besonderheiten
+
+==== Wichtige Entwurfsentscheidungen
+
+=== Probleme im Entwicklungsprozess
+
+=== Probleme in der Teamarbeit
+
+=== LessonsLearned
+
+== Vorführung des entwickelten Softwareprodukts
+// für die Sicht des Tutors als Kunde der Anwendung
+
+=== Zu zeigende Funktionen
+
+==== Kernfunktionen
+
+==== Nette zusätzliche Features
+
+==== Errorhandling und Formular-Validation
+
+==== Noch fehlerhafte Funktionen
+
+== Disskussion
+
+Diskussionsfragen für einen Diskussionseinstieg::
+
+- ...
+
