@@ -1,7 +1,5 @@
 package missmint.inventory.manager;
 
-import missmint.inventory.products.Material;
-import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -63,17 +61,17 @@ public class MaterialManager {
 	}
 
 	public void consume(InventoryItemIdentifier material, int number) {
-		Optional<UniqueInventoryItem> item1 = materialInventory.findById(material);
+		Optional<UniqueInventoryItem> item = materialInventory.findById(material);
 		Metric metric;
 
 		int old_quantity;
 		int new_quantity;
 		int finalNumber;
 
-		if (item1.isPresent()) {
-			if (materialInventory.findById(Objects.requireNonNull(item1.get().getId())).isPresent()) {
-				metric = materialInventory.findById(Objects.requireNonNull(item1.get().getId())).get().getQuantity().getMetric();
-				old_quantity = materialInventory.findById(Objects.requireNonNull(item1.get().getId())).get().getQuantity().getAmount().toBigInteger().intValue();
+		if (item.isPresent()) {
+			if (materialInventory.findById(Objects.requireNonNull(item.get().getId())).isPresent()) {
+				metric = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getMetric();
+				old_quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getAmount().toBigInteger().intValue();
 				new_quantity = old_quantity - number;
 
 				if (new_quantity < 0) {
@@ -82,7 +80,7 @@ public class MaterialManager {
 
 				finalNumber = number;
 
-				materialInventory.findById(item1.get().getId()).ifPresent(itQM ->
+				materialInventory.findById(item.get().getId()).ifPresent(itQM ->
 					materialInventory.save(itQM.decreaseQuantity(Quantity.of(finalNumber, metric)))
 				);
 			}
