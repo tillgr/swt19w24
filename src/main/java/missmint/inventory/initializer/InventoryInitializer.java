@@ -13,7 +13,6 @@ import org.springframework.util.Assert;
 
 @Component
 class InventoryInitializer implements DataInitializer {
-
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final UniqueInventory<UniqueInventoryItem> orderItemInventory;
 	private final Catalog<Material> materialCatalog ;

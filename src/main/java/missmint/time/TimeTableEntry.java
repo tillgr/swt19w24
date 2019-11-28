@@ -7,7 +7,6 @@ import missmint.users.model.Staff;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 
 @Entity
 public class TimeTableEntry {
@@ -32,12 +31,7 @@ public class TimeTableEntry {
 		this.date = date;
 	}
 
-	public TimeTableEntry(Room room) {
-		this.room = room;
-	}
-
 	private TimeTableEntry() {
-		this.room = null;
 	}
 
 	public Room getRoom() {

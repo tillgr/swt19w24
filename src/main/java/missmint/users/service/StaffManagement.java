@@ -56,7 +56,6 @@ public class StaffManagement {
 	 * @param id       of the UserAccount
 	 */
 	public void deleteStaff(String userName, Long id) {
-
 		var userOptional = userAccountManager.findByUsername(userName);
 
 		userOptional.ifPresent(user -> {

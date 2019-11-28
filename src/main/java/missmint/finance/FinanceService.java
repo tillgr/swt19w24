@@ -17,10 +17,6 @@ public class FinanceService {
 		this.accountancy = accountancy;
 	}
 
-	public void add(AccountancyEntry accountancyEntry) {
-		accountancy.add(accountancyEntry);
-	}
-
 	public void createFinanceItemForm(AddFinanceForm form) {
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
 

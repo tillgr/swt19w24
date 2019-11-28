@@ -63,10 +63,8 @@ public class MaterialManager {
 	}
 
 	public void consume(InventoryItemIdentifier material, int number) {
-
 		Optional<UniqueInventoryItem> item1 = materialInventory.findById(material);
 		Metric metric;
-
 
 		int old_quantity;
 		int new_quantity;
@@ -74,11 +72,9 @@ public class MaterialManager {
 
 		if (item1.isPresent()) {
 			if (materialInventory.findById(Objects.requireNonNull(item1.get().getId())).isPresent()) {
-				;
 				metric = materialInventory.findById(Objects.requireNonNull(item1.get().getId())).get().getQuantity().getMetric();
 				old_quantity = materialInventory.findById(Objects.requireNonNull(item1.get().getId())).get().getQuantity().getAmount().toBigInteger().intValue();
 				new_quantity = old_quantity - number;
-
 
 				if (new_quantity < 0) {
 					number = old_quantity;

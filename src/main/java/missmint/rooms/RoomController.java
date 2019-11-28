@@ -13,11 +13,9 @@ import java.util.Optional;
 @Controller
 public class RoomController {
 	private RoomRepository rooms;
-	private EntryRepository entries;
 
-	RoomController(RoomRepository rooms, EntryRepository entries) {
+	RoomController(RoomRepository rooms) {
 		this.rooms = rooms;
-		this.entries = entries;
 	}
 
 	@GetMapping("/rooms")
