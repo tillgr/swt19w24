@@ -4,6 +4,7 @@ import missmint.time.TimeTableEntry;
 import org.hibernate.dialect.Database;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -37,6 +38,5 @@ public class Room {
 
 	public Set<TimeTableEntry> getEntrySet() {
 		return entrySet;
-		//return Database.entrySet.sort(Comparator.comparing(TimeTableEntry :: getSlot)); //TODO welche Database importieren?
 	}
 }

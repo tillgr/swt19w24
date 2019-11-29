@@ -18,12 +18,12 @@ public class TimeTableEntry {
 	private MissMintOrder order;
 	@ManyToOne
 	private Staff staff;
-	private int slot;
+	private Integer slot;
 	@ManyToOne
 	private Room room;
 	private LocalDate date;
 
-	public TimeTableEntry(MissMintOrder order, Staff staff, int slot, Room room, LocalDate date) {
+	public TimeTableEntry(MissMintOrder order, Staff staff, Integer slot, Room room, LocalDate date) {
 		this.order = order;
 		this.staff = staff;
 		this.slot = slot;
@@ -46,11 +46,11 @@ public class TimeTableEntry {
 		this.room = room;
 	}
 
-	public int getSlot() {
+	public Integer getSlot() {
 		return slot;
 	}
 
-	public void setSlot(int slot) {
+	public void setSlot(Integer slot) {
 		this.slot = slot;
 	}
 
