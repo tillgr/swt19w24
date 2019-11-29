@@ -28,19 +28,17 @@ public class ReceivingService {
 	private final Catalog<OrderItem> itemCatalog;
 	private EntryRepository entryRepository;
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
-	private final Catalog<Material> materialCatalog;
 	private final MaterialManager materialManager;
 	private Accountancy accountancy;
 	private final ServiceManager serviceManager;
 
-	public ReceivingService(OrderService orderService, OrderManager<MissMintOrder> orderManager, TimeTableService timeTableService, Catalog<OrderItem> itemCatalog, EntryRepository entryRepository, UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, MaterialManager materialManager, Accountancy accountancy, ServiceManager serviceManager) {
+	public ReceivingService(OrderService orderService, OrderManager<MissMintOrder> orderManager, TimeTableService timeTableService, Catalog<OrderItem> itemCatalog, EntryRepository entryRepository, UniqueInventory<UniqueInventoryItem> materialInventory, MaterialManager materialManager, Accountancy accountancy, ServiceManager serviceManager) {
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
 		this.itemCatalog = itemCatalog;
 		this.entryRepository = entryRepository;
 		this.materialInventory = materialInventory;
-		this.materialCatalog = materialCatalog;
 		this.materialManager = materialManager;
 		this.accountancy = accountancy;
 		this.serviceManager = serviceManager;
@@ -62,8 +60,8 @@ public class ReceivingService {
 
 		//automatisch nachbestellen für jedes Material des Services
 
-		ServiceCategory serviceCategory = serviceManager.getCategory(service);
-		ServiceConsumptionManager.serviceMatRelation.get(serviceCategory).stream().forEach(x ->
+		ServiceCategory serviceCategory = ServiceManager.getCategory(service);
+		ServiceConsumptionManager.serviceMatRelation.get(serviceCategory).forEach(x ->
 			{
 				String materialName = x.getFirst();
 				Material material = materialManager.fromName(materialName);
