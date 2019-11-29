@@ -17,6 +17,7 @@ import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderManager;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -58,14 +59,14 @@ public class ReceivingService {
 		orderManager.save(order);
 		entryRepository.save(entry);
 
-		//automatisch nachbestellen für jedes Material des Services
-
 		ServiceCategory serviceCategory = ServiceManager.getCategory(service);
 		ServiceConsumptionManager.serviceMatRelation.get(serviceCategory).forEach(x ->
 			{
 				String materialName = x.getFirst();
+				Quantity quantity = x.getSecond();
 				Material material = materialManager.fromName(materialName);
 				UniqueInventoryItem item = materialInventory.findByProduct(material).orElseThrow(() -> new RuntimeException("could not find inventory item"));
+				materialManager.consume(item.getId(), quantity.getAmount().intValue());
 				materialManager.autoRestock(item);
 			}
 		);
