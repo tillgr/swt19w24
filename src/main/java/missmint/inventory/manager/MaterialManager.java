@@ -1,5 +1,7 @@
 package missmint.inventory.manager;
 
+import missmint.inventory.products.Material;
+import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -14,12 +16,14 @@ import java.util.Optional;
 @Service
 public class MaterialManager {
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
+	private Catalog<Material> materialCatalog;
 
-	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory) {
+	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog) {
 		this.materialInventory = materialInventory;
+		this.materialCatalog = materialCatalog;
 	}
-	
-	public void checkQuantity(UniqueInventoryItem item) {
+
+	public void autoRestock(UniqueInventoryItem item) {
 		Quantity quantity = item.getQuantity();
 		Quantity threshold = Quantity.of(20);
 
@@ -89,5 +93,16 @@ public class MaterialManager {
 
 	public Streamable<UniqueInventoryItem> findMaterials() {
 		return Streamable.of(materialInventory.findAll()).filter(it -> it.getProduct().getCategories().toList().get(0).endsWith("MATERIAL"));
+	}
+
+	public Material fromName(String name) {
+		return materialCatalog.findByName(name).filter(material ->
+			material.getCategories().filter(cat ->
+				cat.endsWith("MATERIAL")
+			).stream().findAny().isPresent()
+		).stream().findAny().orElseThrow(() ->
+			new RuntimeException("material not found")
+		);
+
 	}
 }

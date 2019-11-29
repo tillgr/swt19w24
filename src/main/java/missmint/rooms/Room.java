@@ -3,6 +3,8 @@ package missmint.rooms;
 import missmint.time.TimeTableEntry;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,5 +36,6 @@ public class Room {
 
 	public Set<TimeTableEntry> getEntrySet() {
 		return entrySet;
+		//return Database.entrySet.sort(Comparator.comparing(TimeTableEntry :: getSlot)); //TODO welche Database importieren?
 	}
 }
