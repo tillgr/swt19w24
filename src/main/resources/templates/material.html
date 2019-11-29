@@ -12,26 +12,31 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
-
-
-
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
     <form class="input-group mb-3" method="post" th:action="@{material/consume}">
+        <div class="form-inline">
         <label>
-            <select class="dropdown-menu-xl-right" name="material">
-                <option class="dropdown-item" th:each="item : ${material}"
+            <select class="form-control" name="material">
+                <option th:each="item : ${material}"
                         th:value="${item.id}"
-                        th:text="${item.product.name}"></option>
+                        th:text="${item.product.name}">
+                </option>
             </select>
         </label>
-
+        </div>
+        <div class="form-inline">
         <label for="number"></label>
         <input id="number" required type="number" name="number" min="1" max="10000" class="form-control">
+        </div>
+        <div class="form-inline">
+            <input class="btn btn-outline-primary" type="submit" name="restock_name" th:value="Restock" th:formaction="@{material/restock}">
+        </div>
 
-        <input class="btn btn-outline-secondary" type="submit" name="restock_name" th:value="Restock" th:formaction="@{material/restock}">
-        <input class="btn btn-outline-primary" type="submit" name="consume_name" th:value="Consume" >
+        <div class="form-inline">
+            <input class="btn btn-outline-secondary" type="submit" name="consume_name" th:value="Consume">
+        </div>
     </form>
 
 <form class="table-bordered">
