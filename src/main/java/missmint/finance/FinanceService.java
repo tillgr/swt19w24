@@ -12,19 +12,17 @@ import javax.money.MonetaryAmount;
 @Service
 public class FinanceService {
 	private final Accountancy accountancy;
-	private final FinanceService financeService;
 	@Value("${general.currency}")
 	private String currency;
 
-	public FinanceService(Accountancy accountancy, FinanceService financeService) {
+	public FinanceService(Accountancy accountancy) {
 		this.accountancy = accountancy;
-		this.financeService = financeService;
 	}
 
 	public void createFinanceItemForm(AddFinanceForm form) {
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
 
-		financeService.add(form.getDescription(), Money.of(form.getPrice(), currency));
+		add(form.getDescription(), Money.of(form.getPrice(), currency));
 	}
 
 	public Money getSum() {
@@ -36,7 +34,7 @@ public class FinanceService {
 	}
 
 	public void add(String description, MonetaryAmount value) {
-		financeService.add(description, value);
+		accountancy.add(new AccountancyEntry(value, description));
 	}
 
 }
