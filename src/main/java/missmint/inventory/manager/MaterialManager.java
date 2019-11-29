@@ -37,7 +37,7 @@ public class MaterialManager {
 		Quantity quantity;
 		Metric metric;
 
-		int max_quantity = 900;
+		int max_quantity = 10000;
 		int old_quantity;
 		int new_quantity;
 		int finalNumber;

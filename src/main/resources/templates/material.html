@@ -19,7 +19,6 @@
     <h1>Materialien</h1>
 
     <form class="input-group mb-3" method="post" th:action="@{material/consume}">
-
         <label>
             <select class="dropdown-menu-xl-right" name="material">
                 <option class="dropdown-item" th:each="item : ${material}"
@@ -28,26 +27,11 @@
             </select>
         </label>
 
+        <label for="number"></label>
+        <input id="number" required type="number" name="number" min="1" max="10000" class="form-control">
 
-
-        <label for="consumeNumber" ></label>
-        <input id="consumeNumber" required type="number" name="consumeNumber"  min="1" max="900" class="form-control">
-        <button class="btn btn-outline-primary"  type="submit">Verbrauchen</button>
-    </form>
-
-    <form class="input-group mb-3" method="post" th:action="@{/material/restock}">
-
-        <label>
-            <select class="dropdown-menu-xl-right" name="material">
-                <option class="dropdown-item" th:each="item : ${material}"
-                        th:value="${item.id}"
-                        th:text="${item.product.name}"></option>
-            </select>
-        </label>
-
-        <label for="restockNumber" ></label>
-        <input id="restockNumber" required type="number" name="restockNumber"  min="1" max="900" class="form-control">
-        <button class="btn btn-outline-secondary"  type="submit">Nachbestellen</button>
+        <input class="btn btn-outline-secondary" type="submit" name="restock_name" th:value="Restock" th:formaction="@{material/restock}">
+        <input class="btn btn-outline-primary" type="submit" name="consume_name" th:value="Consume" >
     </form>
 
 <form class="table-bordered">
