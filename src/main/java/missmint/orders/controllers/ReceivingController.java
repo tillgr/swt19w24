@@ -42,6 +42,7 @@ public class ReceivingController {
 	private final MaterialManager materialManager;
 
 
+
 	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, MaterialManager materialManager) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
