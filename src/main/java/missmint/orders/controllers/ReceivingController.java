@@ -88,7 +88,7 @@ public class ReceivingController {
 
 	@PostMapping("/orders/ticket")
 	@PreAuthorize("isAuthenticated()")
-	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model, MaterialManager materialManager) {
+	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model) {
 		model.addAttribute("order", order);
 		receivingService.receiveOrder(order);
 		return "ticket";
