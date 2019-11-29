@@ -20,11 +20,9 @@
 
 === Zu zeigende Funktionen
 
-==== Kernfunktionen
+==== Annahme Auftrag -> Bearbeitung -> Fertigstellung
 
-==== Nette zusätzliche Features
-
-==== Errorhandling und Formular-Validation
+==== Betriebsinterne Funktionen: Mitarbeiter/Räume hinzufügen etc.
 
 ==== Noch fehlerhafte Funktionen
 
