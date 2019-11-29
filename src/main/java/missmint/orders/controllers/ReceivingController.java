@@ -90,7 +90,7 @@ public class ReceivingController {
 	@PreAuthorize("isAuthenticated()")
 	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model, MaterialManager materialManager) {
 		model.addAttribute("order", order);
-		receivingService.receiveOrder(order, materialManager);
+		receivingService.receiveOrder(order);
 		return "ticket";
 	}
 }
