@@ -7,20 +7,24 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.money.MonetaryAmount;
+
 @Service
 public class FinanceService {
 	private final Accountancy accountancy;
+	private final FinanceService financeService;
 	@Value("${general.currency}")
 	private String currency;
 
-	public FinanceService(Accountancy accountancy) {
+	public FinanceService(Accountancy accountancy, FinanceService financeService) {
 		this.accountancy = accountancy;
+		this.financeService = financeService;
 	}
 
 	public void createFinanceItemForm(AddFinanceForm form) {
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
 
-		accountancy.add(new AccountancyEntry(Money.of(form.getPrice(), currency), form.getDescription()));
+		financeService.add(form.getDescription(), Money.of(form.getPrice(), currency));
 	}
 
 	public Money getSum() {
@@ -29,6 +33,10 @@ public class FinanceService {
 			sum = sum.add(entry.getValue());
 		}
 		return sum;
+	}
+
+	public void add(String description, MonetaryAmount value) {
+		financeService.add(description, value);
 	}
 
 }

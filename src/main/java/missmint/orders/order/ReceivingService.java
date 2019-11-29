@@ -1,18 +1,16 @@
 package missmint.orders.order;
 
+import missmint.finance.FinanceService;
 import missmint.inventory.manager.MaterialManager;
 import missmint.inventory.products.Material;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceCategory;
-import missmint.orders.service.ServiceManager;
 import missmint.orders.service.ServiceConsumptionManager;
-
+import missmint.orders.service.ServiceManager;
 import missmint.time.EntryRepository;
 import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
-import org.salespointframework.accountancy.Accountancy;
-import org.salespointframework.accountancy.AccountancyEntry;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -30,10 +28,10 @@ public class ReceivingService {
 	private EntryRepository entryRepository;
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final MaterialManager materialManager;
-	private Accountancy accountancy;
+	private final FinanceService financeService;
 	private final ServiceManager serviceManager;
 
-	public ReceivingService(OrderService orderService, OrderManager<MissMintOrder> orderManager, TimeTableService timeTableService, Catalog<OrderItem> itemCatalog, EntryRepository entryRepository, UniqueInventory<UniqueInventoryItem> materialInventory, MaterialManager materialManager, Accountancy accountancy, ServiceManager serviceManager) {
+	public ReceivingService(OrderService orderService, OrderManager<MissMintOrder> orderManager, TimeTableService timeTableService, Catalog<OrderItem> itemCatalog, EntryRepository entryRepository, UniqueInventory<UniqueInventoryItem> materialInventory, MaterialManager materialManager, FinanceService financeService, ServiceManager serviceManager) {
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
@@ -41,7 +39,7 @@ public class ReceivingService {
 		this.entryRepository = entryRepository;
 		this.materialInventory = materialInventory;
 		this.materialManager = materialManager;
-		this.accountancy = accountancy;
+		this.financeService = financeService;
 		this.serviceManager = serviceManager;
 	}
 
@@ -51,7 +49,7 @@ public class ReceivingService {
 		itemCatalog.save(order.getItem());
 
 		order.getOrderLines().forEach(orderLine ->
-			accountancy.add(new AccountancyEntry(orderLine.getPrice(), orderLine.getProductName()))
+			financeService.add(orderLine.getProductName(), orderLine.getPrice())
 		);
 
 		TimeTableEntry entry = timeTableService.createEntry(order);

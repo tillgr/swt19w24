@@ -1,7 +1,6 @@
 package missmint.orders.order;
 
-import org.salespointframework.accountancy.Accountancy;
-import org.salespointframework.accountancy.AccountancyEntry;
+import missmint.finance.FinanceService;
 import org.salespointframework.order.OrderManager;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -12,19 +11,20 @@ import javax.money.MonetaryAmount;
 public class PickupService {
 	private OrderManager<MissMintOrder> orderManager;
 	private OrderService orderService;
-	private Accountancy accountancy;
+	private final FinanceService financeService;
 
-	public PickupService(OrderManager<MissMintOrder> orderManager, OrderService orderService, Accountancy accountancy) {
+	public PickupService(OrderManager<MissMintOrder> orderManager, OrderService orderService, FinanceService financeService) {
 		this.orderManager = orderManager;
 		this.orderService = orderService;
-		this.accountancy = accountancy;
+		this.financeService = financeService;
 	}
 
 	public void pickup(MissMintOrder order) {
 		Assert.isTrue(order.canPickUp(), "order must be able to be picked up");
 		MonetaryAmount price = orderService.calculateCharge(order);
 		if (!price.isZero()) {
-			accountancy.add(new AccountancyEntry(price, String.format("Additional transaction for order %s", order.getId())));
+			String description = String.format("Additional transaction for order %s", order.getId());
+			financeService.add(description, price);
 		}
 		order.setOrderState(OrderState.PICKED_UP);
 		orderManager.save(order);
