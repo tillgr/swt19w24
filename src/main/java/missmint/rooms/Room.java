@@ -1,6 +1,7 @@
 package missmint.rooms;
 
 import missmint.time.TimeTableEntry;
+import org.hibernate.dialect.Database;
 
 import javax.persistence.*;
 import java.util.Collections;
