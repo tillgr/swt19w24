@@ -1,14 +1,21 @@
 package missmint.orders.order;
 
+import missmint.inventory.manager.MaterialManager;
+import missmint.inventory.products.Material;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.service.MissMintService;
+import missmint.orders.service.ServiceCategory;
 import missmint.orders.service.ServiceManager;
+import missmint.orders.service.ServiceConsumptionManager;
+
 import missmint.time.EntryRepository;
 import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
 import org.salespointframework.catalog.Catalog;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderManager;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -20,23 +27,19 @@ public class ReceivingService {
 	private final TimeTableService timeTableService;
 	private final Catalog<OrderItem> itemCatalog;
 	private EntryRepository entryRepository;
+	private final UniqueInventory<UniqueInventoryItem> materialInventory;
+	private final MaterialManager materialManager;
 	private Accountancy accountancy;
 	private final ServiceManager serviceManager;
 
-	public ReceivingService(
-		OrderService orderService,
-		OrderManager<MissMintOrder> orderManager,
-		TimeTableService timeTableService,
-		Catalog<OrderItem> itemCatalog,
-		EntryRepository entryRepository,
-		Accountancy accountancy,
-		ServiceManager serviceManager
-	) {
+	public ReceivingService(OrderService orderService, OrderManager<MissMintOrder> orderManager, TimeTableService timeTableService, Catalog<OrderItem> itemCatalog, EntryRepository entryRepository, UniqueInventory<UniqueInventoryItem> materialInventory, MaterialManager materialManager, Accountancy accountancy, ServiceManager serviceManager) {
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
 		this.itemCatalog = itemCatalog;
 		this.entryRepository = entryRepository;
+		this.materialInventory = materialInventory;
+		this.materialManager = materialManager;
 		this.accountancy = accountancy;
 		this.serviceManager = serviceManager;
 	}
@@ -55,6 +58,17 @@ public class ReceivingService {
 		orderManager.save(order);
 		entryRepository.save(entry);
 
-		// TODO use material, finance
+		//automatisch nachbestellen für jedes Material des Services
+
+		ServiceCategory serviceCategory = ServiceManager.getCategory(service);
+		ServiceConsumptionManager.serviceMatRelation.get(serviceCategory).forEach(x ->
+			{
+				String materialName = x.getFirst();
+				Material material = materialManager.fromName(materialName);
+				UniqueInventoryItem item = materialInventory.findByProduct(material).orElseThrow(() -> new RuntimeException("could not find inventory item"));
+				materialManager.autoRestock(item);
+			}
+		);
+
 	}
 }

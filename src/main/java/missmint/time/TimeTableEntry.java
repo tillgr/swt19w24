@@ -69,4 +69,5 @@ public class TimeTableEntry {
 	public LocalDateTime getEnd() {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}
+
 }

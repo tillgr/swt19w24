@@ -4,6 +4,7 @@ import missmint.time.TimeTableEntry;
 import org.hibernate.dialect.Database;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;

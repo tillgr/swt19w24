@@ -1,13 +1,19 @@
 package missmint.orders.controllers;
 
 import missmint.Utils;
+import missmint.inventory.manager.MaterialManager;
+import missmint.inventory.products.Material;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.forms.ReceivingForm;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
 import missmint.orders.order.ReceivingService;
 import missmint.orders.service.MissMintService;
+import missmint.orders.service.ServiceConsumptionManager;
 import missmint.orders.service.ServiceManager;
+import org.salespointframework.catalog.Catalog;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.salespointframework.useraccount.UserAccount;
@@ -29,15 +35,21 @@ import java.time.LocalDate;
 public class ReceivingController {
 
 	private final BusinessTime time;
+	private final OrderManager<MissMintOrder> orderManager;
 	private final OrderService orderService;
 	private final ReceivingService receivingService;
 	private final ServiceManager serviceManager;
+	private final MaterialManager materialManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderService orderService, ReceivingService receivingService) {
+
+
+	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, MaterialManager materialManager) {
 		this.serviceManager = serviceManager;
 		time = businessTime;
+		this.orderManager = orderManager;
 		this.orderService = orderService;
 		this.receivingService = receivingService;
+		this.materialManager = materialManager;
 	}
 
 	@GetMapping("/orders/receiving")
@@ -79,7 +91,6 @@ public class ReceivingController {
 	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model) {
 		model.addAttribute("order", order);
 		receivingService.receiveOrder(order);
-
 		return "ticket";
 	}
 }
