@@ -24,18 +24,14 @@
 
         <div class="form-group">
             <label for="price">Preis</label>
-            <input id="price" name="price" th:field="*{price}" th:errorclass="fieldError" type="number" min="0.01" step="0.01" required="required"/><br/>
-            <div class="ui negative message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
-                <p>Der Preis darf nicht leer sein.</p>
-            </div>
+            <input id="price" name="price" class="form-control" th:field="*{price}" th:errorclass="fieldError" type="number" min="0.01" step="0.01" required="required"/><br/>
+            <div class="ui negative message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <input id="description" name="description" th:field="*{description}" th:errorclass="fieldError" type="text" required="required"/><br/>
-            <div class="ui negative message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
-                <p>Description darf nicht leer sein.</p>
-            </div>
+            <input id="description" class="form-control" name="description" th:field="*{description}" th:errorclass="fieldError" type="text" required="required"/><br/>
+            <div class="ui negative message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
         </div>
 
         <button type="submit" class="btn btn-primary" th:text="#{finance.additem.submit}">hinfügen</button>
