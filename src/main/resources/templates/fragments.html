@@ -38,7 +38,7 @@
                         <a class="dropdown-item" href="material.html" th:href="@{/material}" sec:authorize="isAuthenticated()">Material</a>
                         <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:text="#{finance.balance}" th:href="@{/finance}">Balance</a>
                         <a class="dropdown-item" href="orderItem.html" th:href="@{/orderItem}">Bestellgegenstände</a>
-                        <div class="dropdown-divider"  sec:authorize="hasRole('ADMIN')"></div>
+                        <div class="dropdown-divider" sec:authorize="hasRole('ADMIN')"></div>
                         <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/users}">Nutzerverwaltung</a>
                     </div>
                 </li>
