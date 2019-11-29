@@ -1,0 +1,43 @@
+= Protokoll Gruppe 24
+
+Treffen am 29.11.2019
+
+Ort:      APB vor Raum 1067 +
+Beginn:   14:55 Uhr +
+Ende:     17:23 Uhr
+
+__Schriftführer:__
+Kien Dang Tran
+
+*Nächstes Treffen:* +
+03.12.2019, 16:40 Uhr APB/E065
+
+_Teilnehmer_:
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+== Aufgaben
+- Basisfunktionalität fertig stellen
+- Raumübersicht braucht keine Preisübersicht
+- Materialien: Verbrauchen und Nachbestellen vereinheitlichen
+- Materialien werden abgezogen bei Auftragsbearbeitung
+- Restock vor dem Konsumieren
+- Finanzen sollten nicht für normale Mitarbeiter sichtbar sein
+- Für das Nachbestellen von Materialien sollen Finanzitems erstellt werden.
+
+== Zwischenpräsentation
+- Entwurfsdiagramme autogeneriert von IntelliJ
+- wichtige Entwurfsentscheidung: Viktor
+- Probleme im Entwicklungsprozess: jeder 2 Stichpunkte
+- Probleme in der Teamarbeit: Kien
+- Lessons Learned: jeder 2 Stichpunkte
+- Auftragsannahme -> Fertigstellung: Viktor, Till
+- Betriebsinterne Funtkionen: Mitarbeiter erstellen (Kien), Raum erstellen (Till), Material nachbestellen (Tobi)
+- Diskussionseinstieg?
+
+== Aktueller Stand
+- Basisfunktionalität fast fertig
