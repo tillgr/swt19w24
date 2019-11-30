@@ -11,9 +11,21 @@
 
 === Probleme im Entwicklungsprozess
 
+- __Salespoint__s `Catalog<T>` erlaubt typisierung allerdings filtert Datenbank nicht +
+  -> man bekommt Produkt vom falschen Typ -> `ClassCastException` +
+  *Lösung:* jeder Produkttyp zusätzliche eigene Kategorie
+- __Form__s zu __Model__s in _Controllern_ manuell hinzufügen +
+  -> Fehlermeldungen verschwinden aus dem Formular +
+  *Lösung:* _Spring_ mit `@ModelAttribute('form')` das _Form_ selber zum _Model_ hinzufügen lassen
+
 === Probleme in der Teamarbeit
 
 === LessonsLearned
+
+- Quellcode von Bibliotheken manchmal viel aufschlussreicher als Dokumentation +
+  -> durch Quellcode von _Salespoint_ lernt man auch viel über _Spring_
+- viele Mergeprobleme in _MagicDraw_ +
+  -> freie und textbasierte Formate eignen sich besser für Teamarbeit in _Git_
 
 == Vorführung des entwickelten Softwareprodukts
 // für die Sicht des Tutors als Kunde der Anwendung
