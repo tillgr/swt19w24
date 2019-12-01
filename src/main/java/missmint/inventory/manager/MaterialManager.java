@@ -36,12 +36,16 @@ public class MaterialManager {
 		if (quantity.isLessThan(THRESHOLD)) {
 			restock(item.getId(), RESTOCK_AMOUNT);
 
-			MonetaryAmount price = item.getProduct().getPrice().multiply(RESTOCK_AMOUNT);
-			financeService.add(String.format("material restock for %s", item.getProduct().getName()), price);
+			restockAccountancy(item, RESTOCK_AMOUNT);
 		}
 	}
 
-	public void restock(InventoryItemIdentifier material, int number) {
+	public void restockAccountancy(UniqueInventoryItem item, int restockAmount) {
+		MonetaryAmount price = item.getProduct().getPrice().multiply(restockAmount);
+		financeService.add(String.format("material restock for %s", item.getProduct().getName()), price);
+	}
+
+	public int restock(InventoryItemIdentifier material, int number) {
 		Optional<UniqueInventoryItem> item = materialInventory.findById(material);
 		Quantity quantity;
 		Metric metric;
@@ -69,8 +73,12 @@ public class MaterialManager {
 				materialInventory.findById(item.get().getId()).ifPresent(itQM ->
 					materialInventory.save(itQM.increaseQuantity(Quantity.of(finalNumber, metric)))
 				);
+
+				return finalNumber;
 			}
 		}
+
+		return 0;
 	}
 
 	public void consume(InventoryItemIdentifier material, int number) {
