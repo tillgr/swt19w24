@@ -9,6 +9,38 @@
 
 ==== Wichtige Entwurfsentscheidungen
 
+- Vorgaben von _Spring_ und _Salespoint_ -> eingeschränkter Spielraum
+* MVC-Designpattern
+* Produkte, Kataloge, Inventory und Nutzer bereits vorgegeben
+* Ausfüllen der verbindenden Logik und Frontend
+* nur Raum und Zeitplanung frei konzeptionierbar
+- *Frontend:* _Boostrap_
+* schlichtes und sauberes Design für eine Businesssoftware
+* gut dokumentiert mit vielen Beispielen
+* umfangreich -> erspart eigenes CSS und JS
+- Aufgaben und Packages unterteilt
+* Auftragsverwaltung
+* Nutzerverwaltung
+* Bilanzverwaltung
+* Material- und Inventarverwaltung
+* Zeitslotmanagement
+* Raumplanung
+- Änderung unseres ursprünglichen Entwurfes
+* Räume doch keine Fähigkeiten
+* stattdessen Mitarbeiter Fähigkeiten
+- erstmal abwegige Modellierung: Räume hinzufügen löschen
+* Hinzufügen für initiales Anlegen, bauliche Erweiterung, Hinzumieten von Räumen
+* Löschen für z. B. Bauarbeiten
+* -> erfordert Neuzuordnen der Zeitslots
+- Verteilungsalgorithmus
+* Aufträge suchen frühsten möglichen Bearbeitungstermin (Raum, Mitarbeiter und Fähigkeiten beachten)
+- Zeitplan besteht aus viruellen Slots, werden belegt (durch Erstellen eines Eintrags) wenn Auftrag rein kommt
+- viel Hardcoded, um komplizierte Menüs zu vermeiden: +
+  Zeitslots, Materialpreise, Dienstleistungen mit Materialien und Kategorien
+- Orientierung an echten Kassen: Aufträge und Bilanzen erst nach Kosten-Bestätigung verbuchen +
+  -> zwischenspeicherung über _Session_
+
+
 === Probleme im Entwicklungsprozess
 
 - __Salespoint__s `Catalog<T>` erlaubt typisierung allerdings filtert Datenbank nicht +
