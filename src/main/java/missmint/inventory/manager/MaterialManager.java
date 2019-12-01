@@ -17,11 +17,11 @@ import java.util.Optional;
 
 @Service
 public class MaterialManager {
-	private static final int RESTOCK_AMOUNT = 10;
+
 	private static final Quantity THRESHOLD = Quantity.of(20);
 
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
-	private Catalog<Material> materialCatalog;
+	private final Catalog<Material> materialCatalog;
 	private final FinanceService financeService;
 
 	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, FinanceService financeService) {
@@ -34,9 +34,10 @@ public class MaterialManager {
 		Quantity quantity = item.getQuantity();
 
 		if (quantity.isLessThan(THRESHOLD)) {
-			restock(item.getId(), RESTOCK_AMOUNT);
+			Quantity RESTOCK_AMOUNT = THRESHOLD.subtract(quantity);
+			restock(item.getId(), RESTOCK_AMOUNT.getAmount().intValueExact());
 
-			restockAccountancy(item, RESTOCK_AMOUNT);
+			restockAccountancy(item, RESTOCK_AMOUNT.getAmount().intValueExact());
 		}
 	}
 
@@ -59,8 +60,7 @@ public class MaterialManager {
 			if (materialInventory.findById(Objects.requireNonNull(item.get().getId())).isPresent()) {
 				quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity();
 				metric = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getMetric();
-				old_quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getAmount().toBigInteger().intValue();
-
+				old_quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getAmount().toBigInteger().intValueExact();
 				int max_addable_quantity = max_quantity - (quantity.getAmount().intValueExact());
 				new_quantity = old_quantity + number;
 
@@ -73,11 +73,9 @@ public class MaterialManager {
 				materialInventory.findById(item.get().getId()).ifPresent(itQM ->
 					materialInventory.save(itQM.increaseQuantity(Quantity.of(finalNumber, metric)))
 				);
-
 				return finalNumber;
 			}
 		}
-
 		return 0;
 	}
 
