@@ -15,10 +15,10 @@
 <div class="container mt-md-5">
     <h1>Materialien</h1>
 
-    <form class="input-group mb-3" method="post" th:action="@{material/consume}">
+    <form action="material.html" class="input-group mb-3" method="post" th:action="@{material/consume}">
         <div class="form-inline">
         <label>
-            <select class="form-control" name="material">
+            <select class="form-control" name="materialId">
                 <option th:each="item : ${material}"
                         th:value="${item.id}"
                         th:text="${item.product.name}">

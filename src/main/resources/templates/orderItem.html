@@ -15,21 +15,41 @@
 <div class="container mt-md-5">
     <h1>Bestellgegenstände</h1>
 
+
+    <form action="orderItem.html" class="input-group mb-3" method="post" th:if="${!orderItem.isEmpty()}" th:action="@{orderItem/remove}">
+        <div class="form-inline">
+            <label>
+                <select class="form-control" name="orderItemId">
+                    <option th:each="item : ${orderItem}"
+                            th:value="${item.id}"
+                            th:text="${item.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <div class="form-inline">
+            <input class="btn btn-outline-primary" type="submit" name="remove_name" th:value="Remove">
+        </div>
+    </form>
+
+    <form action="orderItem.html" method="post" th:if="${!orderItem.isEmpty()}" th:action="@{orderItem/remove}">
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Gegenstand</th>
-
         </tr>
         </thead>
         <tbody>
-        <tr th:each=" i : ${orderItem}">
-            <td th:text="${i.name}"></td>
-        </tr>
+            <tr  th:name="orderItemId" th:each="item : ${orderItem}">
+                <td th:text="${item.getName()}"></td>
+                <td th:text="${item.getId()}"></td>
+
+            </tr>
         </tbody>
     </table>
-
+    </form>
 </div>
+
 
 <footer th:replace="fragments :: footer"></footer>
 
