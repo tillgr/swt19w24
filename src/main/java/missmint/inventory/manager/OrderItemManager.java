@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class OrderItemManager {
@@ -25,15 +26,15 @@ public class OrderItemManager {
 
 	public void deleteOrderItem(ProductIdentifier orderItemId) {
 		Page<MissMintOrder> orders = orderManager.findAll(Pageable.unpaged());
-		System.out.println(orderItemId);
+			OrderItem test = new OrderItem("Placeholder");
+			OrderItem item = orderItemCatalog.findById(orderItemId).orElse(test);
 
 		orders.forEach(order -> {
-			if (Objects.equals(order.getItem().getId(), orderItemId)) {
+			if (Objects.equals(order.getItem(), item)) {
 				order.setItem(null);
 				orderItemCatalog.deleteById(orderItemId);
 			}
 		});
 
 	}
-
 }
