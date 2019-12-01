@@ -1,5 +1,6 @@
 package missmint.inventory.manager;
 
+import missmint.finance.FinanceService;
 import missmint.inventory.products.Material;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;
@@ -10,25 +11,33 @@ import org.salespointframework.quantity.Quantity;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
+import javax.money.MonetaryAmount;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class MaterialManager {
+	private static final int RESTOCK_AMOUNT = 10;
+	private static final Quantity THRESHOLD = Quantity.of(20);
+
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private Catalog<Material> materialCatalog;
+	private final FinanceService financeService;
 
-	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog) {
+	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, FinanceService financeService) {
 		this.materialInventory = materialInventory;
 		this.materialCatalog = materialCatalog;
+		this.financeService = financeService;
 	}
 
 	public void autoRestock(UniqueInventoryItem item) {
 		Quantity quantity = item.getQuantity();
-		Quantity threshold = Quantity.of(20);
 
-		if (quantity.isLessThan(threshold)) {
-			restock(item.getId(), 10);
+		if (quantity.isLessThan(THRESHOLD)) {
+			restock(item.getId(), RESTOCK_AMOUNT);
+
+			MonetaryAmount price = item.getProduct().getPrice().multiply(RESTOCK_AMOUNT);
+			financeService.add(String.format("material restock for %s", item.getProduct().getName()), price);
 		}
 	}
 
