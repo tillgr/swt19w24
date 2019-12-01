@@ -52,10 +52,5 @@ class InventoryInitializer implements DataInitializer {
 			materialInventory.findByProduct(material)
 				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.LITER))));
 		});
-
-		orderItemCatalog.findByCategory("ORDER_ITEM").forEach(orderItem -> {
-			orderItemInventory.findByProduct(orderItem)
-				.orElseGet(() -> orderItemInventory.save(new UniqueInventoryItem(orderItem, Quantity.of(1,Metric.UNIT))));
-		});
 	}
 }

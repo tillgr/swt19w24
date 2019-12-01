@@ -2,7 +2,6 @@ package missmint.inventory.initializer;
 
 import static org.salespointframework.core.Currencies.EURO;
 import missmint.inventory.products.Material;
-import missmint.inventory.products.OrderItem;
 
 import java.util.stream.Stream;
 import org.javamoney.moneta.Money;
