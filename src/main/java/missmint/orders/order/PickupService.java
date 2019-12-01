@@ -1,6 +1,7 @@
 package missmint.orders.order;
 
 import missmint.finance.FinanceService;
+import missmint.inventory.manager.OrderItemManager;
 import org.salespointframework.order.OrderManager;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -12,11 +13,13 @@ public class PickupService {
 	private OrderManager<MissMintOrder> orderManager;
 	private OrderService orderService;
 	private final FinanceService financeService;
+	private final OrderItemManager orderItemManager;
 
-	public PickupService(OrderManager<MissMintOrder> orderManager, OrderService orderService, FinanceService financeService) {
+	public PickupService(OrderManager<MissMintOrder> orderManager, OrderService orderService, FinanceService financeService, OrderItemManager orderItemManager) {
 		this.orderManager = orderManager;
 		this.orderService = orderService;
 		this.financeService = financeService;
+		this.orderItemManager = orderItemManager;
 	}
 
 	public void pickup(MissMintOrder order) {
@@ -27,6 +30,8 @@ public class PickupService {
 			financeService.add(description, price);
 		}
 		order.setOrderState(OrderState.PICKED_UP);
+		orderItemManager.deleteOrderItem(order.getItem().getId());
 		orderManager.save(order);
+
 	}
 }
