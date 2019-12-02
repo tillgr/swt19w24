@@ -49,6 +49,9 @@
 - __Form__s zu __Model__s in _Controllern_ manuell hinzufügen +
   -> Fehlermeldungen verschwinden aus dem Formular +
   *Lösung:* _Spring_ mit `@ModelAttribute('form')` das _Form_ selber zum _Model_ hinzufügen lassen
+//Till
+- Abgrenzung der Tätigkeitsbereiche der einzelnen Klassen
+- Komplizierte Integration von Methoden fremder Klassen
 
 === Probleme in der Teamarbeit
 
@@ -58,6 +61,9 @@
   -> durch Quellcode von _Salespoint_ lernt man auch viel über _Spring_
 - viele Mergeprobleme in _MagicDraw_ +
   -> freie und textbasierte Formate eignen sich besser für Teamarbeit in _Git_
+//Till
+- Backend-Logik darf nicht in die Controller
+- Hilfklassen und Hilfsmethoden vereinfachen den Code ungemein
 
 == Vorführung des entwickelten Softwareprodukts
 // für die Sicht des Tutors als Kunde der Anwendung
@@ -65,8 +71,10 @@
 === Zu zeigende Funktionen
 
 ==== Annahme Auftrag -> Bearbeitung -> Fertigstellung
+- spontane Live-Improvisation
 
 ==== Betriebsinterne Funktionen: Mitarbeiter/Räume hinzufügen etc.
+- Raum erstellen (Till)
 
 ==== Noch fehlerhafte Funktionen
 
