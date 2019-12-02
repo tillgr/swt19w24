@@ -35,9 +35,9 @@
                     </a>
                     <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                         <a class="dropdown-item" href="rooms.html" th:text="#{rooms}" th:href="@{/rooms}">Rooms</a>
-                        <a class="dropdown-item" href="material.html" th:href="@{/material}" sec:authorize="isAuthenticated()">Material</a>
+                        <a class="dropdown-item" href="material.html" th:text="#{materials}" th:href="@{/material}" >Material</a>
                         <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:text="#{finance.balance}" th:href="@{/finance}">Balance</a>
-                        <a class="dropdown-item" href="orderItem.html" th:href="@{/orderItem}">Bestellgegenstände</a>
+                        <a class="dropdown-item" href="orderItem.html" th:text="#{orderItems}" th:href="@{/orderItem}">Bestellgegenstände</a>
                         <div class="dropdown-divider" sec:authorize="hasRole('ADMIN')"></div>
                         <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/users}">Nutzerverwaltung</a>
                     </div>

@@ -7,21 +7,21 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
            rel="stylesheet"  th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 
-    <title>Bestellgegenstände</title>
+    <title th:text="#{orderItems}">Bestellgegenstände</title>
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container mt-md-5">
-    <h1>Bestellgegenstände</h1>
+    <h1 th:text="#{orderItems}">Bestellgegenstände</h1>
 
     <form action="orderItem.html" method="post" th:if="${!orderItem.isEmpty()}">
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Gegenstand</th>
-            <th scope="col">Kunde</th>
-            <th scope="col">AuftragsID</th>
+            <th scope="col" th:text="#{orderItems.item}">Gegenstand</th>
+            <th scope="col" th:text="#{orderItems.customer}">Kunde</th>
+            <th scope="col" th:text="#{orderItems.id}">AuftragsID</th>
         </tr>
         </thead>
         <tbody>
