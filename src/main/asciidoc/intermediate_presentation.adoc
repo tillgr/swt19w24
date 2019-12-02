@@ -52,10 +52,15 @@
 //Till
 - Abgrenzung der Tätigkeitsbereiche der einzelnen Klassen
 - Komplizierte Integration von Methoden fremder Klassen
+// Kien
+- Persistenz von Klassen mit nichttrivialen Attributen
 
 === Probleme in der Teamarbeit
+- richtige Absprache bei der Aufgabenverteilung
+- Einhaltung von Terminen
+- mangelnde Git Kenntnisse
 
-=== LessonsLearned
+=== Lessons Learned
 
 - Quellcode von Bibliotheken manchmal viel aufschlussreicher als Dokumentation +
   -> durch Quellcode von _Salespoint_ lernt man auch viel über _Spring_
@@ -64,6 +69,8 @@
 //Till
 - Backend-Logik darf nicht in die Controller
 - Hilfklassen und Hilfsmethoden vereinfachen den Code ungemein
+// Kien
+- nicht alles selber schreiben, sondern erstmal Dokumentation lesen
 
 == Vorführung des entwickelten Softwareprodukts
 // für die Sicht des Tutors als Kunde der Anwendung
