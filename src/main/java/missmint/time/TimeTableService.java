@@ -2,13 +2,16 @@ package missmint.time;
 
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
+import missmint.orders.order.OrderState;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceCategory;
 import missmint.orders.service.ServiceManager;
 import missmint.rooms.Room;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
+import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.util.Pair;
 import org.springframework.data.util.StreamUtils;
 import org.springframework.orm.jpa.vendor.Database;
@@ -31,6 +34,7 @@ public class TimeTableService {
 	private final RoomRepository rooms;
 	private final EntryRepository entries;
 	private final StaffRepository staffRepository;
+	private OrderManager<MissMintOrder> orderManager;
 
 	public static final List<Pair<LocalTime, LocalTime>> SLOTS = List.of(
 		Pair.of(LocalTime.of(8, 0), LocalTime.of(9, 0)),
@@ -40,13 +44,14 @@ public class TimeTableService {
 		Pair.of(LocalTime.of(22, 0), LocalTime.of(23, 0))
 	);
 
-	public TimeTableService(ServiceManager serviceManager, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository) {
+	public TimeTableService(ServiceManager serviceManager, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager) {
 		this.serviceManager = serviceManager;
 		this.time = businessTime;
 		this.orderService = orderService;
 		this.rooms = rooms;
 		this.entries = entries;
 		this.staffRepository = staffRepository;
+		this.orderManager = orderManager;
 	}
 
 	private Stream<LocalDate> dateStream() {
@@ -62,7 +67,17 @@ public class TimeTableService {
 	}
 
 	public void rebuildTimeTable() {
-		
+		LocalDateTime now = time.getTime();
+		entries.findAllByDateAfter(now.toLocalDate().minusDays(1))
+			.filter(entry -> now.isBefore(entry.getBeginning()))
+			.forEach(entries::delete);
+		orderManager.findAll(Pageable.unpaged())
+			.filter(order -> order.getOrderState() == OrderState.WAITING)
+			.forEach(order -> {
+				Assert.isNull(order.getEntry(), "after removing time table entries the entry field should be null");
+				createEntry(order);
+			});
+
 	}
 
 	public TimeTableEntry createEntry(MissMintOrder order) {
@@ -72,19 +87,19 @@ public class TimeTableService {
 
 		LocalDateTime now = time.getTime();
 		Optional<Optional<TimeTableEntry>> entry = dateStream().flatMap(date ->
-				slotStream(date).map(indexedSlot -> {
-						int slotIndex = indexedSlot.getFirst();
+			slotStream(date).map(indexedSlot -> {
+				int slotIndex = indexedSlot.getFirst();
 
-						return StreamUtils.createStreamFromIterator(rooms.findAll().iterator())
-							.filter(room -> !entries.existsByRoomAndDateAndSlot(room, date, slotIndex))
-							.findAny()
-							.flatMap(room ->
-								staffRepository.findAllBySkillsContaining(category)
-									.filter(staff -> !entries.existsByStaffAndDateAndSlot(staff, date, slotIndex))
-									.stream().findAny().map(staff -> new TimeTableEntry(order, staff, slotIndex, room, date))
-							);
-					})
-			)
+				return StreamUtils.createStreamFromIterator(rooms.findAll().iterator())
+					.filter(room -> !entries.existsByRoomAndDateAndSlot(room, date, slotIndex))
+					.findAny()
+					.flatMap(room ->
+						staffRepository.findAllBySkillsContaining(category)
+							.filter(staff -> !entries.existsByStaffAndDateAndSlot(staff, date, slotIndex))
+							.stream().findAny().map(staff -> new TimeTableEntry(order, staff, slotIndex, room, date))
+					);
+			})
+		)
 			.filter(Optional::isPresent)
 			.findFirst();
 

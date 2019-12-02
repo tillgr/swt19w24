@@ -57,6 +57,8 @@ public class ReceivingService {
 		orderManager.save(order);
 		entryRepository.save(entry);
 
+		timeTableService.rebuildTimeTable();
+
 		ServiceCategory serviceCategory = ServiceManager.getCategory(service);
 		ServiceConsumptionManager.serviceMatRelation.get(serviceCategory).forEach(x ->
 			{
