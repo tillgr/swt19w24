@@ -15,11 +15,13 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 @Service
 public class TimeTableService {
@@ -47,19 +49,30 @@ public class TimeTableService {
 		this.staffRepository = staffRepository;
 	}
 
+	private Stream<LocalDate> dateStream() {
+		LocalDateTime now = time.getTime();
+		return LongStream.range(0, Long.MAX_VALUE).mapToObj(now.toLocalDate()::plusDays);
+	}
+
+	private Stream<Pair<Integer, Pair<LocalTime, LocalTime>>> slotStream(LocalDate date) {
+		LocalDateTime now = time.getTime();
+		return IntStream.range(0, SLOTS.size())
+			.mapToObj(slotIndex -> Pair.of(slotIndex, SLOTS.get(slotIndex)))
+			.filter(indexedSlot -> now.isBefore(LocalDateTime.of(date, indexedSlot.getSecond().getFirst())));
+	}
+
+	public void rebuildTimeTable() {
+		
+	}
+
 	public TimeTableEntry createEntry(MissMintOrder order) {
 		MissMintService service = serviceManager.getService(order);
 		ServiceCategory category = ServiceManager.getCategory(service);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 
 		LocalDateTime now = time.getTime();
-		Optional<Optional<TimeTableEntry>> entry = LongStream.range(0, Long.MAX_VALUE)
-			.mapToObj(now.toLocalDate()::plusDays)
-			.flatMap(date ->
-				IntStream.range(0, SLOTS.size())
-					.mapToObj(slotIndex -> Pair.of(slotIndex, SLOTS.get(slotIndex)))
-					.filter(indexedSlot -> now.isBefore(LocalDateTime.of(date, indexedSlot.getSecond().getFirst())))
-					.map(indexedSlot -> {
+		Optional<Optional<TimeTableEntry>> entry = dateStream().flatMap(date ->
+				slotStream(date).map(indexedSlot -> {
 						int slotIndex = indexedSlot.getFirst();
 
 						return StreamUtils.createStreamFromIterator(rooms.findAll().iterator())
