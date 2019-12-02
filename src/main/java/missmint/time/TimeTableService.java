@@ -71,8 +71,10 @@ public class TimeTableService {
 		entries.findAllByDateAfter(now.toLocalDate().minusDays(1))
 			.filter(entry -> now.isBefore(entry.getBeginning()))
 			.forEach(entries::delete);
+
 		orderManager.findAll(Pageable.unpaged())
 			.filter(order -> order.getOrderState() == OrderState.WAITING)
+			.get().sorted(Comparator.comparing(MissMintOrder::getExpectedFinished))
 			.forEach(order -> {
 				Assert.isNull(order.getEntry(), "after removing time table entries the entry field should be null");
 				createEntry(order);
