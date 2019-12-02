@@ -43,7 +43,7 @@ public class MaterialManager {
 
 	public void restockAccountancy(UniqueInventoryItem item, int restockAmount) {
 		MonetaryAmount price = item.getProduct().getPrice().multiply(restockAmount);
-		financeService.add(String.format("material restock for %s", item.getProduct().getName()), price);
+		financeService.add(String.format("material restock for %s", item.getProduct().getName()), price.negate());
 	}
 
 	public int restock(InventoryItemIdentifier material, int number) {

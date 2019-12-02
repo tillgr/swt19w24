@@ -12,7 +12,6 @@ public class AddFinanceForm {
 
 	@NotNull
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
-	@Min(value = 0)
 	private BigDecimal price;
 
 	public AddFinanceForm(BigDecimal price, String description) {

@@ -19,7 +19,7 @@ public class FinanceDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-		financeService.add("200 Knöpfe kosten 400" + currency, Money.of(27, currency));
-		financeService.add("30 Faden kosten 540" + currency, Money.of(18, currency));
+		financeService.add("200 Knöpfe kosten 400" + currency, Money.of(-27, currency));
+		financeService.add("30 Faden kosten 540" + currency, Money.of(-18, currency));
 	}
 }
