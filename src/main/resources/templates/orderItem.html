@@ -15,21 +15,20 @@
 <div class="container mt-md-5">
     <h1>Bestellgegenstände</h1>
 
-
-
-
-    <form action="orderItem.html" method="post" th:if="${!orderItem.isEmpty()}" th:action="@{orderItem/remove}">
+    <form action="orderItem.html" method="post" th:if="${!orderItem.isEmpty()}">
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Gegenstand</th>
+            <th scope="col">Kunde</th>
+            <th scope="col">AuftragsID</th>
         </tr>
         </thead>
         <tbody>
-            <tr  th:name="orderItemId" th:each="item : ${orderItem}">
-                <td th:text="${item.getName()}"></td>
-                <td th:text="${item.getId()}"></td>
-
+            <tr th:name="orders" th:each="order : ${orders}">
+                <td th:text="${order.getItem().getName()}"></td>
+                <td th:text="${order.getCustomer()}"></td>
+                <td th:text="${order.id}"></td>
             </tr>
         </tbody>
     </table>
@@ -39,13 +38,14 @@
 
 <footer th:replace="fragments :: footer"></footer>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script crossorigin="anonymous"
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
 <script crossorigin="anonymous"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
 <script crossorigin="anonymous"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
