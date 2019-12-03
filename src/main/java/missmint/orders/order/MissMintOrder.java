@@ -98,4 +98,8 @@ public class MissMintOrder extends Order {
 	public void setItem(OrderItem item) {
 		this.item = item;
 	}
+
+	public void setInbound(LocalDate inbound) {
+		this.inbound = inbound;
+	}
 }
