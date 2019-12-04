@@ -15,14 +15,14 @@ import org.springframework.util.Assert;
 class InventoryInitializer implements DataInitializer {
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final UniqueInventory<UniqueInventoryItem> orderItemInventory;
-	private final Catalog<Material> materialCatalog ;
-	private final Catalog<OrderItem> orderItemCatalog ;
+	private final Catalog<Material> materialCatalog;
+	private final Catalog<OrderItem> orderItemCatalog;
 
 	InventoryInitializer(Catalog<Material> materialCatalog, Catalog<OrderItem> orderItemCatalog, UniqueInventory<UniqueInventoryItem> orderItemInventory, UniqueInventory<UniqueInventoryItem> materialInventory) {
 		Assert.notNull(materialInventory, "materialInventory must not be null!");
 		Assert.notNull(orderItemInventory, "orderItemInventory must not be null");
 		Assert.notNull(materialCatalog, "Catalog must not be null!");
-		Assert.notNull(orderItemCatalog,"Catalog must not be null");
+		Assert.notNull(orderItemCatalog, "Catalog must not be null");
 
 		this.materialInventory = materialInventory;
 		this.materialCatalog = materialCatalog;
@@ -34,23 +34,27 @@ class InventoryInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 		materialCatalog.findByCategory("UNIT_MATERIAL").forEach(material -> {
-			materialInventory.findByProduct(material)
-				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material,Quantity.of(100,Metric.UNIT))));
+			if (materialInventory.findByProduct(material).isEmpty()) {
+				materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.UNIT)));
+			}
 		});
 
 		materialCatalog.findByCategory("SQUARE_METER_MATERIAL").forEach(material -> {
-			materialInventory.findByProduct(material)
-				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.SQUARE_METER))));
+			if (materialInventory.findByProduct(material).isEmpty()) {
+				materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.SQUARE_METER)));
+			}
 		});
 
 		materialCatalog.findByCategory("METER_MATERIAL").forEach(material -> {
-			materialInventory.findByProduct(material)
-				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.METER))));
+			if (materialInventory.findByProduct(material).isEmpty()) {
+				materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.METER)));
+			}
 		});
 
 		materialCatalog.findByCategory("LITER_MATERIAL").forEach(material -> {
-			materialInventory.findByProduct(material)
-				.orElseGet(() -> materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.LITER))));
+			if (materialInventory.findByProduct(material).isEmpty()) {
+				materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.LITER)));
+			}
 		});
 	}
 }
