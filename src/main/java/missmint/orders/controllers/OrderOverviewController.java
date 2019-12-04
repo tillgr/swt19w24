@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +27,7 @@ public class OrderOverviewController {
 		this.catalog = catalog;
 	}
 
-	@RequestMapping("/orders")
+	@GetMapping("/orders")
 	@PreAuthorize("isAuthenticated()")
 	public String listOrders(Model model) {
 		Page<MissMintOrder> orders = orderManager.findAll(Pageable.unpaged());
@@ -36,7 +37,7 @@ public class OrderOverviewController {
 	}
 
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-	@RequestMapping("/orders/detail/{pathOrder}")
+	@GetMapping("/orders/detail/{pathOrder}")
 	@PreAuthorize("isAuthenticated()")
 	public String orderDetail(Model model, @PathVariable Optional<MissMintOrder> pathOrder) {
 		MissMintOrder order = Utils.getOrThrow(pathOrder);
