@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{general.projectname}">Miss-Mint store management</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-3">
+    <h1 th:text="#{general.projectname}">Miss-Mint store management</h1>
+
+    <p sec:authorize="isAnonymous()">
+        <strong th:text="#{index.pleaselogin}">
+            Please log in to use the management software.
+        </strong>
+    </p>
+    <p sec:authorize="isAuthenticated()" th:text="#{general.current-time(${time})}">
+        Die aktuelle Zeit ist 2019-11-23.
+    </p>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

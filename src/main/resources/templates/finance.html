@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{finance.balance}">Finance</title>
+
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+
+    <h1>Finance</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Value</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${finance}">
+            <th th:text="${item.getDescription()}">3 Knöpfe waren bestellt</th>
+            <td th:text="${item.getValue()}">1</td>
+            <td th:text="${item.date.get()}">12.01.2019</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>Summe: <span th:text="${sum} + '' ">34</span></p>
+
+    <div> <a class="btn btn-primary mt-2" th:href="@{/finance/addItem}">Finance item hinfügen</a> </div>
+
+</div>
+
+
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{materials}">Materialien</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1 th:text="#{materials}">Materialien</h1>
+
+    <form action="material.html" class="input-group mb-3" method="post" th:action="@{material/consume}">
+        <div class="form-inline">
+        <label>
+            <select class="form-control" name="materialId">
+                <option th:each="item : ${material}"
+                        th:value="${item.id}"
+                        th:text="${item.product.name}">
+                </option>
+            </select>
+        </label>
+        </div>
+        <div class="form-inline">
+        <label for="number"></label>
+        <input id="number" required type="number" name="number" min="1" max="10000" class="form-control">
+        </div>
+        <div class="form-inline">
+            <input class="btn btn-outline-primary" type="submit" name="restock_name"  th:value="#{materials.restock}"  th:formaction="@{material/restock}">
+        </div>
+
+        <div class="form-inline">
+            <input class="btn btn-outline-secondary" type="submit" name="consume_name" th:value="#{materials.consume}" >
+        </div>
+    </form>
+
+<form class="table-bordered">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" th:text="#{materials.table.name}">Name</th>
+            <th scope="col" th:text="#{materials.table.quantity}">Menge</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${material}">
+                <td th:text="${item.product.name}"></td>
+                <td th:text="${{item.quantity}}"></td>
+        </tbody>
+    </table>
+</form>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

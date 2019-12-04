@@ -1,0 +1,79 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title>Räume</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1>Räume</h1>
+
+
+    <form method="post" th:object="${form}" th:action="@{/rooms/add}">
+        <div class="form-group">
+            <label for="nameInput">Raumname</label>
+            <input th:field="*{name}" type="text" class="form-control" id="nameInput" placeholder="Raumname eingeben">
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+        <button class="btn btn-warning" type="submit">Hinzufügen</button>
+    </form>
+    <br>
+
+
+    <ul class="list-group" th:each="room : ${rooms}">
+        <li class="list-group-item" th:text="${room.name}"></li>
+        <li class="list-group-item">
+            <div class="btn-toolbar">
+                <!--
+                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
+                    <button class="btn btn-danger">Raum löschen</button>
+                </form>
+                -->
+                <form method="get" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
+                    <button class="btn btn-primary">Einträge anzeigen</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!---
+    <div class="card mt-2" th:each="room : ${rooms}">
+        <div class="card-header">
+            <h3 th:text="${room.name}"></h3>
+        </div>
+        <div class="card-footer text-muted">
+            <div class = "btn-toolbar">
+                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
+                    <button class="btn btn-danger">Raum löschen</button>
+                </form>
+                <form method="post" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
+                    <button class="btn btn-primary">Einträge anzeigen</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    --->
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

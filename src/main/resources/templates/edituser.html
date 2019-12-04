@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{users.edit.title}">Nutzerbearbeitung</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1 th:text="#{users.edit.title}">Nutzerbearbeitung</h1>
+    <form method="post" role="form" id="form" th:object="${form}" th:action="@{/users/{id}(id=${staff.getId()})}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Nachname</th>
+                <th scope="col">Vorname</th>
+                <th scope="col">Nutzername</th>
+                <th scope="col">Fähigkeiten</th>
+                <th scope="col">Fähigkeiten hinzufügen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="field">
+                        <label>
+                            <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.lastName()}"/>
+                        </label><br/>
+                        <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                            <p>Der Nachname darf nicht leer sein.</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="field">
+                        <label>
+                            <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.getFirstName()}"/>
+                        </label><br/>
+                        <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                            <p>Der Vorname darf nicht leer sein.</p>
+                        </div>
+                    </div>
+                </td>
+                <td th:text="${staff.getUserName()}">pperters</td>
+                <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
+                <td>
+                    <div class="form-group">
+                        <select class="form-control" id="service" th:field="*{newSkill}">
+                            <option th:value="null" text="Please Select"></option>
+                            <option th:each="service : ${services}" th:value="${service.name()}"
+                                    th:text="#{'users.service.' + ${service.name()}}"></option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary mt-2" th:text="#{users.edit.save}">Änderungen übernehmen</button>
+    </form>
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

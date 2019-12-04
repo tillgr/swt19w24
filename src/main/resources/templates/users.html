@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{users.management}">Nutzerverwaltung</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1 th:text="#{users.management}">Nutzerverwaltung</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nachname</th>
+            <th scope="col">Vorname</th>
+            <th scope="col">Nutzername</th>
+            <th scope="col">Fähigkeiten</th>
+            <th scope="col">Aktionen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="staff : ${users}">
+            <th scope="row" th:text="${staff.lastName()}">Pan</th>
+            <td th:text="${staff.getFirstName()}">Peter</td>
+            <td th:text="${staff.getUserName()}">pperters</td>
+            <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
+            </td>
+            <td>
+                <div class="btn-group">
+                    <form class="button" th:action="@{/users/edit/{id}(id=${staff.getId()})}">
+                        <button type="submit" class="btn btn-primary mr-1" th:text="#{users.edit}">Bearbeiten</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary mt-2" th:href="@{/users/registration}">Nutzer anlegen</a>
+</div>
+
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
