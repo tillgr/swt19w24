@@ -3,9 +3,7 @@ package missmint.orders.controllers;
 import missmint.Utils;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
-import missmint.orders.order.OrderState;
 import missmint.orders.order.PickupService;
-import org.salespointframework.order.OrderManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,9 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.money.MonetaryAmount;
 import java.util.Optional;
 
+/**
+ * This controller allowed an employee to return a repaired item to a customer.
+ */
 @Controller
 public class PickUpController {
 	private final OrderService orderService;
@@ -28,6 +29,12 @@ public class PickUpController {
 		this.pickupService = pickupService;
 	}
 
+	/**
+	 * Shows the pickup page with the maybe necessary transaction.
+	 *
+	 * @param optionalOrder The order that should be picked up.
+	 * @return The pickup model.
+	 */
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@GetMapping("/orders/pickup/{optionalOrder}")
 	@PreAuthorize("isAuthenticated()")
@@ -44,6 +51,12 @@ public class PickUpController {
 		return "pickup";
 	}
 
+	/**
+	 * Performs the actual pickup process after the transaction was accepted.
+	 *
+	 * @param optionalOrder The order that should be picked up.
+	 * @return A redirect to the order overview.
+	 */
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@PostMapping("/orders/pickup/{optionalOrder}")
 	@PreAuthorize("isAuthenticated()")

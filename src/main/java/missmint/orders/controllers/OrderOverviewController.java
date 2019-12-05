@@ -13,10 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
+/**
+ * Controller for the overview and detail pages of the order.
+ */
 @Controller
 public class OrderOverviewController {
 	private final OrderManager<MissMintOrder> orderManager;
@@ -27,6 +29,11 @@ public class OrderOverviewController {
 		this.catalog = catalog;
 	}
 
+	/**
+	 *	Lists all orders in the system.
+	 *
+	 * @return The orders template.
+	 */
 	@GetMapping("/orders")
 	@PreAuthorize("isAuthenticated()")
 	public String listOrders(Model model) {
@@ -36,6 +43,12 @@ public class OrderOverviewController {
 		return "orders";
 	}
 
+	/**
+	 * Returns a detailed overview for an order.
+	 *
+	 * @param pathOrder The order that should be shown.
+	 * @return The orderdetail template.
+	 */
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@GetMapping("/orders/detail/{pathOrder}")
 	@PreAuthorize("isAuthenticated()")
