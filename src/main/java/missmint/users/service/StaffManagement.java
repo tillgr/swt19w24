@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -41,11 +42,10 @@ public class StaffManagement {
 		Assert.notNull(form, "RegistrationForm cannot be null.");
 
 		var role = Role.of(AccountRole.EMPLOYEE.name());
-
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
 
-		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName()));
+		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName(), form.getSalary()));
 	}
 
 	/**
@@ -73,9 +73,10 @@ public class StaffManagement {
 		return findByUserName(userName).flatMap(staffRepository::findByUserAccount);
 	}
 
-	public void editStaff(Staff staff, String firstName, String lastName, ServiceCategory service) {
+	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, ServiceCategory service) {
 		staff.setFirstName(firstName);
 		staff.setLastName(lastName);
+		staff.setSalary(salary);
 		if (service != null) {
 			staff.addSkill(service);
 		}
