@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.EnumSet;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Controller
 public class StaffController {
@@ -119,7 +117,7 @@ public class StaffController {
 			return editUserPage(id, form, model);
 		}
 
-		staffManagement.editStaff(staff, form.getFirstName(), form.getLastName(), form.getNewSkill());
+		staffManagement.editStaff(staff, form.getFirstName(), form.getLastName(), form.getSalary(), form.getNewSkill());
 
 		return "redirect:/users";
 	}
