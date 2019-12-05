@@ -21,6 +21,7 @@
             <th scope="col">Nachname</th>
             <th scope="col">Vorname</th>
             <th scope="col">Nutzername</th>
+            <th scope="col">Gehalt/Monat in €</th>
             <th scope="col">Fähigkeiten</th>
             <th scope="col">Aktionen</th>
         </tr>
@@ -30,6 +31,7 @@
             <th scope="row" th:text="${staff.lastName()}">Pan</th>
             <td th:text="${staff.getFirstName()}">Peter</td>
             <td th:text="${staff.getUserName()}">pperters</td>
+            <td th:text="${staff.getSalary()}">100</td>
             <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
             </td>
             <td>

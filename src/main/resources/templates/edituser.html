@@ -21,6 +21,7 @@
                 <th scope="col">Nachname</th>
                 <th scope="col">Vorname</th>
                 <th scope="col">Nutzername</th>
+                <th scope="col">Gehalt/Monat in €</th>
                 <th scope="col">Fähigkeiten</th>
                 <th scope="col">Fähigkeiten hinzufügen</th>
             </tr>
@@ -48,6 +49,16 @@
                     </div>
                 </td>
                 <td th:text="${staff.getUserName()}">pperters</td>
+                <td>
+                    <div class="field">
+                        <label>
+                            <input th:id="salary" th:name="salary" th:errorclass="fieldError" type="number" required="required" step="0.01" min="0" th:value="${staff.getSalary()}"/>
+                        </label><br/>
+                        <div class="alert-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
+                            <p>Geben sie ein Gehalt ein.</p>
+                        </div>
+                    </div>
+                </td>
                 <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
                 <td>
                     <div class="form-group">

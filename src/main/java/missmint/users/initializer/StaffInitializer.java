@@ -13,6 +13,7 @@ import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,13 +38,14 @@ public class StaffInitializer implements DataInitializer {
 	public void initialize() {
 		var password = "123";
 
+		// TODO add salary to admin
 		var adminRole = Role.of(AccountRole.ADMIN.name());
 		userAccountManager.create("user", Password.UnencryptedPassword.of("test"), adminRole);
 
 		List.of(
-			new RegistrationForm("Hans","Müller","hans", password),
-			new RegistrationForm("Dexter", "Morgan","dextermorgan", password),
-			new RegistrationForm("Drax", "The Destroyer", "XXXDestroyerXXX", password)
+			new RegistrationForm("Hans","Müller","hans", password, BigDecimal.valueOf(100)),
+			new RegistrationForm("Dexter", "Morgan","dextermorgan", password, BigDecimal.valueOf(50)),
+			new RegistrationForm("Drax", "The Destroyer", "XXXDestroyerXXX", password, BigDecimal.valueOf(20))
 		).forEach(staffManagement::createStaff);
 
 		Optional<Staff> optionalStaff = staffManagement.findStaffByUserName("hans");

@@ -5,7 +5,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
-import java.util.Collections;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +20,7 @@ public class Staff {
 
 	private String lastName;
 	private String firstName;
+	private BigDecimal salary;
 
 	@ElementCollection
 	private Set<ServiceCategory> skills = new HashSet<>();
@@ -27,7 +28,7 @@ public class Staff {
 	// empty constructor for Entity
 	public Staff() {}
 
-	public Staff(UserAccount userAccount, String firstName, String lastName) {
+	public Staff(UserAccount userAccount, String firstName, String lastName, BigDecimal salary) {
 
 		Assert.notNull(userAccount, "UserAccount cannot be null.");
 		Assert.hasText(lastName, "Name cannot be null or empty.");
@@ -36,6 +37,7 @@ public class Staff {
 		this.userAccount = userAccount;
 		this.lastName = lastName;
 		this.firstName = firstName;
+		this.salary = salary;
 	}
 
 	public long getId() {
@@ -74,12 +76,15 @@ public class Staff {
 		return skills.remove(service);
 	}
 
-	public Set<ServiceCategory> getSkills() {
-		return skills;
+	public void setSalary(BigDecimal salary) {
+		this.salary = salary;
 	}
 
-	public Double calculateSalary() {
-		// TODO: implement salary calculation
-		return 0.0;
+	public BigDecimal getSalary() {
+		return salary;
+	}
+
+	public Set<ServiceCategory> getSkills() {
+		return skills;
 	}
 }
