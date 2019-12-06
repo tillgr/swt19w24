@@ -102,4 +102,8 @@ public class MissMintOrder extends Order {
 	public void setInbound(LocalDate inbound) {
 		this.inbound = inbound;
 	}
+
+	public void setEntry(TimeTableEntry entry) {
+		this.entry = entry;
+	}
 }

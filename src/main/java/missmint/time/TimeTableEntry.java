@@ -7,6 +7,7 @@ import missmint.users.model.Staff;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class TimeTableEntry {
@@ -70,4 +71,16 @@ public class TimeTableEntry {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof TimeTableEntry)) return false;
+		TimeTableEntry that = (TimeTableEntry) o;
+		return id == that.id;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
