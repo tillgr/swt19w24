@@ -31,7 +31,7 @@ public class TimeTableEntry {
 		this.date = date;
 	}
 
-	private TimeTableEntry() {
+	public TimeTableEntry() {
 	}
 
 	public Room getRoom() {
