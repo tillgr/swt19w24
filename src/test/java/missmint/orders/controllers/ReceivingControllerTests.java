@@ -236,7 +236,7 @@ class ReceivingControllerTests {
 
 	private Staff createStaff() {
 		UserAccount userAccount = userAccountManager.create("employee", Password.UnencryptedPassword.of("weakpwd"));
-		Staff staff = new Staff(userAccount, "Mad", "Max");
+		Staff staff = new Staff(userAccount, "Mad", "Max", BigDecimal.valueOf(0));
 		staff.addSkill(ServiceCategory.GRINDERY);
 		return staffRepository.save(staff);
 	}
