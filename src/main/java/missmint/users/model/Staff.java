@@ -64,6 +64,10 @@ public class Staff {
 		return firstName;
 	}
 
+	public String getLastName() {
+		return lastName;
+	}
+
 	public String getUserName() {
 		return userAccount.getUsername();
 	}
