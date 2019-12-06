@@ -1,16 +1,22 @@
 package missmint.orders.controllers;
 
+import missmint.inventory.products.Material;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceCategory;
+import missmint.rooms.RoomRepository;
+import missmint.time.EntryRepository;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import org.hamcrest.beans.HasPropertyWithValue;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Catalog;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderManager;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.time.BusinessTime;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.UserAccount;
@@ -18,10 +24,12 @@ import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Optional;
@@ -56,6 +64,18 @@ class ReceivingControllerTests {
 
 	@Autowired
 	private StaffRepository staffRepository;
+
+	@Autowired
+	private UniqueInventory<UniqueInventoryItem> inventory;
+
+	@Autowired
+	private Catalog<Material> materialCatalog;
+
+	@Autowired
+	private EntryRepository entryRepository;
+
+	@Autowired
+	private RoomRepository roomRepository;
 
 	@Test
 	void unauthenticated() throws Exception {
@@ -92,6 +112,42 @@ class ReceivingControllerTests {
 			.andExpect(content().string(containsString("The customer&#39;s name must not be empty.")))
 			.andExpect(content().string(containsString("The item description must not be empty.")))
 			.andExpect(content().string(containsString("Please select a service.")));
+	}
+
+	@Test
+	@WithMockUser
+	void noSkilledStaff() throws Exception {
+		MissMintService service = getService();
+		staffRepository.findAll().forEach(s -> {
+			s.getSkills().clear();
+			staffRepository.save(s);
+		});
+
+		mvc.perform(post("/orders/receiving").locale(Locale.ROOT).with(csrf())
+				.param("customer", "Turing")
+				.param("description", "Maschine")
+				.param("service", String.valueOf(service.getId()))
+		)
+				.andExpect(status().isOk())
+				.andExpect(view().name("receiving"))
+				.andExpect(content().string(containsString("This service is currently unavailable.")));
+	}
+
+	@Test
+	@WithMockUser
+	void noRoom() throws Exception {
+		MissMintService service = getService();
+		createStaff();
+		roomRepository.deleteAll();
+
+		mvc.perform(post("/orders/receiving").locale(Locale.ROOT).with(csrf())
+				.param("customer", "Elon Musk")
+				.param("description", "Starlink")
+				.param("service", String.valueOf(service.getId()))
+		)
+				.andExpect(status().isOk())
+				.andExpect(view().name("receiving"))
+				.andExpect(content().string(containsString("This service is currently unavailable.")));
 	}
 
 	@Test
@@ -133,6 +189,14 @@ class ReceivingControllerTests {
 		LocalDate date = businessTime.getTime().toLocalDate();
 		MissMintOrder order = new MissMintOrder(userAccount, "Einstein", date, service, new OrderItem("relativity theory"));
 
+		Optional<Material> optionalMaterial = materialCatalog.findByName("sanding paper").get().findAny();
+		assertThat(optionalMaterial).isNotEmpty();
+		Optional<UniqueInventoryItem> optionalInventoryItem = inventory.findByProduct(optionalMaterial.get());
+		assertThat(optionalInventoryItem).isNotEmpty();
+		UniqueInventoryItem inventoryItem = optionalInventoryItem.get();
+		inventoryItem.decreaseQuantity(inventoryItem.getQuantity().subtract(Quantity.of(20, inventoryItem.getQuantity().getMetric())));
+		inventory.save(inventoryItem);
+
 		mvc.perform(post("/orders/ticket").locale(Locale.ROOT).with(csrf()).sessionAttr("order", order))
 			.andExpect(status().isOk())
 			.andExpect(view().name("ticket"))
@@ -150,12 +214,18 @@ class ReceivingControllerTests {
 				assertThat(o.getOrderState()).isEqualTo(OrderState.WAITING);
 				assertThat(o.getItem()).isNotNull();
 				assertThat(o.getItem().getName()).isEqualTo("relativity theory");
-			}).count();
 
+				long entries = Streamable.of(entryRepository.findAll()).get().peek(e -> {
+					assertThat(e.getOrder()).isEqualTo(o);
+					assertThat(e.getBeginning()).isAfter(businessTime.getTime());
+				}).count();
+				assertThat(entries).isEqualTo(1);
+			}).count();
 		assertThat(count).isEqualTo(1);
 
-		// TODO test time table entry
-		// TODO test reorder of materials
+		optionalInventoryItem = inventory.findByProduct(optionalMaterial.get());
+		assertThat(optionalInventoryItem).isNotEmpty();
+		assertThat(optionalInventoryItem.get().getQuantity().getAmount()).isEqualByComparingTo(BigDecimal.valueOf(2, -1));
 	}
 
 	private MissMintService getService() {
