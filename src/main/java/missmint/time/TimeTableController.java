@@ -19,11 +19,16 @@ public class TimeTableController {
 		this.roomRepository = roomRepository;
 	}
 
-	@GetMapping("/rooms/{id}/showEntries")
-	public String showEntries(Model model, @PathVariable("id") long id) {
-		Room room = Utils.getOrThrow(roomRepository.findById(id));
+	@GetMapping("/rooms/showEntries")
+	public String showEntries(Model model) {
+		//Room room = Utils.getOrThrow(roomRepository.findById(id));
 
-		model.addAttribute("existingEntries", timeService.todaysEntries(room));
+		//model.addAttribute("existingEntries", timeService.todaysEntries(room));
+		int[] a = new int[3];
+		a[0] = 1;
+		a[1] = 2;
+		a[2] = 3;
+		model.addAttribute("roomRepository", a);
 
 		return "entries";
 	}

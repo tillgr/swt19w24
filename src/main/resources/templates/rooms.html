@@ -36,12 +36,14 @@
                     <button class="btn btn-danger">Raum löschen</button>
                 </form>
                 -->
-                <form method="get" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
-                    <button class="btn btn-primary">Einträge anzeigen</button>
-                </form>
+
             </div>
         </li>
     </ul>
+    <br>
+    <form method="get" th:action="@{/rooms/showEntries}" th:href="entries.html">
+        <button class="btn btn-primary">Einträge anzeigen</button>
+    </form>
 
     <!---
     <div class="card mt-2" th:each="room : ${rooms}">
