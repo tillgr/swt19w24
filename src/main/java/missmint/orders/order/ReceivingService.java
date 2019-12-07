@@ -19,6 +19,10 @@ import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+/**
+ * A service that handles the receiving process.
+ * @see missmint.orders.controllers.ReceivingController
+ */
 @Service
 public class ReceivingService {
 	private final OrderService orderService;
@@ -43,6 +47,11 @@ public class ReceivingService {
 		this.serviceManager = serviceManager;
 	}
 
+	/**
+	 * Saves the order, creates a time table entry, saves the customer's item and uses the needed material up.
+	 *
+	 * @param order The order that should be received. The order must be acceptable.
+	 */
 	public void receiveOrder(MissMintOrder order) {
 		MissMintService service = serviceManager.getService(order);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");

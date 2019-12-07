@@ -3,7 +3,7 @@ package missmint.orders.controllers;
 import missmint.Utils;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
-import missmint.orders.order.PickupService;
+import missmint.orders.order.PickUpService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,9 +22,9 @@ import java.util.Optional;
 @Controller
 public class PickUpController {
 	private final OrderService orderService;
-	private PickupService pickupService;
+	private PickUpService pickupService;
 
-	public PickUpController(OrderService orderService, PickupService pickupService) {
+	public PickUpController(OrderService orderService, PickUpService pickupService) {
 		this.orderService = orderService;
 		this.pickupService = pickupService;
 	}

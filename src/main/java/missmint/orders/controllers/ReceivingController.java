@@ -47,6 +47,11 @@ public class ReceivingController {
 		this.materialManager = materialManager;
 	}
 
+	/**
+	 * Show the receiving form to an employee.
+	 *
+	 * @return The receiving template.
+	 */
 	@GetMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
 	public String receiving(Model model, @ModelAttribute("form") ReceivingForm form) {
@@ -54,6 +59,16 @@ public class ReceivingController {
 		return "receiving";
 	}
 
+	/**
+	 * Calculate costs for the order and create a session object.
+	 *
+	 * @param form        The form with the filled in data.
+	 * @param errors      Any validation errors.
+	 * @param userAccount The user that created the order.
+	 * @param session     Session to save the order to.
+	 * @return The cost template on success. The receiving template will be shown on error.
+	 * @see ReceivingForm
+	 */
 	@PostMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
 	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session) {
@@ -70,10 +85,10 @@ public class ReceivingController {
 
 		LocalDate now = time.getTime().toLocalDate();
 		MissMintOrder order = new MissMintOrder(
-			userAccount,
-			form.getCustomer(),
-			now, service,
-			new OrderItem(form.getDescription())
+				userAccount,
+				form.getCustomer(),
+				now, service,
+				new OrderItem(form.getDescription())
 		);
 		session.setAttribute("order", order);
 
@@ -81,6 +96,12 @@ public class ReceivingController {
 		return "cost";
 	}
 
+	/**
+	 * Creates the order after the customer payed the service costs.
+	 *
+	 * @param order The order that was saved in the session.
+	 * @return The ticket template.
+	 */
 	@PostMapping("/orders/ticket")
 	@PreAuthorize("isAuthenticated()")
 	public String ticket(@SessionAttribute("order") MissMintOrder order, Model model) {
