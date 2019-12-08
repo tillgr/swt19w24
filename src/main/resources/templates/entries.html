@@ -14,70 +14,22 @@
 
 <div class="container mt-md-5">
     <h1>Einträge</h1>
-    <!--
-    <div>
-        <form method="post" th:action="@{/rooms/{id}/showPreviousEntries(id=${id})}">
-            <button class="btn btn-danger float-left">vorherige Einträge</button>
-        </form>
-        <form method="post" th:action="@{/rooms/{id}/showNextEntries(id=${id})}" th:href="entries.html">
-            <button class="btn btn-primary float-right">nächste Einträge</button>
-        </form>
-    </div>
 
-    <br>
-    <br>
-
-
-    <ul class="list-group" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
-        <li class="list-group-item" th:text="${entry.getOrder().getId()}"></li>
-        <li class="list-group-item" th:text="${entry.getOrder().getCustomer()}"></li>
-    </ul>
-    -->
-    <!--
-    <table class="table" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
-
-    <table class="table mb-md-5" th:each="entry : ${existingEntries}" th:action="@{/rooms/{id}/showEntries}">
-        <tbody>
-        <tr>
-                <th scope="row" th:text="#{orders.ticket.id}">Order ID</th>
-                <th th:text="${entry.getOrder().getId()}">bb46124d-aeb3-4d85-9f2f-db957b45cebb</th>
-        </tr>
-        <tr>
-            <th scope="row" th:text="#{general.customer}">Customer</th>
-            <td th:text="${entry.getOrder().getCustomer()}">Linus Torvalds</td>
-        </tr>
-        <tr>
-            <th scope="row" th:text="#{orders.customer.item}">Customer Item</th>
-            <td th:text="${entry.getOrder().getItem().getName()}">Linux</td>
-        </tr>
-        <tr>
-            <th scope="row" th:text="#{orders.expectedfinished}">Expected Finishing Date</th>
-            <td th:text="${entry.getOrder().getExpectedFinished()}">12.11.2019</td>
-        </tr>
-        <tr>
-            <th scope="row" th:text="#{entries.beginning}">Beginning</th>
-            <td th:text="${entry.getBeginning()}">Start</td>
-        </tr>
-        <tr>
-        <th scope="row" th:text="#{entries.End}">End</th>
-        <td th:text="${entry.getEnd()}">End</td>
-        </tr>
-        </tbody>
-    </table>
-    -->
     <table class="table" th:action="@{/rooms/showEntries}">
         <thead>
             <tr>
-                <th th:each="room : ${roomRepository}">lul</th>
+                <th th:text="${room.name}" th:each="room : ${roomRepository}">Raum</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td th:each="room : ${roomRepository}">
-                    <table>
+                <td th:each="helpArray : ${tableList}">
+                    <table class="table">
                         <tbody>
-                            <tr th:each="room : ${roomRepository}">
-                                <td>1</td>
+                            <tr th:each="entry : ${helpArray}">
+                                <!--TODO null is not a valid argument -->
+                                <td th:text="'empty'" th:if="${entry.getSlot() == 'null'}">1</td>
+                                <td th:text="'Order ID: '+ ${entry.order.id}" th:unless="${entry.getSlot() == 'null'}">1</td>
                             </tr>
                         </tbody>
                     </table>

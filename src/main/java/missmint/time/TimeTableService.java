@@ -110,6 +110,8 @@ public class TimeTableService {
 	}
 
 	public Iterator<TimeTableEntry> todaysEntries(Room room) {
-		return room.getEntrySet().stream().filter(entry -> entry.getDate().equals(time.getTime().toLocalDate())).iterator();
+		return room.getEntrySet().stream().filter(entry ->
+			entry.getDate().equals(time.getTime().toLocalDate())
+		).sorted(Comparator.comparingInt(TimeTableEntry::getSlot)).iterator();
 	}
 }
