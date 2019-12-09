@@ -40,7 +40,10 @@
                         <button type="submit" class="btn btn-primary mr-1" th:text="#{users.edit}">Bearbeiten</button>
                     </form>
                     <form class="button" method="post" th:action="@{/users/delete/{userName}/{id}(userName=${staff.getUserName()}, id=${staff.getId()})}">
-                        <button type="submit" class="btn btn-danger" th:text="#{users.remove}">Entlassen</button>
+                        <div class="form-check form-group">
+                            <button type="submit" class="btn btn-danger" th:text="#{users.remove}">Entlassen</button>
+                            <input class="form-check-input" id="fire" required type="checkbox">
+                        </div>
                     </form>
                 </div>
             </td>
