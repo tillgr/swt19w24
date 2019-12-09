@@ -1,6 +1,8 @@
 package missmint.users.service;
 
+import missmint.Utils;
 import missmint.orders.service.ServiceCategory;
+import missmint.time.EntryRepository;
 import missmint.users.forms.RegistrationForm;
 import missmint.users.model.AccountRole;
 import missmint.users.model.Staff;
@@ -22,14 +24,21 @@ public class StaffManagement {
 
 	private final StaffRepository staffRepository;
 	private final UserAccountManager userAccountManager;
+	private final EntryRepository entryRepository;
 
-	public StaffManagement(StaffRepository staffRepository, UserAccountManager userAccountManager) {
+	public StaffManagement(
+			StaffRepository staffRepository,
+			UserAccountManager userAccountManager,
+			EntryRepository entryRepository
+	) {
 
 		Assert.notNull(staffRepository, "StaffRepository must not be null");
 		Assert.notNull(userAccountManager, "UserAccountManager must not be null");
+		Assert.notNull(entryRepository, "EntryRepository must not be null");
 
 		this.staffRepository = staffRepository;
 		this.userAccountManager = userAccountManager;
+		this.entryRepository = entryRepository;
 	}
 
 	/**
@@ -56,13 +65,14 @@ public class StaffManagement {
 	 * @param id       of the UserAccount
 	 */
 	public void deleteStaff(String userName, Long id) {
-		var userOptional = userAccountManager.findByUsername(userName);
 
-		userOptional.ifPresent(user -> {
-			staffRepository.deleteById(id);
-			userAccountManager.delete(user);
-		});
-
+		var user = Utils.getOrThrow(userAccountManager.findByUsername(userName));
+		var staff = Utils.getOrThrow(staffRepository.findByUserAccount(user));
+		var entriesByStaff = entryRepository.findAllByStaff(staff);
+		entriesByStaff.forEach(timeTableEntry -> timeTableEntry.getOrder().setEntry(null));
+		entryRepository.deleteTimeTableEntriesByStaff(staff);
+		staffRepository.deleteById(id);
+		userAccountManager.delete(user);
 	}
 
 	public Optional<UserAccount> findByUserName(String userName) {
