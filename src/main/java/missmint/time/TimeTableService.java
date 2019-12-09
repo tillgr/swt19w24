@@ -74,6 +74,7 @@ public class TimeTableService {
 
 		orderManager.findAll(Pageable.unpaged())
 			.filter(order -> order.getOrderState() == OrderState.WAITING)
+			.filter(order -> orderService.isOrderAcceptable(serviceManager.getService(order)))
 			.get().sorted(Comparator.comparing(MissMintOrder::getExpectedFinished))
 			.forEach(order -> {
 				Assert.isNull(order.getEntry(), "after removing time table entries the entry field should be null");
