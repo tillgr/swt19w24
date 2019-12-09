@@ -18,20 +18,18 @@
     <table class="table" th:action="@{/rooms/showEntries}">
         <thead>
             <tr>
-                <th th:text="${room.name}" th:each="room : ${roomRepository}">Raum</th>
+                <th th:text="${room.getName()}" th:each="room : ${rooms}">Raum</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td th:each="helpArray : ${tableList}">
-                    <table class="table">
-                        <tbody>
-                            <tr th:each="entry : ${helpArray}">
-                                <td th:if="${entry}" th:text="'Order ID: '+ ${entry.order.id}">1</td>
-                                <td th:unless="${entry}" th:text="'-'">1</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <tr th:each="row: ${slotTable}">
+                <td th:each="field: ${row}">
+                    <div th:if="${field}">
+                        <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
+                    </div>
+                    <div th:unless="${field}">
+                        <span>-</span>
+                    </div>
                 </td>
             </tr>
         </tbody>
