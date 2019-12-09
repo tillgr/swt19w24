@@ -40,10 +40,36 @@
             </div>
         </li>
     </ul>
-    <br>
+    <!---
     <form method="get" th:action="@{/rooms/showEntries}" th:href="entries.html">
         <button class="btn btn-primary">Einträge anzeigen</button>
     </form>
+    -->
+    <br>
+    <h2>Belegplan</h2>
+
+    <div>
+        <table class="table-striped table" th:action="@{/rooms}">
+            <thead>
+            <tr>
+                <th th:text="${room.getName()}" th:each="room : ${rooms}">Raum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row: ${slotTable}">
+                <td th:each="field: ${row}">
+                    <div th:if="${field}">
+                        <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
+                    </div>
+                    <div th:unless="${field}">
+                        <span>-</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 
     <!---
     <div class="card mt-2" th:each="room : ${rooms}">

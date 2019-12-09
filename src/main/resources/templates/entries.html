@@ -15,7 +15,7 @@
 <div class="container mt-md-5">
     <h1>Einträge</h1>
 
-    <table class="table" th:action="@{/rooms/showEntries}">
+    <table class="table-striped" th:action="@{/rooms}">
         <thead>
             <tr>
                 <th th:text="${room.getName()}" th:each="room : ${rooms}">Raum</th>

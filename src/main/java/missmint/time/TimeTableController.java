@@ -33,6 +33,7 @@ public class TimeTableController {
 
 	@GetMapping("/rooms/showEntries")
 	public String showEntries(Model model) {
+		/*
 		List<Room> rooms = new LinkedList<>();
 		roomRepository.findAll().forEach(rooms::add);
 
@@ -46,6 +47,8 @@ public class TimeTableController {
 
 		model.addAttribute("slotTable", slotTable);
 		model.addAttribute("rooms", roomRepository.findAll());
+
+		 */
 
 		return "entries";
 	}
