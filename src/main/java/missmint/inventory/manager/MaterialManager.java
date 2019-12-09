@@ -10,15 +10,11 @@ import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
-
 import javax.money.MonetaryAmount;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class MaterialManager {
 
-	private static final long THRESHOLD = 20;
 
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final Catalog<Material> materialCatalog;
@@ -30,83 +26,73 @@ public class MaterialManager {
 		this.financeService = financeService;
 	}
 
-	public void autoRestock(UniqueInventoryItem item) {
-		Quantity quantity = item.getQuantity();
-
-		Quantity threshold = Quantity.of(THRESHOLD, quantity.getMetric());
-
-		if (quantity.isLessThan(threshold)) {
-			Quantity RESTOCK_AMOUNT = threshold.subtract(quantity);
-			restock(item.getId(), RESTOCK_AMOUNT.getAmount().intValueExact());
-
-			restockAccountancy(item, RESTOCK_AMOUNT.getAmount().intValueExact());
-		}
+	public void billMaterial(UniqueInventoryItem material, int restockAmount) {
+		MonetaryAmount price = material.getProduct().getPrice().multiply(restockAmount);
+		financeService.add(String.format("material restock for %s", material.getProduct().getName()), price.negate());
 	}
 
-	public void restockAccountancy(UniqueInventoryItem item, int restockAmount) {
-		MonetaryAmount price = item.getProduct().getPrice().multiply(restockAmount);
-		financeService.add(String.format("material restock for %s", item.getProduct().getName()), price.negate());
+
+	//------------------------------------------------------------------------------------
+
+	public void checkAndRestock(InventoryItemIdentifier materialId, int amount){
+		materialInventory.findById(materialId).ifPresent(material -> {
+			int restockAmount =	manualRestock(material, amount);
+			Metric materialMetric = material.getQuantity().getMetric();
+			materialInventory.save(material.increaseQuantity(Quantity.of(restockAmount, materialMetric)));
+			billMaterial(material, restockAmount);
+		});
 	}
 
-	public int restock(InventoryItemIdentifier material, int number) {
-		Optional<UniqueInventoryItem> item = materialInventory.findById(material);
-		Quantity quantity;
-		Metric metric;
-
+	public int manualRestock(UniqueInventoryItem material, int amount) {
 		int max_quantity = 10000;
-		int old_quantity;
-		int new_quantity;
-		int finalNumber;
+		int old_quantity = material.getQuantity().getAmount().intValueExact();
+		int new_quantity = old_quantity + amount;
+		int max_addable_quantity = max_quantity - (old_quantity);
 
-		if (item.isPresent()) {
-			if (materialInventory.findById(Objects.requireNonNull(item.get().getId())).isPresent()) {
-				quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity();
-				metric = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getMetric();
-				old_quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getAmount().toBigInteger().intValueExact();
-				int max_addable_quantity = max_quantity - (quantity.getAmount().intValueExact());
-				new_quantity = old_quantity + number;
-
-				if (new_quantity >= max_quantity) {
-					finalNumber = max_addable_quantity;
-				} else {
-					finalNumber = number;
-				}
-
-				materialInventory.findById(item.get().getId()).ifPresent(itQM ->
-					materialInventory.save(itQM.increaseQuantity(Quantity.of(finalNumber, metric)))
-				);
-				return finalNumber;
-			}
-		}
-		return 0;
+		return new_quantity >= max_quantity ? max_addable_quantity : amount;
 	}
 
-	public void consume(InventoryItemIdentifier material, int number) {
-		Optional<UniqueInventoryItem> item = materialInventory.findById(material);
-		Metric metric;
+	public void autoRestock(UniqueInventoryItem material) {
+		int iQuantity = material.getQuantity().getAmount().intValueExact();
+		int threshold = 20;
+		int restockAmount;
 
-		int old_quantity;
-		int new_quantity;
-		int finalNumber;
+		if (materialInventory.findById(material.getId()).isEmpty()){
+			return;
+		}
 
-		if (item.isPresent()) {
-			if (materialInventory.findById(Objects.requireNonNull(item.get().getId())).isPresent()) {
-				metric = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getMetric();
-				old_quantity = materialInventory.findById(Objects.requireNonNull(item.get().getId())).get().getQuantity().getAmount().toBigInteger().intValue();
-				new_quantity = old_quantity - number;
-
-				if (new_quantity < 0) {
-					number = old_quantity;
-				}
-
-				finalNumber = number;
-
-				materialInventory.findById(item.get().getId()).ifPresent(itQM ->
-					materialInventory.save(itQM.decreaseQuantity(Quantity.of(finalNumber, metric)))
-				);
-			}
+		if (iQuantity < threshold) {
+			restockAmount = threshold - iQuantity;
+			checkAndRestock(material.getId(), restockAmount);
+			billMaterial(material, restockAmount);
 		}
 	}
+
+	//-----------------------------------------------------------------------------------------------
+
+	public void checkAndConsume(InventoryItemIdentifier materialId, int amount){
+		materialInventory.findById(materialId).ifPresent(material -> {
+			int consumeAmount = manualConsume(material, amount);
+			Metric materialMetric = material.getQuantity().getMetric();
+
+			materialInventory.save(material.decreaseQuantity(Quantity.of(consumeAmount,materialMetric)));
+			autoRestock(material);
+			materialInventory.save(material);
+		});
+	}
+
+	public int manualConsume(UniqueInventoryItem material, int amount) {
+		InventoryItemIdentifier materialId = material.getId();
+		int old_quantity = material.getQuantity().getAmount().intValueExact();
+		//int old_quantity = materialInventory.findById(materialId).get().getQuantity().getAmount().intValueExact();
+		int new_quantity = old_quantity - amount;
+		if (new_quantity < 0) {
+			amount = old_quantity;
+		}
+		return amount;
+	}
+
+	//----------------------------------------------------------------------------------------------
 
 	public Streamable<UniqueInventoryItem> findMaterials() {
 		return Streamable.of(materialInventory.findAll()).filter(it -> it.getProduct().getCategories().toList().get(0).endsWith("MATERIAL"));
@@ -114,11 +100,11 @@ public class MaterialManager {
 
 	public Material fromName(String name) {
 		return materialCatalog.findByName(name).filter(material ->
-			material.getCategories().filter(cat ->
-				cat.endsWith("MATERIAL")
-			).stream().findAny().isPresent()
+				material.getCategories().filter(cat ->
+						cat.endsWith("MATERIAL")
+				).stream().findAny().isPresent()
 		).stream().findAny().orElseThrow(() ->
-			new RuntimeException("material not found")
+				new RuntimeException("material not found")
 		);
 
 	}
