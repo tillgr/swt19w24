@@ -14,14 +14,16 @@ import org.salespointframework.time.BusinessTime;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.util.Pair;
 import org.springframework.data.util.StreamUtils;
-import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -78,7 +80,7 @@ public class TimeTableService {
 			.get().sorted(Comparator.comparing(MissMintOrder::getExpectedFinished))
 			.forEach(order -> {
 				Assert.isNull(order.getEntry(), "after removing time table entries the entry field should be null");
-				createEntry(order);
+				entries.save(createEntry(order));
 			});
 
 	}
@@ -88,7 +90,6 @@ public class TimeTableService {
 		ServiceCategory category = ServiceManager.getCategory(service);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 
-		LocalDateTime now = time.getTime();
 		Optional<Optional<TimeTableEntry>> entry = dateStream().flatMap(date ->
 			slotStream(date).map(indexedSlot -> {
 				int slotIndex = indexedSlot.getFirst();
