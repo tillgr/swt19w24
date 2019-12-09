@@ -28,7 +28,7 @@
                         <tbody>
                             <tr th:each="entry : ${helpArray}">
                                 <td th:if="${entry}" th:text="'Order ID: '+ ${entry.order.id}">1</td>
-                                <td th:unless="${entry}" th:text="'empty'">1</td>
+                                <td th:unless="${entry}" th:text="'-'">1</td>
                             </tr>
                         </tbody>
                     </table>
