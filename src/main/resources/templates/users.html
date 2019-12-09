@@ -39,6 +39,9 @@
                     <form class="button" th:action="@{/users/edit/{id}(id=${staff.getId()})}">
                         <button type="submit" class="btn btn-primary mr-1" th:text="#{users.edit}">Bearbeiten</button>
                     </form>
+                    <form class="button" method="post" th:action="@{/users/delete/{userName}/{id}(userName=${staff.getUserName()}, id=${staff.getId()})}">
+                        <button type="submit" class="btn btn-danger" th:text="#{users.remove}">Entlassen</button>
+                    </form>
                 </div>
             </td>
         </tr>
