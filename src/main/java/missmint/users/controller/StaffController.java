@@ -2,6 +2,7 @@ package missmint.users.controller;
 
 import missmint.Utils;
 import missmint.orders.service.ServiceCategory;
+import missmint.time.TimeTableService;
 import missmint.users.forms.EditStaffForm;
 import missmint.users.forms.RegistrationForm;
 import missmint.users.model.AccountRole;
@@ -26,13 +27,18 @@ import java.util.HashSet;
 public class StaffController {
 
 	private final StaffManagement staffManagement;
-	private StaffRepository staffRepository;
+	private final StaffRepository staffRepository;
+	private final TimeTableService timeTableService;
 
-	public StaffController(StaffManagement staffManagement, StaffRepository staffRepository) {
+	public StaffController(StaffManagement staffManagement,
+						   StaffRepository staffRepository,
+						   TimeTableService timeTableService
+	) {
 		Assert.notNull(staffManagement, "StaffManagement must not be null");
 
 		this.staffRepository = staffRepository;
 		this.staffManagement = staffManagement;
+		this.timeTableService = timeTableService;
 	}
 
 	/**
@@ -53,6 +59,7 @@ public class StaffController {
 	public String deleteUser(@PathVariable String userName, @PathVariable Long id) {
 
 		staffManagement.deleteStaff(userName, id);
+		timeTableService.rebuildTimeTable();
 
 		return "redirect:/users";
 	}
