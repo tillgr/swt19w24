@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class MaterialManager {
 
-	private static final Quantity THRESHOLD = Quantity.of(20);
+	private static final long THRESHOLD = 20;
 
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final Catalog<Material> materialCatalog;
@@ -33,8 +33,10 @@ public class MaterialManager {
 	public void autoRestock(UniqueInventoryItem item) {
 		Quantity quantity = item.getQuantity();
 
-		if (quantity.isLessThan(THRESHOLD)) {
-			Quantity RESTOCK_AMOUNT = THRESHOLD.subtract(quantity);
+		Quantity threshold = Quantity.of(THRESHOLD, quantity.getMetric());
+
+		if (quantity.isLessThan(threshold)) {
+			Quantity RESTOCK_AMOUNT = threshold.subtract(quantity);
 			restock(item.getId(), RESTOCK_AMOUNT.getAmount().intValueExact());
 
 			restockAccountancy(item, RESTOCK_AMOUNT.getAmount().intValueExact());
