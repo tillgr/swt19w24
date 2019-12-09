@@ -15,7 +15,7 @@ public class RoomDataInitializer implements DataInitializer {
 	public void initialize() {
 		Room room = new Room("HSZ/0001");
 		Room room1 = new Room("HSZ/0002");
-		Room room2 = new Room("HSZ/0002");
+		Room room2 = new Room("HSZ/0003");
 
 		roomRepository.save(room);
 		roomRepository.save(room1);
