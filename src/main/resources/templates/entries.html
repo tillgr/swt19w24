@@ -27,9 +27,8 @@
                     <table class="table">
                         <tbody>
                             <tr th:each="entry : ${helpArray}">
-                                <!--TODO null is not a valid argument -->
-                                <td th:text="'empty'" th:if="${entry.getSlot() == 'null'}">1</td>
-                                <td th:text="'Order ID: '+ ${entry.order.id}" th:unless="${entry.getSlot() == 'null'}">1</td>
+                                <td th:if="${entry}" th:text="'Order ID: '+ ${entry.order.id}">1</td>
+                                <td th:unless="${entry}" th:text="'empty'">1</td>
                             </tr>
                         </tbody>
                     </table>

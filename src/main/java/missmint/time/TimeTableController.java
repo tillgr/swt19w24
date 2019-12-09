@@ -33,14 +33,16 @@ public class TimeTableController {
 		//List of Arrays
 		List<TimeTableEntry[]> tableList = new ArrayList<>();
 
-		TimeTableEntry [] helpArray = new TimeTableEntry[5];
+
 		List<Room> roomList= new LinkedList<>();
+
 		List<TimeTableEntry> sortedSet;
 
 		//put rooms into list
 		roomRepository.findAll().forEach(roomList :: add);
 		//iterate rooms
 		for (Room room : roomList){
+			TimeTableEntry [] helpArray = new TimeTableEntry[5];
 			//iterate slots
 			for (int j= 0; j < 5; j++){
 				//create sorted entrySet
@@ -61,7 +63,7 @@ public class TimeTableController {
 		//model.addAttribute("existingEntries", timeService.todaysEntries(room));
 
 		model.addAttribute("tableList", tableList);
-		model.addAttribute("roomRepository", roomRepository);
+		model.addAttribute("roomRepository", roomRepository.findAll());
 
 		return "entries";
 	}
