@@ -9,6 +9,9 @@ import org.springframework.util.Assert;
 
 import javax.money.MonetaryAmount;
 
+/**
+ *This class is a service for Accountancy
+ */
 @Service
 public class FinanceService {
 	private final Accountancy accountancy;
@@ -19,12 +22,22 @@ public class FinanceService {
 		this.accountancy = accountancy;
 	}
 
+	/**
+	 * creates form for adding new finance items.
+	 *
+	 * @param form with description and price.
+	 */
 	public void createFinanceItemForm(AddFinanceForm form) {
 		Assert.notNull(form, "AddFinanceForm cannot be null.");
 
 		add(form.getDescription(), Money.of(form.getPrice(), currency));
 	}
 
+	/**
+	 * method for calculating the whole sum of price for all finance items
+	 *
+	 * @return the sum of all finance items
+	 */
 	public Money getSum() {
 		Money sum = Money.of(0, currency);
 		for (AccountancyEntry entry : accountancy.findAll()) {

@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * Creates all finance items that are defined in the task.
+ */
 @Component
 @Order(20)
 public class FinanceDataInitializer implements DataInitializer {
