@@ -13,7 +13,7 @@ import java.util.Set;
 public class Room {
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	private String name;
 
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "room")
@@ -31,7 +31,7 @@ public class Room {
 		return name;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

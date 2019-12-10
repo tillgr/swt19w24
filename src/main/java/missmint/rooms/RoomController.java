@@ -65,11 +65,14 @@ public class RoomController {
 
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@PostMapping("/rooms/{room}/delete")
-	public String deleteRoom(@PathVariable("room") Optional<Room> optionalRoom) {
+	public String deleteRoom(@PathVariable("room") Long optionalRoom) {
 		// TODO handle entries
-		optionalRoom.ifPresent(room -> {
-			roomRepository.delete(room);
-		});
+		//optionalRoom.ifPresent(room -> {
+		roomRepository.findById(optionalRoom).map(room -> {
+				roomRepository.delete(room);
+				return 1;
+			}).orElse(null);
+		//});
 
 		return "redirect:/rooms";
 	}
