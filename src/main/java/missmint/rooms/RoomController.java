@@ -10,14 +10,27 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Optional;
 
+/**
+ * Controller for displaying and managing rooms.
+ */
 @Controller
 public class RoomController {
 	private RoomRepository rooms;
 
+	/**
+	 * create new room
+	 * @param rooms
+	 */
 	RoomController(RoomRepository rooms) {
 		this.rooms = rooms;
 	}
 
+	/**
+	 * show currently existing rooms
+	 * @param model Spring model
+	 * @param form Spring form
+	 * @return rooms page
+	 */
 	@GetMapping("/rooms")
 	@PreAuthorize("isAuthenticated()")
 	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
@@ -26,6 +39,13 @@ public class RoomController {
 		return "rooms";
 	}
 
+	/**
+	 * add a new room to the repository
+	 * @param model Spring model
+	 * @param form Spring form
+	 * @param errors Spring errors
+	 * @return redirect to the rooms page
+	 */
 	@PostMapping("/rooms/add")
 	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors) {
 		if (errors.hasErrors()) {
@@ -37,6 +57,11 @@ public class RoomController {
 		return "redirect:/rooms";
 	}
 
+	/**
+	 * delete existing rooms from the repository
+	 * @param optionalRoom the room which should be deleted
+	 * @return redirect to the rooms page
+	 */
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@PostMapping("/rooms/{room}/delete")
 	public String deleteRoom(@PathVariable("room") Optional<Room> optionalRoom) {
