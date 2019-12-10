@@ -70,10 +70,10 @@ public class MaterialManagerTest {
 	@Test
 	public void consumeMaterialWithoutRestockTest() {
 
-		Streamable<Material> sqMaterialStreamable = materialCatalog.findByName("sqTest");
-		Optional<UniqueInventoryItem> sqMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(sqMaterialStreamable.toList().get(0).getId()));
+		Streamable<Material> sqMaterialStreamable = materialCatalog.findByName("uTest");
+		Optional<UniqueInventoryItem> uMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(sqMaterialStreamable.toList().get(0).getId()));
 
-		sqMaterial.ifPresent(it -> {
+		uMaterial.ifPresent(it -> {
 			UniqueInventoryItem item = materialManager.checkAndConsume(it.getId(),20);
 			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(80);
 		});
