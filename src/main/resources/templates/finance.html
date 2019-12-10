@@ -28,8 +28,9 @@
         <tr th:each="item: ${finance}">
             <th th:text="${item.getDescription()}">3 Knöpfe waren bestellt</th>
             <td th:text="${item.getValue()}">1</td>
-            <td th:text="${item.date.get()}">12.01.2019</td>
+            <td th:text="${item.getDate().get()}">12.01.2019</td>
         </tr>
+        <div> <a class="btn btn-info mb-2" th:href="@{/finance/month}">Letzten Monat anzeigen</a> </div>
         </tbody>
     </table>
     <p>Summe: <span th:text="${sum} + '' ">34</span></p>

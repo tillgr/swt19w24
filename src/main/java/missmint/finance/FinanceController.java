@@ -3,6 +3,7 @@ package missmint.finance;
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
+import org.salespointframework.time.Interval;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.util.StreamUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.money.MonetaryAmount;
 import javax.validation.Valid;
@@ -33,6 +35,16 @@ public class FinanceController {
 	public String showFinancePage(Model model) {
 		model.addAttribute("finance", accountancy.findAll());
 		model.addAttribute("sum", financeService.getSum());
+
+		return "finance";
+	}
+
+	@GetMapping("/finance/month")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String showLastMonth(Model model) {
+		model.addAttribute("finance", financeService.FromTo());
+		model.addAttribute("sum", financeService.getSum());
+
 		return "finance";
 	}
 
