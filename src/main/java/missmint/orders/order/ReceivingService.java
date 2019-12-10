@@ -74,7 +74,6 @@ public class ReceivingService {
 				Material material = materialManager.fromName(materialName);
 				UniqueInventoryItem item = materialInventory.findByProduct(material).orElseThrow(() -> new RuntimeException("could not find inventory item"));
 				materialManager.checkAndConsume(item.getId(), quantity.getAmount().intValue());
-				materialManager.autoRestock(item);
 			}
 		);
 
