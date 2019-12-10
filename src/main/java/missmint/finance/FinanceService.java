@@ -19,14 +19,12 @@ import java.time.temporal.TemporalAmount;
 public class FinanceService {
 	private final Accountancy accountancy;
 	private BusinessTime time;
-	//private final AccountancyEntry accountancyEntry;
 	@Value("${general.currency}")
 	private String currency;
 
 
 	public FinanceService(Accountancy accountancy, BusinessTime businessTime) {
 		this.accountancy = accountancy;
-		//this.accountancyEntry = accountancyEntry;
 		this.time = businessTime;
 	}
 
@@ -36,9 +34,9 @@ public class FinanceService {
 		add(form.getDescription(), Money.of(form.getPrice(), currency));
 	}
 
-	public Money getSum() {
+	public Money getSum(Streamable<AccountancyEntry> entries) {
 		Money sum = Money.of(0, currency);
-		for (AccountancyEntry entry : accountancy.findAll()) {
+		for (AccountancyEntry entry : entries) {
 			sum = sum.add(entry.getValue());
 		}
 		return sum;
@@ -48,13 +46,12 @@ public class FinanceService {
 		accountancy.add(new AccountancyEntry(value, description));
 	}
 
-	public Streamable<AccountancyEntry> FromTo(){
+	public Streamable<AccountancyEntry> lastMonth() {
 		LocalDateTime lastMonth = time.getTime().minusMonths(1);
 		LocalDateTime firstDay = lastMonth.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
 		LocalDateTime lastDay = time.getTime().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
 
 		return accountancy.find(Interval.from(firstDay).to(lastDay));
 	}
-
 
 }
