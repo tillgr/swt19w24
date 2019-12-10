@@ -42,6 +42,7 @@ public class InventoryControllerTest {
 					.andExpect(model().attributeExists("material"));
 
 
+
 		}
 
 }
