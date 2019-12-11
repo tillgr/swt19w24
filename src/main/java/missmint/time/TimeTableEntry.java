@@ -74,6 +74,10 @@ public class TimeTableEntry {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}
 
+	public void setOrder(MissMintOrder order) {
+		this.order = order;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
