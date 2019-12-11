@@ -73,7 +73,7 @@ public class ReceivingService {
 
 		order.getOrderLines().forEach(orderLine ->
 			financeService.add(
-					messages.get("orders.service." + orderLine.getProductName()),
+					messages.get("orders.service." + orderLine.getProductName()) + " " + order.getId(),
 					orderLine.getPrice())
 		);
 
