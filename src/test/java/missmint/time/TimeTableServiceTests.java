@@ -3,6 +3,7 @@ package missmint.time;
 import missmint.Utils;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.order.MissMintOrder;
+import missmint.orders.order.OrderState;
 import missmint.orders.service.MissMintService;
 import missmint.orders.service.ServiceManager;
 import missmint.users.model.Staff;
@@ -39,8 +40,6 @@ public class TimeTableServiceTests {
 	private Catalog<MissMintService> serviceCatalog;
 	@Autowired
 	private OrderManager<MissMintOrder> orderManager;
-	@Autowired
-	private StaffManagement staffManagement;
 	@Autowired
 	private StaffRepository staffRepository;
 	@Autowired
@@ -104,6 +103,7 @@ public class TimeTableServiceTests {
 		if (isFinished) {
 			order.setExpectedFinished(date.plusDays(1));
 			order.setFinished(date.plusDays(1));
+			order.setOrderState(OrderState.FINISHED);
 		}
 
 		TimeTableEntry entry = null;
