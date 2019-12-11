@@ -54,7 +54,7 @@ public class MaterialManager {
 		}).orElseThrow(() -> new IllegalArgumentException(materialId.toString()));
 	}
 
-	public int restock(UniqueInventoryItem material, int amount) {
+	private int restock(UniqueInventoryItem material, int amount) {
 		int max_quantity = 10000;
 		int old_quantity = material.getQuantity().getAmount().intValueExact();
 		int new_quantity = old_quantity + amount;
@@ -79,7 +79,7 @@ public class MaterialManager {
 		}).orElseThrow(()-> new IllegalArgumentException(materialId.toString()));
 	}
 
-	public int consume(UniqueInventoryItem material, int amount) {
+	private int consume(UniqueInventoryItem material, int amount) {
 		int old_quantity = material.getQuantity().getAmount().intValueExact();
 		int new_quantity = old_quantity - amount;
 		if (new_quantity < 0) {
