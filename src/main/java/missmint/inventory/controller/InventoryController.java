@@ -1,6 +1,5 @@
 package missmint.inventory.controller;
 
-import missmint.Utils;
 import missmint.inventory.forms.MaterialForm;
 import missmint.inventory.manager.MaterialManager;
 import org.salespointframework.inventory.InventoryItemIdentifier;
@@ -38,8 +37,7 @@ public class InventoryController {
 	public String consume(@Valid @ModelAttribute("form") MaterialForm materialForm){
 		InventoryItemIdentifier materialId = materialForm.getMaterialId();
 		int number = materialForm.getNumber();
-		materialManager.consume(materialId, number);
-		materialManager.autoRestock(Utils.getOrThrow(materialInventory.findById(materialId)));
+		materialManager.checkAndConsume(materialId, number);
 		return "redirect:/material";
 	}
 
@@ -48,8 +46,7 @@ public class InventoryController {
 	public String restock(@Valid @ModelAttribute("form") MaterialForm materialForm){
 		InventoryItemIdentifier materialId = materialForm.getMaterialId();
 		int number = materialForm.getNumber();
-		int restockedAmount = materialManager.restock(materialId, number);
-		materialManager.restockAccountancy(Utils.getOrThrow(materialInventory.findById(materialId)), restockedAmount);
+		materialManager.checkAndRestock(materialId, number);
 		return "redirect:/material";
 	}
 }

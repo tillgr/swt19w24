@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Entry represents a booked Timeslot
+ */
 @Entity
 public class TimeTableEntry {
 	@Id

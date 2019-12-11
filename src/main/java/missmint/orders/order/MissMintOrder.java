@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
+/**
+ * The order describing the repair request of a customer.
+ */
 @Entity
 public class MissMintOrder extends Order {
 	private String customer;
@@ -30,6 +33,18 @@ public class MissMintOrder extends Order {
 	public MissMintOrder() {
 	}
 
+	/**
+	 * Create a new order.
+	 *
+	 * @param userAccount The user that created the order.
+	 * @param customer The customer that requested the repair.
+	 * @param inbound The inbound date.
+	 * @param service The service this order is related to.
+	 * @param item A description for the customer's item.
+	 * @see UserAccount
+	 * @see MissMintService
+	 * @see OrderItem
+	 */
 	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, MissMintService service, OrderItem item) {
 		super(userAccount);
 
@@ -45,12 +60,20 @@ public class MissMintOrder extends Order {
 		addOrderLine(service, Quantity.of(1));
 	}
 
+	/**
+	 * @return The latest of the finishing or the expected finishing date.
+	 */
 	public LocalDate getLatestFinished() {
 		Assert.notNull(finished, "finished must not be null");
+		Assert.notNull(expectedFinished, "expectedFinished must not be null");
 
 		return expectedFinished.isAfter(finished) ? expectedFinished : finished;
 	}
 
+	/**
+	 * @return true if the order can be picked up by the customer
+	 * @see OrderState
+	 */
 	public boolean canPickUp() {
 		return orderState == OrderState.FINISHED || orderState == OrderState.STORED;
 	}

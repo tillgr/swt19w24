@@ -20,8 +20,8 @@
         <label>
             <select class="form-control" name="materialId">
                 <option th:each="item : ${material}"
-                        th:value="${item.id}"
-                        th:text="${item.product.name}">
+                        th:value="${item.getId()}"
+                        th:text="${item.getProduct().getName()}">
                 </option>
             </select>
         </label>

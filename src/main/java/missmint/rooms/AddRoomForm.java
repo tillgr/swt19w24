@@ -5,6 +5,11 @@ import missmint.time.EntryRepository;
 import javax.validation.constraints.NotBlank;
 
 public class AddRoomForm {
+	/**
+	 * The name of the room.
+	 *
+	 * This value must not be blank.
+	 */
 	@NotBlank(message = "Darf nicht leer sein!")
 	private final String name;
 

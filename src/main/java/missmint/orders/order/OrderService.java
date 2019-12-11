@@ -23,6 +23,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static missmint.orders.order.OrderState.FINISHED;
 import static missmint.orders.order.OrderState.IN_PROGRESS;
 
+/**
+ * This class provides services for handling orders.
+ * @see MissMintOrder
+ */
 @Service
 public class OrderService {
 	private final BusinessTime businessTime;
@@ -44,6 +48,15 @@ public class OrderService {
 		this.itemCatalog = itemCatalog;
 	}
 
+	/**
+	 * Calculates the amount the employee needs to charge the customer.
+	 * <p>
+	 * This method considers the time the item was stored and the number of days the item was not finished through promised.
+	 *
+	 * @param order The order to calculate the charge for.
+	 * @return A (possible negative or zero) charge.
+	 * @see MissMintOrder
+	 */
 	public MonetaryAmount calculateCharge(MissMintOrder order) {
 		Assert.notNull(order, "order must not be null");
 		Assert.isTrue(order.canPickUp(), "order can not be picked up");
@@ -63,10 +76,21 @@ public class OrderService {
 		return charge.add(Money.of(BigDecimal.valueOf(5, 1), currency).multiply(weeksStored));
 	}
 
+	/**
+	 * Checks if the store can currently accept an order with this service.
+	 * <p>
+	 * This method checks for the availability of a room and a skilled staff.
+	 *
+	 * @param service The service to check for.
+	 * @return true if the order is acceptable
+	 */
 	public boolean isOrderAcceptable(MissMintService service) {
 		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceManager.getCategory(service));
 	}
 
+	/**
+	 * Updates all orders until the orders change no longer.
+	 */
 	public void updateOrders() {
 		boolean updated;
 		do {
@@ -74,6 +98,17 @@ public class OrderService {
 		} while (updated);
 	}
 
+	/**
+	 * Updates every order once.
+	 * <p>
+	 * Changes orders from waiting to processing when the repair slot is passing.
+	 * Changes from in progress to finished when the repair slot is over.
+	 * Changes from finished to stored when the order is finished for more than a week.
+	 * Changes from stored to charitable used when the order is stored for three months.
+	 *
+	 * @return true if at least on order is updated
+	 * @see OrderState
+	 */
 	private boolean updateOrdersOnce() {
 		AtomicBoolean changed = new AtomicBoolean(false);
 

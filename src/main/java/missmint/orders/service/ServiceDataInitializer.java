@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.Stream;
 
+/**
+ * Creates all services that are defined in the task.
+ */
 @Component
 @Order(10)
 public class ServiceDataInitializer implements DataInitializer {
@@ -19,9 +22,9 @@ public class ServiceDataInitializer implements DataInitializer {
 	@Value("${general.currency}")
 	private String currency;
 
-	private Catalog catalog;
+	private Catalog<MissMintService> catalog;
 
-	public ServiceDataInitializer(Catalog catalog) {
+	public ServiceDataInitializer(Catalog<MissMintService> catalog) {
 		Assert.notNull(catalog, "catalog must not be null");
 
 		this.catalog = catalog;
@@ -29,7 +32,7 @@ public class ServiceDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-		if (!catalog.findByAllCategories().isEmpty()) {
+		if (!catalog.findByCategory("SERVICE").isEmpty()) {
 			return;
 		}
 

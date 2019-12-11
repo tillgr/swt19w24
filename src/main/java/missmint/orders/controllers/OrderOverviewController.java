@@ -48,6 +48,7 @@ public class OrderOverviewController {
 	 *
 	 * @param pathOrder The order that should be shown.
 	 * @return The orderdetail template.
+	 * @see MissMintOrder
 	 */
 	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@GetMapping("/orders/detail/{pathOrder}")

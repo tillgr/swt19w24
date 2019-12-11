@@ -1,5 +1,6 @@
 package missmint.orders.service;
 
+import missmint.inventory.products.Material;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.data.util.Pair;
@@ -7,7 +8,18 @@ import org.springframework.data.util.Pair;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * This class holds the information on the material consumed by a service.
+ */
 public class ServiceConsumptionManager {
+	/**
+	 * This map maps every service category to a set of needed materials.
+	 * Every needed material is a pair of material name nad needed quantity.
+	 *
+	 * @see Quantity
+	 * @see Material
+	 * @see ServiceCategory
+	 */
 	public final static Map<ServiceCategory, Set<Pair<String, Quantity>>> serviceMatRelation = Map.of(
 		ServiceCategory.KLUDGE,
 		Set.of(
