@@ -55,10 +55,10 @@ public class StaffController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/users/delete/{userName}/{id}")
-	public String deleteUser(@PathVariable String userName, @PathVariable Long id) {
+	@PostMapping("/users/delete/{userName}")
+	public String deleteUser(@PathVariable String userName) {
 
-		staffManagement.deleteStaff(userName, id);
+		staffManagement.deleteStaff(userName);
 		timeTableService.rebuildTimeTable();
 
 		return "redirect:/users";
