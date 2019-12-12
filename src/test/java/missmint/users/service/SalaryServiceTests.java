@@ -57,7 +57,7 @@ public class SalaryServiceTests {
 
 		LocalDateTime now = time.getTime();
 		time.forward(Duration.between(now, now.with(TemporalAdjusters.lastDayOfMonth())));
-		salaryService.payStaff(Duration.ofDays(35));
+		salaryService.payStaff(Duration.ofDays(70));
 
 		assertThat(accountancy.findAll().filter(accountancyEntry ->
 			accountancyEntry.getDescription().contains(staff1.getLastName())
