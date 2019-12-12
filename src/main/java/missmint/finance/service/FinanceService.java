@@ -1,5 +1,6 @@
-package missmint.finance;
+package missmint.finance.service;
 
+import missmint.finance.form.AddFinanceForm;
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;

@@ -1,6 +1,6 @@
 package missmint.orders.order;
 
-import missmint.finance.FinanceService;
+import missmint.finance.service.FinanceService;
 import missmint.inventory.manager.MaterialManager;
 import missmint.inventory.products.Material;
 import missmint.inventory.products.OrderItem;

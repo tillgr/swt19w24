@@ -1,6 +1,6 @@
 package missmint.inventory.manager;
 
-import missmint.finance.FinanceService;
+import missmint.finance.service.FinanceService;
 import missmint.inventory.products.Material;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;

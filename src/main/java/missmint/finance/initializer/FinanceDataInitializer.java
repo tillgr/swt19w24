@@ -1,5 +1,6 @@
-package missmint.finance;
+package missmint.finance.initializer;
 
+import missmint.finance.service.FinanceService;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.beans.factory.annotation.Value;
