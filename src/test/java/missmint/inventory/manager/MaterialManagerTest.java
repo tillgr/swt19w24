@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.salespointframework.core.Currencies.EURO;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -33,6 +34,7 @@ public class MaterialManagerTest {
 	private UniqueInventory<UniqueInventoryItem> materialInventory;
 	@Autowired
 	private MaterialManager materialManager;
+
 
 	@BeforeEach
 	public void setUp() {
@@ -68,26 +70,54 @@ public class MaterialManagerTest {
 	}
 
 	@Test
-	public void consumeMaterialWithoutRestockTest() {
+	void consumeMaterialWithoutCheckTest() {
+		Streamable<Material> sqMaterialStreamable = materialCatalog.findByName("sqTest");
+		Optional<UniqueInventoryItem> sqMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(sqMaterialStreamable.toList().get(0).getId()));
 
-		Streamable<Material> sqMaterialStreamable = materialCatalog.findByName("uTest");
-		Optional<UniqueInventoryItem> uMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(sqMaterialStreamable.toList().get(0).getId()));
-
-		uMaterial.ifPresent(it -> {
+		sqMaterial.ifPresent(it -> {
 			UniqueInventoryItem item = materialManager.checkAndConsume(it.getId(),20);
 			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(80);
 		});
 	}
 
 	@Test
-	public void consumeMaterialWithRestock(){
-		Streamable<Material> uMaterialStreamable = materialCatalog.findByName("sqTest");
-		Optional<UniqueInventoryItem> uMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(uMaterialStreamable.toList().get(0).getId()));
+	void consumeMaterialCheck(){
+		Streamable<Material> lMaterialStreamable = materialCatalog.findByName("lTest");
+		Optional<UniqueInventoryItem> lMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(lMaterialStreamable.toList().get(0).getId()));
 
-		uMaterial.ifPresent(material -> {
+		lMaterial.ifPresent(material -> {
 			UniqueInventoryItem item = materialManager.checkAndConsume(material.getId(),1000);
 			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(20);
 		});
 	}
+
+	@Test
+	void restockLessThanMaxMaterial(){
+		Streamable<Material> uMaterialStreamable = materialCatalog.findByName("uTest");
+		Optional<UniqueInventoryItem> uMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(uMaterialStreamable.toList().get(0).getId()));
+
+		uMaterial.ifPresent(material -> {
+			UniqueInventoryItem item = materialManager.checkAndRestock(material.getId(),900);
+			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(1000);
+		});
+	}
+
+	@Test
+	void restockMoreThanMaxMaterial(){
+		Streamable<Material> mMaterialStreamable = materialCatalog.findByName("mTest");
+		Optional<UniqueInventoryItem> mMaterial = materialInventory.findByProductIdentifier(Objects.requireNonNull(mMaterialStreamable.toList().get(0).getId()));
+
+		mMaterial.ifPresent(material -> {
+			UniqueInventoryItem item = materialManager.checkAndRestock(material.getId(),100000);
+			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(10000);
+		});
+	}
+
+	@Test
+	void fromNameExceptionTest(){
+		assertThrows(RuntimeException.class, () -> materialManager.fromName("NotInInventory"));
+	}
+
+
 }
 
