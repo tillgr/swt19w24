@@ -28,13 +28,13 @@ class AddFinanceFormTest {
 	void tooManyDecimals() {
 		var form = new AddFinanceForm(BigDecimal.valueOf(10.001) , "");
 		var violations = validator.validate(form);
-		Assertions.assertEquals(1, violations.size());
+		Assertions.assertEquals(2, violations.size());
 	}
 
 	@Test
 	void notNullPrice() {
 		var form = new AddFinanceForm(null, "10 Knöpfe kosten 300 EUR");
 		var violations = validator.validate(form);
-		Assertions.assertTrue(violations.isEmpty());
+		Assertions.assertEquals(1, violations.size());
 	}
 }
