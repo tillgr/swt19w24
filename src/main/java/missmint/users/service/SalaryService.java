@@ -41,6 +41,7 @@ public class SalaryService {
 			}
 
 			date = date.plusMonths(1);
+			date = date.with(TemporalAdjusters.lastDayOfMonth());
 		}
 	}
 }
