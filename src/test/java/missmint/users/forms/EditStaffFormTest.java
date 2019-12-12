@@ -1,5 +1,6 @@
 package missmint.users.forms;
 
+import missmint.orders.service.ServiceCategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,55 +8,48 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.math.BigDecimal;
 
-public class RegistrationFormTest {
+public class EditStaffFormTest {
 
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	@Test
 	void validForm() {
-		var form = new RegistrationForm("Jacob", "Smith", "XXX", "1234", BigDecimal.valueOf(10));
+		var form = new EditStaffForm("Max", "Muster", ServiceCategory.GRINDERY, BigDecimal.valueOf(20.1));
 		var violations = validator.validate(form);
 		Assertions.assertTrue(violations.isEmpty());
 	}
 
 	@Test
 	void blankFirstName() {
-		var form = new RegistrationForm(" ", "Smith", "XXX", "1234", BigDecimal.valueOf(10));
+		var form = new EditStaffForm("", "Muster", ServiceCategory.GRINDERY, BigDecimal.valueOf(20.1));
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
 
 	@Test
 	void blankLastName() {
-		var form = new RegistrationForm("Jacob", " ", "XXX", "1234", BigDecimal.valueOf(10));
+		var form = new EditStaffForm("asd", " ", ServiceCategory.GRINDERY, BigDecimal.valueOf(20.1));
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
 
 	@Test
-	void blankUsername() {
-		var form = new RegistrationForm("Jacob", "Smith", "   ", "1234", BigDecimal.valueOf(10));
-		var violations = validator.validate(form);
-		Assertions.assertEquals(1, violations.size());
-	}
-
-	@Test
-	void emptyPassword() {
-		var form = new RegistrationForm("Jacob", "Smith", "xxx", "", BigDecimal.valueOf(10));
+	void nullSkill() {
+		var form = new EditStaffForm("asd", "w", null, BigDecimal.valueOf(20.1));
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
 
 	@Test
 	void negativeSalary() {
-		var form = new RegistrationForm("Jacob", "Smith", "xxx", "12", BigDecimal.valueOf(-10));
+		var form = new EditStaffForm("asd", "w", ServiceCategory.KLUDGE, BigDecimal.valueOf(-0.1));
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
 
 	@Test
 	void tooManyDecimals() {
-		var form = new RegistrationForm("Jacob", "Smith", "xxx", "12", BigDecimal.valueOf(21.004));
+		var form = new EditStaffForm("asd", "w", ServiceCategory.KLUDGE, BigDecimal.valueOf(10.001));
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
