@@ -38,17 +38,23 @@ public class RoomControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
+	@Autowired
+	private RoomRepository rooms;
 
 	@Test
-	//@WithMockUser
+	@WithMockUser
 	void addRoom() throws Exception {
-		//Tu etwas
 
-		/*erwarte
-		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
+		AddRoomForm form = new AddRoomForm("testraum");
+		Room room = form.createRoom();
+
+		rooms.save(room);
+
+		/*
+		mvc.perform(get("/rooms/add"))
 			.andExpect(status().isOk())
-			.andExpect(content().string(containsString("Please charge the customer EUR 1.")))
-			.andExpect(content().string(not(containsString("compensation"))));
+			.andExpect(content().string(not(containsString("Darf nicht leer sein!"))));
+
 
 		 */
 	}
@@ -56,15 +62,16 @@ public class RoomControllerTest {
 	@Test
 	//@WithMockUser
 	void deleteRoom() throws Exception {
-		//Tu etwas
 
-		/*erwarte
-		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
+		/*
+		mvc.perform(get(String.format("/rooms/", room.getId())).locale(Locale.ROOT),"/delete")
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString("Please charge the customer EUR 1.")))
 			.andExpect(content().string(not(containsString("compensation"))));
 
+
 		 */
+
 	}
 
 }
