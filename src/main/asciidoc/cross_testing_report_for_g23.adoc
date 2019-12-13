@@ -1,7 +1,8 @@
 = Cross-Testing Feedback
 
-__Durchführende Gruppe:__
-__Anwendung von Gruppe:__
+__Durchführende Gruppe: 24__
+
+__Anwendung von Gruppe: 23__
 
 == Getestetes System
 Welche Aufgabe/Problemstellung löst die Anwendung.
