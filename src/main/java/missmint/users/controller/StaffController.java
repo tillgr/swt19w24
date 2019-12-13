@@ -5,7 +5,6 @@ import missmint.orders.service.ServiceCategory;
 import missmint.time.TimeTableService;
 import missmint.users.forms.EditStaffForm;
 import missmint.users.forms.RegistrationForm;
-import missmint.users.model.AccountRole;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
@@ -55,10 +54,10 @@ public class StaffController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/users/delete/{userName}/{id}")
-	public String deleteUser(@PathVariable String userName, @PathVariable Long id) {
+	@PostMapping("/users/delete/{userName}")
+	public String deleteUser(@PathVariable String userName) {
 
-		staffManagement.deleteStaff(userName, id);
+		staffManagement.deleteStaff(userName);
 		timeTableService.rebuildTimeTable();
 
 		return "redirect:/users";
@@ -71,9 +70,7 @@ public class StaffController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/users/registration")
-	public String registrationForm(Model model, @ModelAttribute("form") RegistrationForm form) {
-		model.addAttribute("roles", new HashSet<>(EnumSet.allOf(AccountRole.class)));
-
+	public String registrationForm(@ModelAttribute("form") RegistrationForm form) {
 		return "registration";
 	}
 
@@ -86,9 +83,17 @@ public class StaffController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/users/registration")
-	public String registerStaff(@Valid @ModelAttribute("form") RegistrationForm form, Errors result, Model model) {
-		if (result.hasErrors() || staffManagement.findByUserName(form.getUserName()).isPresent()) {
-			return registrationForm(model, form);
+	public String registerStaff(@Valid @ModelAttribute("form") RegistrationForm form, Errors result) {
+
+		if (staffManagement.findByUserName(form.getUserName()).isPresent()) {
+			result.rejectValue(
+					"userName",
+					"RegistrationForm.username.duplicate",
+					"An account with this name already exists."
+			);
+		}
+		if (result.hasErrors()) {
+			return registrationForm(form);
 		}
 
 		staffManagement.createStaff(form);

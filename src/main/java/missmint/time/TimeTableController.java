@@ -19,6 +19,9 @@ public class TimeTableController {
 		this.roomRepository = roomRepository;
 	}
 
+	/**
+	 *
+	 */
 	@GetMapping("/rooms/{id}/showEntries")
 	public String showEntries(Model model, @PathVariable("id") long id) {
 		Room room = Utils.getOrThrow(roomRepository.findById(id));

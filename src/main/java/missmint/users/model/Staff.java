@@ -33,6 +33,8 @@ public class Staff {
 		Assert.notNull(userAccount, "UserAccount cannot be null.");
 		Assert.hasText(lastName, "Name cannot be null or empty.");
 		Assert.hasText(firstName, "Name cannot be null or empty.");
+		Assert.notNull(salary, "Salary must not be null.");
+		Assert.isTrue(salary.compareTo(BigDecimal.ZERO) >= 0, "Salary must be positive");
 
 		this.userAccount = userAccount;
 		this.lastName = lastName;

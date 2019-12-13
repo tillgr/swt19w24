@@ -1,5 +1,6 @@
 package missmint.time;
 
+import missmint.Utils;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
 import missmint.orders.order.OrderState;
@@ -83,10 +84,13 @@ public class TimeTableService {
 		LocalDateTime now = time.getTime();
 		entries.findAllByDateAfter(now.toLocalDate().minusDays(1))
 			.filter(entry -> now.isBefore(entry.getBeginning()))
-			.forEach(entries::delete);
+			.forEach(entry -> {
+				entry.setOrder(null);
+				entries.delete(entry);
+			});
 
 		// Need to manually clear the session for the entry deletion to effect the entry field in MissMintOrder
-		entityManager.unwrap(Session.class).clear();
+		Utils.flushAndClear(entityManager);
 
 		orderManager.findAll(Pageable.unpaged())
 			.filter(order -> order.getOrderState() == OrderState.WAITING)
