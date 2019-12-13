@@ -1,11 +1,15 @@
-package missmint.finance;
+package missmint.finance.initializer;
 
+import missmint.finance.service.FinanceService;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * Creates all finance items that are defined in the task.
+ */
 @Component
 @Order(20)
 public class FinanceDataInitializer implements DataInitializer {

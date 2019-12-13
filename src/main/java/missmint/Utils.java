@@ -18,6 +18,8 @@ public class Utils {
 
 	public static void flushAndClear(EntityManager manager) {
 		Session session = manager.unwrap(Session.class);
+		if (!session.isDirty())
+			return;
 		session.flush();
 		session.clear();
 	}

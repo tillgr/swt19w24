@@ -62,12 +62,14 @@ public class StaffManagement {
 	 * the StaffRepository
 	 *
 	 * @param userName of the UserAccount
-	 * @param id       of the UserAccount
 	 */
-	public void deleteStaff(String userName, Long id) {
+	public void deleteStaff(String userName) {
+
+		Assert.notNull(userName, "UserName cannot be null.");
 
 		var user = Utils.getOrThrow(userAccountManager.findByUsername(userName));
 		var staff = Utils.getOrThrow(staffRepository.findByUserAccount(user));
+		var id = staff.getId();
 		var entriesByStaff = entryRepository.findAllByStaff(staff);
 		entriesByStaff.forEach(timeTableEntry -> timeTableEntry.getOrder().setEntry(null));
 		entryRepository.deleteTimeTableEntriesByStaff(staff);

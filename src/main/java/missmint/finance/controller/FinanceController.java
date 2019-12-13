@@ -1,5 +1,7 @@
-package missmint.finance;
+package missmint.finance.controller;
 
+import missmint.finance.form.AddFinanceForm;
+import missmint.finance.service.FinanceService;
 import org.salespointframework.accountancy.Accountancy;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
 package missmint.users.service;
 
-import missmint.finance.FinanceService;
+import missmint.finance.service.FinanceService;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import org.javamoney.moneta.Money;

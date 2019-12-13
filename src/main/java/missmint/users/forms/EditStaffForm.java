@@ -5,9 +5,11 @@ import missmint.orders.service.ServiceCategory;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class EditStaffForm {
+	@NotNull
 	private final ServiceCategory newSkill;
 
 	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
