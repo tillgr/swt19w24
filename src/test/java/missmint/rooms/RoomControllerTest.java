@@ -35,36 +35,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RoomControllerTest {
+	@Autowired
+	private RoomRepository rooms;
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	//@WithMockUser
+	@WithMockUser
 	void addRoom() throws Exception {
-		//Tu etwas
 
-		/*erwarte
-		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
-			.andExpect(status().isOk())
-			.andExpect(content().string(containsString("Please charge the customer EUR 1.")))
-			.andExpect(content().string(not(containsString("compensation"))));
-
-		 */
+		mvc.perform(post("/rooms/addRoom").locale(Locale.ROOT).with(csrf())
+				.param("name", "testRaum")
+		)
+				.andExpect(status().isOk())
+				.andExpect(view().name("rooms"))
+				.andExpect(content().string(containsString("testRaum")));
 	}
 
 	@Test
-	//@WithMockUser
+	@WithMockUser
 	void deleteRoom() throws Exception {
-		//Tu etwas
+	Room room = new Room("testRaum");
 
-		/*erwarte
-		mvc.perform(get(String.format("/orders/pickup/%s", order.getId())).locale(Locale.ROOT))
-			.andExpect(status().isOk())
-			.andExpect(content().string(containsString("Please charge the customer EUR 1.")))
-			.andExpect(content().string(not(containsString("compensation"))));
-
-		 */
+		mvc.perform(post(String.format("/rooms/%s/deleteRoom", room.getId())).locale(Locale.ROOT).with(csrf())
+				.param("name", "testRaum")
+		)
+				.andExpect(status().isOk())
+				.andExpect(view().name("rooms"))
+				.andExpect(content().string(not(containsString(String.valueOf(room.getId())))));
 	}
+
+
 
 }
