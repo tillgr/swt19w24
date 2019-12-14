@@ -22,31 +22,23 @@ import java.util.stream.IntStream;
 public class RoomController {
 	private RoomRepository roomRepository;
 	private TimeTableService timeService;
+	private RoomService roomService;
 	private final BusinessTime time;
 	private EntryRepository entryRepository;
 
-	RoomController(RoomRepository roomRepository, TimeTableService timeService, EntryRepository entryRepository, BusinessTime businessTime) {
+	RoomController(RoomRepository roomRepository, TimeTableService timeService, EntryRepository entryRepository, BusinessTime businessTime, RoomService roomService) {
 		this.roomRepository = roomRepository;
 		this.timeService = timeService;
 		this.entryRepository = entryRepository;
 		this.time = businessTime;
+		this.roomService = roomService;
 	}
 
 	@GetMapping("/rooms")
 	@PreAuthorize("isAuthenticated()")
-	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
-		List<Room> rooms = new LinkedList<>();
-		roomRepository.findAll().forEach(rooms::add);
+	public String showRooms(Model model) {
 
-		LocalDate now = time.getTime().toLocalDate();
-
-		Iterator<Iterator<TimeTableEntry>> slotTable = IntStream.range(0, TimeTableService.SLOTS.size()).mapToObj(slot ->
-			rooms.stream().map(room ->
-				entryRepository.findByDateAndSlotAndRoom(now, slot, room)
-			).iterator()
-		).iterator();
-
-		model.addAttribute("slotTable", slotTable);
+		model.addAttribute("slotTable", roomService.buildRoomTable());
 		model.addAttribute("rooms", roomRepository.findAll());
 
 		return "rooms";
@@ -55,7 +47,7 @@ public class RoomController {
 	@PostMapping("/rooms/add")
 	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors) {
 		if (errors.hasErrors()) {
-			return showRooms(model, form);
+			return showRooms(model);
 		}
 
 		roomRepository.save(form.createRoom());
