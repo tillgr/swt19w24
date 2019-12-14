@@ -46,7 +46,8 @@
                 <td th:each="field: ${row}">
                     <div th:if="${field}">
                         <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
-                        <span th:text="${field.getOrder().getCustomer()}">efe3-2daee3-adede3</span>
+                        <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">efe3-2daee3-adede3</span>
+                        <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">efe3-2daee3-adede3</span>
                     </div>
                     <div th:unless="${field}">
                         <span>-</span>

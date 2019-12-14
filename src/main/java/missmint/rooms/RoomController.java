@@ -36,7 +36,7 @@ public class RoomController {
 
 	@GetMapping("/rooms")
 	@PreAuthorize("isAuthenticated()")
-	public String showRooms(Model model) {
+	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
 
 		model.addAttribute("slotTable", roomService.buildRoomTable());
 		model.addAttribute("rooms", roomRepository.findAll());
@@ -47,10 +47,11 @@ public class RoomController {
 	@PostMapping("/rooms/add")
 	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors) {
 		if (errors.hasErrors()) {
-			return showRooms(model);
+			return showRooms(model, form);
 		}
 
 		roomRepository.save(form.createRoom());
+		model.addAttribute("form", form);
 
 		return "redirect:/rooms";
 	}
