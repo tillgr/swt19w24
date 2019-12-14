@@ -59,6 +59,7 @@ public class RoomController {
 		}
 
 		roomRepository.save(form.createRoom());
+		timeService.rebuildTimeTable();
 
 		return "redirect:/rooms";
 	}
@@ -73,6 +74,7 @@ public class RoomController {
 				return 1;
 			}).orElse(null);
 		//});
+		timeService.rebuildTimeTable();
 
 		return "redirect:/rooms";
 	}
