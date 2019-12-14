@@ -21,16 +21,10 @@ import java.util.stream.IntStream;
 @Controller
 public class RoomController {
 	private RoomRepository roomRepository;
-	private TimeTableService timeService;
 	private RoomService roomService;
-	private final BusinessTime time;
-	private EntryRepository entryRepository;
 
 	RoomController(RoomRepository roomRepository, TimeTableService timeService, EntryRepository entryRepository, BusinessTime businessTime, RoomService roomService) {
 		this.roomRepository = roomRepository;
-		this.timeService = timeService;
-		this.entryRepository = entryRepository;
-		this.time = businessTime;
 		this.roomService = roomService;
 	}
 
@@ -51,7 +45,6 @@ public class RoomController {
 		}
 
 		roomRepository.save(form.createRoom());
-		model.addAttribute("form", form);
 
 		return "redirect:/rooms";
 	}
