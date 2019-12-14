@@ -29,22 +29,8 @@
 
     <ul class="list-group" th:each="room : ${rooms}">
         <li class="list-group-item" th:text="${room.name}"></li>
-        <li class="list-group-item">
-            <div class="btn-toolbar">
-                <!--
-                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
-                    <button class="btn btn-danger">Raum löschen</button>
-                </form>
-                -->
-
-            </div>
-        </li>
     </ul>
-    <!---
-    <form method="get" th:action="@{/rooms/showEntries}" th:href="entries.html">
-        <button class="btn btn-primary">Einträge anzeigen</button>
-    </form>
-    -->
+
     <br>
     <h2>Belegplan</h2>
 
@@ -60,6 +46,7 @@
                 <td th:each="field: ${row}">
                     <div th:if="${field}">
                         <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
+                        <span th:text="${field.getOrder().getCustomer()}">efe3-2daee3-adede3</span>
                     </div>
                     <div th:unless="${field}">
                         <span>-</span>
@@ -68,27 +55,6 @@
             </tr>
             </tbody>
         </table>
-    </div>
-
-
-    <!---
-    <div class="card mt-2" th:each="room : ${rooms}">
-        <div class="card-header">
-            <h3 th:text="${room.name}"></h3>
-        </div>
-        <div class="card-footer text-muted">
-            <div class = "btn-toolbar">
-                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
-                    <button class="btn btn-danger">Raum löschen</button>
-                </form>
-                <form method="post" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
-                    <button class="btn btn-primary">Einträge anzeigen</button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-    --->
 
 </div>
 
