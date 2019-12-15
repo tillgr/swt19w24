@@ -68,16 +68,18 @@ public class RoomController {
 	 * @param optionalRoom the room which should be deleted
 	 * @return redirect to the rooms page
 	 */
-	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/rooms/{room}/delete")
 	public String deleteRoom(@PathVariable("room") Long optionalRoom) {
-		// TODO handle entries
-		//optionalRoom.ifPresent(room -> {
+		/*
 		rooms.findById(optionalRoom).map(room -> {
 				rooms.delete(room);
 				return 1;
 			}).orElse(null);
-		//});
+
+		 */
+
+		rooms.findById(optionalRoom).ifPresent(room -> rooms.delete(room));
 		service.rebuildTimeTable();
 
 		return "redirect:/rooms";
