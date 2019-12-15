@@ -4,6 +4,7 @@ import missmint.inventory.products.OrderItem;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
 import missmint.time.EntryRepository;
+import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -11,10 +12,12 @@ import org.salespointframework.order.OrderManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
 @Service
+@Transactional
 public class OrderItemManager {
 
 	private final OrderManager<MissMintOrder> orderManager;
@@ -29,7 +32,6 @@ public class OrderItemManager {
 		this.timeTableService = timeTableService;
 	}
 
-
 	public void deleteOrderItem(ProductIdentifier orderItemId) {
 		Page<MissMintOrder> orders = orderManager.findAll(Pageable.unpaged());
 		OrderItem test = new OrderItem("Placeholder");
@@ -39,13 +41,12 @@ public class OrderItemManager {
 			if (Objects.equals(order.getItem(), item)) {
 				order.setItem(null);
 				orderItemCatalog.deleteById(orderItemId);
-				//order.setOrderState(OrderState.CANCELED);
 			}
-			if (order.getOrderState().equals(OrderState.IN_PROGRESS)){
-				order.setOrderState(OrderState.CANCELED);
+			if (!order.getOrderState().equals(OrderState.PICKED_UP)){
+				TimeTableEntry entry = entryRepository.findByOrder(order);
+				entry.getOrder().setEntry(null);
 				entryRepository.deleteTimeTableEntriesByOrder(order);
 				timeTableService.rebuildTimeTable();
-			} else {
 				order.setOrderState(OrderState.PICKED_UP);
 			}
 		});

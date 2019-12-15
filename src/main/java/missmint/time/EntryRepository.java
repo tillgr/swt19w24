@@ -18,4 +18,5 @@ public interface EntryRepository extends CrudRepository<TimeTableEntry, Long> {
 	void deleteTimeTableEntriesByStaff(Staff staff);
 	void deleteTimeTableEntriesByOrder(MissMintOrder order);
 	Streamable<TimeTableEntry> findAllByStaff(Staff staff);
+	TimeTableEntry findByOrder(MissMintOrder order);
 }
