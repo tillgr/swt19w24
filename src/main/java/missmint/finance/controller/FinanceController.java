@@ -1,10 +1,8 @@
-package missmint.finance;
+package missmint.finance.controller;
 
-import org.javamoney.moneta.Money;
+import missmint.finance.form.AddFinanceForm;
+import missmint.finance.service.FinanceService;
 import org.salespointframework.accountancy.Accountancy;
-import org.salespointframework.accountancy.AccountancyEntry;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.util.StreamUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +11,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.money.MonetaryAmount;
 import javax.validation.Valid;
-import java.util.ArrayList;
 
+/**
+ * Controller for the overview and detail pages of the finance.
+ */
 @Controller
 public class FinanceController {
 	private FinanceService financeService;
@@ -28,14 +27,35 @@ public class FinanceController {
 		this.financeService = financeService;
 	}
 
+	/**
+	 * Lists all finance items in the system.
+	 *
+	 * @return finance template.
+	 */
 	@GetMapping("/finance")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String showFinancePage(Model model) {
 		model.addAttribute("finance", accountancy.findAll());
-		model.addAttribute("sum", financeService.getSum());
+		model.addAttribute("sum", financeService.getSum(accountancy.findAll()));
+
 		return "finance";
 	}
 
+	@GetMapping("/finance/month")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String showLastMonth(Model model) {
+		model.addAttribute("finance", financeService.lastMonth());
+		model.addAttribute("sum", financeService.getSum(financeService.lastMonth()));
+		model.addAttribute("lastMonth", true);
+
+		return "finance";
+	}
+
+	/**
+	 * shows a form for adding new finance items.
+	 *
+	 * @return addItem template.
+	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/finance/addItem")
 	public String financeForm(Model model, AddFinanceForm form) {
@@ -43,6 +63,13 @@ public class FinanceController {
 		return "addItem";
 	}
 
+	/**
+	 * uses for creating new finance items.
+	 *
+	 * @param form used for creating new finance items
+	 * @param result errors in form
+	 * @return finance overview
+	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/finance/addItem")
 	public String addItemInForm(@Valid AddFinanceForm form, Errors result) {

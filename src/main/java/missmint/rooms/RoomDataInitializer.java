@@ -3,6 +3,9 @@ package missmint.rooms;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.stereotype.Component;
 
+/**
+ * Initializes the repository with data for the rooms.
+ */
 @Component
 public class RoomDataInitializer implements DataInitializer {
 	private RoomRepository roomRepository;

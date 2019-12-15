@@ -2,9 +2,9 @@ package missmint.users.controller;
 
 import missmint.Utils;
 import missmint.orders.service.ServiceCategory;
+import missmint.time.TimeTableService;
 import missmint.users.forms.EditStaffForm;
 import missmint.users.forms.RegistrationForm;
-import missmint.users.model.AccountRole;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
@@ -26,13 +26,18 @@ import java.util.HashSet;
 public class StaffController {
 
 	private final StaffManagement staffManagement;
-	private StaffRepository staffRepository;
+	private final StaffRepository staffRepository;
+	private final TimeTableService timeTableService;
 
-	public StaffController(StaffManagement staffManagement, StaffRepository staffRepository) {
+	public StaffController(StaffManagement staffManagement,
+						   StaffRepository staffRepository,
+						   TimeTableService timeTableService
+	) {
 		Assert.notNull(staffManagement, "StaffManagement must not be null");
 
 		this.staffRepository = staffRepository;
 		this.staffManagement = staffManagement;
+		this.timeTableService = timeTableService;
 	}
 
 	/**
@@ -49,10 +54,11 @@ public class StaffController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/users/delete/{userName}/{id}")
-	public String deleteUser(@PathVariable String userName, @PathVariable Long id) {
+	@PostMapping("/users/delete/{userName}")
+	public String deleteUser(@PathVariable String userName) {
 
-		staffManagement.deleteStaff(userName, id);
+		staffManagement.deleteStaff(userName);
+		timeTableService.rebuildTimeTable();
 
 		return "redirect:/users";
 	}
@@ -64,9 +70,7 @@ public class StaffController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/users/registration")
-	public String registrationForm(Model model, @ModelAttribute("form") RegistrationForm form) {
-		model.addAttribute("roles", new HashSet<>(EnumSet.allOf(AccountRole.class)));
-
+	public String registrationForm(@ModelAttribute("form") RegistrationForm form) {
 		return "registration";
 	}
 
@@ -79,9 +83,17 @@ public class StaffController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/users/registration")
-	public String registerStaff(@Valid @ModelAttribute("form") RegistrationForm form, Errors result, Model model) {
-		if (result.hasErrors() || staffManagement.findByUserName(form.getUserName()).isPresent()) {
-			return registrationForm(model, form);
+	public String registerStaff(@Valid @ModelAttribute("form") RegistrationForm form, Errors result) {
+
+		if (staffManagement.findByUserName(form.getUserName()).isPresent()) {
+			result.rejectValue(
+					"userName",
+					"RegistrationForm.username.duplicate",
+					"An account with this name already exists."
+			);
+		}
+		if (result.hasErrors()) {
+			return registrationForm(form);
 		}
 
 		staffManagement.createStaff(form);
@@ -117,7 +129,13 @@ public class StaffController {
 			return editUserPage(id, form, model);
 		}
 
+		var skillsCount = staff.getSkills().size();
+
 		staffManagement.editStaff(staff, form.getFirstName(), form.getLastName(), form.getSalary(), form.getNewSkill());
+
+		if (skillsCount != staff.getSkills().size()) {
+			timeTableService.rebuildTimeTable();
+		}
 
 		return "redirect:/users";
 	}

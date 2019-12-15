@@ -1,6 +1,6 @@
 package missmint.orders.order;
 
-import missmint.finance.FinanceService;
+import missmint.finance.service.FinanceService;
 import missmint.inventory.manager.OrderItemManager;
 import org.salespointframework.order.OrderManager;
 import org.springframework.stereotype.Service;

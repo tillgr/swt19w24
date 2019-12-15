@@ -1,5 +1,6 @@
 package missmint.time;
 
+import missmint.Utils;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderService;
 import missmint.orders.order.OrderState;
@@ -9,19 +10,23 @@ import missmint.orders.service.ServiceManager;
 import missmint.rooms.Room;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
+import org.hibernate.Session;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.util.Pair;
 import org.springframework.data.util.StreamUtils;
-import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -35,6 +40,7 @@ public class TimeTableService {
 	private final EntryRepository entries;
 	private final StaffRepository staffRepository;
 	private OrderManager<MissMintOrder> orderManager;
+	private final EntityManager entityManager;
 
 	public static final List<Pair<LocalTime, LocalTime>> SLOTS = List.of(
 		Pair.of(LocalTime.of(8, 0), LocalTime.of(9, 0)),
@@ -44,7 +50,14 @@ public class TimeTableService {
 		Pair.of(LocalTime.of(22, 0), LocalTime.of(23, 0))
 	);
 
-	public TimeTableService(ServiceManager serviceManager, BusinessTime businessTime, OrderService orderService, RoomRepository rooms, EntryRepository entries, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager) {
+	public TimeTableService(ServiceManager serviceManager,
+							BusinessTime businessTime,
+							OrderService orderService,
+							RoomRepository rooms,
+							EntryRepository entries,
+							StaffRepository staffRepository,
+							OrderManager<MissMintOrder> orderManager,
+							EntityManager entityManager) {
 		this.serviceManager = serviceManager;
 		this.time = businessTime;
 		this.orderService = orderService;
@@ -52,6 +65,7 @@ public class TimeTableService {
 		this.entries = entries;
 		this.staffRepository = staffRepository;
 		this.orderManager = orderManager;
+		this.entityManager = entityManager;
 	}
 
 	private Stream<LocalDate> dateStream() {
@@ -70,7 +84,13 @@ public class TimeTableService {
 		LocalDateTime now = time.getTime();
 		entries.findAllByDateAfter(now.toLocalDate().minusDays(1))
 			.filter(entry -> now.isBefore(entry.getBeginning()))
-			.forEach(entries::delete);
+			.forEach(entry -> {
+				entry.setOrder(null);
+				entries.delete(entry);
+			});
+
+		// Need to manually clear the session for the entry deletion to effect the entry field in MissMintOrder
+		Utils.flushAndClear(entityManager);
 
 		orderManager.findAll(Pageable.unpaged())
 			.filter(order -> order.getOrderState() == OrderState.WAITING)
@@ -78,7 +98,7 @@ public class TimeTableService {
 			.get().sorted(Comparator.comparing(MissMintOrder::getExpectedFinished))
 			.forEach(order -> {
 				Assert.isNull(order.getEntry(), "after removing time table entries the entry field should be null");
-				createEntry(order);
+				entries.save(createEntry(order));
 			});
 
 	}
@@ -88,7 +108,6 @@ public class TimeTableService {
 		ServiceCategory category = ServiceManager.getCategory(service);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 
-		LocalDateTime now = time.getTime();
 		Optional<Optional<TimeTableEntry>> entry = dateStream().flatMap(date ->
 			slotStream(date).map(indexedSlot -> {
 				int slotIndex = indexedSlot.getFirst();

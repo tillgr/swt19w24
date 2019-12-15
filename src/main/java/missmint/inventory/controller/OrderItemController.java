@@ -1,6 +1,5 @@
 package missmint.inventory.controller;
 
-import missmint.inventory.forms.OrderItemForm;
 import missmint.inventory.manager.OrderItemManager;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.order.MissMintOrder;
@@ -12,11 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class OrderItemController {
@@ -39,11 +34,10 @@ public class OrderItemController {
 		return "orderItem";
 	}
 
-	@PostMapping("/orderItem/remove")
+	@PostMapping("orders/detail/orderItem/remove/{id}")
 	@PreAuthorize("isAuthenticated()")
-	public String removeOrderItem(@Valid @ModelAttribute("form") OrderItemForm orderItemForm){
-		ProductIdentifier orderItemId = orderItemForm.getOrderItemId();
-		orderItemManager.deleteOrderItem(orderItemId);
-		return "redirect:/orderItem";
+	public String remove(@PathVariable("id") ProductIdentifier id){
+		orderItemManager.deleteOrderItem(id);
+		return "redirect:/orders";
 	}
 }

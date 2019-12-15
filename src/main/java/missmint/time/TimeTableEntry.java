@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Entry represents a booked Timeslot
+ */
 @Entity
 public class TimeTableEntry {
 	@Id
@@ -69,6 +72,14 @@ public class TimeTableEntry {
 
 	public LocalDateTime getEnd() {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setOrder(MissMintOrder order) {
+		this.order = order;
 	}
 
 	@Override
