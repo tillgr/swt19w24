@@ -18,15 +18,17 @@ import java.util.Optional;
 public class RoomController {
 	private RoomRepository rooms;
 	private TimeTableService service;
+	private RoomService roomService;
 
 	/**
 	 * create new room
 	 * @param rooms rooms from the repository
 	 * @param service service which handles entries
 	 */
-	RoomController(RoomRepository rooms, TimeTableService service) {
+	RoomController(RoomRepository rooms, TimeTableService service, RoomService roomService) {
 		this.rooms = rooms;
 		this.service = service;
+		this.roomService = roomService;
 	}
 
 	/**
