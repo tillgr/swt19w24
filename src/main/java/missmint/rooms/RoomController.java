@@ -1,5 +1,4 @@
 package missmint.rooms;
-
 import missmint.time.EntryRepository;
 import missmint.time.TimeTableService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -69,13 +68,11 @@ public class RoomController {
 	 * @param optionalRoom the room which should be deleted
 	 * @return redirect to the rooms page
 	 */
-	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/rooms/{room}/delete")
-	public String deleteRoom(@PathVariable("room") Optional<Room> optionalRoom) {
-		// TODO handle entries
-		optionalRoom.ifPresent(room -> {
-			rooms.delete(room);
-		});
+	public String deleteRoom(@PathVariable("room") Long optionalRoom) {
+
+		rooms.findById(optionalRoom).ifPresent(room -> rooms.delete(room));
 		service.rebuildTimeTable();
 
 		return "redirect:/rooms";

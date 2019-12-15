@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -27,8 +27,16 @@
     <br>
 
 
-    <ul class="list-group" th:each="room : ${rooms}">
+    <ul class="list-group" sec:authorize="hasRole('ADMIN')" th:each="room : ${rooms}">
         <li class="list-group-item" th:text="${room.name}"></li>
+        <li class="list-group-item">
+            <div class="btn-toolbar">
+                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
+                    <button class="btn btn-danger">Raum löschen</button>
+                </form>
+
+            </div>
+        </li>
     </ul>
 
     <br>
