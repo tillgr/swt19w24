@@ -49,6 +49,17 @@
             <th scope="col" th:text="#{orders.service}">Service</th>
             <td th:text="#{'orders.service.' + ${service.getName()}}">Kludge (Sole)</td>
         </tr>
+        <tr>
+            <th scope="col" th:text="Placholder"></th>
+            <td>
+                <form method="post" th:if="!${order.getOrderState()} == ${(order.canceled)}" th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                    <button class="btn btn-outline-primary">Give back unfinished</button>
+                </form>
+                <form method="post" th:if="${order.canPickUp()}" th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                    <button class="btn btn-outline-secondary"  th:text="#{orders.pickup.returnWithoutPay}"></button>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>

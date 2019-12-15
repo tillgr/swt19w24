@@ -30,4 +30,8 @@ public enum OrderState {
 	 * The customer's item is given to charity.
 	 */
 	CHARITABLE_USED,
+	/**
+	 * The Item get's returned without performing the service
+	 */
+	CANCELED
 }

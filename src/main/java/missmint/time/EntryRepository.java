@@ -1,5 +1,6 @@
 package missmint.time;
 
+import missmint.orders.order.MissMintOrder;
 import missmint.rooms.Room;
 import missmint.users.model.Staff;
 import org.springframework.data.repository.CrudRepository;
@@ -15,5 +16,6 @@ public interface EntryRepository extends CrudRepository<TimeTableEntry, Long> {
 	boolean existsByStaffAndDateAndSlot(Staff staff, LocalDate date, int slot);
 	Streamable<TimeTableEntry> findAllByDateAfter(LocalDate date);
 	void deleteTimeTableEntriesByStaff(Staff staff);
+	void deleteTimeTableEntriesByOrder(MissMintOrder order);
 	Streamable<TimeTableEntry> findAllByStaff(Staff staff);
 }
