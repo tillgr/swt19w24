@@ -41,15 +41,14 @@ public class OrderItemManager {
 			if (Objects.equals(order.getItem(), item)) {
 				order.setItem(null);
 				orderItemCatalog.deleteById(orderItemId);
-			}
-			if (!order.getOrderState().equals(OrderState.PICKED_UP)){
-				TimeTableEntry entry = entryRepository.findByOrder(order);
-				entry.getOrder().setEntry(null);
-				entryRepository.deleteTimeTableEntriesByOrder(order);
-				timeTableService.rebuildTimeTable();
+				if (!order.getOrderState().equals(OrderState.PICKED_UP)){
+					order.setEntry(null);
+					entryRepository.deleteTimeTableEntriesByOrder(order);
+					timeTableService.rebuildTimeTable();
+				}
 				order.setOrderState(OrderState.PICKED_UP);
+				orderManager.save(order);
 			}
 		});
-
 	}
 }
