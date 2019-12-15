@@ -71,13 +71,6 @@ public class RoomController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/rooms/{room}/delete")
 	public String deleteRoom(@PathVariable("room") Long optionalRoom) {
-		/*
-		rooms.findById(optionalRoom).map(room -> {
-				rooms.delete(room);
-				return 1;
-			}).orElse(null);
-
-		 */
 
 		rooms.findById(optionalRoom).ifPresent(room -> rooms.delete(room));
 		service.rebuildTimeTable();

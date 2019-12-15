@@ -27,7 +27,7 @@
     <br>
 
 
-    <ul class="list-group" th:each="room : ${rooms}" sec:authorize="hasRole('ADMIN')">
+    <ul class="list-group" sec:authorize="hasRole('ADMIN')" th:each="room : ${rooms}">
         <li class="list-group-item" th:text="${room.name}"></li>
         <li class="list-group-item">
             <div class="btn-toolbar">
