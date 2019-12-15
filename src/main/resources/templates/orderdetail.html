@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -49,8 +50,52 @@
             <th scope="col" th:text="#{orders.service}">Service</th>
             <td th:text="#{'orders.service.' + ${service.getName()}}">Kludge (Sole)</td>
         </tr>
+        <tr>
+            <th scope="col">
+
+            </th>
+            <td>
+                <form method="post" sec:authorize="hasRole('ADMIN')"
+                      th:if="(!${order.canPickUp()}) and (${order.getItem()} != null)"
+                      th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                    <div class="form-inline">
+                        <div class="form-group form-check">
+                            <div class="form-inline">
+                                <label class="form-check-label" for="youSure" th:text="#{orders.pickup.sure}"></label>
+                            </div>
+                            <div class="form-inline ml-1">
+                                <input class="form-check-input" id="youSure" required type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-inline ml-5">
+                            <button class="btn btn-outline-danger" type="submit" th:text="#{orders.pickup.beforeFinished}"></button>
+                        </div>
+                    </div>
+                </form>
+                
+                <form method="post" sec:authorize="hasRole('ADMIN')"
+                      th:if="(${order.canPickUp()}) and  (${order.getItem()} != null)"
+                      th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                    <div class="form-inline">
+                        <div class="form-group form-check">
+                            <div class="form-inline">
+                                <label class="form-check-label" for="youSure2" th:text="#{orders.pickup.sure}"></label>
+                            </div>
+                            <div class="form-inline ml-1">
+                                <input class="form-check-input" id="youSure2" required type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-inline ml-5">
+                            <button class="btn btn-outline-success"  th:text="#{orders.pickup.returnWithoutPay}"></button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
+
+
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
