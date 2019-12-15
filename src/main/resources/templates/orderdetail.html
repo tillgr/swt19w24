@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -54,7 +55,9 @@
 
             </th>
             <td>
-                <form method="post" th:if="(!${order.canPickUp()}) and (${order.getItem()} != null)" th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                <form method="post" sec:authorize="hasRole('ADMIN')"
+                      th:if="(!${order.canPickUp()}) and (${order.getItem()} != null)"
+                      th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
                     <div class="form-inline">
                         <div class="form-group form-check">
                             <div class="form-inline">
@@ -70,7 +73,9 @@
                     </div>
                 </form>
                 
-                <form method="post" th:if="(${order.canPickUp()}) and  (${order.getItem()} != null)" th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                <form method="post" sec:authorize="hasRole('ADMIN')"
+                      th:if="(${order.canPickUp()}) and  (${order.getItem()} != null)"
+                      th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
                     <div class="form-inline">
                         <div class="form-group form-check">
                             <div class="form-inline">
