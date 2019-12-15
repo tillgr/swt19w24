@@ -19,16 +19,16 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col" th:text="#{orderItems.item}">Gegenstand</th>
             <th scope="col" th:text="#{orderItems.customer}">Kunde</th>
             <th scope="col" th:text="#{orderItems.id}">AuftragsID</th>
+            <th scope="col" th:text="#{orderItems.item}">Gegenstand</th>
         </tr>
         </thead>
         <tbody>
             <tr th:name="orders" th:each="order : ${orders}">
-                <td th:text="${order.getItem().getName()}"></td>
                 <td th:text="${order.getCustomer()}"></td>
                 <td th:text="${order.id}"></td>
+                <td th:if="!${order.getItem()} == null" th:text="${order.getItem().getName()}"></td>
             </tr>
         </tbody>
     </table>
