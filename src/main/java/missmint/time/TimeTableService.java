@@ -10,7 +10,6 @@ import missmint.orders.service.ServiceManager;
 import missmint.rooms.Room;
 import missmint.rooms.RoomRepository;
 import missmint.users.repositories.StaffRepository;
-import org.hibernate.Session;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import org.springframework.data.domain.Pageable;
@@ -97,7 +96,6 @@ public class TimeTableService {
 			.filter(order -> orderService.isOrderAcceptable(serviceManager.getService(order)))
 			.get().sorted(Comparator.comparing(MissMintOrder::getExpectedFinished))
 			.forEach(order -> {
-				Assert.isNull(order.getEntry(), "after removing time table entries the entry field should be null");
 				entries.save(createEntry(order));
 			});
 
