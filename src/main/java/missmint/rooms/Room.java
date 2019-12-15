@@ -17,7 +17,7 @@ import java.util.Set;
 public class Room {
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	private String name;
 
 	/**
@@ -49,7 +49,7 @@ public class Room {
 	/**
 	 * @return The id of the room.
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

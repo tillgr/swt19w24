@@ -1,6 +1,6 @@
 package missmint.rooms;
-
 import missmint.time.EntryRepository;
+import missmint.time.TimeTableService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +16,18 @@ import java.util.Optional;
 @Controller
 public class RoomController {
 	private RoomRepository rooms;
+	private TimeTableService service;
+	private RoomService roomService;
 
 	/**
 	 * create new room
-	 * @param rooms
+	 * @param rooms rooms from the repository
+	 * @param service service which handles entries
 	 */
-	RoomController(RoomRepository rooms) {
+	RoomController(RoomRepository rooms, TimeTableService service, RoomService roomService) {
 		this.rooms = rooms;
+		this.service = service;
+		this.roomService = roomService;
 	}
 
 	/**
@@ -35,7 +40,7 @@ public class RoomController {
 	@PreAuthorize("isAuthenticated()")
 	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
 		model.addAttribute("rooms", rooms.findAll());
-
+		model.addAttribute("slotTable", roomService.buildRoomTable());
 		return "rooms";
 	}
 
@@ -53,6 +58,7 @@ public class RoomController {
 		}
 
 		rooms.save(form.createRoom());
+		service.rebuildTimeTable();
 
 		return "redirect:/rooms";
 	}
@@ -62,13 +68,12 @@ public class RoomController {
 	 * @param optionalRoom the room which should be deleted
 	 * @return redirect to the rooms page
 	 */
-	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/rooms/{room}/delete")
-	public String deleteRoom(@PathVariable("room") Optional<Room> optionalRoom) {
-		// TODO handle entries
-		optionalRoom.ifPresent(room -> {
-			rooms.delete(room);
-		});
+	public String deleteRoom(@PathVariable("room") Long optionalRoom) {
+
+		rooms.findById(optionalRoom).ifPresent(room -> rooms.delete(room));
+		service.rebuildTimeTable();
 
 		return "redirect:/rooms";
 	}

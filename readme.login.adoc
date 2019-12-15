@@ -1,0 +1,11 @@
+= Login information
+
+The login details for the admin are:
+
+* Username: `user`
+* Password: `test`
+
+The login details for the initialized employees are:
+
+* Username: `hans`, `dextermorgan` and `XXXDestroyerXXX`
+* Password: `123` for all of them

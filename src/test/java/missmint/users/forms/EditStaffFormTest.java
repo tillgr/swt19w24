@@ -34,13 +34,6 @@ public class EditStaffFormTest {
 	}
 
 	@Test
-	void nullSkill() {
-		var form = new EditStaffForm("asd", "w", null, BigDecimal.valueOf(20.1));
-		var violations = validator.validate(form);
-		Assertions.assertEquals(1, violations.size());
-	}
-
-	@Test
 	void negativeSalary() {
 		var form = new EditStaffForm("asd", "w", ServiceCategory.KLUDGE, BigDecimal.valueOf(-0.1));
 		var violations = validator.validate(form);

@@ -20,8 +20,7 @@ import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static missmint.orders.order.OrderState.FINISHED;
-import static missmint.orders.order.OrderState.IN_PROGRESS;
+import static missmint.orders.order.OrderState.*;
 
 /**
  * This class provides services for handling orders.

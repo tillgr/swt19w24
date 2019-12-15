@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 
 /**
@@ -35,7 +36,18 @@ public class FinanceController {
 	@PreAuthorize("hasRole('ADMIN')")
 	public String showFinancePage(Model model) {
 		model.addAttribute("finance", accountancy.findAll());
-		model.addAttribute("sum", financeService.getSum());
+		model.addAttribute("sum", financeService.getSum(accountancy.findAll()));
+
+		return "finance";
+	}
+
+	@GetMapping("/finance/month")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String showLastMonth(Model model) {
+		model.addAttribute("finance", financeService.lastMonth());
+		model.addAttribute("sum", financeService.getSum(financeService.lastMonth()));
+		model.addAttribute("lastMonth", true);
+
 		return "finance";
 	}
 

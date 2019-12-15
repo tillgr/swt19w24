@@ -29,5 +29,5 @@ public enum OrderState {
 	/**
 	 * The customer's item is given to charity.
 	 */
-	CHARITABLE_USED,
+	CHARITABLE_USED
 }
