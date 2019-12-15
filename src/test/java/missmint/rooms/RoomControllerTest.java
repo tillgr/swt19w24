@@ -41,10 +41,11 @@ public class RoomControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
+	/*
 	@Test
 	@WithMockUser
 	void addRoom() throws Exception {
-		/*
+
 		mvc.perform(post("/rooms/addRoom").locale(Locale.ROOT).with(csrf())
 				.param("name", "testRaum")
 		)
@@ -52,8 +53,10 @@ public class RoomControllerTest {
 				.andExpect(view().name("rooms"))
 				.andExpect(content().string(containsString("testRaum")));
 
-		 */
+
 	}
+
+	 */
 
 	@Test
 	@WithMockUser
