@@ -29,38 +29,35 @@
 
     <ul class="list-group" th:each="room : ${rooms}">
         <li class="list-group-item" th:text="${room.name}"></li>
-        <li class="list-group-item">
-            <div class="btn-toolbar">
-                <!--
-                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
-                    <button class="btn btn-danger">Raum löschen</button>
-                </form>
-                -->
-                <form method="get" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
-                    <button class="btn btn-primary">Einträge anzeigen</button>
-                </form>
-            </div>
-        </li>
     </ul>
 
-    <!---
-    <div class="card mt-2" th:each="room : ${rooms}">
-        <div class="card-header">
-            <h3 th:text="${room.name}"></h3>
-        </div>
-        <div class="card-footer text-muted">
-            <div class = "btn-toolbar">
-                <form method="post" th:action="@{/rooms/{room}/delete(room=${room.id})}">
-                    <button class="btn btn-danger">Raum löschen</button>
-                </form>
-                <form method="post" th:action="@{/rooms/{room}/showEntries(room=${room.id})}" th:href="entries.html">
-                    <button class="btn btn-primary">Einträge anzeigen</button>
-                </form>
-            </div>
+    <br>
+    <h2>Belegplan</h2>
 
-        </div>
-    </div>
-    --->
+    <div>
+        <table class="table-striped table" th:action="@{/rooms}">
+            <thead>
+            <tr>
+                <th th:text="${room.getName()}" th:each="room : ${rooms}">Raum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row: ${slotTable}">
+                <td th:each="field: ${row}">
+                    <div th:if="${field}">
+                        <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
+                        <div>
+                            <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
+                            <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
+                        </div>
+                    </div>
+                    <div th:unless="${field}">
+                        <span>-</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
 </div>
 

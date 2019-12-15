@@ -74,6 +74,10 @@ public class TimeTableEntry {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}
 
+	public Staff getStaff() {
+		return staff;
+	}
+
 	public void setOrder(MissMintOrder order) {
 		this.order = order;
 	}

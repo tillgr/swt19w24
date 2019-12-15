@@ -39,7 +39,7 @@ public class RoomController {
 	@PreAuthorize("isAuthenticated()")
 	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
 		model.addAttribute("rooms", rooms.findAll());
-
+		model.addAttribute("slotTable", roomService.buildRoomTable());
 		return "rooms";
 	}
 

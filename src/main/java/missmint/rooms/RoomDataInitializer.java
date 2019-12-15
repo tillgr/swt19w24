@@ -17,6 +17,11 @@ public class RoomDataInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 		Room room = new Room("HSZ/0001");
+		Room room1 = new Room("HSZ/0002");
+		Room room2 = new Room("HSZ/0002");
+
 		roomRepository.save(room);
+		roomRepository.save(room1);
+		roomRepository.save(room2);
 	}
 }

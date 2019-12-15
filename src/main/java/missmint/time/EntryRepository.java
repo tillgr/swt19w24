@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * repository which stores the entries.
@@ -16,4 +17,5 @@ public interface EntryRepository extends CrudRepository<TimeTableEntry, Long> {
 	Streamable<TimeTableEntry> findAllByDateAfter(LocalDate date);
 	void deleteTimeTableEntriesByStaff(Staff staff);
 	Streamable<TimeTableEntry> findAllByStaff(Staff staff);
+	TimeTableEntry findByDateAndSlotAndRoom(LocalDate date, int slot, Room room);
 }
