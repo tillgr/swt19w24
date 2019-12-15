@@ -133,7 +133,7 @@ public class StaffController {
 
 		staffManagement.editStaff(staff, form.getFirstName(), form.getLastName(), form.getSalary(), form.getNewSkill());
 
-		if (skillsCount < staff.getSkills().size()) {
+		if (skillsCount != staff.getSkills().size()) {
 			timeTableService.rebuildTimeTable();
 		}
 
