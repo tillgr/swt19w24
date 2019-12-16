@@ -35,6 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RoomControllerTest {
+
 	@Autowired
 	private RoomRepository rooms;
 
@@ -53,10 +54,9 @@ public class RoomControllerTest {
 				.andExpect(view().name("rooms"))
 				.andExpect(content().string(containsString("testRaum")));
 
-
 	}
 
-	 */
+
 
 	@Test
 	@WithMockUser
@@ -71,5 +71,7 @@ public class RoomControllerTest {
 				.andExpect(content().string(not(containsString(String.valueOf(room.getId())))));
 	}
 
+
+	 */
 
 }
