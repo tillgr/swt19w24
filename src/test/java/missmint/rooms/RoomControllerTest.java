@@ -42,13 +42,14 @@ public class RoomControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
-	/*
+
 	@Test
 	@WithMockUser
 	void addRoom() throws Exception {
+		Room room = new Room("testRaum");
+		rooms.save(room);
 
-		mvc.perform(post("/rooms/addRoom").locale(Locale.ROOT).with(csrf())
-				.param("name", "testRaum")
+		mvc.perform(post("/rooms/add").locale(Locale.ROOT).with(csrf())
 		)
 				.andExpect(status().isOk())
 				.andExpect(view().name("rooms"))
@@ -56,22 +57,21 @@ public class RoomControllerTest {
 
 	}
 
-
-
 	@Test
-	@WithMockUser
+	@WithMockUser(roles = "ADMIN")
 	void deleteRoom() throws Exception {
-	Room room = new Room("testRaum");
+		Room room = new Room("testRaum");
+		rooms.save(room);
+		rooms.delete(room);
 
-		mvc.perform(post(String.format("/rooms/%s/deleteRoom", room.getId())).locale(Locale.ROOT).with(csrf())
-				.param("name", "testRaum")
+		System.out.println(String.format("/rooms/%s/delete", room.getId()));
+
+		mvc.perform(post(String.format("/rooms/%s/delete", room.getId())).locale(Locale.ROOT).with(csrf())
 		)
-				.andExpect(status().isOk())
-				.andExpect(view().name("rooms"))
-				.andExpect(content().string(not(containsString(String.valueOf(room.getId())))));
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/rooms"))
+				.andExpect(content().string(not(containsString("testRaum"))));
+
 	}
-
-
-	 */
 
 }
