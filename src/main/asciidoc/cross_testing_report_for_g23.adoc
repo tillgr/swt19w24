@@ -12,13 +12,82 @@ Welche Aufgabe/Problemstellung löst die Anwendung.
 [options="header"]
 |===
 |Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+| http://localhost:8080/register
+| Gehalt über 2147483647
+| Bei einem Gehalt, der nicht mehr in einen Integer passt, bekommt man keine nutzerfreundliche Fehlermeldung
+| _Internal Server Error_
+
+| http://localhost:8080/register
+| Name aus nur Leerzeichen
+| Es wird der Name " " eingegeben.
+| _Internal Server Error_
+
+| http://localhost:8080/register
+| Name, der schon einmal verwendet wurde
+| Es wird ein Mitarbeiter mit dem selben Nachnamen wie ein anderer Mitarbeiter erstellt.
+| _Name oder Email schon vergeben!_
+
+| http://localhost:8080/register
+| Name, der schon einmal verwendet wurde
+| Es wird ein Mitarbeiter mit dem selben Nachnamen wie ein anderer Mitarbeiter erstellt.
+| _Name oder Email schon vergeben!_
+
+| http://localhost:8080/ordertable
+| -
+| Ein Mitarbeiter kann u. U. die Aufträge, die Boss angenommen hat, anschauen.
+| Der Auftrag wird angezeigt.
+
+| http://localhost:8080/ordertable
+| -
+| Ein abgelehnter Auftrag wird verschoben und für alle Nutzer als `DECLINED` angezeigt.
+Insbesondere kann man den Auftrag dann nie wieder annehmen.
+| -
+
+| http://localhost:8080/orderpage/<ID>
+| -
+| Der Zustand von einem angenommenen Auftrag wird nach der Bearbeitung auf `CREATED` zurückgesetzt.
+| -
+
+| http://localhost:8080/materials
+| -
+| Für Aufträge benötigte Materialien können gelöscht werden. Aufträge können dann nicht mehr angenommen werden.
+| -
+
+| http://localhost:8080/materials
+| -
+| Für Aufträge benötigte Materialien können umbenannt werden. Aufträge können dann nicht mehr angenommen werden.
+| -
+
+| http://localhost:8080/materials
+| -
+| Wird die Materialmenge über die Grenze erhöht, wird keine Fehlermeldung ausgegeben.
+| -
+
+| http://localhost:8080/personallist
+| -
+| Boss kann nicht bearbeitet werden. Z. B. um das Gehalt zu erhöhen.
+| -
+
+| http://localhost:8080/update/<ID>
+| -
+| Passwörter und Lohn müssen bei der Bearbeitung neu eingegeben werden.
+| -
+
+| http://localhost:8080/skipDay
+| -
+| Beim sehr schnellen Überspringen von Tagen hintereinander, werden die Mitarbeiter nicht bezahlt.
+| -
 |===
 
 == Sonstiges
-* Optik der Anwendung
-* Fehlende Features
-* Interaktion mit der Anwendung (Usability)
+=== Optik der Anwendung
+
+=== Fehlende Features
+
+=== Interaktion mit der Anwendung (Usability)
+* Rollen werden als z. B. `ROLE_USER` angezeigt und nicht als für den Leihen verständliche Namen.
+* Unterkategorien sind in Großbuchstaben z. B. `NAEHTE` und ohne Umlaute in Selects verwendet.
+* Fehlende Werte werden als `null` angezeigt.
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
