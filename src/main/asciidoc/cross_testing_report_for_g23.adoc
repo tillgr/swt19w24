@@ -75,8 +75,14 @@ Insbesondere kann man den Auftrag dann nie wieder annehmen.
 
 | http://localhost:8080/update
 | Name, der schon einmal verwendet wurde
-| Bei der Bearbeitung von Personal, falls der Name von Person zu einem, schon existierendem 1Name verändert wird, wird ein Fehler angezeigt, ohne die Möglichkeit eienen anderen Name einzugeben. 
+| Bei der Bearbeitung von Personal, falls der Name von Person zu einem, schon existierendem Name verändert wird, wird ein Fehler angezeigt, ohne die Möglichkeit eienen anderen Name einzugeben. 
 |  _Name oder Email schon vergeben!_
+
+| http://localhost:8080/update
+| Name, der schon einmal verwendet wurde
+| Bei der Bearbeitung von Personal, falls der Name von Person zu einem, schon existierendem Name verändert wird, wird Person von 
+Personal komplet gelöscht
+| -
 
 | http://localhost:8080/skipDay
 | -
