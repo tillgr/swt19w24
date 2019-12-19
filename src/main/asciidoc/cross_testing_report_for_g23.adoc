@@ -18,14 +18,14 @@ Welche Aufgabe/Problemstellung löst die Anwendung.
 | _Internal Server Error_
 
 | http://localhost:8080/register
+| negatives Gehalt
+| Mitarbeiter mit negativem Gehalt können erstellt werden
+| Keine Fehlermeldung
+
+| http://localhost:8080/register
 | Name aus nur Leerzeichen
 | Es wird der Name " " eingegeben.
 | _Internal Server Error_
-
-| http://localhost:8080/register
-| Name, der schon einmal verwendet wurde
-| Es wird ein Mitarbeiter mit dem selben Nachnamen wie ein anderer Mitarbeiter erstellt.
-| _Name oder Email schon vergeben!_
 
 | http://localhost:8080/register
 | Name, der schon einmal verwendet wurde
@@ -51,6 +51,11 @@ Insbesondere kann man den Auftrag dann nie wieder annehmen.
 | http://localhost:8080/materials
 | -
 | Für Aufträge benötigte Materialien können gelöscht werden. Aufträge können dann nicht mehr angenommen werden.
+| -
+
+| http://localhost:8080/materials
+| -
+| Für Aufträge benötigte Materialien können nicht neu erstellt werden.
 | -
 
 | http://localhost:8080/materials
