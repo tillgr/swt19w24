@@ -73,6 +73,11 @@ Insbesondere kann man den Auftrag dann nie wieder annehmen.
 | Passwörter und Lohn müssen bei der Bearbeitung neu eingegeben werden.
 | -
 
+| http://localhost:8080/update
+| Name, der schon einmal verwendet wurde
+| Bei der Bearbeitung von Personal, falls der Name von Person zu einem, schon existierendem 1Name verändert wird, wird ein Fehler angezeigt, ohne die Möglichkeit eienen anderen Name einzugeben. 
+|  _Name oder Email schon vergeben!_
+
 | http://localhost:8080/skipDay
 | -
 | Beim sehr schnellen Überspringen von Tagen hintereinander, werden die Mitarbeiter nicht bezahlt.
