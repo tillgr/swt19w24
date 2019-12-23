@@ -7,7 +7,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.math.BigDecimal;
 
-class AddFinanceFormTest {
+class FinanceFormTest {
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	@Test
