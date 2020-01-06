@@ -12,6 +12,7 @@ public class AddRoomForm {
 	 */
 	@NotBlank(message = "Darf nicht leer sein!")
 	private final String name;
+	private RoomRepository rooms;
 
 	public AddRoomForm(String name) {
 		this.name = name;
@@ -22,6 +23,9 @@ public class AddRoomForm {
 	}
 
 	public Room createRoom() {
-		return new Room(name);
+		if (rooms.findByName(name).allMatch(null)){
+			return new Room(name);
+		}
+		//TODO
 	}
 }
