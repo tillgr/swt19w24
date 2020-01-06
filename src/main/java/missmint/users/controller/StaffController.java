@@ -85,14 +85,16 @@ public class StaffController {
 	@PostMapping("/users/registration")
 	public String registerStaff(@Valid @ModelAttribute("form") RegistrationForm form, Errors result) {
 
+		if (result.hasErrors()) {
+			return registrationForm(form);
+		}
+
 		if (staffManagement.findByUserName(form.getUserName()).isPresent()) {
 			result.rejectValue(
 					"userName",
 					"RegistrationForm.username.duplicate",
 					"An account with this name already exists."
 			);
-		}
-		if (result.hasErrors()) {
 			return registrationForm(form);
 		}
 
