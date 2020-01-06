@@ -79,7 +79,11 @@
     </form>
 
     <h2 class="mt-5" th:text="#{users.edit.password.title}">Change Password</h2>
-    <form th:object="${pwdform}">
+    <form th:object="${pwdform}" th:action="@{/users/password/{id}(id=${staff.getId()})}" action="users.html" method="post">
+        <div class="alert alert-danger" role="alert" th:each="err : ${#fields.errors('*')}" th:text="${err}">
+            Password cannot be empty.
+        </div>
+
         <div class="form-group">
             <label for="password" class="sr-only" th:text="#{general.password}">Password</label>
             <input type="password" class="form-control" id="password" th:placeholder="#{general.password}" placeholder="Password" th:field="*{password}">

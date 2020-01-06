@@ -9,6 +9,7 @@ import missmint.users.forms.RegistrationForm;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
+import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -116,7 +117,6 @@ public class StaffController {
 		return "edituser";
 	}
 
-	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@PreAuthorize(("hasRole('ADMIN')"))
 	@PostMapping("/users/{id}")
 	public String saveUser(
@@ -139,6 +139,26 @@ public class StaffController {
 		if (skillsCount != staff.getSkills().size()) {
 			timeTableService.rebuildTimeTable();
 		}
+
+		return "redirect:/users";
+	}
+
+	@PreAuthorize(("hasRole('ADMIN')"))
+	@PostMapping("/users/password/{id}")
+	public String changePassword(
+		@PathVariable long id,
+		@ModelAttribute("editform") EditStaffForm editForm,
+		@Valid @ModelAttribute("pwdform") PasswordForm pwdForm,
+		Errors result,
+		Model model
+	) {
+		Staff staff = Utils.getOrThrow(staffRepository.findById(id));
+
+		if (result.hasErrors()) {
+			return editUserPage(id, editForm, pwdForm, model);
+		}
+
+		staffManagement.changePassword(staff, pwdForm.getPassword());
 
 		return "redirect:/users";
 	}

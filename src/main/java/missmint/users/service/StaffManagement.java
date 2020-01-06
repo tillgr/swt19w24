@@ -98,4 +98,16 @@ public class StaffManagement {
 	public Iterable<Staff> getAllStaff() {
 		return staffRepository.findAll();
 	}
+
+	/**
+	 * Changes the password of the staff member and saves the changes to the database.
+	 *
+	 * @param staff the staff member to edit
+	 * @param password the password to change to change the staff's password to
+	 */
+	public void changePassword(Staff staff, String password) {
+		Assert.notNull(staff, "staff member should not be null");
+
+		userAccountManager.changePassword(staff.getUserAccount(), Password.UnencryptedPassword.of(password));
+	}
 }

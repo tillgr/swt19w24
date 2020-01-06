@@ -1,9 +1,9 @@
 package missmint.users.forms;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 public class PasswordForm {
-	@NotEmpty(message = "{PasswordForm.password.NotEmpty}")
+	@NotBlank(message = "{PasswordForm.password.NotBlank}")
 	private final String password;
 
 	public PasswordForm(String password) {
