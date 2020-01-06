@@ -3,10 +3,8 @@ package missmint.users.service;
 import missmint.users.forms.RegistrationForm;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
-import org.h2.engine.User;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.useraccount.Password;
-import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -70,11 +68,25 @@ public class StaffManagementTest {
 		String userName = "user_123";
 		RegistrationForm form = new RegistrationForm("Le", "me", userName, "123", BigDecimal.valueOf(1));
 		staffManagement.createStaff(form);
-		UserAccount user = userAccountManager.findByUsername(userName).orElseThrow();
-		Password.EncryptedPassword password = user.getPassword();
-		Staff staff = staffRepository.findByUserAccount(user).orElseThrow();
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+		Password.EncryptedPassword password = staff.getUserAccount().getPassword();
 
 		staffManagement.changePassword(staff, "321");
-		assertThat(user.getPassword()).isNotEqualTo(password);
+		assertThat(staff.getUserAccount().getPassword()).isNotEqualTo(password);
+	}
+
+	@Test
+	void changePasswordNullStaff() {
+		assertThatThrownBy(() -> staffManagement.changePassword(null, "321")).isNotNull();
+	}
+
+	@Test
+	void changePasswordEmptyPassword() {
+		String userName = "user_123";
+		RegistrationForm form = new RegistrationForm("Le", "me", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		assertThatThrownBy(() -> staffManagement.changePassword(staff, " \t  ")).isNotNull();
 	}
 }

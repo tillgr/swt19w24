@@ -9,7 +9,6 @@ import missmint.users.forms.RegistrationForm;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
-import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -143,6 +142,15 @@ public class StaffController {
 		return "redirect:/users";
 	}
 
+	/**
+	 * Update the password of a staff member.
+	 *
+	 * @param id id of the staff member
+	 * @param pwdForm the form with the new password
+	 * @param result errors in the form
+	 * @return a redirect to the users page or the edit page again on error
+	 * @see StaffController#editUserPage(long, EditStaffForm, PasswordForm, Model)
+	 */
 	@PreAuthorize(("hasRole('ADMIN')"))
 	@PostMapping("/users/password/{id}")
 	public String changePassword(
