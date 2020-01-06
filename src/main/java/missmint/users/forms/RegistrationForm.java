@@ -1,6 +1,9 @@
 package missmint.users.forms;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 public class RegistrationForm {
@@ -14,7 +17,7 @@ public class RegistrationForm {
 	@NotBlank(message = "{RegistrationForm.name.NotBlank}")
 	private final String userName;
 
-	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
+	@NotBlank(message = "{RegistrationForm.password.NotBlank}")
 	private final String password;
 
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
