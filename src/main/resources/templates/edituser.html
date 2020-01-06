@@ -14,7 +14,7 @@
 
 <div class="container mt-md-5">
     <h1 th:text="#{users.edit.title}">Nutzerbearbeitung</h1>
-    <form method="post" role="form" id="form" th:object="${form}" th:action="@{/users/{id}(id=${staff.getId()})}">
+    <form method="post" role="form" id="form" th:object="${editform}" th:action="@{/users/{id}(id=${staff.getId()})}">
         <table class="table">
             <thead>
             <tr>
@@ -75,9 +75,17 @@
             </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary mt-2" th:text="#{users.edit.save}">Änderungen übernehmen</button>
+        <button type="submit" class="btn btn-primary" th:text="#{users.edit.save}">Änderungen übernehmen</button>
     </form>
 
+    <h2 class="mt-5" th:text="#{users.edit.password.title}">Change Password</h2>
+    <form th:object="${pwdform}">
+        <div class="form-group">
+            <label for="password" class="sr-only" th:text="#{general.password}">Password</label>
+            <input type="password" class="form-control" id="password" th:placeholder="#{general.password}" placeholder="Password" th:field="*{password}">
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="#{users.edit.password.title}">Change Password</button>
+    </form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>

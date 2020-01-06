@@ -1,0 +1,143 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <head>
+        <meta charset="utf-8">
+        <title>Finanzübersicht</title>
+        
+        <link th:href="@{/resources/css/normalize.css}" rel="stylesheet"
+          href="../static/resources/css/normalize.css" type="text/css"/> 
+        <link th:href="@{/resources/css/font-awesome.css}" rel="stylesheet"
+          href="../static/resources/css/font-awesome.css" type="text/css"/>
+        <link th:href="@{/resources/css/bootstrap.css}" rel="stylesheet"
+		href="../static/resources/css/bootstrap.css" type="text/css"/>
+		<link th:href="@{/resources/css/templatemo-style.css}" rel="stylesheet"
+		href="../static/resources/css/templatemo-style.css" type="text/css"/>
+		<link th:href="@{/resources/css/orders.css}" rel="stylesheet"
+		href="../static/resources/css/orders.css" type="text/css"/>
+
+        <script th:src="@{/resources/js/Chart.js}" src="../static/resources/js/Chart.js"></script>
+        
+        <script th:src="@{/resources/js/vendor/modernizr-2.6.2.min.js}" src="../static/resources/js/vendor/modernizr-2.6.2.min.js"></script>
+        
+    </head>
+	</head>
+	<body>
+		<!-- MENU -->
+		<div class="sidebar-menu" th:include="menu :: menu"></div>	
+		<!-- /MENU -->
+		
+		
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+                <div class="content-wrapper">
+                    
+                    <!-- PROJECTS -->
+                    <div class="page-section" id="projects">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">KLEINREPARATURBETRIEB - Finanzübersicht</h4>
+                           <p th:text="'Ihr monatliches Gehalt beträgt: ' + ${salary}"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="row projects-holder">
+                     	
+		
+				
+		<table>
+			<thead>
+			<tr class="head">
+				<th scope="col">Datum</th>
+				<th scope="col">Beschreibung</th>
+				<th scope="col">Kosten</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="entry : ${entries}">
+				<td th:text="${entry.date.get()}">Max</td>
+				<td th:text="${entry.description}">Musterman</td>
+				<td th:text="${entry.value}">max@mama.de</td>
+			</tr>
+	
+			</tbody>
+		</table>
+
+		<br>
+			<p class="salary" th:text="'Gesamtbilanz: ' + ${balance}"></p>
+                    
+                    </div>
+                    </div>
+                    <br>
+
+                    <canvas id="canvas"></canvas>
+
+                    <script th:inline="javascript">
+                        var balances = /*[[${balances}]]*/ null;
+                        var indexes = /*[[${indexes}]]*/ null;
+                        var config = {
+                            type: 'line',
+                            data: {
+                                labels: indexes,
+                                datasets: [{
+                                    label: 'in EUR',
+                                    data: balances,
+                                    fill: false,
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                title: {
+                                    display: true,
+                                    text: 'Finanzübersicht'
+                                },
+                                tooltips: {
+                                    mode: 'index',
+                                    intersect: false,
+                                },
+                                hover: {
+                                    mode: 'nearest',
+                                    intersect: true
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Monat'
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Gesamtbilanz'
+                                        }
+                                    }]
+                                }
+                            }
+                        };
+
+                        window.onload = function() {
+                            var ctx = document.getElementById('canvas').getContext('2d');
+                            window.myLine = new Chart(ctx, config);
+                        };
+                    </script>
+
+                    <hr>
+
+					<footer class="row" id="footer" th:include="footer :: footer"></footer>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script th:src="@{/resources/js/vendor/jquery-1.10.2.min.js}" src="js/vendor/jquery-1.10.2.min.js"></script>
+        <script th:src="@{/resources/js/main.js}" src="resources/js/main.js"></script>
+        <script th:src="@{/resources/js/plugin.js}" src="resources/js/plugin.js"></script>
+
+    </body>
+</html>

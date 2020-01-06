@@ -4,6 +4,7 @@ import missmint.Utils;
 import missmint.orders.service.ServiceCategory;
 import missmint.time.TimeTableService;
 import missmint.users.forms.EditStaffForm;
+import missmint.users.forms.PasswordForm;
 import missmint.users.forms.RegistrationForm;
 import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
@@ -87,9 +88,9 @@ public class StaffController {
 
 		if (staffManagement.findByUserName(form.getUserName()).isPresent()) {
 			result.rejectValue(
-					"userName",
-					"RegistrationForm.username.duplicate",
-					"An account with this name already exists."
+				"userName",
+				"RegistrationForm.username.duplicate",
+				"An account with this name already exists."
 			);
 		}
 		if (result.hasErrors()) {
@@ -103,13 +104,14 @@ public class StaffController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("users/edit/{id}")
-	public String editUserPage(@PathVariable("id") long id, EditStaffForm form , Model model) {
+	public String editUserPage(@PathVariable("id") long id,
+							   @ModelAttribute("editform") EditStaffForm editForm,
+							   @ModelAttribute("pwdform") PasswordForm pwdForm,
+							   Model model) {
 		var staff = Utils.getOrThrow(staffRepository.findById(id));
 		model.addAttribute("staff", staff);
 
 		model.addAttribute("services", new HashSet<>(EnumSet.allOf(ServiceCategory.class)));
-
-		model.addAttribute("form", form);
 
 		return "edituser";
 	}
@@ -119,19 +121,20 @@ public class StaffController {
 	@PostMapping("/users/{id}")
 	public String saveUser(
 		@PathVariable long id,
-		@Valid @ModelAttribute("form") EditStaffForm form,
+		@Valid @ModelAttribute("editform") EditStaffForm editForm,
+		@ModelAttribute("pwdform") PasswordForm pwdForm,
 		Errors result,
 		Model model
 	) {
 		Staff staff = Utils.getOrThrow(staffRepository.findById(id));
 
 		if (result.hasErrors()) {
-			return editUserPage(id, form, model);
+			return editUserPage(id, editForm, pwdForm, model);
 		}
 
 		var skillsCount = staff.getSkills().size();
 
-		staffManagement.editStaff(staff, form.getFirstName(), form.getLastName(), form.getSalary(), form.getNewSkill());
+		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getNewSkill());
 
 		if (skillsCount != staff.getSkills().size()) {
 			timeTableService.rebuildTimeTable();
