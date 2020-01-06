@@ -31,7 +31,8 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.lastName()}"/>
+                            <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text"
+                                   required="required" th:value="${staff.lastName()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
                             <p>Der Nachname darf nicht leer sein.</p>
@@ -41,7 +42,8 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.getFirstName()}"/>
+                            <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text"
+                                   required="required" th:value="${staff.getFirstName()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
                             <p>Der Vorname darf nicht leer sein.</p>
@@ -52,7 +54,8 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="salary" th:name="salary" th:errorclass="fieldError" type="number" required="required" step="0.01" min="0" th:value="${staff.getSalary()}"/>
+                            <input th:id="salary" th:name="salary" th:errorclass="fieldError" type="number"
+                                   required="required" step="0.01" min="0" max="999999999999999" th:value="${staff.getSalary()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
                             <p>Geben sie ein Gehalt ein.</p>

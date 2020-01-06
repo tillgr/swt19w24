@@ -1,9 +1,6 @@
 package missmint.users.forms;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class RegistrationForm {
@@ -22,6 +19,7 @@ public class RegistrationForm {
 
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
 	@Min(0)
+	@Max(999999999999999L) // maximum value for the data type used in the database
 	private BigDecimal salary;
 
 	public RegistrationForm(String firstName, String lastName, String userName, String password, BigDecimal salary) {
