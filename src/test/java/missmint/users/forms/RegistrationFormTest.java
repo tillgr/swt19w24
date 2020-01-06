@@ -47,6 +47,13 @@ public class RegistrationFormTest {
 	}
 
 	@Test
+	void blankPassword() {
+		var form = new RegistrationForm("Jacob", "Smith", "xxx", "   ", BigDecimal.valueOf(10));
+		var violations = validator.validate(form);
+		Assertions.assertEquals(1, violations.size());
+	}
+
+	@Test
 	void negativeSalary() {
 		var form = new RegistrationForm("Jacob", "Smith", "xxx", "12", BigDecimal.valueOf(-10));
 		var violations = validator.validate(form);
