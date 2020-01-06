@@ -34,10 +34,10 @@ public class PickUpService {
 	public void pickup(MissMintOrder order) {
 		Assert.isTrue(order.canPickUp(), "order must be able to be picked up");
 		MonetaryAmount price = orderService.calculateCharge(order);
-		if (!price.isZero()) {
-			String description = String.format("Additional transaction for order %s", order.getId());
-			financeService.add(description, price);
-		}
+
+		String description = String.format("Additional transaction for order %s", order.getId());
+		financeService.add(description, price);
+
 		order.setOrderState(OrderState.PICKED_UP);
 		orderItemManager.deleteOrderItem(order.getItem().getId());
 		orderManager.save(order);
