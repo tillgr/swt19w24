@@ -57,7 +57,7 @@ public class RoomController {
 			return showRooms(model, form);
 		}
 
-		if (rooms.findByName(form.getName()).allMatch(null)){
+		if (rooms.findByName(form.getName()).isEmpty()){
 			rooms.save(form.createRoom());
 		}
 		service.rebuildTimeTable();
