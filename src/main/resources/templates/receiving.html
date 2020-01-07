@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{orders.receiving}">Receiving</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1 th:text="#{orders.receiving}">Receiving</h1>
+    <form action="cost.html" th:object="${form}" method="post" th:action="@{/orders/receiving}">
+        <div class="alert alert-danger" role="alert" th:each="err : ${#fields.errors('*')}" th:text="${err}">
+            The item description must not be empty.
+        </div>
+        <div class="alert alert-danger" role="alert" th:text="#{orders.receiving.unavailable}" th:if="${notAcceptable != null}">
+            This service is currently unavailable.
+        </div>
+
+        <h3 th:text="#{orders.order}">Order</h3>
+        <div class="form-group">
+            <label for="customer" th:text="#{orders.customer.name}">Customer's Name</label>
+            <input class="form-control" id="customer" placeholder="Name" required type="text" th:field="*{customer}">
+        </div>
+        <div class="form-group">
+            <label for="description" th:text="#{orders.description}">Description of the Item</label>
+            <input class="form-control" id="description" placeholder="Beschreibung" required type="text"
+                   th:field="*{description}">
+        </div>
+
+        <h3 th:text="#{orders.service}">Service</h3>
+        <div class="form-group">
+            <label for="service" th:text="#{orders.service}">Service</label>
+            <select class="form-control" id="service" th:field="*{service}" required>
+                <option th:each="service : ${services}" th:value="${service.getId()}"
+                        th:text="#{'orders.service.' + ${service.getName()}}">Kludge (Seam)
+                </option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" th:text="#{orders.receiving.calculate}">Calculate Price</button>
+    </form>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+= Protokoll Gruppe 24
+
+Treffen am 22.11.2019
+
+Ort:      APB vor Raum 1067 +
+Beginn:   15:00 Uhr + 
+Ende:     16:45 Uhr
+
+__Schriftführer:__
+Tobias Köllner
+
+*Nächstes Treffen:* +
+29.11.2019, 15:00 Uhr,
+
+_Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+== Bemerkungen
+Till zu spät
+
+== Aufgaben
+- DevDoc
+- Testplan vervollständigen/anpassen ( Till, Anna, Kien) (Konstruktoren)
+- Basisfunktionen: es funktionert
+
+- Aktzeptierbarkeit
+- neu Orders in Zeitslot einsortieren
+- Zeitslot anlegen
+- eigene Finanzeneinträge hinzufügen
+- Materialen hinzufügen/entfernen
+- Mitarbeiter hinzufügen
+- Autoreorder von Materialen
+- 
+
+== Zusatzaufgaben
+- Admin kann order schließen.
+- Kostenbegründung
+- SpezialAuftrag
+
+== Aktueller Stand
+- Prototypen
+- DevDoc
+- Testplan

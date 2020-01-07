@@ -1,0 +1,98 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title th:text="#{orders.details}">Order Details</title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container mt-md-5">
+    <h1 th:text="#{orders.details}">Order Details</h1>
+
+    <table class="table table-borderless table-sm">
+        <tbody>
+        <tr>
+            <th scope="row" th:text="#{general.id}">ID</th>
+            <td th:text="${order.getId()}">8adfdf53-0e11-499f-af36-efbc9db8a7f9</td>
+        </tr>
+        <tr>
+            <th scope="row" th:text="#{general.customer}">Customer</th>
+            <td th:text="${order.getCustomer()}">Mark Zuckerberg</td>
+        </tr>
+        <tr th:if="${order.getItem() != null}">
+            <th scope="row" th:text="#{orders.customer.item}">Customer Item</th>
+            <td th:text="${order.getItem().getName()}">Facebook</td>
+        </tr>
+        <tr>
+            <th scope="col" th:text="#{orders.inbound}">Inbound Date</th>
+            <td th:text="${order.getInbound()}">11.11.2019</td>
+        </tr>
+        <tr th:if="${order.getExpectedFinished() != null}">
+            <th scope="col" th:text="#{orders.expectedfinished}">Expected Finishing Date</th>
+            <td th:text="${order.getExpectedFinished()}">23.11.2019</td>
+        </tr>
+        <tr th:if="${order.getFinished() != null}">
+            <th scope="col" th:text="#{orders.finished}">Finishing Date</th>
+            <td th:text="${order.getFinished()}">22.11.2019</td>
+        </tr>
+        <tr>
+            <th scope="col" th:text="#{orders.state}">Order State</th>
+            <td th:text="#{'orders.state.' + ${order.getOrderState().name()}}">Waiting</td>
+        </tr>
+        <tr>
+            <th scope="col" th:text="#{orders.service}">Service</th>
+            <td th:text="#{'orders.service.' + ${service.getName()}}">Kludge (Sole)</td>
+        </tr>
+        <tr>
+            <th scope="col">
+
+            </th>
+            <td>
+                <form method="post" sec:authorize="hasRole('ADMIN')"
+                      th:if="${order.getItem()} != null"
+                      th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+                    <div class="form-inline">
+                        <div class="form-group form-check">
+                            <div class="form-inline">
+                                <label class="form-check-label" for="youSure" th:text="#{orders.pickup.sure}">Sure?</label>
+                            </div>
+                            <div class="form-inline ml-1">
+                                <input class="form-check-input" id="youSure" required type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-inline ml-5">
+                            <button class="btn btn-outline-danger" type="submit" th:unless="${order.canPickUp()}"
+                                    th:text="#{orders.pickup.beforeFinished}">Give back unfinished</button>
+                            <button class="btn btn-outline-danger" type="submit" th:if="${order.canPickUp()}"
+                                    th:text="#{orders.pickup.returnWithoutPay}">Return for free</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<script crossorigin="anonymous"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/jquery.js}"></script>
+<script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+<script crossorigin="anonymous"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
