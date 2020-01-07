@@ -23,9 +23,6 @@ public class AddRoomForm {
 	}
 
 	public Room createRoom() {
-		if (rooms.findByName(name).allMatch(null)){
-			return new Room(name);
-		}
-		//TODO
+		return new Room(name);
 	}
 }
