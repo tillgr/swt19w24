@@ -13,8 +13,6 @@ import org.springframework.util.Assert;
 
 import javax.money.MonetaryAmount;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.TemporalAmount;
 
 /**
  *This class is a service for Accountancy
@@ -56,7 +54,17 @@ public class FinanceService {
 		return sum;
 	}
 
+	/**
+	 * Adds a accountancy item to the database if the value is not zero.
+	 *
+	 * @param description A user-supplied description for this entry.
+	 * @param value The value that is stored in the database.
+	 */
 	public void add(String description, MonetaryAmount value) {
+		if (value.isZero()) {
+			return;
+		}
+
 		accountancy.add(new AccountancyEntry(value, description));
 	}
 

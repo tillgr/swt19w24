@@ -3,6 +3,7 @@ package missmint.users.forms;
 import missmint.orders.service.ServiceCategory;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ public class EditStaffForm {
 
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
 	@Min(0)
+	@Max(999999999999999L) // maximum value for the data type used in the database
 	private BigDecimal salary;
 
 	public EditStaffForm(String firstName, String lastName, ServiceCategory newSkill, BigDecimal salary) {

@@ -37,7 +37,6 @@ public class FinanceController {
 	public String showFinancePage(Model model) {
 		model.addAttribute("finance", accountancy.findAll());
 		model.addAttribute("sum", financeService.getSum(accountancy.findAll()));
-
 		return "finance";
 	}
 
@@ -47,7 +46,6 @@ public class FinanceController {
 		model.addAttribute("finance", financeService.lastMonth());
 		model.addAttribute("sum", financeService.getSum(financeService.lastMonth()));
 		model.addAttribute("lastMonth", true);
-
 		return "finance";
 	}
 

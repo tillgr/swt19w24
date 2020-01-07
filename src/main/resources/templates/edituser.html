@@ -14,7 +14,7 @@
 
 <div class="container mt-md-5">
     <h1 th:text="#{users.edit.title}">Nutzerbearbeitung</h1>
-    <form method="post" role="form" id="form" th:object="${form}" th:action="@{/users/{id}(id=${staff.getId()})}">
+    <form method="post" role="form" id="form" th:object="${editform}" th:action="@{/users/{id}(id=${staff.getId()})}">
         <table class="table">
             <thead>
             <tr>
@@ -31,7 +31,8 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.lastName()}"/>
+                            <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text"
+                                   required="required" th:value="${staff.lastName()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
                             <p>Der Nachname darf nicht leer sein.</p>
@@ -41,7 +42,8 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text" required="required" th:value="${staff.getFirstName()}"/>
+                            <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text"
+                                   required="required" th:value="${staff.getFirstName()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
                             <p>Der Vorname darf nicht leer sein.</p>
@@ -52,7 +54,8 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="salary" th:name="salary" th:errorclass="fieldError" type="number" required="required" step="0.01" min="0" th:value="${staff.getSalary()}"/>
+                            <input th:id="salary" th:name="salary" th:errorclass="fieldError" type="number"
+                                   required="required" step="0.01" min="0" max="999999999999999" th:value="${staff.getSalary()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
                             <p>Geben sie ein Gehalt ein.</p>
@@ -72,9 +75,21 @@
             </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary mt-2" th:text="#{users.edit.save}">Änderungen übernehmen</button>
+        <button type="submit" class="btn btn-primary" th:text="#{users.edit.save}">Änderungen übernehmen</button>
     </form>
 
+    <h2 class="mt-5" th:text="#{users.edit.password.title}">Change Password</h2>
+    <form th:object="${pwdform}" th:action="@{/users/password/{id}(id=${staff.getId()})}" action="users.html" method="post">
+        <div class="alert alert-danger" role="alert" th:each="err : ${#fields.errors('*')}" th:text="${err}">
+            Password cannot be empty.
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="sr-only" th:text="#{general.password}">Password</label>
+            <input type="password" class="form-control" id="password" th:placeholder="#{general.password}" placeholder="Password" th:field="*{password}">
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="#{users.edit.password.title}">Change Password</button>
+    </form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
