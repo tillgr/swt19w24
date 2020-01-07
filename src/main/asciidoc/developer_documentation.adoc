@@ -13,35 +13,36 @@
 == Einführung und Ziele
 === Aufgabenstellung
 Für _Miss-Mint Mending Points_ soll für die Mitarbeiter eine Software bereitgestellt werden.
-Mitarbeiter (_Staff_) können über den Admin (_ADMIN_) registriert (_registerUser_) und entfernt (_deleteUser_) werden.
-Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen.
-Der Betrieb stellt folgende Dienstleistungen (_ServiceCategory_) bereit:
+Mitarbeiter (_Staff_) können über den Admin registriert (_registerStaff_) und entlassen (_deleteUser_) werden.
+Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen (`@PreAuthorize("isAuthenticated()")`).
+Der Betrieb stellt folgende Dienstleistungen (_MissMintService_) in Kategorien (_ServiceCategory_) bereit:
 
 * eine Flickschusterei (_KLUDGE_)
-* einen Nähservice (_SEWINGSERVICE_)
+* einen Nähservice (_SEWING_)
 * einen Schlüsseldienst (_LOCKSMITH_)
-* eine Schnellreinigung (_EXPRESS_DRY_CLEANING_)
-* eine Elektrowerkstatt (_ELECTRONICWORKSHOP_)
-* eine Scherenschleiferei (_SCISSORSGRINDERY_)
+* eine Schnellreinigung (_CLEANING_)
+* eine Elektrowerkstatt (_ELECTRONICS_)
+* eine Scherenschleiferei (_GRINDERY_)
 
 Nachdem der Kunde eine Dienstleistung ausgewählt und im Voraus bezahlt hat, wird ein
 Auftrag (_MissMintOrder_) mit einer Auftragsnummer (_OrderIdentifier_) im System angelegt.
-Zusätzlich wird ein erwartetes Fertigstellungsdatum (_getExpectedFinished_) berechnet.
+Zusätzlich wird ein erwartetes Fertigstellungsdatum (_getExpectedFinished_) berechnet,
+indem ein Bearbeitungstermin (_TimeTableEntry_) im Zeitplan registriert wird (_createEntry_).
 Der Auftrag kann sich in verschiedenen Zuständen (_OrderState_) befinden.
 
-Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan (_TimeTable_) zur Verfügung gestellt.
-Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht (_BOOKING_). Für die Dienste
+Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan zur Verfügung gestellt.
+Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht. Für die Dienste
 wird i. A. Material (_Material_) benötigt. Diese können, falls nötig, nachbestellt werden und die
-Kosten (_getPrice_) werden automatisch vom System erfasst.
+Kosten werden automatisch vom System erfasst (_checkAndConsume_).
 
-Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden.
-Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter Vorlage des Auftragszettels
+Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden (_FINISHED_).
+Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle (_STORED_), wo sie unter Vorlage des Auftragszettels
 durch Zahlung einer Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden kann. Waren, die
-auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation.
-Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet.
+auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation (_CHARITABLE_USED_).
+Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet (_calculateCharge_).
 
-Jegliches Einkommen bzw. Ausgaben (_FinanceItem_) sind für den Filialleiter sichtbar. Dabei werden sowohl die
-Gesamtkosten (_calculateTotalPrice_) als auch der Reingewinn erfasst.
+Jegliches Einkommen bzw. Ausgaben sind für den Filialleiter sichtbar (_showFinancePage_).
+Dabei ist auch eine Übersicht über den letzten Monat zur Abbuchung der Gewinne an den Mutterkonzern möglich (_showLastMonth_).
 
 
 === Qualitätsziele
@@ -161,7 +162,7 @@ image:srs/models/Top-level_architecture.png[Top-Level-Architekur]
 * *Model View Controller* mit Spring MVC
 * *Singleton mit Springs* `@Component` etc.
 * *Value Object* mit `MonetaryAmount` etc.
-* *Data Transfer Object* mit `OrderDTO`, um Daten für Templates zu aggregieren.
+* *Data Transfer Object* mit den `Form`-Klassen, in denen Formulardaten aggregiert werden.
 * *Dependency Injection* über die Konstruktoren in Spring-Komponenten
 * *Repository* mit den Spring-Repositories
 
