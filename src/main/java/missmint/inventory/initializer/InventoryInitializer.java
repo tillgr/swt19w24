@@ -11,25 +11,20 @@ import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+/**
+ * Adds a certain amount of every material in the catalog to the inventory.
+ */
 @Component
 class InventoryInitializer implements DataInitializer {
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
-	private final UniqueInventory<UniqueInventoryItem> orderItemInventory;
 	private final Catalog<Material> materialCatalog;
-	private final Catalog<OrderItem> orderItemCatalog;
 
-	InventoryInitializer(Catalog<Material> materialCatalog, Catalog<OrderItem> orderItemCatalog, UniqueInventory<UniqueInventoryItem> orderItemInventory, UniqueInventory<UniqueInventoryItem> materialInventory) {
+	InventoryInitializer(Catalog<Material> materialCatalog, UniqueInventory<UniqueInventoryItem> materialInventory) {
 		Assert.notNull(materialInventory, "materialInventory must not be null!");
-		Assert.notNull(orderItemInventory, "orderItemInventory must not be null");
 		Assert.notNull(materialCatalog, "Catalog must not be null!");
-		Assert.notNull(orderItemCatalog, "Catalog must not be null");
-
 		this.materialInventory = materialInventory;
 		this.materialCatalog = materialCatalog;
-		this.orderItemInventory = orderItemInventory;
-		this.orderItemCatalog = orderItemCatalog;
 	}
-
 
 	@Override
 	public void initialize() {

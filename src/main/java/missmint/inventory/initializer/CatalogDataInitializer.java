@@ -12,6 +12,9 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+/**
+ * Creates catalog entries of all materials needed for the repair shop.
+ */
 @Component
 class CatalogDataInitializer implements DataInitializer {
 
