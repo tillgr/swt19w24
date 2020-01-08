@@ -50,6 +50,10 @@
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <td th:each="time : ${times}" th:text="time.getFirst()">first</td>
+                <td th:each="time : ${times}" th:text="time.getSecond()">second</td>
+            </tr>
             <tr th:each="row: ${slotTable}">
                 <td th:each="field: ${row}">
                     <div th:if="${field}">
