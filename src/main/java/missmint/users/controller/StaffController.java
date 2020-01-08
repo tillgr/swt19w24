@@ -135,7 +135,7 @@ public class StaffController {
 
 		var skillsCount = staff.getSkills().size();
 
-		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getNewSkill());
+		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getUpdateSkills());
 
 		if (skillsCount != staff.getSkills().size()) {
 			timeTableService.rebuildTimeTable();

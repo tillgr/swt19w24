@@ -7,9 +7,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
+import java.util.Set;
 
 public class EditStaffForm {
-	private final ServiceCategory newSkill;
+	private final Set<ServiceCategory> updateSkills;
 
 	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String firstName;
@@ -22,10 +23,10 @@ public class EditStaffForm {
 	@Max(999999999999999L) // maximum value for the data type used in the database
 	private BigDecimal salary;
 
-	public EditStaffForm(String firstName, String lastName, ServiceCategory newSkill, BigDecimal salary) {
+	public EditStaffForm(String firstName, String lastName, Set<ServiceCategory> updateSkills, BigDecimal salary) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.newSkill = newSkill;
+		this.updateSkills = updateSkills;
 		this.salary = salary;
 	}
 
@@ -37,8 +38,8 @@ public class EditStaffForm {
 		return lastName;
 	}
 
-	public ServiceCategory getNewSkill() {
-		return newSkill;
+	public Set<ServiceCategory> getUpdateSkills() {
+		return updateSkills;
 	}
 
 	public BigDecimal getSalary() {

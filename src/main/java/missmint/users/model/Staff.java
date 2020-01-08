@@ -78,6 +78,10 @@ public class Staff {
 		return skills.add(service);
 	}
 
+	public void updateSkills(Set<ServiceCategory> service) {
+		skills = service;
+	}
+
 	public boolean removeSkill(ServiceCategory service) {
 		return skills.remove(service);
 	}
