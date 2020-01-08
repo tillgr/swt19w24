@@ -1,8 +1,8 @@
-package missmint.inventory.controller;
+package missmint.inventory.forms;
 
-import missmint.inventory.forms.MaterialForm;
 import missmint.inventory.products.Material;
 import org.javamoney.moneta.Money;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Catalog;
@@ -12,38 +12,28 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Pair;
 import org.springframework.data.util.Streamable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
 
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.hamcrest.CoreMatchers.endsWith;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.salespointframework.core.Currencies.EURO;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-public class InventoryControllerTest {
+@SpringBootTest
+public class MaterialFormTest {
 
-	@Autowired
-	MockMvc mvc;
-
-	@Autowired
-	InventoryController controller;
+	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	@Autowired
 	private Catalog<Material> materialCatalog;
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> materialInventory;
-
 
 	@BeforeEach
 	public void setUp() {
@@ -78,39 +68,45 @@ public class InventoryControllerTest {
 		});
 	}
 
-		@Test
-		void preventsPublicAccess() throws Exception {
 
-			mvc.perform(get("/material"))
-					.andExpect(status().isFound())
-					.andExpect(header().string(HttpHeaders.LOCATION, endsWith("/login")));
-
-			mvc.perform(get("/material/consume"))
-					.andExpect(status().is(405));
-
-			mvc.perform(get("/material/restock"))
-					.andExpect(status().is(405));
-		}
-
-		@Test
-		@WithMockUser(username = "user", roles = "ADMIN")
-		void accessibleForAdmin() throws Exception {
-
-			mvc.perform(get("/material")) //
-					.andExpect(status().isOk()) //
-					.andExpect(model().attributeExists("material"));
-		}
-
-		@Test
-		@WithMockUser(username = "user", roles = "ADMIN" )
-		void consumeTest(){
+	@Test
+	void getterCoverage(){
 		Streamable<Material> product = materialCatalog.findByName("uTest");
 		Material productMaterial = product.toList().get(0);
-		Optional<UniqueInventoryItem> itemMaterial = materialInventory.findByProduct(productMaterial);
 		InventoryItemIdentifier itemMaterialId = materialInventory.findByProduct(productMaterial).get().getId();
-
 		var form = new MaterialForm(20,itemMaterialId);
-		controller.consume(form);
-		controller.restock(form);
-		}
+
+		assertThat(form.getMaterialId()).isEqualTo(itemMaterialId);
+		assertThat(form.getNumber()).isEqualTo(20);
+
+	}
+	@Test
+	void validForm() {
+		Streamable<Material> product = materialCatalog.findByName("uTest");
+		Material material = product.toList().get(0);
+		Optional<UniqueInventoryItem> item = materialInventory.findByProduct(material);
+		var form = new MaterialForm(20,item.get().getId());
+		var violations = validator.validate(form);
+		Assertions.assertTrue(violations.isEmpty());
+	}
+
+	@Test
+	void nonValidNumberLow(){
+		Streamable<Material> product = materialCatalog.findByName("uTest");
+		Material material = product.toList().get(0);
+		Optional<UniqueInventoryItem> item = materialInventory.findByProduct(material);
+		var form = new MaterialForm(0,item.get().getId());
+		var violations = validator.validate(form);
+		Assertions.assertEquals(1, violations.size());
+	}
+
+	@Test
+	void nonValidNumberHigh(){
+		Streamable<Material> product = materialCatalog.findByName("uTest");
+		Material material = product.toList().get(0);
+		Optional<UniqueInventoryItem> item = materialInventory.findByProduct(material);
+		var form = new MaterialForm(10001,item.get().getId());
+		var violations = validator.validate(form);
+		Assertions.assertEquals(1, violations.size());
+	}
 }

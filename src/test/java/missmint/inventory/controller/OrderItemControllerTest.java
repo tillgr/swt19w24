@@ -28,6 +28,6 @@ public class OrderItemControllerTest {
 	void AccessibleForAdmin() throws Exception {
 		mvc.perform(get("/orderItem"))
 				.andExpect(status().isOk())
-				.andExpect(model().attributeExists("orderItem"));
+				.andExpect(model().attributeExists("orders"));
 	}
 }
