@@ -58,9 +58,7 @@ public class RoomController {
 			return showRooms(model, form);
 		}
 
-		if (rooms.findByName(form.getName()).isEmpty()){
-			rooms.save(form.createRoom());
-		}
+		rooms.save(form.createRoom());
 		service.rebuildTimeTable();
 
 		return "redirect:/rooms";

@@ -12,7 +12,6 @@ public class AddRoomForm {
 	 */
 	@NotBlank(message = "Darf nicht leer sein!")
 	private final String name;
-	private RoomRepository rooms;
 
 	public AddRoomForm(String name) {
 		this.name = name;

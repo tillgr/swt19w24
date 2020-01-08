@@ -9,6 +9,4 @@ import java.util.Optional;
  */
 public interface RoomRepository extends CrudRepository<Room, Long> {
 
-	public Optional<Room> findByName(String name);
-
 }
