@@ -46,15 +46,13 @@
         <table class="table-striped table" th:action="@{/rooms}">
             <thead>
             <tr>
+                <th th:text="Zeiten"></th>
                 <th th:text="${room.getName()}" th:each="room : ${rooms}">Raum</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td th:each="time : ${times}" th:text="time.getFirst()">first</td>
-                <td th:each="time : ${times}" th:text="time.getSecond()">second</td>
-            </tr>
-            <tr th:each="row: ${slotTable}">
+            <tr th:each="row, iter: ${slotTable}">
+                <td th:text="${times.get(iter.index).getFirst()} + ' - ' + ${times.get(iter.index).getSecond()}">vonbis</td>
                 <td th:each="field: ${row}">
                     <div th:if="${field}">
                         <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
