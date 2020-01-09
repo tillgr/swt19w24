@@ -20,8 +20,7 @@
         <div class="form-group">
             <label for="nameInput">Raumname</label>
             <input th:field="*{name}" type="text" class="form-control" id="nameInput" placeholder="Raumname eingeben">
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-            <div th:if="${existCheck}" th:text="Raum existiert bereits!">test</div>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert-warning"></div>
         </div>
         <button class="btn btn-warning" type="submit">Hinzufügen</button>
     </form>

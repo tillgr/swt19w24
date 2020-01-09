@@ -60,9 +60,9 @@ public class RoomController {
 		if (!rooms.existsByName(form.getName())){
 			rooms.save(form.createRoom());
 		}
-		else model.addAttribute("existCheck", true);
+		else errors.rejectValue("name", "rooms.add.name.exists");
 
-		return "redirect:/rooms";
+		return showRooms(model, form);
 	}
 
 	/**
