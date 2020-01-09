@@ -432,10 +432,8 @@ image::models/design/images/orders_design.png[Klassendiagramm für das orders Pa
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration |Beschreibung
-|OrdersController |
+|OrderOverviewController |
 Ein Spring MVC Controller, der Anfragen für die Anzeige der aktuellen Aufträge `MissMintOrder` beantwortet.
-|OrderDTO |
-Diese Klasse dient nur dem Datentransfer zum `orders.html`-Template.
 |PickUpController |
 Ein Spring MVC Controller, der Anfragen für die Rückgabe von Gegenständen an den Kunden handhabt.
 Dazu berechnet die Klasse auch anfallende Kosten.
@@ -447,17 +445,24 @@ Eine Klasse, um die Mitarbeitereingaben für die Annahme zu validieren.
 |MissMintOrder |
 Diese Klasse ist eine Erweiterung der Salespoint `Order`. Sie enthält Kunden-, Dienstleistungen- und Zeit-Informationen.
 Zudem hat der Auftrag einen Zustand.
-|OrderDataInitializer |
-Eine Implementation des ``DataInitializer``s, um einige vordefinierte Aufträge zum Testen anzulegen.
 |OrderService |
 Ein Dienst, der Hilfsfunktionen für die Auftragsverwaltung bereitstellt.
-|OrderState  |
+|PickUpService |
+Hilfsdienst für den Abholprozess, um den Controller von der Business-Logik zu trennen.
+|ReceivingService |
+Unterstützt den ReceivingController in der Handhabung von neuen Auufträgen.
+|OrderState |
 Eine Enumeration für die Zustände der Aufträge.
-|Service |
+|MissMintService |
 Erweiterung des Salespoint ``Product``s, um es von anderen Produkten in der späteren Software abzugrenzen.
-Im Prototypen speichert es auch noch das Material.
-|ServiceDataInitializer  |
+|ServiceCategory |
+Eine Enumeration mit den Dienstleistungskateorien.
+|ServiceConsumptionManager |
+Definiert den Verbrauch an Materialien für die verschiedenen Dienstleistungen.
+|ServiceDataInitializer |
 Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen anzulegen.
+|ServiceManager |
+Ein Service, der Zugriffe und Operationen auf `MissMintService` wegabstrahiert.
 |===
 
 === Mitarbeiter
