@@ -586,6 +586,29 @@ der Financedaten.
 
 |===
 
+=== Time
+*TODO IMAGE*
+
+|===
+|Klasse/Enumeration/Schnittstelle |Beschreibung
+
+|TimeTableEntry
+|Diese Klasse repräsentiert Zeitslots, die durch Buchung von Räumen in einer bestimmten Zeit erstellt werden.
+
+|EntryRepository
+|Interface welches das `CrudRepository` von Spring implementiert. Es speichert Objekte vom Typ TimeTableEntry.
+
+|TimeController
+|Schnittstelle, die den Nutzer ermöglicht, die Zeit vorzuspulen.
+
+|TimeService
+|Bildet das Backend für den TimeController.
+
+|TimeTableService
+|Dieser Service erledigt das Erstellen von Zeit-Slots und das Umsortieren dieser,
+um rechtzeitige Fertigstellung zu ermöglichen.
+|===
+
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
 [options="header", cols="1, 1"]
