@@ -616,22 +616,23 @@ um rechtzeitige Fertigstellung zu ermöglichen.
 |Klasse/Enumeration (Analysemodell)|Klasse/Enumeration (Entwurfsmodell)
 
 |Order 
-|Order
+|MissMintOrder
 
 |Service
-|Service
+|MissMintService
 
 |State
 |OrderState
 
 |Order Management
-|OrderManager
+|OrderService
 
 |Service Category 
-|String
+|ServiceCategory
 
 |OrderTicket
 |-
+
 |User 
 |User
 
@@ -656,20 +657,20 @@ um rechtzeitige Fertigstellung zu ermöglichen.
 |Room
 |Room
 
-|TimeTable
-|-
-
 |-
 |Booking
-
-|TimeTableEntry
-|TimeTableEntry
 
 |FinancialManagement
 |FinanceManager
 
 |FinancialItem
 |FinancialItem
+
+|TimeTableEntry
+|TimeTableEntry
+
+|TimeTable
+|EntryRepository
 
 |===
 
