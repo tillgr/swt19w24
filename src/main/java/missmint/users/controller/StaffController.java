@@ -122,8 +122,8 @@ public class StaffController {
 	@PostMapping("/users/{id}")
 	public String saveUser(
 		@PathVariable long id,
-		@Valid @ModelAttribute("editform") EditStaffForm editForm,
 		@ModelAttribute("pwdform") PasswordForm pwdForm,
+		@Valid @ModelAttribute("editform") EditStaffForm editForm,
 		Errors result,
 		Model model
 	) {
