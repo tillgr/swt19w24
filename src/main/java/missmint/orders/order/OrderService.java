@@ -144,14 +144,7 @@ public class OrderService {
 					}
 					break;
 				case STORED:
-					if (order.getLatestFinished().plusWeeks(1).plusMonths(3).isBefore(businessTime.getTime().toLocalDate())) {
-						order.setOrderState(OrderState.CHARITABLE_USED);
-						OrderItem item = order.getItem();
-						order.setItem(null);
-						orderManager.save(order);
-						itemCatalog.delete(item);
-						changed.set(true);
-					}
+					updateStoredOrder(changed, order);
 					break;
 				default:
 					break;
@@ -160,6 +153,17 @@ public class OrderService {
 		});
 
 		return changed.get();
+	}
+
+	private void updateStoredOrder(AtomicBoolean changed, MissMintOrder order) {
+		if (order.getLatestFinished().plusWeeks(1).plusMonths(3).isBefore(businessTime.getTime().toLocalDate())) {
+			order.setOrderState(OrderState.CHARITABLE_USED);
+			OrderItem item = order.getItem();
+			order.setItem(null);
+			orderManager.save(order);
+			itemCatalog.delete(item);
+			changed.set(true);
+		}
 	}
 
 }
