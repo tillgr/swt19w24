@@ -43,7 +43,7 @@
     <h2>Belegplan</h2>
 
     <div>
-        <table class="table-striped table" th:action="@{/rooms}">
+        <table  class="table-striped table" th:action="@{/rooms}">
             <thead>
             <tr>
                 <th th:text="${room.getName()}" th:each="room : ${rooms}">Raum</th>
@@ -51,8 +51,8 @@
             </thead>
             <tbody>
             <tr th:each="row: ${slotTable}">
-                <td th:each="field: ${row}">
-                    <div th:if="${field}">
+                <td  th:each="field: ${row}">
+                    <div class="p-3 mb-2 bg-primary text-white" th:if="${field}">
                         <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
                         <div>
                             <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
