@@ -22,9 +22,10 @@ _Teilnehmer_:
 
 == Aufgaben bis Endpräsentation
 
-- Coverage für Sonarqube erhöhen
+- Coverage für Sonarqube und Jenkins erhöhen
 - Kann Kriterien erfüllen
 - Issues fixen
 - Branches mergen
--
+- Code Smells fixen
+- JavaDoc aktualisieren
 
