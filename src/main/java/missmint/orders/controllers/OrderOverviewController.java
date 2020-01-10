@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -25,6 +26,9 @@ public class OrderOverviewController {
 	private final Catalog<MissMintService> catalog;
 
 	public OrderOverviewController(OrderManager<MissMintOrder> orderManager, Catalog<MissMintService> catalog) {
+		Assert.notNull(orderManager, "orderManager should not be null");
+		Assert.notNull(catalog, "catalog should not be null");
+
 		this.orderManager = orderManager;
 		this.catalog = catalog;
 	}

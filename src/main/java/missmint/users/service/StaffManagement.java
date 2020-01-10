@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -85,12 +87,14 @@ public class StaffManagement {
 		return findByUserName(userName).flatMap(staffRepository::findByUserAccount);
 	}
 
-	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, ServiceCategory service) {
+	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, Set<ServiceCategory> service) {
 		staff.setFirstName(firstName);
 		staff.setLastName(lastName);
 		staff.setSalary(salary);
 		if (service != null) {
-			staff.addSkill(service);
+			staff.updateSkills(service);
+		} else {
+			staff.updateSkills(new HashSet<>());
 		}
 		staffRepository.save(staff);
 	}

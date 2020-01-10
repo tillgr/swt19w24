@@ -133,13 +133,9 @@ public class StaffController {
 			return editUserPage(id, editForm, pwdForm, model);
 		}
 
-		var skillsCount = staff.getSkills().size();
+		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getUpdateSkills());
 
-		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getNewSkill());
-
-		if (skillsCount != staff.getSkills().size()) {
-			timeTableService.rebuildTimeTable();
-		}
+		timeTableService.rebuildTimeTable();
 
 		return "redirect:/users";
 	}

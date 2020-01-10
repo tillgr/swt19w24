@@ -19,6 +19,12 @@ import java.util.Optional;
 public class ServiceManager {
 	private Catalog<MissMintService> catalog;
 
+	public ServiceManager(Catalog<MissMintService> catalog) {
+		Assert.notNull(catalog, "catalog should not be null");
+
+		this.catalog = catalog;
+	}
+
 	/**
 	 * Returns the service's category.
 	 *
@@ -27,13 +33,11 @@ public class ServiceManager {
 	 * @see ServiceCategory
 	 */
 	public static ServiceCategory getCategory(MissMintService service) {
+		Assert.notNull(service, "service should not be null");
+
 		Optional<String> optionalService = service.getCategories().filter(s -> !s.equals("SERVICE")).get().findAny();
 		Assert.isTrue(optionalService.isPresent(), "a service should have a category");
 		return ServiceCategory.valueOf(optionalService.get());
-	}
-
-	public ServiceManager(Catalog<MissMintService> catalog) {
-		this.catalog = catalog;
 	}
 
 	/**
@@ -41,6 +45,8 @@ public class ServiceManager {
 	 * @return The service of an order.
 	 */
 	public MissMintService getService(MissMintOrder order) {
+		Assert.notNull(order, "order should not be null");
+
 		ProductIdentifier productIdentifier = Utils.getOrThrow(order.getOrderLines().stream().findAny()).getProductIdentifier();
 		return Utils.getOrThrow(catalog.findById(productIdentifier));
 	}

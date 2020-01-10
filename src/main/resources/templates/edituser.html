@@ -23,7 +23,6 @@
                 <th scope="col">Nutzername</th>
                 <th scope="col">Gehalt/Monat in €</th>
                 <th scope="col">Fähigkeiten</th>
-                <th scope="col">Fähigkeiten hinzufügen</th>
             </tr>
             </thead>
             <tbody>
@@ -62,13 +61,12 @@
                         </div>
                     </div>
                 </td>
-                <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
                 <td>
                     <div class="form-group">
-                        <select class="form-control" id="service" th:field="*{newSkill}">
-                            <option th:value="null" text="Please Select"></option>
-                            <option th:each="service : ${services}" th:value="${service.name()}"
-                                    th:text="#{'users.service.' + ${service.name()}}"></option>
+                        <select class="form-control" id="updateSkills" th:name="updateSkills" multiple>
+                            <option th:each="service : ${services}" th:value="${service.name()}" th:selected="${staff.getSkills().contains(service)}"
+                                    th:text="#{'users.service.' + ${service.name()}}">
+                            </option>
                         </select>
                     </div>
                 </td>

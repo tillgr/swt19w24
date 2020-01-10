@@ -16,6 +16,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,6 +40,13 @@ public class ReceivingController {
 	private final MaterialManager materialManager;
 
 	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, MaterialManager materialManager) {
+		Assert.notNull(serviceManager, "serviceManager should not be null");
+		Assert.notNull(businessTime, "businessTime should not be null");
+		Assert.notNull(orderManager, "orderManager should not be null");
+		Assert.notNull(orderService, "orderService should not be null");
+		Assert.notNull(receivingService, "receivingService should not be null");
+		Assert.notNull(materialManager, "materialManager should not be null");
+
 		this.serviceManager = serviceManager;
 		time = businessTime;
 		this.orderManager = orderManager;
@@ -85,10 +93,10 @@ public class ReceivingController {
 
 		LocalDate now = time.getTime().toLocalDate();
 		MissMintOrder order = new MissMintOrder(
-				userAccount,
-				form.getCustomer(),
-				now, service,
-				new OrderItem(form.getDescription())
+			userAccount,
+			form.getCustomer(),
+			now, service,
+			new OrderItem(form.getDescription())
 		);
 		session.setAttribute("order", order);
 

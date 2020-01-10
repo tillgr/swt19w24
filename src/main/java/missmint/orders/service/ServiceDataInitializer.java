@@ -1,6 +1,5 @@
 package missmint.orders.service;
 
-import com.mysema.commons.lang.Assert;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.core.DataInitializer;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.stream.Stream;
 

@@ -57,6 +57,15 @@ public class TimeTableService {
 							StaffRepository staffRepository,
 							OrderManager<MissMintOrder> orderManager,
 							EntityManager entityManager) {
+		Assert.notNull(serviceManager, "serviceManager should not be null");
+		Assert.notNull(businessTime, "businessTime should not be null");
+		Assert.notNull(orderService, "orderService should not be null");
+		Assert.notNull(rooms, "rooms should not be null");
+		Assert.notNull(entries, "entries should not be null");
+		Assert.notNull(staffRepository, "staffRepository should not be null");
+		Assert.notNull(orderManager, "orderManager should not be null");
+		Assert.notNull(entityManager, "entityManager should not be null");
+
 		this.serviceManager = serviceManager;
 		this.time = businessTime;
 		this.orderService = orderService;
@@ -73,6 +82,8 @@ public class TimeTableService {
 	}
 
 	private Stream<Pair<Integer, Pair<LocalTime, LocalTime>>> slotStream(LocalDate date) {
+		Assert.notNull(date, "date should not be null");
+
 		LocalDateTime now = time.getTime();
 		return IntStream.range(0, SLOTS.size())
 			.mapToObj(slotIndex -> Pair.of(slotIndex, SLOTS.get(slotIndex)))
@@ -102,6 +113,8 @@ public class TimeTableService {
 	}
 
 	public TimeTableEntry createEntry(MissMintOrder order) {
+		Assert.notNull(order, "order should not be null");
+
 		MissMintService service = serviceManager.getService(order);
 		ServiceCategory category = ServiceManager.getCategory(service);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");

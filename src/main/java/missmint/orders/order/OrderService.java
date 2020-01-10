@@ -24,6 +24,7 @@ import static missmint.orders.order.OrderState.*;
 
 /**
  * This class provides services for handling orders.
+ *
  * @see MissMintOrder
  */
 @Service
@@ -40,6 +41,12 @@ public class OrderService {
 	private long compensation;
 
 	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager, Catalog<OrderItem> itemCatalog) {
+		Assert.notNull(businessTime, "businessTime should not be null");
+		Assert.notNull(rooms, "rooms should not be null");
+		Assert.notNull(staffRepository, "staffRepository should not be null");
+		Assert.notNull(orderManager, "orderManager should not be null");
+		Assert.notNull(itemCatalog, "itemCatalog should not be null");
+
 		this.businessTime = businessTime;
 		this.rooms = rooms;
 		this.staffRepository = staffRepository;
@@ -84,6 +91,8 @@ public class OrderService {
 	 * @return true if the order is acceptable
 	 */
 	public boolean isOrderAcceptable(MissMintService service) {
+		Assert.notNull(service, "service should not be null");
+
 		return rooms.count() > 0 && staffRepository.existsBySkillsContaining(ServiceManager.getCategory(service));
 	}
 
@@ -135,14 +144,7 @@ public class OrderService {
 					}
 					break;
 				case STORED:
-					if (order.getLatestFinished().plusWeeks(1).plusMonths(3).isBefore(businessTime.getTime().toLocalDate())) {
-						order.setOrderState(OrderState.CHARITABLE_USED);
-						OrderItem item = order.getItem();
-						order.setItem(null);
-						orderManager.save(order);
-						itemCatalog.delete(item);
-						changed.set(true);
-					}
+					updateStoredOrder(changed, order);
 					break;
 				default:
 					break;
@@ -151,6 +153,17 @@ public class OrderService {
 		});
 
 		return changed.get();
+	}
+
+	private void updateStoredOrder(AtomicBoolean changed, MissMintOrder order) {
+		if (order.getLatestFinished().plusWeeks(1).plusMonths(3).isBefore(businessTime.getTime().toLocalDate())) {
+			order.setOrderState(OrderState.CHARITABLE_USED);
+			OrderItem item = order.getItem();
+			order.setItem(null);
+			orderManager.save(order);
+			itemCatalog.delete(item);
+			changed.set(true);
+		}
 	}
 
 }
