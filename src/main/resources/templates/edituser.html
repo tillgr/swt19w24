@@ -34,7 +34,7 @@
                                    required="required" th:value="${staff.lastName()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
-                            <p>Der Nachname darf nicht leer sein.</p>
+                            <p>Name must not be empty.</p>
                         </div>
                     </div>
                 </td>
@@ -45,7 +45,7 @@
                                    required="required" th:value="${staff.getFirstName()}"/>
                         </label><br/>
                         <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
-                            <p>Der Vorname darf nicht leer sein.</p>
+                            <p>Name must not be empty.</p>
                         </div>
                     </div>
                 </td>
