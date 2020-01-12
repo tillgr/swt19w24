@@ -40,7 +40,7 @@
                         <button type="submit" class="btn btn-primary mr-1" th:text="#{users.edit}">Bearbeiten</button>
                     </form>
                     <form class="form-inline" method="post" th:action="@{/users/delete/{userName}(userName=${staff.getUserName()})}">
-                        <div class="form-check form-group">
+                        <div class="form-check form-group" th:unless="${staff.getRole().getName() == 'ADMIN'}" >
                             <button type="submit" class="btn btn-danger" th:text="#{users.remove}">Entlassen</button>
                             <label class="sr-only" for="fire" th:text="#{users.remove.confirmation}">Confirm Deletion</label>
                             <input class="form-check form-check-input ml-2" id="fire" required type="checkbox">

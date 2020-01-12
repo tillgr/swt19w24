@@ -7,7 +7,6 @@ import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
 import org.salespointframework.core.DataInitializer;
-import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.stereotype.Component;
@@ -38,9 +37,14 @@ public class StaffInitializer implements DataInitializer {
 	public void initialize() {
 		var password = "123";
 
-		// TODO add salary to admin
-		var adminRole = Role.of(AccountRole.ADMIN.name());
-		userAccountManager.create("user", Password.UnencryptedPassword.of("test"), adminRole);
+		staffManagement.createStaff(new RegistrationForm(
+				"Kevin",
+				"Becker",
+				"user",
+				"test",
+				BigDecimal.valueOf(200)),
+				Role.of(AccountRole.ADMIN.name())
+		);
 
 		List.of(
 			new RegistrationForm("Hans","Müller","hans", password, BigDecimal.valueOf(100)),
