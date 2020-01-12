@@ -48,15 +48,17 @@ public class StaffManagement {
 	 *
 	 * @param form used to create account credentials
 	 */
-	public void createStaff(RegistrationForm form) {
+	public void createStaff(RegistrationForm form, Role role) {
 
 		Assert.notNull(form, "RegistrationForm cannot be null.");
-
-		var role = Role.of(AccountRole.EMPLOYEE.name());
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
 
 		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName(), form.getSalary()));
+	}
+
+	public void createStaff(RegistrationForm form) {
+		createStaff(form , Role.of(AccountRole.EMPLOYEE.name()));
 	}
 
 	/**

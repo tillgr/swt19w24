@@ -94,4 +94,84 @@ public class StaffControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("Password cannot be empty.")));
 	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void editFirstName() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "Johnny")
+				.param("lastName", "Tolkien")
+				.param("salary", "1")
+		)
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/users"));
+
+		assertThat(staff.getFirstName()).isEqualTo("Johnny");
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void editFirstNameToBlank() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "  ")
+				.param("lastName", "Tolkien")
+				.param("salary", "1")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Name must not be empty.")));
+		assertThat(staff.getFirstName()).isEqualTo("John");
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void editLastName() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "John")
+				.param("lastName", "Meyer")
+				.param("salary", "1")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/users"));
+		assertThat(staff.getLastName()).isEqualTo("Meyer");
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void editLastNameToBlank() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "John")
+				.param("lastName", "  ")
+				.param("salary", "1")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Name must not be empty.")));
+		assertThat(staff.getLastName()).isEqualTo("Tolkien");
+	}
 }
