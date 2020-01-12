@@ -13,11 +13,16 @@ import java.time.LocalDate;
  */
 public interface EntryRepository extends CrudRepository<TimeTableEntry, Long> {
 	boolean existsByRoomAndDateAndSlot(Room room, LocalDate date, int slot);
+
 	boolean existsByStaffAndDateAndSlot(Staff staff, LocalDate date, int slot);
+
 	Streamable<TimeTableEntry> findAllByDateAfter(LocalDate date);
+
 	void deleteTimeTableEntriesByStaff(Staff staff);
+
 	void deleteTimeTableEntriesByOrder(MissMintOrder order);
+
 	Streamable<TimeTableEntry> findAllByStaff(Staff staff);
+
 	TimeTableEntry findByDateAndSlotAndRoom(LocalDate date, int slot, Room room);
-	TimeTableEntry findByOrder(MissMintOrder order);
 }

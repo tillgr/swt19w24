@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,9 @@ public class PickUpController {
 	private PickUpService pickupService;
 
 	public PickUpController(OrderService orderService, PickUpService pickupService) {
+		Assert.notNull(orderService, "orderService should not be null");
+		Assert.notNull(pickupService, "pickupService should not be null");
+
 		this.orderService = orderService;
 		this.pickupService = pickupService;
 	}

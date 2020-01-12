@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -46,15 +48,17 @@ public class StaffManagement {
 	 *
 	 * @param form used to create account credentials
 	 */
-	public void createStaff(RegistrationForm form) {
+	public void createStaff(RegistrationForm form, Role role) {
 
 		Assert.notNull(form, "RegistrationForm cannot be null.");
-
-		var role = Role.of(AccountRole.EMPLOYEE.name());
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
 
 		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName(), form.getSalary()));
+	}
+
+	public void createStaff(RegistrationForm form) {
+		createStaff(form , Role.of(AccountRole.EMPLOYEE.name()));
 	}
 
 	/**
@@ -85,12 +89,14 @@ public class StaffManagement {
 		return findByUserName(userName).flatMap(staffRepository::findByUserAccount);
 	}
 
-	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, ServiceCategory service) {
+	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, Set<ServiceCategory> service) {
 		staff.setFirstName(firstName);
 		staff.setLastName(lastName);
 		staff.setSalary(salary);
 		if (service != null) {
-			staff.addSkill(service);
+			staff.updateSkills(service);
+		} else {
+			staff.updateSkills(new HashSet<>());
 		}
 		staffRepository.save(staff);
 	}

@@ -22,6 +22,7 @@ import org.springframework.util.Assert;
 
 /**
  * A service that handles the receiving process.
+ *
  * @see missmint.orders.controllers.ReceivingController
  */
 @Service
@@ -38,17 +39,28 @@ public class ReceivingService {
 	private final Messages messages;
 
 	public ReceivingService(
-			OrderService orderService,
-			OrderManager<MissMintOrder> orderManager,
-			TimeTableService timeTableService,
-			Catalog<OrderItem> itemCatalog,
-			EntryRepository entryRepository,
-			UniqueInventory<UniqueInventoryItem> materialInventory,
-			MaterialManager materialManager,
-			FinanceService financeService,
-			ServiceManager serviceManager,
-			Messages messages
+		OrderService orderService,
+		OrderManager<MissMintOrder> orderManager,
+		TimeTableService timeTableService,
+		Catalog<OrderItem> itemCatalog,
+		EntryRepository entryRepository,
+		UniqueInventory<UniqueInventoryItem> materialInventory,
+		MaterialManager materialManager,
+		FinanceService financeService,
+		ServiceManager serviceManager,
+		Messages messages
 	) {
+		Assert.notNull(orderService, "orderService should not be null");
+		Assert.notNull(orderManager, "orderManager should not be null");
+		Assert.notNull(timeTableService, "timeTableService should not be null");
+		Assert.notNull(itemCatalog, "itemCatalog should not be null");
+		Assert.notNull(entryRepository, "entryRepository should not be null");
+		Assert.notNull(materialInventory, "materialInventory should not be null");
+		Assert.notNull(materialManager, "materialManager should not be null");
+		Assert.notNull(financeService, "financeService should not be null");
+		Assert.notNull(serviceManager, "serviceManager should not be null");
+		Assert.notNull(messages, "messages should not be null");
+
 		this.orderService = orderService;
 		this.orderManager = orderManager;
 		this.timeTableService = timeTableService;
@@ -67,14 +79,16 @@ public class ReceivingService {
 	 * @param order The order that should be received. The order must be acceptable.
 	 */
 	public void receiveOrder(MissMintOrder order) {
+		Assert.notNull(order, "order should not be null");
+
 		MissMintService service = serviceManager.getService(order);
 		Assert.isTrue(orderService.isOrderAcceptable(service), "service must be acceptable");
 		itemCatalog.save(order.getItem());
 
 		order.getOrderLines().forEach(orderLine ->
 			financeService.add(
-					messages.get("orders.service." + orderLine.getProductName()) + " " + order.getId(),
-					orderLine.getPrice())
+				messages.get("orders.service." + orderLine.getProductName()) + " " + order.getId(),
+				orderLine.getPrice())
 		);
 
 		TimeTableEntry entry = timeTableService.createEntry(order);

@@ -4,13 +4,22 @@ import org.salespointframework.inventory.InventoryItemIdentifier;
 
 import javax.validation.constraints.*;
 
+/**
+ * A form for changing the amount of stock for a certain material.
+ */
 public class MaterialForm {
-
-	@NotNull
+	/**
+	 * Amount of stock change.
+	 *
+	 * Must not be null and between 1 and 10000.
+	 */
+	@NotNull(message = "{MaterialForm.number.notNull}")
 	@Min(1)
 	@Max(10000)
 	private int number;
-
+	/**
+	 * Identifier of the material for which the amount of stock is changed.
+	 */
 	@NotNull
 	private InventoryItemIdentifier materialId;
 

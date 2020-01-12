@@ -4,7 +4,6 @@ import missmint.inventory.products.OrderItem;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
 import missmint.time.EntryRepository;
-import missmint.time.TimeTableEntry;
 import missmint.time.TimeTableService;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -32,6 +31,11 @@ public class OrderItemManager {
 		this.timeTableService = timeTableService;
 	}
 
+	/**
+	 * Deletes the specified Order-Item.
+	 *
+	 * @param orderItemId Identifier of the Order-Item.
+	 */
 	public void deleteOrderItem(ProductIdentifier orderItemId) {
 		Page<MissMintOrder> orders = orderManager.findAll(Pageable.unpaged());
 		OrderItem test = new OrderItem("Placeholder");

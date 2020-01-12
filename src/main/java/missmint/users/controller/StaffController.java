@@ -58,8 +58,12 @@ public class StaffController {
 	@PostMapping("/users/delete/{userName}")
 	public String deleteUser(@PathVariable String userName) {
 
-		staffManagement.deleteStaff(userName);
-		timeTableService.rebuildTimeTable();
+		var staff = Utils.getOrThrow(staffManagement.findStaffByUserName(userName));
+
+		if (!staff.getRole().getName().equals("ADMIN")) {
+			staffManagement.deleteStaff(userName);
+			timeTableService.rebuildTimeTable();
+		}
 
 		return "redirect:/users";
 	}
@@ -122,8 +126,8 @@ public class StaffController {
 	@PostMapping("/users/{id}")
 	public String saveUser(
 		@PathVariable long id,
-		@Valid @ModelAttribute("editform") EditStaffForm editForm,
 		@ModelAttribute("pwdform") PasswordForm pwdForm,
+		@Valid @ModelAttribute("editform") EditStaffForm editForm,
 		Errors result,
 		Model model
 	) {
@@ -133,13 +137,9 @@ public class StaffController {
 			return editUserPage(id, editForm, pwdForm, model);
 		}
 
-		var skillsCount = staff.getSkills().size();
+		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getUpdateSkills());
 
-		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getNewSkill());
-
-		if (skillsCount != staff.getSkills().size()) {
-			timeTableService.rebuildTimeTable();
-		}
+		timeTableService.rebuildTimeTable();
 
 		return "redirect:/users";
 	}

@@ -1,6 +1,7 @@
 package missmint.users.model;
 
 import missmint.orders.service.ServiceCategory;
+import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
@@ -78,6 +79,10 @@ public class Staff {
 		return skills.add(service);
 	}
 
+	public void updateSkills(Set<ServiceCategory> service) {
+		skills = service;
+	}
+
 	public boolean removeSkill(ServiceCategory service) {
 		return skills.remove(service);
 	}
@@ -92,5 +97,9 @@ public class Staff {
 
 	public Set<ServiceCategory> getSkills() {
 		return skills;
+	}
+
+	public Role getRole() {
+		return userAccount.getRoles().stream().findFirst().orElseThrow();
 	}
 }
