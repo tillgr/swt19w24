@@ -30,6 +30,11 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
+/**
+ * A service that handles the updates of the time table on changes to staff etc. or progression of time.
+ *
+ * @see TimeTableEntry
+ */
 @Service
 public class TimeTableService {
 	private final ServiceManager serviceManager;
@@ -41,6 +46,7 @@ public class TimeTableService {
 	private OrderManager<MissMintOrder> orderManager;
 	private final EntityManager entityManager;
 
+	/** The list of all available slots in ascending order. */
 	public static final List<Pair<LocalTime, LocalTime>> SLOTS = List.of(
 		Pair.of(LocalTime.of(8, 0), LocalTime.of(9, 0)),
 		Pair.of(LocalTime.of(11, 30), LocalTime.of(12, 30)),
@@ -76,11 +82,19 @@ public class TimeTableService {
 		this.entityManager = entityManager;
 	}
 
+	/**
+	 * @return An infinite stream of all days from today onwards.
+	 */
 	private Stream<LocalDate> dateStream() {
 		LocalDateTime now = time.getTime();
 		return LongStream.range(0, Long.MAX_VALUE).mapToObj(now.toLocalDate()::plusDays);
 	}
 
+	/**
+	 * A stream of all slots that have not begun yet in ascending order.
+	 *
+	 * @param date the date of which the slots should be streamed
+	 */
 	private Stream<Pair<Integer, Pair<LocalTime, LocalTime>>> slotStream(LocalDate date) {
 		Assert.notNull(date, "date should not be null");
 
@@ -90,6 +104,10 @@ public class TimeTableService {
 			.filter(indexedSlot -> now.isBefore(LocalDateTime.of(date, indexedSlot.getSecond().getFirst())));
 	}
 
+	/**
+	 * Rebuilds the whole time table by recreating the time table entries for all
+	 * orders that can be processed.
+	 */
 	public void rebuildTimeTable() {
 		LocalDateTime now = time.getTime();
 		entries.findAllByDateAfter(now.toLocalDate().minusDays(1))
@@ -112,6 +130,12 @@ public class TimeTableService {
 
 	}
 
+	/**
+	 * Create a time table entry of the order.
+	 *
+	 * @param order the order to create the entry for
+	 * @return the created entry
+	 */
 	public TimeTableEntry createEntry(MissMintOrder order) {
 		Assert.notNull(order, "order should not be null");
 
