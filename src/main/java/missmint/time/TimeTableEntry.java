@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * Entry represents a booked Timeslot
+ * Entry which represents a booked time slot
  */
 @Entity
 public class TimeTableEntry {
@@ -66,10 +66,16 @@ public class TimeTableEntry {
 		return date;
 	}
 
+	/**
+	 * @return The time the work on the customer item for this slot will be started.
+	 */
 	public LocalDateTime getBeginning() {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getFirst());
 	}
 
+	/**
+	 * @return The time the work on the customer item for this slot will be finished.
+	 */
 	public LocalDateTime getEnd() {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}

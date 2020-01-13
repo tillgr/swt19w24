@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.Duration;
 
+/**
+ * Controller for the time forwarding.
+ */
 @Controller
 public class TimeController {
 	private final TimeService timeService;
@@ -18,6 +21,12 @@ public class TimeController {
 		this.timeService = timeService;
 	}
 
+	/**
+	 * Forward the time by one day.
+	 * @return a redirect to <code>/</code>.
+	 *
+	 * @see TimeService#forward(Duration)
+	 */
 	@PostMapping("/forward")
 	@PreAuthorize("isAuthenticated()")
 	public String forward() {
