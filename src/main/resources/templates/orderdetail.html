@@ -63,7 +63,7 @@
         <button class="btn btn-outline-danger" type="submit" th:unless="${order.canPickUp()}"
                 th:text="#{orders.pickup.beforeFinished}">Give back unfinished
         </button>
-        <button class="btn btn-outline-danger" type="submit" th:if="${order.canPickUp()}"
+        <button class="btn btn-outline-success" type="submit" th:if="${order.canPickUp()}"
                 th:text="#{orders.pickup.returnWithoutPay}">Return for free
         </button>
     </form>
