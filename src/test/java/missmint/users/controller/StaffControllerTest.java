@@ -148,7 +148,6 @@ public class StaffControllerTest {
 				.param("firstName", "John")
 				.param("lastName", "Meyer")
 				.param("salary", "1")
-				.locale(Locale.ROOT)
 		)
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("/users"));
@@ -173,5 +172,171 @@ public class StaffControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("Name must not be empty.")));
 		assertThat(staff.getLastName()).isEqualTo("Tolkien");
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void changeSalary() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "John")
+				.param("lastName", "Tolkien")
+				.param("salary", "500")
+		)
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/users"));
+		assertThat(staff.getSalary()).isEqualTo(BigDecimal.valueOf(500));
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void negativeSalary() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "John")
+				.param("lastName", "Tolkien")
+				.param("salary", "-1")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Salary cannot be negative.")));
+		assertThat(staff.getSalary()).isEqualTo(BigDecimal.valueOf(1));
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void salaryTooLarge() throws Exception {
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+
+		mvc.perform(post(String.format("/users/%d", staff.getId()))
+				.with(csrf())
+				.param("firstName", "John")
+				.param("lastName", "Tolkien")
+				.param("salary", "1000000000000000")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Salary is too large.")));
+		assertThat(staff.getSalary()).isEqualTo(BigDecimal.valueOf(1));
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void registerStaff() throws Exception {
+		mvc.perform(post("/users/registration")
+				.with(csrf())
+				.param("firstName", "John")
+				.param("lastName", "Tolkien")
+				.param("userName", "tester")
+				.param("salary", "20")
+				.param("password", "123")
+		)
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/users"));
+
+		assertThat(staffManagement.findStaffByUserName("tester").isPresent()).isTrue();
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void registerWithBlankFirstName() throws Exception {
+		mvc.perform(post("/users/registration")
+				.with(csrf())
+				.param("firstName", " \t ")
+				.param("lastName", "Tolkien")
+				.param("userName", "tester")
+				.param("salary", "20")
+				.param("password", "123")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Name must not be empty")));
+
+		assertThat(staffManagement.findStaffByUserName("tester").isEmpty()).isTrue();
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void registerWithBlankLastName() throws Exception {
+		mvc.perform(post("/users/registration")
+				.with(csrf())
+				.param("firstName", "Hans")
+				.param("lastName", " ")
+				.param("userName", "tester")
+				.param("salary", "20")
+				.param("password", "123")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Name must not be empty")));
+
+		assertThat(staffManagement.findStaffByUserName("tester").isEmpty()).isTrue();
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void registerWithBlankPassword() throws Exception {
+		mvc.perform(post("/users/registration")
+				.with(csrf())
+				.param("firstName", "Hans")
+				.param("lastName", "Chester")
+				.param("userName", "tester")
+				.param("salary", "20")
+				.param("password", "   ")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Password cannot be blank.")));
+
+		assertThat(staffManagement.findStaffByUserName("tester").isEmpty()).isTrue();
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void registerWithNegativeSalary() throws Exception {
+		mvc.perform(post("/users/registration")
+				.with(csrf())
+				.param("firstName", "Hans")
+				.param("lastName", "Charles")
+				.param("userName", "tester")
+				.param("salary", "-1")
+				.param("password", "123")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Salary cannot be negative.")));
+
+		assertThat(staffManagement.findStaffByUserName("tester").isEmpty()).isTrue();
+	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void registerSalaryTooLarge() throws Exception {
+		mvc.perform(post("/users/registration")
+				.with(csrf())
+				.param("firstName", "Hans")
+				.param("lastName", "Charles")
+				.param("userName", "tester")
+				.param("password", "123")
+				.param("salary", "1000000000000000")
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Salary is too large.")));
+
+		assertThat(staffManagement.findStaffByUserName("tester").isEmpty()).isTrue();
 	}
 }

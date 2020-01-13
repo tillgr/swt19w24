@@ -19,8 +19,9 @@ public class EditStaffForm {
 	private final String lastName;
 
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
-	@Min(0)
-	@Max(999999999999999L) // maximum value for the data type used in the database
+	@Min(value = 0, message = "{EditStaffForm.salary.NotNegative}")
+	// maximum value for the data type used in the database
+	@Max(value = 999999999999999L, message = "{EditStaffForm.salary.TooLarge}")
 	private BigDecimal salary;
 
 	public EditStaffForm(String firstName, String lastName, Set<ServiceCategory> updateSkills, BigDecimal salary) {

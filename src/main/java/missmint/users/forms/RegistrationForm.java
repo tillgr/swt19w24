@@ -21,8 +21,9 @@ public class RegistrationForm {
 	private final String password;
 
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
-	@Min(0)
-	@Max(999999999999999L) // maximum value for the data type used in the database
+	@Min(value = 0, message = "{EditStaffForm.salary.NotNegative}")
+	// maximum value for the data type used in the database
+	@Max(value = 999999999999999L, message = "{EditStaffForm.salary.TooLarge}")
 	private BigDecimal salary;
 
 	public RegistrationForm(String firstName, String lastName, String userName, String password, BigDecimal salary) {
