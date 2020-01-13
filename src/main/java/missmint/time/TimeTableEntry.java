@@ -23,6 +23,7 @@ public class TimeTableEntry {
 	@ManyToOne
 	private Staff staff;
 	private int slot;
+	@SuppressWarnings({"FieldCanBeLocal", "unused"})
 	@ManyToOne
 	private Room room;
 	private LocalDate date;
@@ -38,24 +39,8 @@ public class TimeTableEntry {
 	public TimeTableEntry() {
 	}
 
-	public Room getRoom() {
-		return room;
-	}
-
 	public long getId() {
 		return id;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-	public int getSlot() {
-		return slot;
-	}
-
-	public void setSlot(int slot) {
-		this.slot = slot;
 	}
 
 	public MissMintOrder getOrder() {
