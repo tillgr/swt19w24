@@ -428,7 +428,7 @@ image::models/design/images/dialog.png[]
 //|===
 
 === Aufträge
-image::models/design/images/orders_design.png[Klassendiagramm für das orders Paket,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Paket",align=center]
+image::models/design/images/Package orders.png[Klassendiagramm für das orders Paket,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Paket",align=center]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration |Beschreibung
@@ -466,7 +466,7 @@ Ein Service, der Zugriffe und Operationen auf `MissMintService` wegabstrahiert.
 |===
 
 === Mitarbeiter
-image::models/design/images/users.png[]
+image::models/design/images/Package users.png[]
 |===
 |Klasse/Enumeration/Schnittstelle |Beschreibung
 
@@ -504,7 +504,7 @@ der Mitarbeiterdaten.
 |===
 
 === Inventar
-image::models/design/images/Inventory.png[]
+image::models/design/images/Package inventory.png[]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration/Schnittstelle 
@@ -528,7 +528,7 @@ image::models/design/images/Inventory.png[]
 |===
 
 === Räume
-image::models/design/images/rooms.png[]
+image::models/design/images/Package rooms.png[]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration/Schnittstelle
@@ -558,7 +558,7 @@ image::models/design/images/rooms.png[]
 |===
 
 === Finanzen
-image::models/design/images/finance.jpg[]
+image::models/design/images/Package finance.png[]
 
 |===
 |Klasse/Enumeration/Schnittstelle |Beschreibung
@@ -587,7 +587,7 @@ der Financedaten.
 |===
 
 === Time
-*TODO IMAGE*
+image::models/design/images/Package time.png[]
 
 |===
 |Klasse/Enumeration/Schnittstelle |Beschreibung
@@ -678,10 +678,10 @@ um rechtzeitige Fertigstellung zu ermöglichen.
 // * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
 
 === Aufträge
-image::models/design/images/sd__orders_list__orders_list.jpg[]
-image::models/design/images/sd__orders_receiving__orders_receiving.jpg[]
-image::models/design/images/sd__orders_pick_up__orders_pick_up.jpg[]
-image::models/design/images/sd__orders_update__orders_update.jpg[]
+image::models/design/images/sd__orders_list__orders_list.png[]
+image::models/design/images/sd__orders_receiving__orders_receiving.png[]
+image::models/design/images/sd__orders_pick_up__orders_pick_up.png[]
+image::models/design/images/orders update.png[]
 
 === Mitarbeiter
 image::models/design/images/add_and_delete_staff.png[]

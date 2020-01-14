@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>missmint.rooms</OriginalElement>
+  <nodes>
+    <node x="368.7727272727273" y="100.0">missmint.time</node>
+    <node x="468.0" y="452.0">missmint.rooms.RoomService</node>
+    <node x="371.3456052875697" y="694.0">missmint.rooms.RoomController</node>
+    <node x="382.2727272727273" y="0.0">missmint.rooms.RoomRepository</node>
+    <node x="221.25834879406307" y="240.0">missmint.rooms.Room</node>
+    <node x="267.0" y="474.0">missmint.rooms.AddRoomForm</node>
+    <node x="0.0" y="474.0">missmint.rooms.RoomDataInitializer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="missmint.time" target="missmint.rooms.RoomRepository">
+      <point x="-28.5" y="-15.0" />
+      <point x="397.2727272727273" y="80.0" />
+      <point x="438.2727272727273" y="80.0" />
+      <point x="-16.0" y="15.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomController" target="missmint.time">
+      <point x="-115.14285714285722" y="-113.0" />
+      <point x="457.7027481447125" y="674.0" />
+      <point x="446.5" y="674.0" />
+      <point x="20.72727272727269" y="15.0" />
+    </edge>
+    <edge source="missmint.rooms.AddRoomForm" target="missmint.rooms.Room">
+      <point x="42.25" y="-69.0" />
+      <point x="393.75" y="432.0" />
+      <point x="354.25834879406307" y="432.0" />
+      <point x="38.0" y="81.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomDataInitializer" target="missmint.rooms.Room">
+      <point x="92.625" y="-69.0" />
+      <point x="216.125" y="432.0" />
+      <point x="278.25834879406307" y="432.0" />
+      <point x="-38.0" y="81.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomController" target="missmint.rooms.AddRoomForm">
+      <point x="-172.71428571428578" y="-113.0" />
+      <point x="400.1313195732839" y="674.0" />
+      <point x="351.5" y="674.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomController" target="missmint.rooms.RoomService">
+      <point x="57.5714285714285" y="-113.0" />
+      <point x="630.4170338589981" y="654.0" />
+      <point x="753.0" y="654.0" />
+      <point x="95.0" y="91.0" />
+    </edge>
+    <edge source="missmint.time" target="missmint.rooms.Room">
+      <point x="10.363636363636374" y="15.0" />
+      <point x="436.1363636363637" y="220.0" />
+      <point x="392.25834879406307" y="220.0" />
+      <point x="76.0" y="-81.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomService" target="missmint.rooms.RoomRepository">
+      <point x="76.0" y="-91.0" />
+      <point x="734.0" y="432.0" />
+      <point x="735.6389726345084" y="432.0" />
+      <point x="735.6389726345084" y="80.0" />
+      <point x="470.2727272727273" y="80.0" />
+      <point x="16.0" y="15.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomController" target="missmint.rooms.RoomRepository">
+      <point x="115.14285714285705" y="-113.0" />
+      <point x="687.9884624304267" y="664.0" />
+      <point x="858.5" y="664.0" />
+      <point x="858.5" y="60.0" />
+      <point x="502.2727272727273" y="60.0" />
+      <point x="48.0" y="15.0" />
+    </edge>
+    <edge source="missmint.time" target="missmint.time">
+      <point x="-31.090909090909093" y="15.0" />
+      <point x="394.68181818181824" y="170.0" />
+      <point x="328.7727272727273" y="170.0" />
+      <point x="328.7727272727273" y="105.0" />
+      <point x="-57.0" y="-10.0" />
+    </edge>
+    <edge source="missmint.rooms.Room" target="missmint.time">
+      <point x="0.0" y="-81.0" />
+      <point x="316.25834879406307" y="200.0" />
+      <point x="415.40909090909093" y="200.0" />
+      <point x="-10.363636363636374" y="15.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomRepository" target="missmint.rooms.Room">
+      <point x="-32.0" y="15.0" />
+      <point x="422.2727272727273" y="70.0" />
+      <point x="233.25" y="70.0" />
+      <point x="233.25" y="220.0" />
+      <point x="240.25834879406307" y="220.0" />
+      <point x="-76.0" y="-81.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomService" target="missmint.time">
+      <point x="-76.0" y="-91.0" />
+      <point x="582.0" y="432.0" />
+      <point x="605.6333487940631" y="432.0" />
+      <point x="605.6333487940631" y="220.0" />
+      <point x="467.22727272727275" y="220.0" />
+      <point x="41.45454545454544" y="15.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomDataInitializer" target="missmint.rooms.RoomRepository">
+      <point x="-92.625" y="-69.0" />
+      <point x="30.875" y="432.0" />
+      <point x="56.25" y="432.0" />
+      <point x="56.25" y="50.0" />
+      <point x="390.2727272727273" y="50.0" />
+      <point x="-64.0" y="15.0" />
+    </edge>
+    <edge source="missmint.rooms.RoomService" target="missmint.rooms.Room">
+      <point x="-152.0" y="-91.0" />
+      <point x="506.0" y="422.0" />
+      <point x="392.25834879406307" y="422.0" />
+      <point x="76.0" y="81.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="184.0" y="611.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
