@@ -16,6 +16,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Prepopulate the system with an admin account and a few staff member for demonstration.
+ */
 @Component
 public class StaffInitializer implements DataInitializer {
 

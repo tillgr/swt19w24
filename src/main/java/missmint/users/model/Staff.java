@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Staff member in the system
+ */
 @Entity
 public class Staff {
 	@Id
@@ -29,6 +32,14 @@ public class Staff {
 	// empty constructor for Entity
 	public Staff() {}
 
+	/**
+	 * Create a new staff
+	 *
+	 * @param userAccount Associated user account
+	 * @param firstName Forename of staff
+	 * @param lastName Surname of staff
+	 * @param salary Salary of the staff
+	 */
 	public Staff(UserAccount userAccount, String firstName, String lastName, BigDecimal salary) {
 
 		Assert.notNull(userAccount, "UserAccount cannot be null.");
