@@ -537,12 +537,6 @@ image::models/design/images/Package rooms.png[]
 |Room
 |Klasse die die Räume repräsentiert. Räume stehen in enger Verbindung mit den Timeslots, wobei jeder Raum seine eigenen TimeSlots besitzt.
 
-|Booking
-|Enumeration für die verschiedenen Buchungsfälle der Timeslots.
-
-|TimeTableEntry
-|Diese Klasse repräsentiert Timeslots, die durch Buchung von Räumen in einer bestimmten Zeit zu vollwertigen Einträgen werden können.
-
 |RoomController
 |Ein Spring MVC Controller, der die Verwaltung von Räumen und das buchen von TimeSlots ermöglicht.
 
@@ -552,8 +546,8 @@ image::models/design/images/Package rooms.png[]
 |RoomsRepository
 |Interface welches das Crud Repository von Spring erbt. Es speichert Raumeinträge.
 
-|EntriesRepository
-|Interface welches das Crud Repository von Spring erbt. Es speichert Einträge in TimeSlots.
+|RoomService
+|Dieser Service unterstützt die Aktualisierung von Räumen, sodass neue Räume hinzugefügt und alte gelöscht werden können.
 
 |===
 
@@ -658,7 +652,7 @@ um rechtzeitige Fertigstellung zu ermöglichen.
 |Room
 
 |-
-|Booking
+|RoomService
 
 |FinancialManagement
 |FinanceManager
