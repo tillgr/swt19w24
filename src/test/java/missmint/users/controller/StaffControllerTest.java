@@ -339,4 +339,25 @@ public class StaffControllerTest {
 
 		assertThat(staffManagement.findStaffByUserName("tester").isEmpty()).isTrue();
 	}
+
+	@Test
+	@WithMockUser(username = "Boss", roles = {"ADMIN"})
+	void deleteUser() throws Exception {
+
+		String userName = "tolkien";
+		RegistrationForm form = new RegistrationForm("John", "Tolkien", userName, "123", BigDecimal.valueOf(1));
+		staffManagement.createStaff(form);
+		Staff staff = staffManagement.findStaffByUserName(userName).orElseThrow();
+		assertThat(staffManagement.findStaffByUserName(userName).isPresent()).isTrue();
+
+		mvc.perform(post(String.format("/users/delete/%s", staff.getUserName()))
+				.with(csrf())
+				.param("userName", staff.getUserName())
+				.locale(Locale.ROOT)
+		)
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/users"));
+
+		assertThat(staffManagement.findStaffByUserName(userName).isEmpty()).isTrue();
+	}
 }
