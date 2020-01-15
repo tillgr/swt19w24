@@ -12,6 +12,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * A service that rebuilds the timetable if necessary
+ *
+ * @see TimeTableEntry
+ * @see RoomController
+ */
 @Service
 public class RoomService {
 
