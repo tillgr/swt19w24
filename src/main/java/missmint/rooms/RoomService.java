@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * A service that builds a room table if necessary
+ * A service that handles the updates of the rooms on changes.
  *
  * @see TimeTableEntry
  * @see RoomController
