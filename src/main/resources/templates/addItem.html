@@ -16,22 +16,16 @@
     <h1 th:text="#{finance.addItem.title}">Finance Item hinzufügen</h1>
 
     <form method="post" role="form" id="form" th:action="@{/finance/addItem}" th:object="${form}">
-
-        <div class="ui negative message" th:if="${#fields.hasErrors('*')}">
-            <p>Einige Angaben sind nicht korrekt.</p>
-        </div>
-
-
         <div class="form-group">
             <label for="price">Preis</label>
             <input id="price" name="price" class="form-control" th:field="*{price}" th:errorclass="fieldError" type="number" step="0.01" required="required"/><br/>
-            <div class="ui negative message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
             <input id="description" class="form-control" name="description" th:field="*{description}" th:errorclass="fieldError" type="text" required="required"/><br/>
-            <div class="ui negative message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
         </div>
 
         <button type="submit" class="btn btn-primary" th:text="#{finance.additem.submit}">hinfügen</button>
