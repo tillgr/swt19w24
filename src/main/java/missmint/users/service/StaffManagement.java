@@ -16,8 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
+/**
+ * Service for managing staff members
+ */
 @Service
 @Transactional
 public class StaffManagement {
@@ -45,15 +50,18 @@ public class StaffManagement {
 	 * Creates a new user with employee/admin role and saves it in the system
 	 *
 	 * @param form used to create account credentials
+	 * @param role Role to give only specific access to the system
 	 */
-	public void createStaff(RegistrationForm form) {
+	public void createStaff(RegistrationForm form, Role role) {
 
 		Assert.notNull(form, "RegistrationForm cannot be null.");
-
-		var role = Role.of(AccountRole.EMPLOYEE.name());
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
 		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName(), form.getSalary()));
+	}
+
+	public void createStaff(RegistrationForm form) {
+		createStaff(form , Role.of(AccountRole.EMPLOYEE.name()));
 	}
 
 	/**
@@ -76,24 +84,52 @@ public class StaffManagement {
 		userAccountManager.delete(user);
 	}
 
+	/**
+	 * Find the user account based on the username.
+	 *
+	 * @param userName Username associated with the account
+	 * @return Optional UserAccount
+	 */
 	public Optional<UserAccount> findByUserName(String userName) {
 		return userAccountManager.findByUsername(userName);
 	}
 
+	/**
+	 * Find staff member based on the username
+	 *
+	 * @param userName Username used by staff member
+	 * @return Optional staff
+	 */
 	public Optional<Staff> findStaffByUserName(String userName) {
 		return findByUserName(userName).flatMap(staffRepository::findByUserAccount);
 	}
 
-	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, ServiceCategory service) {
+	/**
+	 * Edit staff member
+	 *
+	 * @param staff Staff to be edited
+	 * @param firstName Forename of staff member
+	 * @param lastName Surename of staff member
+	 * @param salary Salary of staff member
+	 * @param service Set of services/skills
+	 */
+	public void editStaff(Staff staff, String firstName, String lastName, BigDecimal salary, Set<ServiceCategory> service) {
 		staff.setFirstName(firstName);
 		staff.setLastName(lastName);
 		staff.setSalary(salary);
 		if (service != null) {
-			staff.addSkill(service);
+			staff.updateSkills(service);
+		} else {
+			staff.updateSkills(new HashSet<>());
 		}
 		staffRepository.save(staff);
 	}
 
+	/**
+	 * Gets all the staff members in the system
+	 *
+	 * @return All staff members
+	 */
 	public Iterable<Staff> getAllStaff() {
 		return staffRepository.findAll();
 	}

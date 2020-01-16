@@ -7,7 +7,6 @@ import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
 import org.salespointframework.core.DataInitializer;
-import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.stereotype.Component;
@@ -17,6 +16,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Prepopulate the system with an admin account and a few staff member for demonstration.
+ */
 @Component
 public class StaffInitializer implements DataInitializer {
 
@@ -37,16 +39,28 @@ public class StaffInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 		var password = "123";
+		var admin = "user";
 
-		// TODO add salary to admin
-		var adminRole = Role.of(AccountRole.ADMIN.name());
-		userAccountManager.create("user", Password.UnencryptedPassword.of("test"), adminRole);
+		if(userAccountManager.findByUsername(admin).isEmpty()) {
+			staffManagement.createStaff(new RegistrationForm(
+							"Kevin",
+							"Becker",
+							admin,
+							"test",
+							BigDecimal.valueOf(200)),
+					Role.of(AccountRole.ADMIN.name())
+			);
+		}
 
 		List.of(
 			new RegistrationForm("Hans","Müller","hans", password, BigDecimal.valueOf(100)),
 			new RegistrationForm("Dexter", "Morgan","dextermorgan", password, BigDecimal.valueOf(50)),
 			new RegistrationForm("Drax", "The Destroyer", "XXXDestroyerXXX", password, BigDecimal.valueOf(20))
-		).forEach(staffManagement::createStaff);
+		).forEach(form -> {
+			if (userAccountManager.findByUsername(form.getUserName()).isEmpty()) {
+				staffManagement.createStaff(form);
+			}
+		});
 
 		Optional<Staff> optionalStaff = staffManagement.findStaffByUserName("hans");
 		Assert.isTrue(optionalStaff.isPresent(), "hans was not created");

@@ -44,7 +44,7 @@ public class RoomController {
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("slotTable", roomService.buildRoomTable());
 		model.addAttribute("auth", auth.getName());
-
+		model.addAttribute("times", TimeTableService.SLOTS);
 		return "rooms";
 	}
 
@@ -61,10 +61,16 @@ public class RoomController {
 			return "redirect:/rooms";
 		}
 
-		rooms.save(form.createRoom());
-		service.rebuildTimeTable();
+		if (!rooms.existsByName(form.getName())){
+			rooms.save(form.createRoom());
+			service.rebuildTimeTable();
+			return "redirect:/rooms";
+		}
 
-		return "redirect:/rooms";
+		else {
+			errors.rejectValue("name", "rooms.add.name.exists");
+			return "redirect:/rooms";
+		}
 	}
 
 	/**

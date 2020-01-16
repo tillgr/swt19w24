@@ -1,6 +1,7 @@
 package missmint.users.model;
 
 import missmint.orders.service.ServiceCategory;
+import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
@@ -9,6 +10,9 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Staff member in the system
+ */
 @Entity
 public class Staff {
 	@Id
@@ -28,6 +32,14 @@ public class Staff {
 	// empty constructor for Entity
 	public Staff() {}
 
+	/**
+	 * Create a new staff
+	 *
+	 * @param userAccount Associated user account
+	 * @param firstName Forename of staff
+	 * @param lastName Surname of staff
+	 * @param salary Salary of the staff
+	 */
 	public Staff(UserAccount userAccount, String firstName, String lastName, BigDecimal salary) {
 
 		Assert.notNull(userAccount, "UserAccount cannot be null.");
@@ -78,6 +90,10 @@ public class Staff {
 		return skills.add(service);
 	}
 
+	public void updateSkills(Set<ServiceCategory> service) {
+		skills = service;
+	}
+
 	public boolean removeSkill(ServiceCategory service) {
 		return skills.remove(service);
 	}
@@ -92,5 +108,9 @@ public class Staff {
 
 	public Set<ServiceCategory> getSkills() {
 		return skills;
+	}
+
+	public Role getRole() {
+		return userAccount.getRoles().stream().findFirst().orElseThrow();
 	}
 }

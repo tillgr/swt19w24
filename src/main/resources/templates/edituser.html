@@ -14,7 +14,7 @@
 
 <div class="container mt-md-5">
     <h1 th:text="#{users.edit.title}">Nutzerbearbeitung</h1>
-    <form method="post" role="form" id="form" th:object="${editform}" th:action="@{/users/{id}(id=${staff.getId()})}">
+    <form method="post" id="editform" th:object="${editform}" th:action="@{/users/{id}(id=${staff.getId()})}">
         <table class="table">
             <thead>
             <tr>
@@ -23,7 +23,6 @@
                 <th scope="col">Nutzername</th>
                 <th scope="col">Gehalt/Monat in €</th>
                 <th scope="col">Fähigkeiten</th>
-                <th scope="col">Fähigkeiten hinzufügen</th>
             </tr>
             </thead>
             <tbody>
@@ -31,22 +30,22 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text"
+                            <input class="form-control" th:id="lastName" th:name="lastName" th:errorclass="fieldError" type="text"
                                    required="required" th:value="${staff.lastName()}"/>
                         </label><br/>
-                        <div class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
-                            <p>Der Nachname darf nicht leer sein.</p>
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                            <p>Name must not be empty.</p>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text"
+                            <input class="form-control" th:id="firstName" th:name="firstName" th:errorclass="fieldError" type="text"
                                    required="required" th:value="${staff.getFirstName()}"/>
                         </label><br/>
-                        <div class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
-                            <p>Der Vorname darf nicht leer sein.</p>
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                            <p>Name must not be empty.</p>
                         </div>
                     </div>
                 </td>
@@ -54,21 +53,20 @@
                 <td>
                     <div class="field">
                         <label>
-                            <input th:id="salary" th:name="salary" th:errorclass="fieldError" type="number"
+                            <input class="form-control" th:id="salary" th:name="salary" th:errorclass="fieldError" type="number"
                                    required="required" step="0.01" min="0" max="999999999999999" th:value="${staff.getSalary()}"/>
                         </label><br/>
-                        <div class="alert-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
                             <p>Geben sie ein Gehalt ein.</p>
                         </div>
                     </div>
                 </td>
-                <td th:text="${#strings.listJoin(#messages.setMsg(#strings.setPrepend(staff.getSkills(), 'users.service.')), ', ')}">
                 <td>
                     <div class="form-group">
-                        <select class="form-control" id="service" th:field="*{newSkill}">
-                            <option th:value="null" text="Please Select"></option>
-                            <option th:each="service : ${services}" th:value="${service.name()}"
-                                    th:text="#{'users.service.' + ${service.name()}}"></option>
+                        <select class="form-control" id="updateSkills" th:name="updateSkills" multiple>
+                            <option th:each="service : ${services}" th:value="${service.name()}" th:selected="${staff.getSkills().contains(service)}"
+                                    th:text="#{'users.service.' + ${service.name()}}">
+                            </option>
                         </select>
                     </div>
                 </td>
