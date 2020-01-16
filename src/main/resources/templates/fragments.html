@@ -37,9 +37,9 @@
                         <a class="dropdown-item" href="rooms.html" th:text="#{rooms}" th:href="@{/rooms}">Rooms</a>
                         <a class="dropdown-item" href="material.html" th:text="#{materials}" th:href="@{/material}" >Material</a>
                         <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:text="#{finance.balance}" th:href="@{/finance}">Balance</a>
-                        <a class="dropdown-item" href="orderItem.html" th:text="#{orderItems}" th:href="@{/orderItem}">Bestellgegenstände</a>
+                        <a class="dropdown-item" href="orderItem.html" th:text="#{orderItems}" th:href="@{/orderItem}">Order Items</a>
                         <div class="dropdown-divider" sec:authorize="hasRole('ADMIN')"></div>
-                        <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/users}">Nutzerverwaltung</a>
+                        <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/users}" th:text="#{users.management}">User Management</a>
                     </div>
                 </li>
                 <li class="nav-item" sec:authorize="isAnonymous()">
@@ -63,7 +63,7 @@
                 <strong th:text="#{general.brandname}">Miss Mint Mending Points</strong> - <em th:text="#{general.slogan}">Repairs cheap and easy</em>
             </div>
             <div class="col col-12 col-md-4">
-                <span class="float-right">&copy;2019</span>
+                <span class="float-right">&copy;2020</span>
             </div>
         </div>
     </div>

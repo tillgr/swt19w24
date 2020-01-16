@@ -13,6 +13,9 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 
+/**
+ * Service for paying staff members every month
+ */
 @Service
 public class SalaryService {
 	private StaffRepository staffRepository;
@@ -28,6 +31,11 @@ public class SalaryService {
 		this.time = businessTime;
 	}
 
+	/**
+	 * Pay the staff based on the duration
+	 *
+	 * @param duration Duration which has past.
+	 */
 	public void payStaff(Duration duration) {
 		LocalDate now = time.getTime().toLocalDate();
 		LocalDate date = time.getTime().minus(duration).toLocalDate();

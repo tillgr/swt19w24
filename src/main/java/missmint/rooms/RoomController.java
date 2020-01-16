@@ -1,5 +1,4 @@
 package missmint.rooms;
-import missmint.time.EntryRepository;
 import missmint.time.TimeTableService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -8,7 +7,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 /**
  * Controller for displaying and managing rooms.
@@ -41,6 +39,7 @@ public class RoomController {
 	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("slotTable", roomService.buildRoomTable());
+		model.addAttribute("times", TimeTableService.SLOTS);
 		return "rooms";
 	}
 
@@ -57,10 +56,16 @@ public class RoomController {
 			return showRooms(model, form);
 		}
 
-		rooms.save(form.createRoom());
-		service.rebuildTimeTable();
+		if (!rooms.existsByName(form.getName())){
+			rooms.save(form.createRoom());
+			service.rebuildTimeTable();
+			return "redirect:/rooms";
+		}
 
-		return "redirect:/rooms";
+		else {
+			errors.rejectValue("name", "rooms.add.name.exists");
+			return showRooms(model, form);
+		}
 	}
 
 	/**

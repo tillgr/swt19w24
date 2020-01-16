@@ -9,18 +9,34 @@ import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.Set;
 
+/**
+ * Form for editing staff
+ */
 public class EditStaffForm {
+	/**
+	 * Set of updated skills represented by ServiceCategories
+	 */
 	private final Set<ServiceCategory> updateSkills;
 
+	/**
+	 * forename of the staff
+	 */
 	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String firstName;
 
+	/**
+	 * Surname of the staff
+	 */
 	@NotBlank(message = "{EditStaffForm.name.NotBlank}")
 	private final String lastName;
 
+	/**
+	 * Salary per month
+	 */
 	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
-	@Min(0)
-	@Max(999999999999999L) // maximum value for the data type used in the database
+	@Min(value = 0, message = "{EditStaffForm.salary.NotNegative}")
+	// maximum value for the data type used in the database
+	@Max(value = 999999999999999L, message = "{EditStaffForm.salary.TooLarge}")
 	private BigDecimal salary;
 
 	public EditStaffForm(String firstName, String lastName, Set<ServiceCategory> updateSkills, BigDecimal salary) {
