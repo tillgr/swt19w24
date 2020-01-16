@@ -10,6 +10,7 @@ import missmint.users.model.Staff;
 import missmint.users.repositories.StaffRepository;
 import missmint.users.service.StaffManagement;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -29,11 +30,12 @@ public class StaffController {
 	private final StaffManagement staffManagement;
 	private final StaffRepository staffRepository;
 	private final TimeTableService timeTableService;
+	private Authentication authenticat;
 
 	public StaffController(StaffManagement staffManagement,
 						   StaffRepository staffRepository,
-						   TimeTableService timeTableService
-	) {
+						   TimeTableService timeTableService) {
+
 		Assert.notNull(staffManagement, "StaffManagement must not be null");
 
 		this.staffRepository = staffRepository;
