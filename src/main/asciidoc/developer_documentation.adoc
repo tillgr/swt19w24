@@ -557,26 +557,19 @@ image::models/design/images/Package finance.png[]
 |===
 |Klasse/Enumeration/Schnittstelle |Beschreibung
 
-|FinanceConstroller
-|Ein Spring Controller, der Anfragen bzgl. Financeübersicht und zudem Erstellung
-und Löschen von FinanceEinträge verarbeitet.
+|FinanceController
+|Ein Spring Controller, der Anfragen bzgl. Financeübersicht für letzes Monat und für
+die ganze Zeit und zudem Erstellung von Finanzen Einträge verarbeitet.
 
-|FinanceItem
-|Jeder FinanceItem hat eine eindeutige `id`,
-eine `price` , einen `name`, einen `amount` und eine `date` .
+|FinaceService
+|Ein Dienst, der zuständig ist, die Accountancy im System zu verwalten. Man kann dort AccountancyEntry hinfügen, die gesamte Summe von
+Finanzen Aufträge berechnen und letztes Monat anzeigen lassen.
 
-|FinaceManager
-|Ein Dienst, der zuständig ist, die FinanceItem im System zu verwalten. Man kann dort FinanceItem Löschen und Hinfügen.
-
-|FinanceRepository
-|Die Schnittstelle erweitert die `CrudRepository` von Spring. Sie ist verantwortlich für die Persistenz
-der Financedaten.
-
-|FinanceEntryDataInitializer
-|Ein Formular von _SalesPoint_ für die Initialisierung von FinanceItems.
+|FinanceDataInitializer
+|Ein Formular von _SalesPoint_ für die Initialisierung von AccountancyEntry.
 
 |AddFinanceForm
-|Ein Formular um FinanceItem hinzufügen.
+|Ein Formular um AccountancyEnty mit Kost und Beschreibung hinzufügen.
 
 |===
 
