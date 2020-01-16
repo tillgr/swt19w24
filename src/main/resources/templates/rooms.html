@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-
+    <link th:href="@{/resources/room.css}" rel="stylesheet"
+          href="../static/resources/room.css" type="text/css"/>
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-
     <title>Räume</title>
+
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
@@ -40,8 +41,6 @@
 
     <br>
     <h2>Belegplan</h2>
-    <h2 th:text="${#authorization.expression('isAuthenticated()')}">test</h2>
-
 
     <div>
         <table  class="table-striped table" th:action="@{/rooms}">
@@ -51,17 +50,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="row: ${slotTable}">
-                <td  th:each="field: ${row}">
-                   <!-- <span th:classappend="${#authentication.getUserAccount() == field.getOrder().getUserAccount()} ? class='p-3 mb-2 bg-primary text-white' : class='p-3 mb-2 bg-primary text-black' "></span> -->
-                    <div class="p-3 mb-2 bg-primary text-white" th:if="${field}">
-
+            <tr  th:each="row: ${slotTable}">
+                <td  class="marks-wrapper" th:each="field: ${row}">
+                    <div  th:if="${field}">
                         <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
-                        <div>
-                            <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
-                            <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
-                            <span class="font-weight-bold" th:text="${#authentication.getUserAccount()}">Musk</span>
-                        </div>
+                        <div class="marks" th:if ="${auth.equals(field.getStaff().getUserName())}"></div>
+                            <div>
+                                <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
+                                <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
+                            </div>
                     </div>
                     <div th:unless="${field}">
                         <span>-</span>

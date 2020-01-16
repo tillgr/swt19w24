@@ -1,14 +1,16 @@
 package missmint.rooms;
-import missmint.time.EntryRepository;
 import missmint.time.TimeTableService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 /**
  * Controller for displaying and managing rooms.
@@ -38,9 +40,11 @@ public class RoomController {
 	 */
 	@GetMapping("/rooms")
 	@PreAuthorize("isAuthenticated()")
-	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
+	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form , Authentication auth) {
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("slotTable", roomService.buildRoomTable());
+		model.addAttribute("auth", auth.getName());
+
 		return "rooms";
 	}
 
@@ -54,7 +58,7 @@ public class RoomController {
 	@PostMapping("/rooms/add")
 	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors) {
 		if (errors.hasErrors()) {
-			return showRooms(model, form);
+			return "redirect:/rooms";
 		}
 
 		rooms.save(form.createRoom());

@@ -53,7 +53,6 @@ public class StaffManagement {
 		var role = Role.of(AccountRole.EMPLOYEE.name());
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
-
 		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName(), form.getSalary()));
 	}
 
