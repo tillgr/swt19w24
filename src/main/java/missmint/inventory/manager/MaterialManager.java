@@ -85,7 +85,7 @@ public class MaterialManager {
 		int old_quantity = material.getQuantity().getAmount().intValueExact();
 		int new_quantity = old_quantity + amount;
 		int max_addable_quantity = max_quantity - (old_quantity);
-		return new_quantity >= max_quantity ? max_addable_quantity : amount;
+		return new_quantity > max_quantity ? 0 : amount;
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class MaterialManager {
 		int old_quantity = material.getQuantity().getAmount().intValueExact();
 		int new_quantity = old_quantity - amount;
 		if (new_quantity < 0) {
-			amount = old_quantity;
+			return 0;
 		}
 		return amount;
 	}

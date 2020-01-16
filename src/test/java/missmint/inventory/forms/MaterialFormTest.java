@@ -68,7 +68,7 @@ public class MaterialFormTest {
 		});
 	}
 
-
+/*
 	@Test
 	void getterCoverage(){
 		Streamable<Material> product = materialCatalog.findByName("uTest");
@@ -109,4 +109,6 @@ public class MaterialFormTest {
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
+	*/
+
 }

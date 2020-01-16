@@ -41,6 +41,10 @@ public class OrderItemController {
 		return "orderItem";
 	}
 
+	/**
+	 * @param id ProductIdentifier of the OrderItem that gets removed
+	 * @return
+	 */
 	@PostMapping("orders/detail/orderItem/remove/{id}")
 	@PreAuthorize("isAuthenticated()")
 	public String remove(@PathVariable("id") ProductIdentifier id){
