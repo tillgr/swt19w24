@@ -10,7 +10,7 @@ public class AddRoomForm {
 	 *
 	 * This value must not be blank.
 	 */
-	@NotBlank(message = "{rooms.add.name.empty}")
+	@NotBlank(message = "{AddRoomForm.name.empty}")
 	private final String name;
 
 	public AddRoomForm(String name) {
