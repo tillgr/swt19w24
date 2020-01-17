@@ -10,6 +10,7 @@ import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
+
 import javax.money.MonetaryAmount;
 
 @Service
@@ -30,7 +31,7 @@ public class MaterialManager {
 	/**
 	 * Adds a expense for restocking material.
 	 *
-	 * @param material Material which is to be billed.
+	 * @param material      Material which is to be billed.
 	 * @param restockAmount Amount of material.
 	 */
 	public void billMaterial(UniqueInventoryItem material, int restockAmount) {
@@ -60,14 +61,14 @@ public class MaterialManager {
 	 * Restocks the material if it exists in the inventory.
 	 *
 	 * @param materialId Identifier of the material that gets restocked.
-	 * @param amount Amount by which the material gets restocked.
+	 * @param amount     Amount by which the material gets restocked.
 	 * @return The material if it exists in the inventory.
 	 * @throws IllegalArgumentException if the InventoryItemIdentifier supplied by the input does not exist in the inventory
 	 */
-	public UniqueInventoryItem checkAndRestock(InventoryItemIdentifier materialId, int amount){
+	public UniqueInventoryItem checkAndRestock(InventoryItemIdentifier materialId, int amount) {
 		return materialInventory.findById(materialId).map(material -> {
 			Metric materialMetric = material.getQuantity().getMetric();
-			int restockAmount =	restock(material, amount);
+			int restockAmount = restock(material, amount);
 
 			billMaterial(material, restockAmount);
 			materialInventory.save(material.increaseQuantity(Quantity.of(restockAmount, materialMetric)));
@@ -77,7 +78,7 @@ public class MaterialManager {
 
 	/**
 	 * @param material Material.
-	 * @param amount Amount by which the material stock gets increased.
+	 * @param amount   Amount by which the material stock gets increased.
 	 * @return The amount by which the quantity is increased.
 	 */
 	private int restock(UniqueInventoryItem material, int amount) {
@@ -90,29 +91,30 @@ public class MaterialManager {
 
 	/**
 	 * @param materialId Identifier of the material that gets consumed
-	 * @param amount Amount by which the material gets consumed
+	 * @param amount     Amount by which the material gets consumed
 	 * @return The material if it exists in the inventory.
 	 * @throws IllegalArgumentException if the InventoryItemIdentifier supplied by the input does not exist in the inventory
 	 */
-	public UniqueInventoryItem checkAndConsume(InventoryItemIdentifier materialId, int amount){
+	public UniqueInventoryItem checkAndConsume(InventoryItemIdentifier materialId, int amount) {
 		return materialInventory.findById(materialId).map(material -> {
 			Metric materialMetric = material.getQuantity().getMetric();
 			int consumeAmount;
 			int restockAmount;
 
 			consumeAmount = consume(material, amount);
-			materialInventory.save(material.decreaseQuantity(Quantity.of(consumeAmount,materialMetric)));
+			materialInventory.save(material.decreaseQuantity(Quantity.of(consumeAmount, materialMetric)));
 
 			restockAmount = checkStock(material);
-			materialInventory.save(material.increaseQuantity(Quantity.of(restockAmount,materialMetric)));
+			materialInventory.save(material.increaseQuantity(Quantity.of(restockAmount, materialMetric)));
 
-			billMaterial(material,restockAmount);
+			billMaterial(material, restockAmount);
 			return material;
-		}).orElseThrow(()-> new IllegalArgumentException(materialId.toString()));
+		}).orElseThrow(() -> new IllegalArgumentException(materialId.toString()));
 	}
+
 	/**
 	 * @param material Material.
-	 * @param amount Amount by which the material stock gets increased.
+	 * @param amount   Amount by which the material stock gets increased.
 	 * @return The amount by which the quantity is increased.
 	 */
 

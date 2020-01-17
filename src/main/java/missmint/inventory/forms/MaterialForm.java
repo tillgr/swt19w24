@@ -2,7 +2,9 @@ package missmint.inventory.forms;
 
 import org.salespointframework.inventory.InventoryItemIdentifier;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 
 /**
@@ -11,7 +13,7 @@ import java.math.BigInteger;
 public class MaterialForm {
 	/**
 	 * Amount of stock change.
-	 *
+	 * <p>
 	 * Must not be null and between 0 and 10000.
 	 */
 	@Min(value = 0, message = "{materials.error.low}")
@@ -23,7 +25,7 @@ public class MaterialForm {
 	@NotNull
 	private InventoryItemIdentifier materialId;
 
-	public MaterialForm(BigInteger number, InventoryItemIdentifier materialId){
+	public MaterialForm(BigInteger number, InventoryItemIdentifier materialId) {
 		this.number = number;
 		this.materialId = materialId;
 

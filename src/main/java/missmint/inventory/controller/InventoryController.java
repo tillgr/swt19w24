@@ -19,7 +19,6 @@ import javax.validation.Valid;
 public class InventoryController {
 
 
-
 	private final MaterialManager materialManager;
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 
@@ -29,7 +28,7 @@ public class InventoryController {
 	}
 
 	/**
-	 *	Lists all materials in the system.
+	 * Lists all materials in the system.
 	 *
 	 * @return The material template.
 	 */
@@ -46,15 +45,15 @@ public class InventoryController {
 	 */
 	@PostMapping("/material/consume")
 	@PreAuthorize("isAuthenticated()")
-	public String consume(@Valid @ModelAttribute("form") MaterialForm materialForm, Errors errors, Model model){
+	public String consume(@Valid @ModelAttribute("form") MaterialForm materialForm, Errors errors, Model model) {
 		if (errors.hasErrors()) {
 			return material(model, materialForm);
 		}
 		InventoryItemIdentifier materialId = materialForm.getMaterialId();
 		int number = materialForm.getNumber().intValueExact();
 
-		if (materialInventory.findById(materialId).get().getQuantity().getAmount().intValueExact() < number){
-			model.addAttribute("consumeError",true);
+		if (materialInventory.findById(materialId).get().getQuantity().getAmount().intValueExact() < number) {
+			model.addAttribute("consumeError", true);
 			return material(model, materialForm);
 		}
 		materialManager.checkAndConsume(materialId, number);
@@ -67,14 +66,14 @@ public class InventoryController {
 	 */
 	@PostMapping("/material/restock")
 	@PreAuthorize("isAuthenticated()")
-	public String restock(@Valid @ModelAttribute("form") MaterialForm materialForm, Errors errors, Model model){
+	public String restock(@Valid @ModelAttribute("form") MaterialForm materialForm, Errors errors, Model model) {
 		if (errors.hasErrors()) {
 			return material(model, materialForm);
 		}
 		InventoryItemIdentifier materialId = materialForm.getMaterialId();
 		int number = materialForm.getNumber().intValueExact();
-		if (materialInventory.findById(materialId).get().getQuantity().getAmount().intValueExact() + number > 10000){
-			model.addAttribute("restockError",true);
+		if (materialInventory.findById(materialId).get().getQuantity().getAmount().intValueExact() + number > 10000) {
+			model.addAttribute("restockError", true);
 			return material(model, materialForm);
 		}
 		materialManager.checkAndRestock(materialId, number);
