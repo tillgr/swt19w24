@@ -110,7 +110,7 @@ public class StaffManagement {
 	 *
 	 * @param staff Staff to be edited
 	 * @param firstName Forename of staff member
-	 * @param lastName Surename of staff member
+	 * @param lastName Surname of staff member
 	 * @param salary Salary of staff member
 	 * @param service Set of services/skills
 	 */
