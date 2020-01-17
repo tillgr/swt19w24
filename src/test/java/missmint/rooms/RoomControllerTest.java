@@ -21,8 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -64,6 +63,7 @@ public class RoomControllerTest {
 	void roomExists() throws Exception {
 		Room room = new Room("testRaum");
 		rooms.save(room);
+		Set<String> names= new HashSet<>();
 
 		mvc.perform(post("/rooms/add").locale(Locale.ROOT).with(csrf())
 				.param("name", "testRaum")
@@ -72,6 +72,11 @@ public class RoomControllerTest {
 				.andExpect(view().name("rooms"))
 				.andExpect(content().string(containsString("Room already exists!")));
 
+		rooms.findAll().forEach(room1 -> names.add(room1.getName()));
+		System.out.println(names);
+		System.out.println(rooms.count());
+
+		assertThat( Long.valueOf(names.size()) == (Long)rooms.count()).isTrue();
 	}
 
 	@Test
@@ -80,8 +85,6 @@ public class RoomControllerTest {
 		Room room = new Room("testRaum");
 		rooms.save(room);
 		rooms.delete(room);
-
-		System.out.println(String.format("/rooms/%s/delete", room.getId()));
 
 		mvc.perform(post(String.format("/rooms/%s/delete", room.getId())).locale(Locale.ROOT).with(csrf())
 		)

@@ -3,6 +3,7 @@ package missmint.rooms;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Repository which stores the rooms
