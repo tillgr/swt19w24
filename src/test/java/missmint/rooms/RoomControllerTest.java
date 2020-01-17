@@ -1,5 +1,6 @@
 package missmint.rooms;
 
+import missmint.Utils;
 import missmint.inventory.products.OrderItem;
 import missmint.orders.order.MissMintOrder;
 import missmint.orders.order.OrderState;
@@ -18,6 +19,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Optional;
@@ -54,6 +56,21 @@ public class RoomControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(view().name("rooms"))
 				.andExpect(content().string(containsString("testRaum")));
+
+	}
+
+	@Test
+	@WithMockUser
+	void roomExists() throws Exception {
+		Room room = new Room("testRaum");
+		rooms.save(room);
+
+		mvc.perform(post("/rooms/add").locale(Locale.ROOT).with(csrf())
+				.param("name", "testRaum")
+		)
+				.andExpect(status().isOk())
+				.andExpect(view().name("rooms"))
+				.andExpect(content().string(containsString("Room already exists!")));
 
 	}
 

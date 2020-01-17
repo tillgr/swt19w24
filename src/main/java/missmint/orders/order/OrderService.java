@@ -131,11 +131,7 @@ public class OrderService {
 					}
 					break;
 				case IN_PROGRESS:
-					if (entry != null && businessTime.getTime().isAfter(entry.getEnd())) {
-						order.setOrderState(FINISHED);
-						order.setFinished(entry.getDate());
-						changed.set(true);
-					}
+					updateInProgressOrder(changed, order, entry);
 					break;
 				case FINISHED:
 					if (order.getLatestFinished().plusWeeks(1).isBefore(businessTime.getTime().toLocalDate())) {
@@ -153,6 +149,14 @@ public class OrderService {
 		});
 
 		return changed.get();
+	}
+
+	private void updateInProgressOrder(AtomicBoolean changed, MissMintOrder order, TimeTableEntry entry) {
+		if (entry != null && businessTime.getTime().isAfter(entry.getEnd())) {
+			order.setOrderState(FINISHED);
+			order.setFinished(entry.getDate());
+			changed.set(true);
+		}
 	}
 
 	private void updateStoredOrder(AtomicBoolean changed, MissMintOrder order) {
