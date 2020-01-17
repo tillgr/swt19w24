@@ -38,8 +38,8 @@ public class OrderItemController {
 	}
 
 	/**
-	 * @param id ProductIdentifier of the OrderItem that gets removed
-	 * @return
+	 * @param id ProductIdentifier of the OrderItem that gets removed.
+	 * @return redirect to /order.
 	 */
 	@PostMapping("orders/detail/orderItem/remove/{id}")
 	@PreAuthorize("isAuthenticated()")

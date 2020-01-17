@@ -72,6 +72,7 @@ public class InventoryController {
 		}
 		InventoryItemIdentifier materialId = materialForm.getMaterialId();
 		int number = materialForm.getNumber().intValueExact();
+		
 		if (materialInventory.findById(materialId).get().getQuantity().getAmount().intValueExact() + number > 10000) {
 			model.addAttribute("restockError", true);
 			return material(model, materialForm);

@@ -2,10 +2,12 @@ package missmint.inventory.controller;
 
 import missmint.inventory.forms.MaterialForm;
 import missmint.inventory.products.Material;
+import missmint.inventory.products.OrderItem;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Catalog;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -20,9 +22,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.money.MonetaryAmount;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.salespointframework.core.Currencies.EURO;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,16 +35,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-public class InventoryControllerTest {
+public class ControllersTest {
 
 	@Autowired
 	MockMvc mvc;
-
 	@Autowired
-	InventoryController controller;
-
+	InventoryController inventoryController;
+	@Autowired
+	OrderItemController orderItemController;
 	@Autowired
 	private Catalog<Material> materialCatalog;
+	@Autowired
+	private Catalog<OrderItem> orderItemCatalog;
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> materialInventory;
 
@@ -56,6 +62,10 @@ public class InventoryControllerTest {
 			materialStringPair.getFirst().addCategory(materialStringPair.getSecond());
 			materialCatalog.save(materialStringPair.getFirst());
 		});
+
+		OrderItem orderItem = (new OrderItem("orderItemTest"));
+		orderItemCatalog.save(orderItem);
+
 		materialCatalog.findByCategory("UNIT_MATERIAL").forEach(material -> {
 			if (materialInventory.findByProduct(material).isEmpty()) {
 				materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.UNIT)));
@@ -78,39 +88,55 @@ public class InventoryControllerTest {
 		});
 	}
 
-		@Test
-		void preventsPublicAccess() throws Exception {
+	@Test
+	void preventsPublicAccessInventoryController() throws Exception {
+		mvc.perform(get("/material"))
+				.andExpect(status().isFound())
+				.andExpect(header().string(HttpHeaders.LOCATION, endsWith("/login")));
+		mvc.perform(get("/material/consume"))
+				.andExpect(status().is(405));
+		mvc.perform(get("/material/restock"))
+				.andExpect(status().is(405));
+	}
 
-			mvc.perform(get("/material"))
-					.andExpect(status().isFound())
-					.andExpect(header().string(HttpHeaders.LOCATION, endsWith("/login")));
+	@Test
+	@WithMockUser(username = "user", roles = "ADMIN")
+	void accessibleForAdminInventoryController() throws Exception {
 
-			mvc.perform(get("/material/consume"))
-					.andExpect(status().is(405));
+		mvc.perform(get("/material")) //
+				.andExpect(status().isOk()) //
+				.andExpect(model().attributeExists("material"));
+	}
 
-			mvc.perform(get("/material/restock"))
-					.andExpect(status().is(405));
-		}
+	@Test
+	void preventsPublicAccessOrderItemController() throws Exception {
+		mvc.perform(get("/orderItem"))
+				.andExpect(status().isFound())
+				.andExpect(header().string(HttpHeaders.LOCATION, endsWith("/login")));
+	}
 
-		@Test
-		@WithMockUser(username = "user", roles = "ADMIN")
-		void accessibleForAdmin() throws Exception {
+	@Test
+	@WithMockUser(username = "user", roles = "ADMIN")
+	void accessibleForAdminOrderItemController() throws Exception {
+		mvc.perform(get("/orderItem"))
+				.andExpect(status().isOk())
+				.andExpect(model().attributeExists("orders"));
+	}
 
-			mvc.perform(get("/material")) //
-					.andExpect(status().isOk()) //
-					.andExpect(model().attributeExists("material"));
-		}
-
-		@Test
-		@WithMockUser(username = "user", roles = "ADMIN" )
-		void consumeTest(){
+	@Test
+	@WithMockUser(username = "user", roles = "ADMIN" )
+	void consumeTest(){
 		Streamable<Material> product = materialCatalog.findByName("uTest");
 		Material productMaterial = product.toList().get(0);
 		Optional<UniqueInventoryItem> itemMaterial = materialInventory.findByProduct(productMaterial);
 		InventoryItemIdentifier itemMaterialId = materialInventory.findByProduct(productMaterial).get().getId();
+	}
 
-		//var form = new MaterialForm(20,itemMaterialId);
-		//controller.consume(form);
-		//controller.restock(form);
-		}
+	@Test
+	@WithMockUser(username = "user", roles = "ADMIN" )
+	void removeOrderItemTest(){
+		ProductIdentifier productIdentifier = orderItemCatalog.findByName("orderItemTest").iterator().next().getId();
+		orderItemController.remove(productIdentifier);
+	}
+
 }
