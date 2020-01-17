@@ -1,0 +1,31 @@
+= Protokoll Gruppe 24
+
+Treffen am 10.01.2020
+
+Ort:      WIL C304 +
+Beginn:   16:40 Uhr +
+Ende:     17:00 Uhr
+
+__Schriftführer:__
+Till Große
+
+*Nächstes Treffen:* +
+10.01.2020  WIL C304
+
+_Teilnehmer_:
+
+- Anna Lopatkina
+- Till Große
+- Tobias Köllner
+- Kien Dang Tran
+- Viktor Reusch
+
+== Aufgaben bis Endpräsentation
+
+- Coverage für Sonarqube und Jenkins erhöhen
+- Kann Kriterien erfüllen
+- Issues fixen
+- Branches mergen
+- Code Smells fixen
+- JavaDoc aktualisieren
+

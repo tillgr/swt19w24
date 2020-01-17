@@ -1,0 +1,49 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe: swt19w23__ +
+__Anwendung von Gruppe: swt19w24__
+
+== Getestetes System
+Es handelt sich um eine firmen-interne Software der Miss Mint Mending Points. +
+Sie hat die Aufgabe, den Mitarbeitern der Filiale eine grafische Schnittstelle zur Verwaltung sämtlicher interner Angelegenheiten zu bieten. +
+Darunter zählt z.B. das einfache erstellen eines am Schalter eingehenden Auftrages oder das automatische nachbestellen benötigten Materials. +
+Die Software soll dabei nur für Mitarbeiter zugänglich sein und dem entsprechend auch nur von diese optimiert werden.
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+|http://localhost:8080/users | |Neuer Nutzer mit zu langen Eingaben |This application has no explicit mapping for /error, so you are seeing this as a fallback.
+Sun Dec 22 12:53:58 CET 2019
+There was an unexpected error (type=Internal Server Error, status=500).
+could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement
+|http://localhost:8080/material |50000000000000000 |Maxvalue getestet, evtl. vorher die max value für den Nutzer sichtbar machen |HTML hinweis auf die max value
+|http://localhost:8080/ |Zurück gehen auf http://localhost:8080/rooms/add |Versehentlich zurückgegangen |Leere Seite, keine Weiterleitung
+|http://localhost:8080/ |a |Mehrfach anlegen des Raumes "a" |Kein Error
+| | | |
+| | | |
+| | | |
+|===
+
+== Sonstiges
+* Optik der Anwendung
+** einfaches, schlichtes Design (auf Hauptseite allerdings zu leer)
+** zu lange Zeichenketten werden außerhalb des Feldes / der Box dargestellt (z.B. Raum mit sehr langem Namen)
+** Belegplan vom Raum unverständlich (welcher Tag und welche Zeit)
+* Fehlende Features
+** Stundenplan für jeweilig eingeloggten Mitarbeiter
+* Interaktion mit der Anwendung (Usability)
+** Seitenskalierung bei langen Texten nicht optimal
+** es werden zwei Rechnungen für des Aufstocken erstellt, wenn man unter den Mindestwert fällt
+** Rechnung beim manuellen und automatischen Verbrauchen von vorhandenen Lagerbeständen nicht wichtig (0 EUR)
+** Aufträge- und Bestellgegenstände-Tab redundant zueinander, Zweck von Bestellgegenstände nur eingeschränkter, da keine Details (überflüssig)
+
+== Verbesserungsvorschläge
+* mehrere Fähigkeiten gleichzeitig hinzufügen
+* Benutzername ändern können und Passwort vergessen
+* Material auf höhere Grenze aufstocken
+* Abgabe als eigenen Navigationstab, statt bei Aufträge -> Details
+* Sprache einheitlich machen (entweder englisch oder deutsch, z.B. bei den Finanzen)
+* Vom Raumplan direkt auf den Auftrag zugreifen (in admin ansicht)
+* Auswahl der Auftrag-Kategorie in Haupt- und Unterkategorie unterteilen
