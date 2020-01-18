@@ -41,6 +41,10 @@ public class StaffInitializer implements DataInitializer {
 		var password = "123";
 		var admin = "user";
 
+		if (staffManagement.findByUserName(admin).isPresent()) {
+			return;
+		}
+
 		if(userAccountManager.findByUsername(admin).isEmpty()) {
 			staffManagement.createStaff(new RegistrationForm(
 							"Kevin",
