@@ -164,11 +164,7 @@ public class StaffController {
 			return editUserPage(id, editForm, pwdForm, model);
 		}
 
-		staffManagement.editStaff(staff,
-				editForm.getFirstName(),
-				editForm.getLastName(),
-				editForm.getSalary(),
-				editForm.getUpdateSkills());
+		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getUpdateSkills());
 
 		timeTableService.rebuildTimeTable();
 

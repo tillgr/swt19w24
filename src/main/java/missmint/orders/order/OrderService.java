@@ -40,11 +40,7 @@ public class OrderService {
 	@Value("${orders.pickup.compensation.percent}")
 	private long compensation;
 
-	public OrderService(BusinessTime businessTime,
-						RoomRepository rooms,
-						StaffRepository staffRepository,
-						OrderManager<MissMintOrder> orderManager,
-						Catalog<OrderItem> itemCatalog) {
+	public OrderService(BusinessTime businessTime, RoomRepository rooms, StaffRepository staffRepository, OrderManager<MissMintOrder> orderManager, Catalog<OrderItem> itemCatalog) {
 		Assert.notNull(businessTime, "businessTime should not be null");
 		Assert.notNull(rooms, "rooms should not be null");
 		Assert.notNull(staffRepository, "staffRepository should not be null");
@@ -61,8 +57,7 @@ public class OrderService {
 	/**
 	 * Calculates the amount the employee needs to charge the customer.
 	 * <p>
-	 * This method considers the time the item was stored
-	 * and the number of days the item was not finished through promised.
+	 * This method considers the time the item was stored and the number of days the item was not finished through promised.
 	 *
 	 * @param order The order to calculate the charge for.
 	 * @return A (possible negative or zero) charge.
@@ -73,8 +68,7 @@ public class OrderService {
 		Assert.isTrue(order.canPickUp(), "order can not be picked up");
 
 		long daysTooLate = ChronoUnit.DAYS.between(order.getExpectedFinished(), order.getFinished());
-		var deduction = BigDecimal.valueOf(compensation, 2)
-				.multiply(BigDecimal.valueOf(Math.min(Math.max(daysTooLate, 0), 10)));
+		var deduction = BigDecimal.valueOf(compensation, 2).multiply(BigDecimal.valueOf(Math.min(Math.max(daysTooLate, 0), 10)));
 
 		MonetaryAmount charge = order.getTotal().multiply(deduction).negate();
 

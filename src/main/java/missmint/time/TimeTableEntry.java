@@ -75,12 +75,8 @@ public class TimeTableEntry {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof TimeTableEntry)) {
-			return false;
-		}
+		if (this == o) return true;
+		if (!(o instanceof TimeTableEntry)) return false;
 		TimeTableEntry that = (TimeTableEntry) o;
 		return id == that.id;
 	}

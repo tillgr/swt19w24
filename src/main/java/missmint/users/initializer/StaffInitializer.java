@@ -26,9 +26,7 @@ public class StaffInitializer implements DataInitializer {
 	private StaffManagement staffManagement;
 	private StaffRepository staffRepository;
 
-	public StaffInitializer(UserAccountManager userAccountManager,
-							StaffManagement staffManagement,
-							StaffRepository staffRepository) {
+	public StaffInitializer(UserAccountManager userAccountManager, StaffManagement staffManagement, StaffRepository staffRepository) {
 		this.staffRepository = staffRepository;
 
 		Assert.notNull(userAccountManager, "UserAccountManager must not be null");

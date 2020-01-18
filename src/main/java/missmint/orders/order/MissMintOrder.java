@@ -45,11 +45,7 @@ public class MissMintOrder extends Order {
 	 * @see MissMintService
 	 * @see OrderItem
 	 */
-	public MissMintOrder(UserAccount userAccount,
-						 String customer,
-						 LocalDate inbound,
-						 MissMintService service,
-						 OrderItem item) {
+	public MissMintOrder(UserAccount userAccount, String customer, LocalDate inbound, MissMintService service, OrderItem item) {
 		super(userAccount);
 
 		Assert.notNull(customer, "customer must not be null");

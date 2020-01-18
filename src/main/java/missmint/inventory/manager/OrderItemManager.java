@@ -24,10 +24,7 @@ public class OrderItemManager {
 	private final EntryRepository entryRepository;
 	private final TimeTableService timeTableService;
 
-	public OrderItemManager(OrderManager<MissMintOrder> orderManager,
-							Catalog<OrderItem> orderItemCatalog,
-							EntryRepository entryRepository,
-							TimeTableService timeTableService) {
+	public OrderItemManager(OrderManager<MissMintOrder> orderManager, Catalog<OrderItem> orderItemCatalog, EntryRepository entryRepository, TimeTableService timeTableService) {
 		this.orderManager = orderManager;
 		this.orderItemCatalog = orderItemCatalog;
 		this.entryRepository = entryRepository;

@@ -45,12 +45,7 @@ public class SalaryService {
 			for (Staff staff : staffRepository.findAll()) {
 				MonetaryAmount salary = Money.of(staff.getSalary(), currency);
 
-				financeService.add(String.format(
-						"salary for %s %s on %s",
-						staff.getFirstName(),
-						staff.getLastName(),
-						date),
-						salary.negate());
+				financeService.add(String.format("salary for %s %s on %s", staff.getFirstName(), staff.getLastName(), date), salary.negate());
 			}
 
 			date = date.plusMonths(1);

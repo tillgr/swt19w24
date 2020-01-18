@@ -61,9 +61,7 @@ public class OrderOverviewController {
 		MissMintOrder order = Utils.getOrThrow(pathOrder);
 		model.addAttribute("order", order);
 
-		ProductIdentifier productIdentifier = Utils.getOrThrow(
-				order.getOrderLines().stream().findAny()
-		).getProductIdentifier();
+		ProductIdentifier productIdentifier = Utils.getOrThrow(order.getOrderLines().stream().findAny()).getProductIdentifier();
 		MissMintService service = Utils.getOrThrow(catalog.findById(productIdentifier));
 		model.addAttribute("service", service);
 
