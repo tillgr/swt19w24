@@ -71,7 +71,6 @@ public class RoomControllerTest {
 	void deleteRoom() throws Exception {
 		Room room = new Room("testRaum");
 		rooms.save(room);
-		rooms.delete(room);
 
 		mvc.perform(post(String.format("/rooms/%s/delete", room.getId())).locale(Locale.ROOT).with(csrf())
 		)
