@@ -102,7 +102,8 @@ public class ReceivingService {
 				String materialName = x.getFirst();
 				Quantity quantity = x.getSecond();
 				Material material = materialManager.fromName(materialName);
-				UniqueInventoryItem item = materialInventory.findByProduct(material).orElseThrow(() -> new RuntimeException("could not find inventory item"));
+				UniqueInventoryItem item = materialInventory.findByProduct(material)
+						.orElseThrow(() -> new RuntimeException("could not find inventory item"));
 				materialManager.checkAndConsume(item.getId(), quantity.getAmount().intValue());
 			}
 		);

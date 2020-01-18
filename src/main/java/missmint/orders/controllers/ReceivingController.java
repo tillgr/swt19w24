@@ -39,7 +39,12 @@ public class ReceivingController {
 	private final ServiceManager serviceManager;
 	private final MaterialManager materialManager;
 
-	public ReceivingController(ServiceManager serviceManager, BusinessTime businessTime, OrderManager<MissMintOrder> orderManager, OrderService orderService, ReceivingService receivingService, MaterialManager materialManager) {
+	public ReceivingController(ServiceManager serviceManager,
+							   BusinessTime businessTime,
+							   OrderManager<MissMintOrder> orderManager,
+							   OrderService orderService,
+							   ReceivingService receivingService,
+							   MaterialManager materialManager) {
 		Assert.notNull(serviceManager, "serviceManager should not be null");
 		Assert.notNull(businessTime, "businessTime should not be null");
 		Assert.notNull(orderManager, "orderManager should not be null");
@@ -79,7 +84,11 @@ public class ReceivingController {
 	 */
 	@PostMapping("/orders/receiving")
 	@PreAuthorize("isAuthenticated()")
-	public String cost(@Valid @ModelAttribute("form") ReceivingForm form, Errors errors, Model model, @LoggedIn UserAccount userAccount, HttpSession session) {
+	public String cost(@Valid @ModelAttribute("form") ReceivingForm form,
+					   @LoggedIn UserAccount userAccount,
+					   HttpSession session,
+					   Errors errors,
+					   Model model) {
 		if (errors.hasErrors()) {
 			return receiving(model, form);
 		}

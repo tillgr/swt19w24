@@ -60,9 +60,7 @@ public class RoomController {
 			rooms.save(form.createRoom());
 			service.rebuildTimeTable();
 			return "redirect:/rooms";
-		}
-
-		else {
+		} else {
 			errors.rejectValue("name", "AddRoomForm.exists");
 			return showRooms(model, form);
 		}
