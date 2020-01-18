@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,11 +62,8 @@ public class RoomControllerTest {
 				.andExpect(view().name("rooms"))
 				.andExpect(content().string(containsString("Room already exists!")));
 
-		rooms.findAll().forEach(room1 -> names.add(room1.getName()));
-		System.out.println(names);
-		System.out.println(rooms.count());
-
-		assertThat(Long.valueOf(names.size()) == (Long)rooms.count()).isTrue();
+		long roomsWithTestName = Streamable.of(rooms.findAll()).filter(r -> r.getName().equals("testRaum")).get().count();
+		assertThat(roomsWithTestName).isEqualTo(1);
 	}
 
 	@Test
