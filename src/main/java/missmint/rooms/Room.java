@@ -58,6 +58,5 @@ public class Room {
 	 */
 	public Set<TimeTableEntry> getEntrySet() {
 		return entrySet;
-		//return Database.entrySet.sort(Comparator.comparing(TimeTableEntry :: getSlot));
 	}
 }

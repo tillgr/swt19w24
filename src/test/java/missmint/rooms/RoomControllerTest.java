@@ -1,33 +1,22 @@
 package missmint.rooms;
 
-import missmint.Utils;
-import missmint.inventory.products.OrderItem;
-import missmint.orders.order.MissMintOrder;
-import missmint.orders.order.OrderState;
-import missmint.orders.service.MissMintService;
 import org.junit.jupiter.api.Test;
-import org.salespointframework.catalog.Catalog;
-import org.salespointframework.order.OrderManager;
-import org.salespointframework.time.BusinessTime;
-import org.salespointframework.useraccount.Password;
-import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -35,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 public class RoomControllerTest {
 
 	@Autowired
@@ -72,11 +62,8 @@ public class RoomControllerTest {
 				.andExpect(view().name("rooms"))
 				.andExpect(content().string(containsString("Room already exists!")));
 
-		rooms.findAll().forEach(room1 -> names.add(room1.getName()));
-		System.out.println(names);
-		System.out.println(rooms.count());
-
-		//assertThat( Long.valueOf(names.size()) == (Long)rooms.count()).isTrue();
+		long roomsWithTestName = Streamable.of(rooms.findAll()).filter(r -> r.getName().equals("testRaum")).get().count();
+		assertThat(roomsWithTestName).isEqualTo(1);
 	}
 
 	@Test
@@ -84,7 +71,6 @@ public class RoomControllerTest {
 	void deleteRoom() throws Exception {
 		Room room = new Room("testRaum");
 		rooms.save(room);
-		rooms.delete(room);
 
 		mvc.perform(post(String.format("/rooms/%s/delete", room.getId())).locale(Locale.ROOT).with(csrf())
 		)
