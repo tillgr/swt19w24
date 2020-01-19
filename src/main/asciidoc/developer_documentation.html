@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-4">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-4">
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 42.8571%;">
@@ -466,66 +466,67 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-13">
+<div class="sect1 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-13">
 <h2 id="_einführung_und_ziele">1. Einführung und Ziele</h2>
 <div class="sectionbody">
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-14">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-14">
 <h3 id="_aufgabenstellung">1.1. Aufgabenstellung</h3>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-15">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-15">
 <p>Für <em>Miss-Mint Mending Points</em> soll für die Mitarbeiter eine Software bereitgestellt werden.
-Mitarbeiter (<em>Staff</em>) können über den Admin (<em>ADMIN</em>) registriert (<em>registerUser</em>) und entfernt (<em>deleteUser</em>) werden.
-Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen.
-Der Betrieb stellt folgende Dienstleistungen (<em>ServiceCategory</em>) bereit:</p>
+Mitarbeiter (<em>Staff</em>) können über den Admin registriert (<em>registerStaff</em>) und entlassen (<em>deleteUser</em>) werden.
+Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen (<code>@PreAuthorize("isAuthenticated()")</code>).
+Der Betrieb stellt folgende Dienstleistungen (<em>MissMintService</em>) in Kategorien (<em>ServiceCategory</em>) bereit:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-20">
+<div class="ulist has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-20">
 <ul>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-20">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-20">
 <p>eine Flickschusterei (<em>KLUDGE</em>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-21">
-<p>einen Nähservice (<em>SEWINGSERVICE</em>)</p>
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-21">
+<p>einen Nähservice (<em>SEWING</em>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-22">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-22">
 <p>einen Schlüsseldienst (<em>LOCKSMITH</em>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-23">
-<p>eine Schnellreinigung (<em>EXPRESS_DRY_CLEANING</em>)</p>
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-23">
+<p>eine Schnellreinigung (<em>CLEANING</em>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-24">
-<p>eine Elektrowerkstatt (<em>ELECTRONICWORKSHOP</em>)</p>
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-24">
+<p>eine Elektrowerkstatt (<em>ELECTRONICS</em>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-25">
-<p>eine Scherenschleiferei (<em>SCISSORSGRINDERY</em>)</p>
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-25">
+<p>eine Scherenschleiferei (<em>GRINDERY</em>)</p>
 </li>
 </ul>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-27">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-27">
 <p>Nachdem der Kunde eine Dienstleistung ausgewählt und im Voraus bezahlt hat, wird ein
 Auftrag (<em>MissMintOrder</em>) mit einer Auftragsnummer (<em>OrderIdentifier</em>) im System angelegt.
-Zusätzlich wird ein erwartetes Fertigstellungsdatum (<em>getExpectedFinished</em>) berechnet.
+Zusätzlich wird ein erwartetes Fertigstellungsdatum (<em>getExpectedFinished</em>) berechnet,
+indem ein Bearbeitungstermin (<em>TimeTableEntry</em>) im Zeitplan registriert wird (<em>createEntry</em>).
 Der Auftrag kann sich in verschiedenen Zuständen (<em>OrderState</em>) befinden.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-32">
-<p>Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan (<em>TimeTable</em>) zur Verfügung gestellt.
-Dementsprechend werden Räume (<em>Room</em>) passend zur Dienstleistung gebucht (<em>BOOKING</em>). Für die Dienste
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-33">
+<p>Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan zur Verfügung gestellt.
+Dementsprechend werden Räume (<em>Room</em>) passend zur Dienstleistung gebucht. Für die Dienste
 wird i. A. Material (<em>Material</em>) benötigt. Diese können, falls nötig, nachbestellt werden und die
-Kosten (<em>getPrice</em>) werden automatisch vom System erfasst.</p>
+Kosten werden automatisch vom System erfasst (<em>checkAndConsume</em>).</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-37">
-<p>Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden.
-Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter Vorlage des Auftragszettels
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-38">
+<p>Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden (<em>FINISHED</em>).
+Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle (<em>STORED</em>), wo sie unter Vorlage des Auftragszettels
 durch Zahlung einer Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden kann. Waren, die
-auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation.
-Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet.</p>
+auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation (<em>CHARITABLE_USED</em>).
+Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet (<em>calculateCharge</em>).</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-43">
-<p>Jegliches Einkommen bzw. Ausgaben (<em>FinanceItem</em>) sind für den Filialleiter sichtbar. Dabei werden sowohl die
-Gesamtkosten (<em>calculateTotalPrice</em>) als auch der Reingewinn erfasst.</p>
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-44">
+<p>Jegliches Einkommen bzw. Ausgaben sind für den Filialleiter sichtbar (<em>showFinancePage</em>).
+Dabei ist auch eine Übersicht über den letzten Monat zur Abbuchung der Gewinne an den Mutterkonzern möglich (<em>showLastMonth</em>).</p>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-47">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-48">
 <h3 id="_qualitätsziele">1.2. Qualitätsziele</h3>
-<div class="dlist has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-49">
+<div class="dlist has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-50">
 <dl>
 <dt class="hdlist1">Wartbarkeit</dt>
 <dd>
@@ -553,11 +554,11 @@ Wichtig ist auch die visuelle Differenzierung von Inhalten, um die Informationsa
 </dd>
 </dl>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-69">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-70">
 <p>1 = Nicht wichtig ..
 5 = Sehr wichtig</p>
 </div>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-73">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-74">
 <colgroup>
 <col style="width: 37.5%;">
 <col style="width: 12.5%;">
@@ -614,85 +615,85 @@ Wichtig ist auch die visuelle Differenzierung von Inhalten, um die Informationsa
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-82">
+<div class="sect1 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-83">
 <h2 id="_randbedingungen">2. Randbedingungen</h2>
 <div class="sectionbody">
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-84">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-85">
 <h3 id="_hardware_vorgaben">2.1. Hardware-Vorgaben</h3>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-85">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-86">
 <p>Eine Liste von Geräten/Hardware, die benötigt werden um die Software zu benutzen:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-87">
+<div class="ulist has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-88">
 <ul>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-87">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-88">
 <p>Server</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-88">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-89">
 <p>Computer</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-89">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-90">
 <p>Tastatur</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-90">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-91">
 <p>Maus</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-92">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-93">
 <h3 id="_software_vorgaben">2.2. Software-Vorgaben</h3>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-94">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-95">
 <p>Die Anwendung setzt folgende Software voraus:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-96">
+<div class="ulist has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-97">
 <ul>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-96">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-97">
 <p>Java 11 oder neuer</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-97">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-98">
 <p>Mozilla Firefox 70+</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-98">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-99">
 <p>Chromium 78+</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-100">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-101">
 <h3 id="_vorgaben_zum_betrieb_des_software">2.3. Vorgaben zum Betrieb des Software</h3>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-102">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-103">
 <p>Die Software wird ausschließlich von <em>Miss Mint Mending Points</em> Mitarbeiter verwendet.
 Das System stellt Funktionen für die Annahme, Reparaturplanung, Ausgabe und Lagerung der Ware,
 sowie die Verwaltung der Ressourcen zur Verfügung. Zudem erhält der Filialleiter Einsicht auf
 die Finanzen.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-107">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-108">
 <p>Die Software soll rund um die Uhr in Betrieb sein und nur über das interne Firmennetz erreichbar sein.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-109">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-110">
 <p>Die Hauptnutzer der Software sind Mitarbeiter, die typische Website-Navigationsschemata kennen, sowie ein Filialleiter (Admin), der nicht unbedingt über einen technischen Hintergrund verfügt.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-111">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-112">
 <p>Das System muss technisch gewartet werden, da Sicherheitsupdates für Java aber auch die verwendeten Frameworks eingespielt werden müssen.
 Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Applikation zugänglich sein (z.B. sollten für einen Filialleiter keine SQL-Kenntnisse erforderlich sein).</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-115">
+<div class="sect1 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-116">
 <h2 id="_kontextabgrenzung">3. Kontextabgrenzung</h2>
 <div class="sectionbody">
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-117">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-118">
 <p><span class="image"><img src="srs/models/Context_Diagram.png" alt="context diagram"></span></p>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-119">
+<div class="sect1 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-120">
 <h2 id="_lösungsstrategie">4. Lösungsstrategie</h2>
 <div class="sectionbody">
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-120">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-121">
 <h3 id="_erfüllung_der_qualitätsziele">4.1. Erfüllung der Qualitätsziele</h3>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-122">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-123">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -766,66 +767,66 @@ Dafür kann die Spring Security (<code>@PreAuthorize</code> - annotation) verwen
 </tbody>
 </table>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-153">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-154">
 <h3 id="_softwarearchitektur">4.2. Softwarearchitektur</h3>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-155">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-156">
 <p><span class="image"><img src="srs/models/Top-level_architecture.png" alt="Top-Level-Architekur"></span></p>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-159">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-160">
 <h3 id="_entwurfsentscheidungen">4.3. Entwurfsentscheidungen</h3>
-<div class="sect3 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-160">
+<div class="sect3 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-161">
 <h4 id="_verwendete_muster">4.3.1. Verwendete Muster</h4>
-<div class="ulist has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-161">
+<div class="ulist has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-162">
 <ul>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-161">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-162">
 <p><strong>Model View Controller</strong> mit Spring MVC</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-162">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-163">
 <p><strong>Singleton mit Springs</strong> <code>@Component</code> etc.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-163">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-164">
 <p><strong>Value Object</strong> mit <code>MonetaryAmount</code> etc.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-164">
-<p><strong>Data Transfer Object</strong> mit <code>OrderDTO</code>, um Daten für Templates zu aggregieren.</p>
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-165">
+<p><strong>Data Transfer Object</strong> mit den <code>Form</code>-Klassen, in denen Formulardaten aggregiert werden.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-165">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-166">
 <p><strong>Dependency Injection</strong> über die Konstruktoren in Spring-Komponenten</p>
 </li>
-<li class="has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-166">
+<li class="has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-167">
 <p><strong>Repository</strong> mit den Spring-Repositories</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-168">
+<div class="sect3 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-169">
 <h4 id="_persistenz">4.3.2. Persistenz</h4>
-<div class="paragraph has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-170">
+<div class="paragraph has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-171">
 <p>Die Anwendung verwendet Hibernate-Annotation-basiertes Mapping,
 um Java-Klassen Datenbanktabellen zuzuordnen.
 Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert.
 Um den Persistenzspeicher zu aktivieren, müssen die folgenden zwei Zeilen in der Datei
 application.properties nicht kommentiert werden:</p>
 </div>
-<div class="literalblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-176">
+<div class="literalblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-177">
 <div class="content">
 <pre># spring.datasource.url=jdbc:h2:./db/missmint
 # spring.jpa.hibernate.ddl-auto=update</pre>
 </div>
 </div>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-181">
+<div class="sect3 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-182">
 <h4 id="_benutzeroberfläche">4.3.3. Benutzeroberfläche</h4>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-182">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-183">
 <div class="content">
 <img src="models/design/images/dialog.png" alt="dialog">
 </div>
 </div>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-184">
+<div class="sect3 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-185">
 <h4 id="_verwendung_externer_frameworks">4.3.4. Verwendung externer Frameworks</h4>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-187">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-188">
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 42.8571%;">
@@ -840,59 +841,104 @@ application.properties nicht kommentiert werden:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accountancy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;accountancy.&#8203;Accountancy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, FinanceService</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AccountancyEntry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;accountancy.&#8203;AccountancyEntry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceService</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Assert</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.util.Assert</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, InventoryInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;util.&#8203;Assert</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, FinanceController, FinanceService, InventoryInitializer, MissMintOrder, MissMintService, OrderOverviewController, OrderService, PickUpController, PickUpService, ReceivingController, ReceivingService, ServiceDataInitializer, ServiceManager, Staff, StaffController, StaffInitializer, StaffManagement, TimeController, TimeService, TimeTableService, Utils</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BusinessTime</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;time.&#8203;BusinessTime</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingController, OrderDataInitializer, OrderService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceService, IndexController, OrderService, ReceivingController, RoomService, SalaryService, TimeController, TimeService, TimeTableService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Catalog</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;catalog.&#8203;Catalog</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer, InventoryCatalog</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, InventoryInitializer, MaterialManager, OrderItemController, OrderItemManager, OrderOverviewController, OrderService, ReceivingService, ServiceDataInitializer, ServiceManager</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Component</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;stereotype.&#8203;Component</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderDataInitializer, ServiceDataInitializer, InventoryInitializer, CatalogDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, FinanceDataInitializer, InventoryInitializer, Messages, RoomDataInitializer, ServiceDataInitializer, StaffInitializer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;context.&#8203;annotation.&#8203;Configuration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Controller</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;stereotype.&#8203;Controller</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, IndexController, InventoryController, OrderItemController, OrderOverviewController, PickUpController, ReceivingController, RoomController, StaffController, TimeController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CrudRepository</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;data.&#8203;repository.&#8203;CrudRepository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EntriesRepository, RoomsRepository, StaffRepository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EntryRepository, RoomRepository, StaffRepository</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DataInitializer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;core.&#8203;DataInitializer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer, TempUserInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, FinanceDataInitializer, InventoryInitializer, RoomDataInitializer, ServiceDataInitializer, StaffInitializer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;hibernate.&#8203;dialect.&#8203;Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Room</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EURO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;core.&#8203;Currencies.&#8203;EURO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnableSalespoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;EnableSalespoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Errors</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;validation.&#8203;Errors</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingController, UserController</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EURO</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.salespointframework.core.Currencies.EURO</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, ReceivingController, RoomController, StaffController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GetMapping</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;bind.&#8203;annotation.&#8203;GetMapping</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, ReceivingController, UserController, CatalogController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, IndexController, InventoryController, OrderOverviewController, PickUpController, ReceivingController, StaffController</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HttpSecurity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;security.&#8203;config.&#8203;annotation.&#8203;web.&#8203;builders.&#8203;HttpSecurity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HttpStatus</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;http.&#8203;HttpStatus</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, ReceivingController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, Utils</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;time.&#8203;Interval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceService</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryItemIdentifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;inventory.&#8203;InventoryItemIdentifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryController, MaterialForm, MaterialManager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LocaleContextHolder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;context.&#8203;i18n.&#8203;LocaleContextHolder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Messages</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LoggedIn</p></td>
@@ -900,139 +946,184 @@ application.properties nicht kommentiert werden:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingController</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MessageSource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;context.&#8203;MessageSource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Messages</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MessageSourceAccessor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;context.&#8203;support.&#8203;MessageSourceAccessor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Messages</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Metric</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.salespointframework.quantity.Metric</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UltimateProduct,CatalogDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;quantity.&#8203;Metric</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, InventoryInitializer, Material, MaterialManager, ServiceConsumptionManager</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Model</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;ui.&#8203;Model</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, PickUpController, ReceivingController, UserController, CatalogController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, IndexController, InventoryController, OrderItemController, OrderOverviewController, PickUpController, ReceivingController, RoomController, StaffController</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ModelAttribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;bind.&#8203;annotation.&#8203;ModelAttribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryController, ReceivingController, StaffController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Money</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;javamoney.&#8203;moneta.&#8203;Money</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderService, ServiceDataInitializer, UltimateProduct, CatalogDataInitializer</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OnDelete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;hibernate.&#8203;annotations.&#8203;OnDelete;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Room, TimeTableEntry</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OnDeleteAction</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;hibernate.&#8203;annotations.&#8203;OnDeleteAction;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Room, TimeTableEntry</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Order</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;order.&#8203;Order</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintOrder, ServiceDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, FinanceDataInitializer, FinanceService, OrderItem, OrderService, SalaryService, ServiceDataInitializer</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Order</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;core.&#8203;annotation.&#8203;Order</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceDataInitializer, ServiceDataInitializer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;order.&#8203;Order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintOrder</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OrderManager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;order.&#8203;OrderManager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, PickUpController, ReceivingController, OrderDataInitializer, OrderService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderItemController, OrderItemManager, OrderOverviewController, OrderService, PickUpService, ReceivingController, ReceivingService, TimeTableService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Page</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;data.&#8203;domain.&#8203;Page</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderItemController, OrderItemManager, OrderOverviewController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pageable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;data.&#8203;domain.&#8203;Pageable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, OrderService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderItemController, OrderItemManager, OrderOverviewController, OrderService, TimeTableService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pair</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;data.&#8203;util.&#8203;Pair</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CatalogDataInitializer, ServiceConsumptionManager, ServiceDataInitializer, TimeTableService</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;useraccount.&#8203;Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StaffInitializer, StaffManagement</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathVariable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;bind.&#8203;annotation.&#8203;PathVariable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, UserController</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Product</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;catalog.&#8203;Product</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Service, UltimateProduct</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ProductIdentifier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;catalog.&#8203;ProductIdentifier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, ReceivingForm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderOverviewController, PickUpController, StaffController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PostMapping</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;bind.&#8203;annotation.&#8203;PostMapping</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, ReceivingController, UserController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, InventoryController, PickUpController, ReceivingController, StaffController, TimeController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreAuthorize</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;security.&#8203;access.&#8203;prepost.&#8203;PreAuthorize</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController, PickUpController, ReceivingController, UserController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController, InventoryController, OrderItemController, OrderOverviewController, PickUpController, ReceivingController, RoomController, StaffController, TimeController</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Qualifier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;beans.&#8203;factory.&#8203;annotation.&#8203;Qualifier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;catalog.&#8203;Product</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Material, MissMintService, OrderItem</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ProductIdentifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;catalog.&#8203;ProductIdentifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderItemController, OrderItemForm, OrderItemManager, OrderOverviewController, ReceivingForm, ServiceManager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PropertySource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;context.&#8203;annotation.&#8203;PropertySource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quantity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;quantity.&#8203;Quantity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintOrder, InventoryInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryInitializer, MaterialManager, MissMintOrder, ReceivingService, ServiceConsumptionManager</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">RequestMapping</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;bind.&#8203;annotation.&#8203;RequestMapping</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IndexController</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ResponseStatusException</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;server.&#8203;ResponseStatusException</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, ReceivingController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController, Utils</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;useraccount.&#8203;Role</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StaffInitializer, StaffManagement</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SalespointSecurityConfiguration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;SalespointSecurityConfiguration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;stereotype.&#8203;Service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderService, UserManagement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceService, MaterialManager, OrderItemManager, OrderService, PickUpService, ReceivingService, RoomService, SalaryService, ServiceManager, StaffManagement, TimeService, TimeTableService</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sort</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.data.domain.Sort</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryCatalog</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Session</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;hibernate.&#8203;Session</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utils</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SessionAttribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;web.&#8203;bind.&#8203;annotation.&#8203;SessionAttribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingController</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SpringApplication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;boot.&#8203;SpringApplication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StreamUtils</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;data.&#8203;util.&#8203;StreamUtils</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableService</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Streamable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;data.&#8203;util.&#8203;Streamable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EntryRepository, FinanceService, MaterialManager, ServiceManager, StaffRepository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transactional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;transaction.&#8203;annotation.&#8203;Transactional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderItemManager, StaffManagement</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UniqueInventory</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.salespointframework.inventory.UniqueInventory</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;inventory.&#8203;UniqueInventory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryController, InventoryInitializer, MaterialManager, ReceivingService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UniqueInventoryItem</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.salespointframework.inventory.UniqueInventoryItem</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryInitializer, InventoryController, CatalogController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;inventory.&#8203;UniqueInventoryItem</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryController, InventoryInitializer, MaterialManager, ReceivingService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UserAccount</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;useraccount.&#8203;UserAccount</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingController, MissMintOrder, OrderDataInitializer, User, UserManagement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintOrder, ReceivingController, Staff, StaffManagement, StaffRepository</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UserAccountManager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;salespointframework.&#8203;useraccount.&#8203;UserAccountManager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderDataInitializer, UserManagement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StaffInitializer, StaffManagement</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.&#8203;springframework.&#8203;beans.&#8203;factory.&#8203;annotation.&#8203;Value</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderService, ServiceDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceDataInitializer, FinanceService, OrderService, SalaryService, ServiceDataInitializer</p></td>
 </tr>
 </tbody>
 </table>
@@ -1040,18 +1131,18 @@ application.properties nicht kommentiert werden:</p>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-350">
+<div class="sect1 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-422">
 <h2 id="_bausteinsicht">5. Bausteinsicht</h2>
 <div class="sectionbody">
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-358">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-430">
 <h3 id="_aufträge">5.1. Aufträge</h3>
-<div class="imageblock text-center has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-359">
+<div class="imageblock text-center has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-431">
 <div class="content">
-<img src="models/design/images/orders_design.png" alt="Klassendiagramm für das orders Paket" width="100%" height="100%">
+<img src="models/design/images/Package%20orders.png" alt="Klassendiagramm für das orders Paket" width="100%" height="100%">
 </div>
 <div class="title">Figure 1. Klassendiagramm für das orders Paket</div>
 </div>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-361">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-433">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -1064,12 +1155,8 @@ application.properties nicht kommentiert werden:</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrdersController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderOverviewController</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ein Spring MVC Controller, der Anfragen für die Anzeige der aktuellen Aufträge <code>MissMintOrder</code> beantwortet.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderDTO</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Diese Klasse dient nur dem Datentransfer zum <code>orders.html</code>-Template.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PickUpController</p></td>
@@ -1091,37 +1178,52 @@ Dazu berechnet die Klasse auch anfallende Kosten.</p></td>
 Zudem hat der Auftrag einen Zustand.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderDataInitializer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eine Implementation des <code>DataInitializer</code>s, um einige vordefinierte Aufträge zum Testen anzulegen.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OrderService</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ein Dienst, der Hilfsfunktionen für die Auftragsverwaltung bereitstellt.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PickUpService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hilfsdienst für den Abholprozess, um den Controller von der Business-Logik zu trennen.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReceivingService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unterstützt den ReceivingController in der Handhabung von neuen Auufträgen.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OrderState</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Eine Enumeration für die Zustände der Aufträge.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Erweiterung des Salespoint <code>Product</code>s, um es von anderen Produkten in der späteren Software abzugrenzen.
-Im Prototypen speichert es auch noch das Material.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Erweiterung des Salespoint <code>Product</code>s, um es von anderen Produkten in der späteren Software abzugrenzen.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceCategory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eine Enumeration mit den Dienstleistungskateorien.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceConsumptionManager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Definiert den Verbrauch an Materialien für die verschiedenen Dienstleistungen.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ServiceDataInitializer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Eine Implementation des <code>DataInitializer</code>s, um die einzelnen Dienstleistungen anzulegen.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceManager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ein Service, der Zugriffe und Operationen auf <code>MissMintService</code> wegabstrahiert.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-391">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-468">
 <h3 id="_mitarbeiter">5.2. Mitarbeiter</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-392">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-469">
 <div class="content">
-<img src="models/design/images/users.png" alt="users">
+<img src="models/design/images/Package%20users.png" alt="Package users">
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-393">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-470">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1176,14 +1278,14 @@ der Mitarbeiterdaten.</p></td>
 </tbody>
 </table>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-429">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-506">
 <h3 id="_inventar">5.3. Inventar</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-430">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-507">
 <div class="content">
-<img src="models/design/images/Inventory.small.png" alt="Inventory.small">
+<img src="models/design/images/Package%20inventory.png" alt="Package inventory">
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-432">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-509">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -1204,10 +1306,6 @@ der Mitarbeiterdaten.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Implementation des <code>DataInitializer</code>s für den Produktkatalog</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InventoryCatalog</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Erweiterung des Salespoint<code>Catalog</code>s der Sortierung nach <code>ProductType</code> ermöglicht.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">InventoryController</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ein Spring MVC Controller, der Anfragen bezüglich des Materialinventars annimmt.</p></td>
 </tr>
@@ -1216,20 +1314,32 @@ der Mitarbeiterdaten.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Implementation des <code>DataInitializer</code>s für die Inventare der jeweiligen Produkte.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UltimateProduct</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Erweiterung des Salespoint <code>Product</code>s , mit zusätzlichen Eigenschaften um Filtern nach eigenen Attributen zu ermöglichen.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">orderItem, Material</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Erweiterung des Salespoint <code>Product</code>s.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MaterialForm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Form für das manuelle Nachbestellen/Verbrauchen von Mateerial</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MaterialManager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Businesslogik für Nachbestellung/Verbrauch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderItemManager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Businesslogik für Entfernen und anzeigen von OrderItems</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-456">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-539">
 <h3 id="_räume">5.4. Räume</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-457">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-540">
 <div class="content">
-<img src="models/design/images/rooms.png" alt="rooms">
+<img src="models/design/images/Package%20rooms.png" alt="Package rooms">
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-459">
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-542">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -1246,14 +1356,6 @@ der Mitarbeiterdaten.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Klasse die die Räume repräsentiert. Räume stehen in enger Verbindung mit den Timeslots, wobei jeder Raum seine eigenen TimeSlots besitzt.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Booking</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enumeration für die verschiedenen Buchungsfälle der Timeslots.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableEntry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Diese Klasse repräsentiert Timeslots, die durch Buchung von Räumen in einer bestimmten Zeit zu vollwertigen Einträgen werden können.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">RoomController</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ein Spring MVC Controller, der die Verwaltung von Räumen und das buchen von TimeSlots ermöglicht.</p></td>
 </tr>
@@ -1266,15 +1368,98 @@ der Mitarbeiterdaten.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Interface welches das Crud Repository von Spring erbt. Es speichert Raumeinträge.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EntriesRepository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface welches das Crud Repository von Spring erbt. Es speichert Einträge in TimeSlots.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RoomService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dieser Service unterstützt die Aktualisierung von Räumen, sodass neue Räume hinzugefügt und alte gelöscht werden können.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-486">
-<h3 id="_rückverfolgbarkeit_zwischen_analyse_und_entwurfsmodell">5.5. Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell</h3>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-489">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-563">
+<h3 id="_finanzen">5.5. Finanzen</h3>
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-564">
+<div class="content">
+<img src="models/design/images/Package%20finance.png" alt="Package finance">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-566">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Klasse/Enumeration/Schnittstelle</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ein Spring Controller, der Anfragen bzgl. Financeübersicht für letzes Monat und für
+die ganze Zeit und zudem Erstellung von Finanzen Einträge verarbeitet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinaceService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ein Dienst, der zuständig ist, die Accountancy im System zu verwalten. Man kann dort AccountancyEntry hinfügen, die gesamte Summe von
+Finanzen Aufträge berechnen und letztes Monat anzeigen lassen.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceDataInitializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ein Formular von <em>SalesPoint</em> für die Initialisierung von AccountancyEntry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AddFinanceForm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ein Formular um AccountancyEnty mit Kost und Beschreibung hinzufügen.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-585">
+<h3 id="_time">5.6. Time</h3>
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-586">
+<div class="content">
+<img src="models/design/images/Package%20time.png" alt="Package time">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-588">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Klasse/Enumeration/Schnittstelle</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableEntry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diese Klasse repräsentiert Zeitslots, die durch Buchung von Räumen in einer bestimmten Zeit erstellt werden.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EntryRepository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface welches das <code>CrudRepository</code> von Spring implementiert. Es speichert Objekte vom Typ TimeTableEntry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeController</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Schnittstelle, die den Nutzer ermöglicht, die Zeit vorzuspulen.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bildet das Backend für den TimeController.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableService</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dieser Service erledigt das Erstellen von Zeit-Slots und das Umsortieren dieser,
+um rechtzeitige Fertigstellung zu ermöglichen.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-608">
+<h3 id="_rückverfolgbarkeit_zwischen_analyse_und_entwurfsmodell">5.7. Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell</h3>
+<table class="tableblock frame-all grid-all stretch has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-611">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1288,11 +1473,11 @@ der Mitarbeiterdaten.</p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Order</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintOrder</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MissMintService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">State</p></td>
@@ -1300,11 +1485,11 @@ der Mitarbeiterdaten.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Order Management</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OrderManager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OrderService</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Service Category</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceCategory</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OrderTicket</p></td>
@@ -1336,91 +1521,90 @@ der Mitarbeiterdaten.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Resource</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UltimateProduct</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">orderItem, Material</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Room</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Room</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RoomService</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinancialManagement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FinanceService</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableEntry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableEntry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeTable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Booking</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableEntry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TimeTableEntry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EntryRepository</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-544">
+<div class="sect1 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-670">
 <h2 id="_laufzeitsicht">6. Laufzeitsicht</h2>
 <div class="sectionbody">
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-547">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-673">
 <h3 id="_aufträge_2">6.1. Aufträge</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-548">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-674">
 <div class="content">
-<img src="models/design/images/sd__orders_list__orders_list.jpg" alt="sd  orders list  orders list">
+<img src="models/design/images/sd__orders_list__orders_list.png" alt="sd  orders list  orders list">
 </div>
 </div>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-549">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-675">
 <div class="content">
-<img src="models/design/images/sd__orders_receiving__orders_receiving.jpg" alt="sd  orders receiving  orders receiving">
+<img src="models/design/images/sd__orders_receiving__orders_receiving.png" alt="sd  orders receiving  orders receiving">
 </div>
 </div>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-550">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-676">
 <div class="content">
-<img src="models/design/images/sd__orders_pick_up__orders_pick_up.jpg" alt="sd  orders pick up  orders pick up">
+<img src="models/design/images/sd__orders_pick_up__orders_pick_up.png" alt="sd  orders pick up  orders pick up">
 </div>
 </div>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-551">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-677">
 <div class="content">
-<img src="models/design/images/sd__orders_update__orders_update.jpg" alt="sd  orders update  orders update">
+<img src="models/design/images/orders%20update.png" alt="orders update">
 </div>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-553">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-679">
 <h3 id="_mitarbeiter_2">6.2. Mitarbeiter</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-554">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-680">
 <div class="content">
 <img src="models/design/images/add_and_delete_staff.png" alt="add and delete staff">
 </div>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-556">
-<h3 id="_räume_2">6.3. Räume</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-557">
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-683">
+<h3 id="_inventar_2">6.3. Inventar</h3>
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-684">
+<div class="content">
+<img src="models/design/images/sd_consume_UniqueInventoryItem.png" alt="sd consume UniqueInventoryItem">
+</div>
+</div>
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-685">
+<div class="content">
+<img src="models/design/images/sd_restock_UniqueInventoryItem.png" alt="sd restock UniqueInventoryItem">
+</div>
+</div>
+</div>
+<div class="sect2 has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-687">
+<h3 id="_räume_2">6.4. Räume</h3>
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-688">
 <div class="content">
 <img src="models/design/images/rooms%20addRoom.png" alt="rooms addRoom">
 </div>
 </div>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-558">
-<div class="content">
-<img src="models/design/images/rooms%20bookFreeSlot.png" alt="rooms bookFreeSlot">
-</div>
-</div>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-559">
+<div class="imageblock has-source-line data-line-D:/Git/swt19w24/src/main/asciidoc/developer_documentation.adoc-689">
 <div class="content">
 <img src="models/design/images/rooms%20deleteRoom.png" alt="rooms deleteRoom">
-</div>
-</div>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-560">
-<div class="content">
-<img src="models/design/images/rooms%20listFreeSlots.png" alt="rooms listFreeSlots">
-</div>
-</div>
-</div>
-<div class="sect2 has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-562">
-<h3 id="_inventar_2">6.4. Inventar</h3>
-<div class="imageblock has-source-line data-line-C:/Users/kiend/IdeaProjects/swt19w24/src/main/asciidoc/developer_documentation.adoc-563">
-<div class="content">
-<img src="models/design/images/sd_restock_Product.png" alt="sd restock Product">
 </div>
 </div>
 </div>
@@ -1429,7 +1613,7 @@ der Mitarbeiterdaten.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-18 05:57:02 +0100
+Last updated 2020-01-20 00:00:55 +0100
 </div>
 </div>
 </body>
