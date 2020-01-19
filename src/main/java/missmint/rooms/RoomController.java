@@ -62,7 +62,7 @@ public class RoomController {
 	 * @return redirect to the rooms page
 	 */
 	@PostMapping("/rooms/add")
-	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Authentication auth, Errors errors) {
+	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors, Authentication auth) {
 		if (errors.hasErrors()) {
 			return showRooms(model, form, auth);
 		}
