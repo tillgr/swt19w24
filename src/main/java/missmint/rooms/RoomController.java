@@ -43,6 +43,11 @@ public class RoomController {
 		return "rooms";
 	}
 
+    @RequestMapping("/orders/detail/{id}")
+	public String idToDetails(){
+		return "orders/detail/{id}";
+	}
+
 	/**
 	 * add a new room to the repository
 	 * @param model Spring model
