@@ -55,12 +55,9 @@
                 <td th:text="${times.get(iter.index).getFirst()} + ' - ' + ${times.get(iter.index).getSecond()}">vonbis</td>
                 <td th:each="field: ${row}">
                     <div th:if="${field}">
-
                             <a th:href="@{/orders/detail/{id}(id=${field.getOrder().getId()})}">
                                 <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
                             </a>
-                     <!--   <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
-                     <form class="button" th:action="@{/users/edit/{id}(id=${staff.getId()})}">-->
                         <div>
                             <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
                             <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
