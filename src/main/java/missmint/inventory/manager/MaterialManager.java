@@ -20,9 +20,11 @@ public class MaterialManager {
 	private final UniqueInventory<UniqueInventoryItem> materialInventory;
 	private final Catalog<Material> materialCatalog;
 	private final FinanceService financeService;
-	int max_quantity = 10000;
+	int maxQuantity = 10000;
 
-	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory, Catalog<Material> materialCatalog, FinanceService financeService) {
+	public MaterialManager(UniqueInventory<UniqueInventoryItem> materialInventory,
+						   Catalog<Material> materialCatalog,
+						   FinanceService financeService) {
 		this.materialInventory = materialInventory;
 		this.materialCatalog = materialCatalog;
 		this.financeService = financeService;
@@ -63,7 +65,8 @@ public class MaterialManager {
 	 * @param materialId Identifier of the material that gets restocked.
 	 * @param amount     Amount by which the material gets restocked.
 	 * @return The material if it exists in the inventory.
-	 * @throws IllegalArgumentException if the InventoryItemIdentifier supplied by the input does not exist in the inventory
+	 * @throws IllegalArgumentException
+	 * if the InventoryItemIdentifier supplied by the input does not exist in the inventory
 	 */
 	public UniqueInventoryItem checkAndRestock(InventoryItemIdentifier materialId, int amount) {
 		return materialInventory.findById(materialId).map(material -> {
@@ -85,15 +88,16 @@ public class MaterialManager {
 
 		int old_quantity = material.getQuantity().getAmount().intValueExact();
 		int new_quantity = old_quantity + amount;
-		int max_addable_quantity = max_quantity - (old_quantity);
-		return new_quantity > max_quantity ? 0 : amount;
+		int max_addable_quantity = maxQuantity - (old_quantity);
+		return new_quantity > maxQuantity ? 0 : amount;
 	}
 
 	/**
 	 * @param materialId Identifier of the material that gets consumed
 	 * @param amount     Amount by which the material gets consumed
 	 * @return The material if it exists in the inventory.
-	 * @throws IllegalArgumentException if the InventoryItemIdentifier supplied by the input does not exist in the inventory
+	 * @throws IllegalArgumentException
+	 * if the InventoryItemIdentifier supplied by the input does not exist in the inventory
 	 */
 	public UniqueInventoryItem checkAndConsume(InventoryItemIdentifier materialId, int amount) {
 		return materialInventory.findById(materialId).map(material -> {

@@ -47,7 +47,9 @@ public class ServiceManager {
 	public MissMintService getService(MissMintOrder order) {
 		Assert.notNull(order, "order should not be null");
 
-		ProductIdentifier productIdentifier = Utils.getOrThrow(order.getOrderLines().stream().findAny()).getProductIdentifier();
+		ProductIdentifier productIdentifier = Utils.getOrThrow(
+				order.getOrderLines().stream().findAny()
+		).getProductIdentifier();
 		return Utils.getOrThrow(catalog.findById(productIdentifier));
 	}
 
