@@ -657,10 +657,7 @@ um rechtzeitige Fertigstellung zu ermöglichen.
 |RoomService
 
 |FinancialManagement
-|FinanceManager
-
-|FinancialItem
-|FinancialItem
+|FinanceService
 
 |TimeTableEntry
 |TimeTableEntry
