@@ -1,10 +1,15 @@
 package missmint.rooms;
+
 import missmint.time.TimeTableService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
@@ -19,7 +24,8 @@ public class RoomController {
 
 	/**
 	 * create new room
-	 * @param rooms rooms from the repository
+	 *
+	 * @param rooms   rooms from the repository
 	 * @param service service which handles entries
 	 */
 	RoomController(RoomRepository rooms, TimeTableService service, RoomService roomService) {
@@ -30,44 +36,50 @@ public class RoomController {
 
 	/**
 	 * show currently existing rooms
+	 *
 	 * @param model Spring model
-	 * @param form Spring form
+	 * @param form  Spring form
+	 * @param auth  authentication object of current user
 	 * @return rooms page
 	 */
 	@GetMapping("/rooms")
 	@PreAuthorize("isAuthenticated()")
-	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form) {
+	public String showRooms(Model model, @ModelAttribute("form") AddRoomForm form, Authentication auth) {
 		model.addAttribute("rooms", rooms.findAll());
 		model.addAttribute("slotTable", roomService.buildRoomTable());
+		model.addAttribute("auth", auth.getName());
 		model.addAttribute("times", TimeTableService.SLOTS);
 		return "rooms";
 	}
 
 	/**
 	 * add a new room to the repository
-	 * @param model Spring model
-	 * @param form Spring form
+	 *
+	 * @param model  Spring model
+	 * @param form   Spring form
+	 * @param auth   authentication object of current user
 	 * @param errors Spring errors
 	 * @return redirect to the rooms page
 	 */
 	@PostMapping("/rooms/add")
-	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Errors errors) {
+	public String addRoom(Model model, @Valid @ModelAttribute("form") AddRoomForm form, Authentication auth, Errors errors) {
 		if (errors.hasErrors()) {
-			return showRooms(model, form);
+			return showRooms(model, form, auth);
 		}
 
-		if (!rooms.existsByName(form.getName())){
+		if (!rooms.existsByName(form.getName())) {
 			rooms.save(form.createRoom());
 			service.rebuildTimeTable();
 			return "redirect:/rooms";
 		} else {
 			errors.rejectValue("name", "AddRoomForm.exists");
-			return showRooms(model, form);
+			return showRooms(model, form, auth);
 		}
 	}
 
 	/**
 	 * delete existing rooms from the repository
+	 *
 	 * @param optionalRoom the room which should be deleted
 	 * @return redirect to the rooms page
 	 */

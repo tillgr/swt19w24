@@ -57,7 +57,6 @@ public class StaffManagement {
 		Assert.notNull(form, "RegistrationForm cannot be null.");
 		var password = Password.UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccountManager.create(form.getUserName(), password, role);
-
 		staffRepository.save(new Staff(userAccount, form.getFirstName(), form.getLastName(), form.getSalary()));
 	}
 

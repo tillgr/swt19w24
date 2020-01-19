@@ -57,14 +57,14 @@
                 <td th:text="${times.get(iter.index).getFirst()} + ' - ' + ${times.get(iter.index).getSecond()}">
                     vonbis
                 </td>
-                <td th:each="field: ${row}">
+                <td th:each="field: ${row}"
+                    th:classappend="${field != null && field.getStaff().getUserName().equals(auth)} ? table-info">
                     <div th:if="${field}">
                         <a th:href="@{/orders/detail/{id}(id=${field.getOrder().getId()})}"
                            th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</a>
-                        <div>
-                            <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
-                            <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
-                        </div>
+                        <br/>
+                        <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
+                        <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
                     </div>
                     <div th:unless="${field}">
                         <span>-</span>

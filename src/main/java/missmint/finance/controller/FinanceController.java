@@ -64,7 +64,7 @@ public class FinanceController {
 	/**
 	 * uses for creating new finance items.
 	 *
-	 * @param form used for creating new finance items
+	 * @param form   used for creating new finance items
 	 * @param result errors in form
 	 * @return finance overview
 	 */
