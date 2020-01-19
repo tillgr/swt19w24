@@ -22,7 +22,7 @@ public class AddFinanceForm {
 	 * price must not be null.
 	 */
 	@NotNull (message = "{AddFinanceForm.BigDecimal.NotNull}")
-	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
+	@Digits(message = "{AddFinanceForm.BigDecimal.Digit}", integer = Integer.MAX_VALUE, fraction = 2)
 	private BigDecimal price;
 
 
