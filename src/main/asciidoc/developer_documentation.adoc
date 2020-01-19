@@ -525,6 +525,15 @@ image::models/design/images/Package inventory.png[]
 |orderItem, Material
 |Erweiterung des Salespoint ``Product``s.
 
+|MaterialForm
+|Form für das manuelle Nachbestellen/Verbrauchen von Mateerial
+
+|MaterialManager
+|Businesslogik für Nachbestellung/Verbrauch
+
+|OrderItemManager
+|Businesslogik für Entfernen und anzeigen von OrderItems
+
 |===
 
 === Räume
