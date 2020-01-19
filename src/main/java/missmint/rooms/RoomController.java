@@ -39,6 +39,7 @@ public class RoomController {
 	 *
 	 * @param model Spring model
 	 * @param form  Spring form
+	 * @param auth  authentication object of current user
 	 * @return rooms page
 	 */
 	@GetMapping("/rooms")
@@ -56,6 +57,7 @@ public class RoomController {
 	 *
 	 * @param model  Spring model
 	 * @param form   Spring form
+	 * @param auth   authentication object of current user
 	 * @param errors Spring errors
 	 * @return redirect to the rooms page
 	 */

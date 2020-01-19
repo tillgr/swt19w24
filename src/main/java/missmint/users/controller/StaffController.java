@@ -59,6 +59,7 @@ public class StaffController {
 
 	/**
 	 * Delete the user based on the given username.
+	 *
 	 * @param userName to be deleted
 	 * @return users view
 	 */
@@ -104,9 +105,9 @@ public class StaffController {
 
 		if (staffManagement.findByUserName(form.getUserName()).isPresent()) {
 			result.rejectValue(
-				"userName",
-				"RegistrationForm.username.duplicate",
-				"An account with this name already exists."
+					"userName",
+					"RegistrationForm.username.duplicate",
+					"An account with this name already exists."
 			);
 			return registrationForm(form);
 		}
@@ -119,10 +120,10 @@ public class StaffController {
 	/**
 	 * Show the edit page for a given staff.
 	 *
-	 * @param id of the user account
+	 * @param id       of the user account
 	 * @param editForm form for saving edits
-	 * @param pwdForm form for changing password
-	 * @param model injected by Spring
+	 * @param pwdForm  form for changing password
+	 * @param model    injected by Spring
 	 * @return edituser view
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
@@ -142,21 +143,21 @@ public class StaffController {
 	/**
 	 * Save the user based on editForm and pwdForm.
 	 *
-	 * @param id of the user account
-	 * @param pwdForm form containing the new password
+	 * @param id       of the user account
+	 * @param pwdForm  form containing the new password
 	 * @param editForm form containing staff attributes
-	 * @param result form errors
-	 * @param model injected by Spring
+	 * @param result   form errors
+	 * @param model    injected by Spring
 	 * @return users view
 	 */
 	@PreAuthorize(("hasRole('ADMIN')"))
 	@PostMapping("/users/{id}")
 	public String saveUser(
-		@PathVariable long id,
-		@ModelAttribute("pwdform") PasswordForm pwdForm,
-		@Valid @ModelAttribute("editform") EditStaffForm editForm,
-		Errors result,
-		Model model
+			@PathVariable long id,
+			@ModelAttribute("pwdform") PasswordForm pwdForm,
+			@Valid @ModelAttribute("editform") EditStaffForm editForm,
+			Errors result,
+			Model model
 	) {
 		Staff staff = Utils.getOrThrow(staffRepository.findById(id));
 
@@ -174,20 +175,20 @@ public class StaffController {
 	/**
 	 * Update the password of a staff member.
 	 *
-	 * @param id id of the staff member
+	 * @param id      id of the staff member
 	 * @param pwdForm the form with the new password
-	 * @param result errors in the form
+	 * @param result  errors in the form
 	 * @return a redirect to the users page or the edit page again on error
 	 * @see StaffController#editUserPage(long, EditStaffForm, PasswordForm, Model)
 	 */
 	@PreAuthorize(("hasRole('ADMIN')"))
 	@PostMapping("/users/password/{id}")
 	public String changePassword(
-		@PathVariable long id,
-		@ModelAttribute("editform") EditStaffForm editForm,
-		@Valid @ModelAttribute("pwdform") PasswordForm pwdForm,
-		Errors result,
-		Model model
+			@PathVariable long id,
+			@ModelAttribute("editform") EditStaffForm editForm,
+			@Valid @ModelAttribute("pwdform") PasswordForm pwdForm,
+			Errors result,
+			Model model
 	) {
 		Staff staff = Utils.getOrThrow(staffRepository.findById(id));
 

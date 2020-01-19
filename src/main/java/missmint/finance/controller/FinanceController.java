@@ -1,4 +1,5 @@
 package missmint.finance.controller;
+
 import missmint.finance.form.AddFinanceForm;
 import missmint.finance.service.FinanceService;
 import org.salespointframework.accountancy.Accountancy;
@@ -9,13 +10,12 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 
 /**
  * Controller for the overview and detail pages of the finance.
  */
-
-
 @Controller
 public class FinanceController {
 	private FinanceService financeService;
@@ -64,7 +64,7 @@ public class FinanceController {
 	/**
 	 * uses for creating new finance items.
 	 *
-	 * @param form used for creating new finance items
+	 * @param form   used for creating new finance items
 	 * @param result errors in form
 	 * @return finance overview
 	 */
