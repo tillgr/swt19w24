@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -19,7 +20,8 @@
     <form method="post" th:object="${form}" th:action="@{/rooms/add}">
         <div class="form-group">
             <label for="nameInput" th:text="#{rooms.names}">Raumname</label>
-            <input th:field="*{name}" type="text" class="form-control" id="nameInput" th:placeholder="#{rooms.names.enter}">
+            <input th:field="*{name}" type="text" class="form-control" id="nameInput"
+                   th:placeholder="#{rooms.names.enter}">
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" role="alert"></div>
         </div>
         <button class="btn btn-warning" type="submit" th:text="#{rooms.add.submit}">Hinzufügen</button>
@@ -52,16 +54,17 @@
             </thead>
             <tbody>
             <tr th:each="row, iter: ${slotTable}">
-                <td th:text="${times.get(iter.index).getFirst()} + ' - ' + ${times.get(iter.index).getSecond()}">vonbis</td>
-                <td th:each="field: ${row}">
+                <td th:text="${times.get(iter.index).getFirst()} + ' - ' + ${times.get(iter.index).getSecond()}">
+                    vonbis
+                </td>
+                <td th:each="field: ${row}"
+                    th:classappend="${field != null && field.getStaff().getUserName().equals(auth)} ? table-info">
                     <div th:if="${field}">
                         <a th:href="@{/orders/detail/{id}(id=${field.getOrder().getId()})}"
                            th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</a>
-                        <div class="table-info" th:if ="${auth.equals(field.getStaff().getUserName())}"></div>
-                            <div>
-                                <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
-                                <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
-                            </div>
+                        <br/>
+                        <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
+                        <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
                     </div>
                     <div th:unless="${field}">
                         <span>-</span>
@@ -71,18 +74,18 @@
             </tbody>
         </table>
 
-</div>
+    </div>
 
-<footer th:replace="fragments :: footer"></footer>
+    <footer th:replace="fragments :: footer"></footer>
 
-<script crossorigin="anonymous"
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        th:src="@{/webjars/jquery/jquery.js}"></script>
-<script crossorigin="anonymous"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        th:src="@{/webjars/popper.js/umd/popper.js}"></script>
-<script crossorigin="anonymous"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script crossorigin="anonymous"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            th:src="@{/webjars/jquery/jquery.js}"></script>
+    <script crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+    <script crossorigin="anonymous"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
