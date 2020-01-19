@@ -1,7 +1,7 @@
 package missmint.finance.form;
 
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -14,15 +14,15 @@ public class AddFinanceForm {
 	 *
 	 * finance item must not be empty.
 	 */
-	@NotEmpty
+	@NotBlank(message = "{AddFinanceForm.description.blank}")
 	private String description;
 	/**
 	 * price of the material
 	 *
 	 * price must not be null.
 	 */
-	@NotNull
-	@Digits(integer = Integer.MAX_VALUE, fraction = 2)
+	@NotNull (message = "{AddFinanceForm.BigDecimal.NotNull}")
+	@Digits(message = "{AddFinanceForm.BigDecimal.Digit}", integer = Integer.MAX_VALUE, fraction = 2)
 	private BigDecimal price;
 
 

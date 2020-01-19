@@ -72,7 +72,7 @@ public class RoomController {
 			service.rebuildTimeTable();
 			return "redirect:/rooms";
 		} else {
-			errors.rejectValue("name", "rooms.add.name.exists");
+			errors.rejectValue("name", "AddRoomForm.exists");
 			return showRooms(model, form, auth);
 		}
 	}

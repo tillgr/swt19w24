@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Pair;
 import org.springframework.data.util.Streamable;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.Objects;
@@ -26,6 +27,7 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @SpringBootTest
+@Transactional
 public class MaterialManagerTest {
 
 	@Autowired
@@ -87,7 +89,7 @@ public class MaterialManagerTest {
 
 		lMaterial.ifPresent(material -> {
 			UniqueInventoryItem item = materialManager.checkAndConsume(material.getId(),1000);
-			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(20);
+			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(100);
 		});
 	}
 
@@ -109,7 +111,7 @@ public class MaterialManagerTest {
 
 		mMaterial.ifPresent(material -> {
 			UniqueInventoryItem item = materialManager.checkAndRestock(material.getId(),100000);
-			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(10000);
+			assertThat(item.getQuantity().getAmount().intValueExact()).isEqualTo(100);
 		});
 	}
 

@@ -1,7 +1,6 @@
 package missmint.inventory.initializer;
 
 import missmint.inventory.products.Material;
-import missmint.inventory.products.OrderItem;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.UniqueInventory;

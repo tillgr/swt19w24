@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -67,6 +68,8 @@ public class TimeTableEntryTest {
 	private String currency;
 
 	TimeTableEntry entry;
+	Staff staff;
+	MissMintOrder order;
 
 	private Room createRoom() {
 		Room room = new Room("Colosseum in Rome");
@@ -98,8 +101,8 @@ public class TimeTableEntryTest {
 
 
 	void createEntry(){
-		MissMintOrder order = createOrder();
-		Staff staff = createStaff();
+		order = createOrder();
+		staff = createStaff();
 		Room room = createRoom();
 		LocalDate now = time.getTime().toLocalDate();
 
@@ -115,7 +118,7 @@ public class TimeTableEntryTest {
 	@Test
 	void getOrder(){
 		createEntry();
-		assertThat(entry.getOrder()).isEqualTo(createOrder());
+		assertThat(entry.getOrder()).isEqualTo(order);
 	}
 
 	@Test
@@ -128,7 +131,7 @@ public class TimeTableEntryTest {
 	void getBeginning(){
 		//TODO
 		createEntry();
-		assertThat(entry.getEnd()).isEqualTo(LocalDateTime.of(time.getTime().toLocalDate(), TimeTableService.SLOTS.get(1).getFirst()));
+		assertThat(entry.getBeginning()).isEqualTo(LocalDateTime.of(time.getTime().toLocalDate(), TimeTableService.SLOTS.get(1).getFirst()));
 	}
 
 	@Test
@@ -141,7 +144,7 @@ public class TimeTableEntryTest {
 	void getStaff(){
 		//TODO
 		createEntry();
-		assertThat(entry.getStaff()).isEqualTo(createStaff());
+		assertThat(entry.getStaff()).isEqualTo(staff);
 	}
 
 	@Test
@@ -155,7 +158,7 @@ public class TimeTableEntryTest {
 	void hashCodeTest(){
 		//TODO
 		createEntry();
-		assertThat(entry.hashCode()).isEqualTo(entry.getId());
+		assertThat(entry.hashCode()).isEqualTo(Objects.hash(entry.getId()));
 	}
 
 }

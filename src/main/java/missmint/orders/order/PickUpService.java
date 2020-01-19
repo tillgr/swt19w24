@@ -20,7 +20,10 @@ public class PickUpService {
 	private final FinanceService financeService;
 	private final OrderItemManager orderItemManager;
 
-	public PickUpService(OrderManager<MissMintOrder> orderManager, OrderService orderService, FinanceService financeService, OrderItemManager orderItemManager) {
+	public PickUpService(OrderManager<MissMintOrder> orderManager,
+						 OrderService orderService,
+						 FinanceService financeService,
+						 OrderItemManager orderItemManager) {
 		Assert.notNull(orderManager, "orderManager should not be null");
 		Assert.notNull(orderService, "orderService should not be null");
 		Assert.notNull(financeService, "financeService should not be null");

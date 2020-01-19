@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.validation.ConstraintViolation;
@@ -15,6 +16,7 @@ import java.util.Set;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @SpringBootTest
+@Transactional
 public class ReceivingFormTests {
 	@Autowired
 	Validator validator;

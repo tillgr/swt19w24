@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Pair;
 import org.springframework.data.util.Streamable;
+import org.springframework.validation.Errors;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.math.BigInteger;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -34,6 +36,10 @@ public class MaterialFormTest {
 	private Catalog<Material> materialCatalog;
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> materialInventory;
+
+	BigInteger big20 = new BigInteger("20");
+	BigInteger big10001 = new BigInteger("10001");
+	BigInteger big0 = new BigInteger("0");
 
 	@BeforeEach
 	public void setUp() {
@@ -66,6 +72,8 @@ public class MaterialFormTest {
 				materialInventory.save(new UniqueInventoryItem(material, Quantity.of(100, Metric.LITER)));
 			}
 		});
+
+
 	}
 
 
@@ -74,10 +82,10 @@ public class MaterialFormTest {
 		Streamable<Material> product = materialCatalog.findByName("uTest");
 		Material productMaterial = product.toList().get(0);
 		InventoryItemIdentifier itemMaterialId = materialInventory.findByProduct(productMaterial).get().getId();
-		var form = new MaterialForm(20,itemMaterialId);
+		var form = new MaterialForm(big20,itemMaterialId);
 
 		assertThat(form.getMaterialId()).isEqualTo(itemMaterialId);
-		assertThat(form.getNumber()).isEqualTo(20);
+		assertThat(form.getNumber()).isEqualTo(big20);
 
 	}
 	@Test
@@ -85,7 +93,7 @@ public class MaterialFormTest {
 		Streamable<Material> product = materialCatalog.findByName("uTest");
 		Material material = product.toList().get(0);
 		Optional<UniqueInventoryItem> item = materialInventory.findByProduct(material);
-		var form = new MaterialForm(20,item.get().getId());
+		var form = new MaterialForm(big20,item.get().getId());
 		var violations = validator.validate(form);
 		Assertions.assertTrue(violations.isEmpty());
 	}
@@ -95,9 +103,9 @@ public class MaterialFormTest {
 		Streamable<Material> product = materialCatalog.findByName("uTest");
 		Material material = product.toList().get(0);
 		Optional<UniqueInventoryItem> item = materialInventory.findByProduct(material);
-		var form = new MaterialForm(0,item.get().getId());
+		var form = new MaterialForm(big0,item.get().getId());
 		var violations = validator.validate(form);
-		Assertions.assertEquals(1, violations.size());
+		Assertions.assertEquals(0, violations.size());
 	}
 
 	@Test
@@ -105,8 +113,10 @@ public class MaterialFormTest {
 		Streamable<Material> product = materialCatalog.findByName("uTest");
 		Material material = product.toList().get(0);
 		Optional<UniqueInventoryItem> item = materialInventory.findByProduct(material);
-		var form = new MaterialForm(10001,item.get().getId());
+		var form = new MaterialForm(big10001,item.get().getId());
 		var violations = validator.validate(form);
 		Assertions.assertEquals(1, violations.size());
 	}
+
+
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -56,8 +57,7 @@ public class FinanceController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/finance/addItem")
-	public String financeForm(Model model, AddFinanceForm form) {
-		model.addAttribute("form", form);
+	public String financeForm(@ModelAttribute("form") AddFinanceForm form) {
 		return "addItem";
 	}
 
@@ -70,9 +70,9 @@ public class FinanceController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/finance/addItem")
-	public String addItemInForm(@Valid AddFinanceForm form, Errors result) {
+	public String addItemInForm(@Valid @ModelAttribute("form") AddFinanceForm form, Errors result) {
 		if (result.hasErrors()) {
-			return "addItem";
+			return financeForm(form);
 		}
 		financeService.createFinanceItemForm(form);
 		return "redirect:/finance";

@@ -18,9 +18,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Description</th>
-            <th scope="col">Value</th>
-            <th scope="col">Date</th>
+            <th scope="col" th:text="#{finance.description}"> Beschreibung</th>
+            <th scope="col" th:text="#{finance.value}">Wert</th>
+            <th scope="col" th:text="#{finance.date}">Datum</th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
         </tr>
         </tbody>
     </table>
-    <p>Summe: <span th:text="${sum}">34</span></p>
+    <p th:text="#{finance.summe}"> Summe: <span th:text="${sum}">34</span></p>
 
     <div class="mt-2">
         <a class="btn btn-primary" th:href="@{/finance/addItem}">Finance item hinzufügen</a>

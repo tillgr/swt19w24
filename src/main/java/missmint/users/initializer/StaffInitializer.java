@@ -26,7 +26,9 @@ public class StaffInitializer implements DataInitializer {
 	private StaffManagement staffManagement;
 	private StaffRepository staffRepository;
 
-	public StaffInitializer(UserAccountManager userAccountManager, StaffManagement staffManagement, StaffRepository staffRepository) {
+	public StaffInitializer(UserAccountManager userAccountManager,
+							StaffManagement staffManagement,
+							StaffRepository staffRepository) {
 		this.staffRepository = staffRepository;
 
 		Assert.notNull(userAccountManager, "UserAccountManager must not be null");
@@ -40,6 +42,10 @@ public class StaffInitializer implements DataInitializer {
 	public void initialize() {
 		var password = "123";
 		var admin = "user";
+
+		if (staffManagement.findByUserName(admin).isPresent()) {
+			return;
+		}
 
 		if(userAccountManager.findByUsername(admin).isEmpty()) {
 			staffManagement.createStaff(new RegistrationForm(
