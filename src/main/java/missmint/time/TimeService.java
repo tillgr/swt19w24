@@ -8,6 +8,9 @@ import org.springframework.util.Assert;
 
 import java.time.Duration;
 
+/**
+ * A Service that handles the forwarding of time.
+ */
 @Service
 public class TimeService {
 	private BusinessTime time;
@@ -26,6 +29,10 @@ public class TimeService {
 
 	/**
 	 * This function is called whenever the time is forwarded to process time dependant events.
+	 *
+	 * @see BusinessTime#forward(Duration)
+	 * @see OrderService#updateOrders()
+	 * @see SalaryService#payStaff(Duration)
 	 */
 	public void forward(Duration duration) {
 		Assert.notNull(duration, "duration should not be null");

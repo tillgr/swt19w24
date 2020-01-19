@@ -686,9 +686,7 @@ image::models/design/images/sd_restock_UniqueInventoryItem.png[]
 
 === Räume
 image::models/design/images/rooms addRoom.png[]
-image::models/design/images/rooms bookFreeSlot.png[]
 image::models/design/images/rooms deleteRoom.png[]
-image::models/design/images/rooms listFreeSlots.png[]
 
 ////
 == Technische Schulden

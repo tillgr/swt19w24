@@ -24,7 +24,10 @@ public class OrderItemManager {
 	private final EntryRepository entryRepository;
 	private final TimeTableService timeTableService;
 
-	public OrderItemManager(OrderManager<MissMintOrder> orderManager, Catalog<OrderItem> orderItemCatalog, EntryRepository entryRepository, TimeTableService timeTableService) {
+	public OrderItemManager(OrderManager<MissMintOrder> orderManager,
+							Catalog<OrderItem> orderItemCatalog,
+							EntryRepository entryRepository,
+							TimeTableService timeTableService) {
 		this.orderManager = orderManager;
 		this.orderItemCatalog = orderItemCatalog;
 		this.entryRepository = entryRepository;
@@ -45,12 +48,14 @@ public class OrderItemManager {
 			if (Objects.equals(order.getItem(), item)) {
 				order.setItem(null);
 				orderItemCatalog.deleteById(orderItemId);
-				if (!order.getOrderState().equals(OrderState.PICKED_UP)){
+				if (!order.getOrderState().equals(OrderState.PICKED_UP)) {
 					order.setEntry(null);
 					entryRepository.deleteTimeTableEntriesByOrder(order);
+					order.setOrderState(OrderState.PICKED_UP);
 					timeTableService.rebuildTimeTable();
+				} else {
+					order.setOrderState(OrderState.PICKED_UP);
 				}
-				order.setOrderState(OrderState.PICKED_UP);
 				orderManager.save(order);
 			}
 		});

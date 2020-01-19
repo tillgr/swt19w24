@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * Entry represents a booked Timeslot
+ * Entry which represents a booked time slot
  */
 @Entity
 public class TimeTableEntry {
@@ -23,6 +23,7 @@ public class TimeTableEntry {
 	@ManyToOne
 	private Staff staff;
 	private int slot;
+	@SuppressWarnings({"FieldCanBeLocal", "unused"})
 	@ManyToOne
 	private Room room;
 	private LocalDate date;
@@ -38,24 +39,8 @@ public class TimeTableEntry {
 	public TimeTableEntry() {
 	}
 
-	public Room getRoom() {
-		return room;
-	}
-
 	public long getId() {
 		return id;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-	public int getSlot() {
-		return slot;
-	}
-
-	public void setSlot(int slot) {
-		this.slot = slot;
 	}
 
 	public MissMintOrder getOrder() {
@@ -66,10 +51,16 @@ public class TimeTableEntry {
 		return date;
 	}
 
+	/**
+	 * @return The time the work on the customer item for this slot will be started.
+	 */
 	public LocalDateTime getBeginning() {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getFirst());
 	}
 
+	/**
+	 * @return The time the work on the customer item for this slot will be finished.
+	 */
 	public LocalDateTime getEnd() {
 		return LocalDateTime.of(date, TimeTableService.SLOTS.get(slot).getSecond());
 	}
@@ -84,8 +75,12 @@ public class TimeTableEntry {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof TimeTableEntry)) return false;
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof TimeTableEntry)) {
+			return false;
+		}
 		TimeTableEntry that = (TimeTableEntry) o;
 		return id == that.id;
 	}

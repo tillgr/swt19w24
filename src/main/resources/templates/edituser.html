@@ -7,22 +7,22 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 
-    <title th:text="#{users.edit.title}">Nutzerbearbeitung</title>
+    <title th:text="#{users.edit.title}">User Edit</title>
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container mt-md-5">
-    <h1 th:text="#{users.edit.title}">Nutzerbearbeitung</h1>
+    <h1 th:text="#{users.edit.title}">User Edit</h1>
     <form method="post" id="editform" th:object="${editform}" th:action="@{/users/{id}(id=${staff.getId()})}">
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Nachname</th>
-                <th scope="col">Vorname</th>
-                <th scope="col">Nutzername</th>
-                <th scope="col">Gehalt/Monat in €</th>
-                <th scope="col">Fähigkeiten</th>
+                <th scope="col" th:text="#{users.edit.col.surname}">Surname</th>
+                <th scope="col" th:text="#{users.edit.col.forename}">Forename</th>
+                <th scope="col" th:text="#{users.edit.col.username}">Username</th>
+                <th scope="col" th:text="#{users.edit.col.salary}">Salary/Month in €</th>
+                <th scope="col" th:text="#{users.edit.col.skills}">Skills</th>
             </tr>
             </thead>
             <tbody>

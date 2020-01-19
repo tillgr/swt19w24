@@ -50,37 +50,23 @@
             <th scope="col" th:text="#{orders.service}">Service</th>
             <td th:text="#{'orders.service.' + ${service.getName()}}">Kludge (Sole)</td>
         </tr>
-        <tr>
-            <th scope="col">
-
-            </th>
-            <td>
-                <form method="post" sec:authorize="hasRole('ADMIN')"
-                      th:if="${order.getItem()} != null"
-                      th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
-                    <div class="form-inline">
-                        <div class="form-group form-check">
-                            <div class="form-inline">
-                                <label class="form-check-label" for="youSure" th:text="#{orders.pickup.sure}">Sure?</label>
-                            </div>
-                            <div class="form-inline ml-1">
-                                <input class="form-check-input" id="youSure" required type="checkbox">
-                            </div>
-                        </div>
-                        <div class="form-inline ml-5">
-                            <button class="btn btn-outline-danger" type="submit" th:unless="${order.canPickUp()}"
-                                    th:text="#{orders.pickup.beforeFinished}">Give back unfinished</button>
-                            <button class="btn btn-outline-danger" type="submit" th:if="${order.canPickUp()}"
-                                    th:text="#{orders.pickup.returnWithoutPay}">Return for free</button>
-                        </div>
-                    </div>
-                </form>
-            </td>
-        </tr>
         </tbody>
     </table>
-
-
+    <form method="post" sec:authorize="hasRole('ADMIN')"
+          action="orders.html" class="form-inline"
+          th:if="${order.getItem()} != null"
+          th:action="@{orderItem/remove/{id}(id=${order.getItem().getId()})}">
+        <div class="form-check mr-sm-2">
+            <input class="form-check-input" id="you-sure" type="checkbox" required>
+            <label class="form-check-label" for="you-sure" th:text="#{orders.pickup.sure}">Sure?</label>
+        </div>
+        <button class="btn btn-outline-danger" type="submit" th:unless="${order.canPickUp()}"
+                th:text="#{orders.pickup.beforeFinished}">Give back unfinished
+        </button>
+        <button class="btn btn-outline-success" type="submit" th:if="${order.canPickUp()}"
+                th:text="#{orders.pickup.returnWithoutPay}">Return for free
+        </button>
+    </form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>

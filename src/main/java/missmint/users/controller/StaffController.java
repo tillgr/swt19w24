@@ -23,6 +23,9 @@ import javax.validation.Valid;
 import java.util.EnumSet;
 import java.util.HashSet;
 
+/**
+ * Controller for staff management
+ */
 @Controller
 public class StaffController {
 
@@ -42,9 +45,9 @@ public class StaffController {
 	}
 
 	/**
-	 * Populates the users page
+	 * Populates the users page.
 	 *
-	 * @param model injected by spring
+	 * @param model injected by Spring
 	 * @return users view
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
@@ -54,6 +57,11 @@ public class StaffController {
 		return "users";
 	}
 
+	/**
+	 * Delete the user based on the given username.
+	 * @param userName to be deleted
+	 * @return users view
+	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/users/delete/{userName}")
 	public String deleteUser(@PathVariable String userName) {
@@ -69,7 +77,7 @@ public class StaffController {
 	}
 
 	/**
-	 * Show the registration form to add new users
+	 * Show the registration form to add new users.
 	 *
 	 * @return the registration view
 	 */
@@ -80,11 +88,11 @@ public class StaffController {
 	}
 
 	/**
-	 * Uses the registration form to create a new staff with user account
+	 * Uses the registration form to create a new staff with user account.
 	 *
 	 * @param form   used for creating account
 	 * @param result errors in form
-	 * @return view
+	 * @return users view
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/users/registration")
@@ -108,6 +116,15 @@ public class StaffController {
 		return "redirect:/users";
 	}
 
+	/**
+	 * Show the edit page for a given staff.
+	 *
+	 * @param id of the user account
+	 * @param editForm form for saving edits
+	 * @param pwdForm form for changing password
+	 * @param model injected by Spring
+	 * @return edituser view
+	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("users/edit/{id}")
 	public String editUserPage(@PathVariable("id") long id,
@@ -122,6 +139,16 @@ public class StaffController {
 		return "edituser";
 	}
 
+	/**
+	 * Save the user based on editForm and pwdForm.
+	 *
+	 * @param id of the user account
+	 * @param pwdForm form containing the new password
+	 * @param editForm form containing staff attributes
+	 * @param result form errors
+	 * @param model injected by Spring
+	 * @return users view
+	 */
 	@PreAuthorize(("hasRole('ADMIN')"))
 	@PostMapping("/users/{id}")
 	public String saveUser(
@@ -137,7 +164,11 @@ public class StaffController {
 			return editUserPage(id, editForm, pwdForm, model);
 		}
 
-		staffManagement.editStaff(staff, editForm.getFirstName(), editForm.getLastName(), editForm.getSalary(), editForm.getUpdateSkills());
+		staffManagement.editStaff(staff,
+				editForm.getFirstName(),
+				editForm.getLastName(),
+				editForm.getSalary(),
+				editForm.getUpdateSkills());
 
 		timeTableService.rebuildTimeTable();
 

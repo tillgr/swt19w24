@@ -16,6 +16,9 @@ public class RoomDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
+		if (!(roomRepository.count() == 0)) {
+			return;
+		}
 		Room room = new Room("HSZ/0001");
 		Room room1 = new Room("HSZ/0002");
 		Room room2 = new Room("HSZ/0003");
