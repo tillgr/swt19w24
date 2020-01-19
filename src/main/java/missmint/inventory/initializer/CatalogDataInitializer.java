@@ -31,15 +31,7 @@ class CatalogDataInitializer implements DataInitializer {
 		if (!materialCatalog.findByCategory("UNIT_MATERIAL").isEmpty()) {
 			return;
 		}
-		if (!materialCatalog.findByCategory("LITER_MATERIAL").isEmpty()) {
-			return;
-		}
-		if (!materialCatalog.findByCategory("METER_MATERIAL").isEmpty()) {
-			return;
-		}
-		if (!materialCatalog.findByCategory("SQUARE_METER_MATERIAL").isEmpty()) {
-			return;
-		}
+
 
 		Stream.of(
 				Pair.of(new Material("heel", Money.of(0.5, EURO), Metric.UNIT), "UNIT_MATERIAL"),
