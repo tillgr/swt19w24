@@ -43,8 +43,12 @@ public class RoomController {
 		return "rooms";
 	}
 
-    @RequestMapping("/orders/detail/{id}")
-	public String idToDetails(){
+	/**
+	 * show detail of a specific oder
+	 * @return detail page
+	 */
+    @GetMapping("rooms/orders/detail/{id}")
+	public String idToDetails(@PathVariable("id") long id){
 		return "orders/detail/{id}";
 	}
 
