@@ -54,9 +54,9 @@
             <tr th:each="row, iter: ${slotTable}">
                 <td th:text="${times.get(iter.index).getFirst()} + ' - ' + ${times.get(iter.index).getSecond()}">vonbis</td>
                 <td th:each="field: ${row}">
-                    <div class="table-info" th:if="${field}">
+                    <div th:if="${field}">
                         <span th:text="${field.getOrder().getId()}">efe3-2daee3-adede3</span>
-                        <div class="mark" th:if ="${auth.equals(field.getStaff().getUserName())}"></div>
+                        <div class="table-info" th:if ="${auth.equals(field.getStaff().getUserName())}"></div>
                             <div>
                                 <span class="font-weight-bold" th:text="${field.getStaff().getFirstName()}">Elon</span>
                                 <span class="font-weight-bold" th:text="${field.getStaff().getLastName()}">Musk</span>
