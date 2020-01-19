@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>missmint.time</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">missmint.time.EntryRepository</node>
+    <node x="987.015306122449" y="78.0">org.salespointframework.time</node>
+    <node x="991.8367346938776" y="335.0">missmint.time.TimeService</node>
+    <node x="1061.3367346938776" y="765.0">missmint.time.TimeController</node>
+    <node x="57.83673469387759" y="236.0">missmint.time.TimeTableService</node>
+    <node x="186.655612244898" y="666.0">missmint.time.TimeTableEntry</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="missmint.time.TimeService" target="org.salespointframework.time">
+      <point x="84.75" y="-91.0" />
+      <point x="1246.0867346938776" y="216.0" />
+      <point x="1092.8724489795918" y="216.0" />
+      <point x="48.85714285714289" y="15.0" />
+    </edge>
+    <edge source="missmint.time.TimeTableService" target="missmint.time.TimeTableEntry">
+      <point x="5.6843418860808015E-14" y="190.0" />
+      <point x="514.8367346938776" y="636.0" />
+      <point x="414.155612244898" y="636.0" />
+      <point x="45.5" y="-168.0" />
+    </edge>
+    <edge source="org.salespointframework.time" target="org.salespointframework.time">
+      <point x="-32.571428571428555" y="15.0" />
+      <point x="1011.4438775510205" y="138.0" />
+      <point x="957.015306122449" y="138.0" />
+      <point x="957.015306122449" y="93.0" />
+      <point x="-57.0" y="-0.0" />
+    </edge>
+    <edge source="missmint.time.EntryRepository" target="missmint.time.TimeTableEntry">
+      <point x="-134.33333333333337" y="93.0" />
+      <point x="67.16666666666663" y="216.0" />
+      <point x="47.33673469387759" y="216.0" />
+      <point x="47.33673469387759" y="646.0" />
+      <point x="232.155612244898" y="646.0" />
+      <point x="-136.5" y="-168.0" />
+    </edge>
+    <edge source="missmint.time.TimeController" target="missmint.time.TimeService">
+      <point x="50.0" y="-69.0" />
+      <point x="1211.3367346938776" y="646.0" />
+      <point x="1246.0867346938776" y="646.0" />
+      <point x="84.75" y="91.0" />
+    </edge>
+    <edge source="missmint.time.TimeTableService" target="missmint.time.EntryRepository">
+      <point x="-114.25" y="-190.0" />
+      <point x="400.5867346938776" y="216.0" />
+      <point x="335.83333333333337" y="216.0" />
+      <point x="134.33333333333337" y="93.0" />
+    </edge>
+    <edge source="missmint.time.TimeTableService" target="org.salespointframework.time">
+      <point x="342.75" y="-190.0" />
+      <point x="857.5867346938776" y="216.0" />
+      <point x="1060.3010204081634" y="216.0" />
+      <point x="16.285714285714334" y="15.0" />
+    </edge>
+    <edge source="missmint.time.TimeTableEntry" target="missmint.time.TimeTableService">
+      <point x="-45.5" y="-168.0" />
+      <point x="323.155612244898" y="636.0" />
+      <point x="210.1700680272109" y="636.0" />
+      <point x="-304.6666666666667" y="190.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8669275929549902" x="665.5" y="501.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

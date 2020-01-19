@@ -13,35 +13,36 @@
 == Einführung und Ziele
 === Aufgabenstellung
 Für _Miss-Mint Mending Points_ soll für die Mitarbeiter eine Software bereitgestellt werden.
-Mitarbeiter (_Staff_) können über den Admin (_ADMIN_) registriert (_registerUser_) und entfernt (_deleteUser_) werden.
-Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen.
-Der Betrieb stellt folgende Dienstleistungen (_ServiceCategory_) bereit:
+Mitarbeiter (_Staff_) können über den Admin registriert (_registerStaff_) und entlassen (_deleteUser_) werden.
+Unauthorisierte Personen sollen keinen Zugriff auf betriebsinterne Bereiche bekommen (`@PreAuthorize("isAuthenticated()")`).
+Der Betrieb stellt folgende Dienstleistungen (_MissMintService_) in Kategorien (_ServiceCategory_) bereit:
 
 * eine Flickschusterei (_KLUDGE_)
-* einen Nähservice (_SEWINGSERVICE_)
+* einen Nähservice (_SEWING_)
 * einen Schlüsseldienst (_LOCKSMITH_)
-* eine Schnellreinigung (_EXPRESS_DRY_CLEANING_)
-* eine Elektrowerkstatt (_ELECTRONICWORKSHOP_)
-* eine Scherenschleiferei (_SCISSORSGRINDERY_)
+* eine Schnellreinigung (_CLEANING_)
+* eine Elektrowerkstatt (_ELECTRONICS_)
+* eine Scherenschleiferei (_GRINDERY_)
 
 Nachdem der Kunde eine Dienstleistung ausgewählt und im Voraus bezahlt hat, wird ein
 Auftrag (_MissMintOrder_) mit einer Auftragsnummer (_OrderIdentifier_) im System angelegt.
-Zusätzlich wird ein erwartetes Fertigstellungsdatum (_getExpectedFinished_) berechnet.
+Zusätzlich wird ein erwartetes Fertigstellungsdatum (_getExpectedFinished_) berechnet,
+indem ein Bearbeitungstermin (_TimeTableEntry_) im Zeitplan registriert wird (_createEntry_).
 Der Auftrag kann sich in verschiedenen Zuständen (_OrderState_) befinden.
 
-Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan (_TimeTable_) zur Verfügung gestellt.
-Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht (_BOOKING_). Für die Dienste
+Für die Bearbeitung der Aufträge wird eine Raumplanung inklusive Zeitplan zur Verfügung gestellt.
+Dementsprechend werden Räume (_Room_) passend zur Dienstleistung gebucht. Für die Dienste
 wird i. A. Material (_Material_) benötigt. Diese können, falls nötig, nachbestellt werden und die
-Kosten (_getPrice_) werden automatisch vom System erfasst.
+Kosten werden automatisch vom System erfasst (_checkAndConsume_).
 
-Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden.
-Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle, wo sie unter Vorlage des Auftragszettels
+Ab dem Fertigstellungstermin kann die Ware eine Woche lang unter Vorlage des Auftragszettels abgeholt werden (_FINISHED_).
+Danach wandert die Ware für drei Monate in eine Aufbewahrungsstelle (_STORED_), wo sie unter Vorlage des Auftragszettels
 durch Zahlung einer Aufbewahrungsgebühr von 0,50€ pro Woche ausgelöst werden kann. Waren, die
-auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation.
-Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet.
+auch in diesem Zeitraum nicht abgeholt werden, fallen anschließend an eine karitative Organisation (_CHARITABLE_USED_).
+Umgekehrt wird für jeden ganzen verspäteten Tag Kosten in Höhe von 10% (bis maximal 100%) erstattet (_calculateCharge_).
 
-Jegliches Einkommen bzw. Ausgaben (_FinanceItem_) sind für den Filialleiter sichtbar. Dabei werden sowohl die
-Gesamtkosten (_calculateTotalPrice_) als auch der Reingewinn erfasst.
+Jegliches Einkommen bzw. Ausgaben sind für den Filialleiter sichtbar (_showFinancePage_).
+Dabei ist auch eine Übersicht über den letzten Monat zur Abbuchung der Gewinne an den Mutterkonzern möglich (_showLastMonth_).
 
 
 === Qualitätsziele
@@ -161,7 +162,7 @@ image:srs/models/Top-level_architecture.png[Top-Level-Architekur]
 * *Model View Controller* mit Spring MVC
 * *Singleton mit Springs* `@Component` etc.
 * *Value Object* mit `MonetaryAmount` etc.
-* *Data Transfer Object* mit `OrderDTO`, um Daten für Templates zu aggregieren.
+* *Data Transfer Object* mit den `Form`-Klassen, in denen Formulardaten aggregiert werden.
 * *Dependency Injection* über die Konstruktoren in Spring-Komponenten
 * *Repository* mit den Spring-Repositories
 
@@ -189,162 +190,233 @@ image::models/design/images/dialog.png[]
 |Pfad der externen Klasse 
 |Verwendet von (Klasse der eigenen Anwendung)
 
+|Accountancy
+|org.{zwsp}salespointframework.{zwsp}accountancy.{zwsp}Accountancy
+|FinanceController, FinanceService
+
+|AccountancyEntry
+|org.{zwsp}salespointframework.{zwsp}accountancy.{zwsp}AccountancyEntry
+|FinanceService
+
 |Assert
-|org.springframework.util.Assert
-|CatalogDataInitializer, InventoryInitializer
+|org.{zwsp}springframework.{zwsp}util.{zwsp}Assert
+|CatalogDataInitializer, FinanceController, FinanceService, InventoryInitializer, MissMintOrder, MissMintService, OrderOverviewController, OrderService, PickUpController, PickUpService, ReceivingController, ReceivingService, ServiceDataInitializer, ServiceManager, Staff, StaffController, StaffInitializer, StaffManagement, TimeController, TimeService, TimeTableService, Utils
 
-|BusinessTime 
-|org.{zwsp}salespointframework.{zwsp}time.{zwsp}BusinessTime 
-|ReceivingController, OrderDataInitializer, OrderService
+|BusinessTime
+|org.{zwsp}salespointframework.{zwsp}time.{zwsp}BusinessTime
+|FinanceService, IndexController, OrderService, ReceivingController, RoomService, SalaryService, TimeController, TimeService, TimeTableService
 
-|Catalog 
-|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog 
-|OrdersController, ReceivingController, OrderDataInitializer, ServiceDataInitializer, InventoryCatalog
+|Catalog
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Catalog
+|CatalogDataInitializer, InventoryInitializer, MaterialManager, OrderItemController, OrderItemManager, OrderOverviewController, OrderService, ReceivingService, ServiceDataInitializer, ServiceManager
 
-|Component 
-|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component 
-|OrderDataInitializer, ServiceDataInitializer, InventoryInitializer, CatalogDataInitializer
+|Component
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Component
+|CatalogDataInitializer, FinanceDataInitializer, InventoryInitializer, Messages, RoomDataInitializer, ServiceDataInitializer, StaffInitializer
 
-|Controller 
-|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller 
-|OrdersController, PickUpController, ReceivingController, UserController, InventoryController, CatalogController
+|Configuration
+|org.{zwsp}springframework.{zwsp}context.{zwsp}annotation.{zwsp}Configuration
+|Application
+
+|Controller
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Controller
+|FinanceController, IndexController, InventoryController, OrderItemController, OrderOverviewController, PickUpController, ReceivingController, RoomController, StaffController, TimeController
 
 |CrudRepository
 |org.{zwsp}springframework.{zwsp}data.{zwsp}repository.{zwsp}CrudRepository
-|EntriesRepository, RoomsRepository, StaffRepository
+|EntryRepository, RoomRepository, StaffRepository
 
-|DataInitializer 
-|org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer 
-|OrderDataInitializer, ServiceDataInitializer, CatalogDataInitializer, InventoryInitializer, TempUserInitializer
+|DataInitializer
+|org.{zwsp}salespointframework.{zwsp}core.{zwsp}DataInitializer
+|CatalogDataInitializer, FinanceDataInitializer, InventoryInitializer, RoomDataInitializer, ServiceDataInitializer, StaffInitializer
 
-|Errors 
-|org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors 
-|ReceivingController, UserController
+|Database
+|org.{zwsp}hibernate.{zwsp}dialect.{zwsp}Database
+|Room
 
 |EURO
-|org.salespointframework.core.Currencies.EURO
+|org.{zwsp}salespointframework.{zwsp}core.{zwsp}Currencies.{zwsp}EURO
 |CatalogDataInitializer
 
-|GetMapping 
-|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping 
-|PickUpController, ReceivingController, UserController, CatalogController
+|EnableSalespoint
+|org.{zwsp}salespointframework.{zwsp}EnableSalespoint
+|Application
 
-|HttpStatus 
-|org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus 
-|PickUpController, ReceivingController
+|Errors
+|org.{zwsp}springframework.{zwsp}validation.{zwsp}Errors
+|FinanceController, ReceivingController, RoomController, StaffController
+
+|GetMapping
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}GetMapping
+|FinanceController, IndexController, InventoryController, OrderOverviewController, PickUpController, ReceivingController, StaffController
+
+|HttpSecurity
+|org.{zwsp}springframework.{zwsp}security.{zwsp}config.{zwsp}annotation.{zwsp}web.{zwsp}builders.{zwsp}HttpSecurity
+|Application
+
+|HttpStatus
+|org.{zwsp}springframework.{zwsp}http.{zwsp}HttpStatus
+|PickUpController, Utils
+
+|Interval
+|org.{zwsp}salespointframework.{zwsp}time.{zwsp}Interval
+|FinanceService
+
+|InventoryItemIdentifier
+|org.{zwsp}salespointframework.{zwsp}inventory.{zwsp}InventoryItemIdentifier
+|InventoryController, MaterialForm, MaterialManager
+
+|LocaleContextHolder
+|org.{zwsp}springframework.{zwsp}context.{zwsp}i18n.{zwsp}LocaleContextHolder
+|Messages
 
 |LoggedIn
 |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}web.{zwsp}LoggedIn
 |ReceivingController
 
+|MessageSource
+|org.{zwsp}springframework.{zwsp}context.{zwsp}MessageSource
+|Messages
+
+|MessageSourceAccessor
+|org.{zwsp}springframework.{zwsp}context.{zwsp}support.{zwsp}MessageSourceAccessor
+|Messages
+
 |Metric
-|org.salespointframework.quantity.Metric
-|UltimateProduct,CatalogDataInitializer 
+|org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Metric
+|CatalogDataInitializer, InventoryInitializer, Material, MaterialManager, ServiceConsumptionManager
 
-|Model 
-|org.{zwsp}springframework.{zwsp}ui.{zwsp}Model 
-|OrdersController, PickUpController, ReceivingController, UserController, CatalogController
+|Model
+|org.{zwsp}springframework.{zwsp}ui.{zwsp}Model
+|FinanceController, IndexController, InventoryController, OrderItemController, OrderOverviewController, PickUpController, ReceivingController, RoomController, StaffController
 
-|Money 
-|org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money 
-|OrderService, ServiceDataInitializer, UltimateProduct, CatalogDataInitializer
+|ModelAttribute
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}ModelAttribute
+|InventoryController, ReceivingController, StaffController
 
-|OnDelete
-|org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDelete;
-|Room, TimeTableEntry
+|Money
+|org.{zwsp}javamoney.{zwsp}moneta.{zwsp}Money
+|CatalogDataInitializer, FinanceDataInitializer, FinanceService, OrderItem, OrderService, SalaryService, ServiceDataInitializer
 
-|OnDeleteAction
-|org.{zwsp}hibernate.{zwsp}annotations.{zwsp}OnDeleteAction;
-|Room, TimeTableEntry
+|Order
+|org.{zwsp}springframework.{zwsp}core.{zwsp}annotation.{zwsp}Order
+|FinanceDataInitializer, ServiceDataInitializer
 
-|Order 
-|org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order 
-|MissMintOrder, ServiceDataInitializer
+|Order
+|org.{zwsp}salespointframework.{zwsp}order.{zwsp}Order
+|MissMintOrder
 
-|Order 
-|org.{zwsp}springframework.{zwsp}core.{zwsp}annotation.{zwsp}Order 
-|OrderDataInitializer
+|OrderManager
+|org.{zwsp}salespointframework.{zwsp}order.{zwsp}OrderManager
+|OrderItemController, OrderItemManager, OrderOverviewController, OrderService, PickUpService, ReceivingController, ReceivingService, TimeTableService
 
-|OrderManager 
-|org.{zwsp}salespointframework.{zwsp}order.{zwsp}OrderManager 
-|OrdersController, PickUpController, ReceivingController, OrderDataInitializer, OrderService
+|Page
+|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Page
+|OrderItemController, OrderItemManager, OrderOverviewController
 
-|Page 
-|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Page 
-|OrdersController
+|Pageable
+|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Pageable
+|OrderItemController, OrderItemManager, OrderOverviewController, OrderService, TimeTableService
 
-|Pageable 
-|org.{zwsp}springframework.{zwsp}data.{zwsp}domain.{zwsp}Pageable 
-|OrdersController, OrderService
+|Pair
+|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair
+|CatalogDataInitializer, ServiceConsumptionManager, ServiceDataInitializer, TimeTableService
 
-|Pair 
-|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Pair 
-|ServiceDataInitializer
+|Password
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}Password
+|StaffInitializer, StaffManagement
 
-|PathVariable 
-|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable 
-|PickUpController, UserController
-
-|Product 
-|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product 
-|Service, UltimateProduct
-
-|ProductIdentifier 
-|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier 
-|OrdersController, ReceivingForm
+|PathVariable
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PathVariable
+|OrderOverviewController, PickUpController, StaffController
 
 |PostMapping
-|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping 
-|PickUpController, ReceivingController, UserController
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}PostMapping
+|FinanceController, InventoryController, PickUpController, ReceivingController, StaffController, TimeController
 
-|PreAuthorize 
-|org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize 
-|OrdersController, PickUpController, ReceivingController, UserController
+|PreAuthorize
+|org.{zwsp}springframework.{zwsp}security.{zwsp}access.{zwsp}prepost.{zwsp}PreAuthorize
+|FinanceController, InventoryController, OrderItemController, OrderOverviewController, PickUpController, ReceivingController, RoomController, StaffController, TimeController
 
-|Qualifier 
-|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Qualifier 
+|Product
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}Product
+|Material, MissMintService, OrderItem
+
+|ProductIdentifier
+|org.{zwsp}salespointframework.{zwsp}catalog.{zwsp}ProductIdentifier
+|OrderItemController, OrderItemForm, OrderItemManager, OrderOverviewController, ReceivingForm, ServiceManager
+
+|PropertySource
+|org.{zwsp}springframework.{zwsp}context.{zwsp}annotation.{zwsp}PropertySource
+|Application
+
+|Quantity
+|org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity
+|InventoryInitializer, MaterialManager, MissMintOrder, ReceivingService, ServiceConsumptionManager
+
+|RequestMapping
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping
+|IndexController
+
+|ResponseStatusException
+|org.{zwsp}springframework.{zwsp}web.{zwsp}server.{zwsp}ResponseStatusException
+|PickUpController, Utils
+
+|Role
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}Role
+|StaffInitializer, StaffManagement
+
+|SalespointSecurityConfiguration
+|org.{zwsp}salespointframework.{zwsp}SalespointSecurityConfiguration
+|Application
+
+|Service
+|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service
+|FinanceService, MaterialManager, OrderItemManager, OrderService, PickUpService, ReceivingService, RoomService, SalaryService, ServiceManager, StaffManagement, TimeService, TimeTableService
+
+|Session
+|org.{zwsp}hibernate.{zwsp}Session
+|Utils
+
+|SessionAttribute
+|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}SessionAttribute
 |ReceivingController
 
-|Quantity 
-|org.{zwsp}salespointframework.{zwsp}quantity.{zwsp}Quantity 
-|MissMintOrder, InventoryInitializer
+|SpringApplication
+|org.{zwsp}springframework.{zwsp}boot.{zwsp}SpringApplication
+|Application
 
-|RequestMapping 
-|org.{zwsp}springframework.{zwsp}web.{zwsp}bind.{zwsp}annotation.{zwsp}RequestMapping 
-|OrdersController
+|StreamUtils
+|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}StreamUtils
+|TimeTableService
 
-|ResponseStatusException 
-|org.{zwsp}springframework.{zwsp}web.{zwsp}server.{zwsp}ResponseStatusException
-|PickUpController, ReceivingController
+|Streamable
+|org.{zwsp}springframework.{zwsp}data.{zwsp}util.{zwsp}Streamable
+|EntryRepository, FinanceService, MaterialManager, ServiceManager, StaffRepository
 
-|Service 
-|org.{zwsp}springframework.{zwsp}stereotype.{zwsp}Service 
-|OrderService, UserManagement
-
-|Sort
-|org.springframework.data.domain.Sort
-|InventoryCatalog
+|Transactional
+|org.{zwsp}springframework.{zwsp}transaction.{zwsp}annotation.{zwsp}Transactional
+|OrderItemManager, StaffManagement
 
 |UniqueInventory
-|org.salespointframework.inventory.UniqueInventory
-|InventoryInitializer
+|org.{zwsp}salespointframework.{zwsp}inventory.{zwsp}UniqueInventory
+|InventoryController, InventoryInitializer, MaterialManager, ReceivingService
 
 |UniqueInventoryItem
-|org.salespointframework.inventory.UniqueInventoryItem
-|InventoryInitializer, InventoryController, CatalogController
+|org.{zwsp}salespointframework.{zwsp}inventory.{zwsp}UniqueInventoryItem
+|InventoryController, InventoryInitializer, MaterialManager, ReceivingService
 
-|UserAccount 
-|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount 
-|ReceivingController, MissMintOrder, OrderDataInitializer, User, UserManagement
+|UserAccount
+|org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccount
+|MissMintOrder, ReceivingController, Staff, StaffManagement, StaffRepository
 
-|UserAccountManager 
+|UserAccountManager
 |org.{zwsp}salespointframework.{zwsp}useraccount.{zwsp}UserAccountManager
-|OrderDataInitializer, UserManagement
+|StaffInitializer, StaffManagement
 
-|Value 
-|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value 
-|OrderService, ServiceDataInitializer
-
+|Value
+|org.{zwsp}springframework.{zwsp}beans.{zwsp}factory.{zwsp}annotation.{zwsp}Value
+|FinanceDataInitializer, FinanceService, OrderService, SalaryService, ServiceDataInitializer
 |===
 
 == Bausteinsicht
@@ -356,14 +428,12 @@ image::models/design/images/dialog.png[]
 //|===
 
 === Aufträge
-image::models/design/images/orders_design.png[Klassendiagramm für das orders Paket,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Paket",align=center]
+image::models/design/images/Package orders.png[Klassendiagramm für das orders Paket,100%,100%,pdfwidth=100%,title="Klassendiagramm für das orders Paket",align=center]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration |Beschreibung
-|OrdersController |
+|OrderOverviewController |
 Ein Spring MVC Controller, der Anfragen für die Anzeige der aktuellen Aufträge `MissMintOrder` beantwortet.
-|OrderDTO |
-Diese Klasse dient nur dem Datentransfer zum `orders.html`-Template.
 |PickUpController |
 Ein Spring MVC Controller, der Anfragen für die Rückgabe von Gegenständen an den Kunden handhabt.
 Dazu berechnet die Klasse auch anfallende Kosten.
@@ -375,21 +445,28 @@ Eine Klasse, um die Mitarbeitereingaben für die Annahme zu validieren.
 |MissMintOrder |
 Diese Klasse ist eine Erweiterung der Salespoint `Order`. Sie enthält Kunden-, Dienstleistungen- und Zeit-Informationen.
 Zudem hat der Auftrag einen Zustand.
-|OrderDataInitializer |
-Eine Implementation des ``DataInitializer``s, um einige vordefinierte Aufträge zum Testen anzulegen.
 |OrderService |
 Ein Dienst, der Hilfsfunktionen für die Auftragsverwaltung bereitstellt.
-|OrderState  |
+|PickUpService |
+Hilfsdienst für den Abholprozess, um den Controller von der Business-Logik zu trennen.
+|ReceivingService |
+Unterstützt den ReceivingController in der Handhabung von neuen Auufträgen.
+|OrderState |
 Eine Enumeration für die Zustände der Aufträge.
-|Service |
+|MissMintService |
 Erweiterung des Salespoint ``Product``s, um es von anderen Produkten in der späteren Software abzugrenzen.
-Im Prototypen speichert es auch noch das Material.
-|ServiceDataInitializer  |
+|ServiceCategory |
+Eine Enumeration mit den Dienstleistungskateorien.
+|ServiceConsumptionManager |
+Definiert den Verbrauch an Materialien für die verschiedenen Dienstleistungen.
+|ServiceDataInitializer |
 Eine Implementation des ``DataInitializer``s, um die einzelnen Dienstleistungen anzulegen.
+|ServiceManager |
+Ein Service, der Zugriffe und Operationen auf `MissMintService` wegabstrahiert.
 |===
 
 === Mitarbeiter
-image::models/design/images/users.png[]
+image::models/design/images/Package users.png[]
 |===
 |Klasse/Enumeration/Schnittstelle |Beschreibung
 
@@ -427,7 +504,7 @@ der Mitarbeiterdaten.
 |===
 
 === Inventar
-image::models/design/images/Inventory.small.png[]
+image::models/design/images/Package inventory.png[]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration/Schnittstelle 
@@ -439,22 +516,28 @@ image::models/design/images/Inventory.small.png[]
 |CatalogDataInitializer
 |Implementation des ``DataInitializer``s für den Produktkatalog
 
-|InventoryCatalog
-|Erweiterung des Salespoint``Catalog``s der Sortierung nach `ProductType` ermöglicht.
-
 |InventoryController
 |Ein Spring MVC Controller, der Anfragen bezüglich des Materialinventars annimmt.
 
 |InventoryInitializer
 |Implementation des ``DataInitializer``s für die Inventare der jeweiligen Produkte.
 
-|UltimateProduct
-|Erweiterung des Salespoint ``Product``s , mit zusätzlichen Eigenschaften um Filtern nach eigenen Attributen zu ermöglichen.
+|orderItem, Material
+|Erweiterung des Salespoint ``Product``s.
+
+|MaterialForm
+|Form für das manuelle Nachbestellen/Verbrauchen von Mateerial
+
+|MaterialManager
+|Businesslogik für Nachbestellung/Verbrauch
+
+|OrderItemManager
+|Businesslogik für Entfernen und anzeigen von OrderItems
 
 |===
 
 === Räume
-image::models/design/images/rooms.png[]
+image::models/design/images/Package rooms.png[]
 [options="header", cols="1, 4"]
 |===
 |Klasse/Enumeration/Schnittstelle
@@ -462,12 +545,6 @@ image::models/design/images/rooms.png[]
 
 |Room
 |Klasse die die Räume repräsentiert. Räume stehen in enger Verbindung mit den Timeslots, wobei jeder Raum seine eigenen TimeSlots besitzt.
-
-|Booking
-|Enumeration für die verschiedenen Buchungsfälle der Timeslots.
-
-|TimeTableEntry
-|Diese Klasse repräsentiert Timeslots, die durch Buchung von Räumen in einer bestimmten Zeit zu vollwertigen Einträgen werden können.
 
 |RoomController
 |Ein Spring MVC Controller, der die Verwaltung von Räumen und das buchen von TimeSlots ermöglicht.
@@ -478,9 +555,54 @@ image::models/design/images/rooms.png[]
 |RoomsRepository
 |Interface welches das Crud Repository von Spring erbt. Es speichert Raumeinträge.
 
-|EntriesRepository
-|Interface welches das Crud Repository von Spring erbt. Es speichert Einträge in TimeSlots.
+|RoomService
+|Dieser Service unterstützt die Aktualisierung von Räumen, sodass neue Räume hinzugefügt und alte gelöscht werden können.
 
+|===
+
+=== Finanzen
+image::models/design/images/Package finance.png[]
+
+|===
+|Klasse/Enumeration/Schnittstelle |Beschreibung
+
+|FinanceController
+|Ein Spring Controller, der Anfragen bzgl. Financeübersicht für letzes Monat und für
+die ganze Zeit und zudem Erstellung von Finanzen Einträge verarbeitet.
+
+|FinaceService
+|Ein Dienst, der zuständig ist, die Accountancy im System zu verwalten. Man kann dort AccountancyEntry hinfügen, die gesamte Summe von
+Finanzen Aufträge berechnen und letztes Monat anzeigen lassen.
+
+|FinanceDataInitializer
+|Ein Formular von _SalesPoint_ für die Initialisierung von AccountancyEntry.
+
+|AddFinanceForm
+|Ein Formular um AccountancyEnty mit Kost und Beschreibung hinzufügen.
+
+|===
+
+=== Time
+image::models/design/images/Package time.png[]
+
+|===
+|Klasse/Enumeration/Schnittstelle |Beschreibung
+
+|TimeTableEntry
+|Diese Klasse repräsentiert Zeitslots, die durch Buchung von Räumen in einer bestimmten Zeit erstellt werden.
+
+|EntryRepository
+|Interface welches das `CrudRepository` von Spring implementiert. Es speichert Objekte vom Typ TimeTableEntry.
+
+|TimeController
+|Schnittstelle, die den Nutzer ermöglicht, die Zeit vorzuspulen.
+
+|TimeService
+|Bildet das Backend für den TimeController.
+
+|TimeTableService
+|Dieser Service erledigt das Erstellen von Zeit-Slots und das Umsortieren dieser,
+um rechtzeitige Fertigstellung zu ermöglichen.
 |===
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
@@ -490,22 +612,23 @@ image::models/design/images/rooms.png[]
 |Klasse/Enumeration (Analysemodell)|Klasse/Enumeration (Entwurfsmodell)
 
 |Order 
-|Order
+|MissMintOrder
 
 |Service
-|Service
+|MissMintService
 
 |State
 |OrderState
 
 |Order Management
-|OrderManager
+|OrderService
 
 |Service Category 
-|String
+|ServiceCategory
 
 |OrderTicket
 |-
+
 |User 
 |User
 
@@ -525,19 +648,22 @@ image::models/design/images/rooms.png[]
 |-
 
 |Resource
-|UltimateProduct
+|orderItem, Material
 
 |Room
 |Room
+
+|-
+|RoomService
+
+|FinancialManagement
+|FinanceService
+
+|TimeTableEntry
+|TimeTableEntry
 
 |TimeTable
-|-
-
-|-
-|Booking
-
-|TimeTableEntry
-|TimeTableEntry
+|EntryRepository
 
 |===
 
@@ -545,20 +671,22 @@ image::models/design/images/rooms.png[]
 // * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
 
 === Aufträge
-image::models/design/images/sd__orders_list__orders_list.jpg[]
-image::models/design/images/sd__orders_receiving__orders_receiving.jpg[]
-image::models/design/images/sd__orders_pick_up__orders_pick_up.jpg[]
-image::models/design/images/sd__orders_update__orders_update.jpg[]
+image::models/design/images/sd__orders_list__orders_list.png[]
+image::models/design/images/sd__orders_receiving__orders_receiving.png[]
+image::models/design/images/sd__orders_pick_up__orders_pick_up.png[]
+image::models/design/images/orders update.png[]
 
 === Mitarbeiter
 image::models/design/images/add_and_delete_staff.png[]
 
+
+=== Inventar
+image::models/design/images/sd_consume_UniqueInventoryItem.png[]
+image::models/design/images/sd_restock_UniqueInventoryItem.png[]
+
 === Räume
 image::models/design/images/rooms addRoom.png[]
 image::models/design/images/rooms deleteRoom.png[]
-
-=== Inventar
-image::models/design/images/sd_restock_Product.png[]
 
 ////
 == Technische Schulden

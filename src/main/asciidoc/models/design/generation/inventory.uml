@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>missmint.inventory</OriginalElement>
+  <nodes>
+    <node x="653.9999999999999" y="396.0">missmint.inventory.controller.OrderItemController</node>
+    <node x="1186.4795860389609" y="0.0">org.salespointframework.catalog</node>
+    <node x="1642.9171091495307" y="647.0">missmint.inventory.manager.MaterialManager</node>
+    <node x="1147.9171091495307" y="746.0">missmint.inventory.initializer.InventoryInitializer</node>
+    <node x="1995.845680578102" y="427.0">missmint.inventory.products.Material</node>
+    <node x="127.64285714285688" y="200.0">missmint.inventory.products.OrderItem</node>
+    <node x="702.8536170860386" y="223.0">org.salespointframework.order</node>
+    <node x="1302.8051316738815" y="1055.0">missmint.inventory.controller.InventoryController</node>
+    <node x="2214.917109149531" y="757.0">missmint.inventory.initializer.CatalogDataInitializer</node>
+    <node x="1059.0" y="450.0">org.salespointframework.inventory</node>
+    <node x="0.0" y="363.0">missmint.inventory.manager.OrderItemManager</node>
+    <node x="859.9171091495307" y="767.0">missmint.inventory.forms.MaterialForm</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.salespointframework.inventory" target="org.salespointframework.order">
+      <point x="-55.875" y="-15.0" />
+      <point x="1077.625" y="333.0" />
+      <point x="817.1313948638165" y="333.0" />
+      <point x="53.77777777777783" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.initializer.InventoryInitializer" target="org.salespointframework.inventory">
+      <point x="-67.85714285714266" y="-80.0" />
+      <point x="1317.559966292388" y="607.0" />
+      <point x="1176.958333333333" y="607.0" />
+      <point x="43.45833333333326" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.forms.MaterialForm" target="org.salespointframework.inventory">
+      <point x="67.0" y="-59.0" />
+      <point x="1060.9171091495307" y="627.0" />
+      <point x="1139.708333333333" y="627.0" />
+      <point x="6.2083333333332575" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.controller.InventoryController" target="missmint.inventory.manager.MaterialManager">
+      <point x="31.125" y="-91.0" />
+      <point x="1458.4301316738815" y="1025.0" />
+      <point x="1780.9171091495307" y="1025.0" />
+      <point x="-138.0" y="179.0" />
+    </edge>
+    <edge source="missmint.inventory.controller.InventoryController" target="missmint.inventory.forms.MaterialForm">
+      <point x="-31.125" y="-91.0" />
+      <point x="1396.1801316738815" y="1025.0" />
+      <point x="993.9171091495307" y="1025.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="missmint.inventory.manager.MaterialManager" target="org.salespointframework.catalog">
+      <point x="-46.0" y="-179.0" />
+      <point x="1872.9171091495307" y="597.0" />
+      <point x="1916.7287743506492" y="597.0" />
+      <point x="1916.7287743506492" y="150.0" />
+      <point x="1287.7295860389609" y="150.0" />
+      <point x="33.75" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.controller.InventoryController" target="org.salespointframework.inventory">
+      <point x="-93.375" y="-91.0" />
+      <point x="1333.9301316738815" y="1035.0" />
+      <point x="849.4171091495307" y="1035.0" />
+      <point x="849.4171091495307" y="607.0" />
+      <point x="1114.875" y="607.0" />
+      <point x="-18.625" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.initializer.InventoryInitializer" target="org.salespointframework.catalog">
+      <point x="0.0" y="-80.0" />
+      <point x="1385.4171091495307" y="627.0" />
+      <point x="1329.5591314935064" y="627.0" />
+      <point x="1329.5591314935064" y="170.0" />
+      <point x="1275.4568587662336" y="170.0" />
+      <point x="21.477272727272748" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.initializer.InventoryInitializer" target="missmint.inventory.products.Material">
+      <point x="203.57142857142867" y="-80.0" />
+      <point x="1588.9885377209594" y="617.0" />
+      <point x="2053.917109149531" y="617.0" />
+      <point x="-77.42857142857133" y="38.0" />
+    </edge>
+    <edge source="org.salespointframework.order" target="org.salespointframework.catalog">
+      <point x="-15.125" y="-15.0" />
+      <point x="748.2286170860386" y="140.0" />
+      <point x="1238.6386769480519" y="140.0" />
+      <point x="-15.340909090909008" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.manager.MaterialManager" target="missmint.inventory.products.Material">
+      <point x="138.0" y="-179.0" />
+      <point x="2056.917109149531" y="627.0" />
+      <point x="2092.6313948638162" y="627.0" />
+      <point x="-38.71428571428578" y="38.0" />
+    </edge>
+    <edge source="missmint.inventory.manager.OrderItemManager" target="org.salespointframework.order">
+      <point x="271.7142857142858" y="-102.0" />
+      <point x="588.7142857142858" y="333.0" />
+      <point x="776.7980615304831" y="333.0" />
+      <point x="13.444444444444457" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.manager.MaterialManager" target="org.salespointframework.inventory">
+      <point x="-230.0" y="-179.0" />
+      <point x="1688.9171091495307" y="597.0" />
+      <point x="1189.375" y="597.0" />
+      <point x="55.875" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.products.OrderItem" target="org.salespointframework.catalog">
+      <point x="-35.25" y="-38.0" />
+      <point x="162.89285714285688" y="100.0" />
+      <point x="1214.0932224025971" y="100.0" />
+      <point x="-39.88636363636374" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.initializer.CatalogDataInitializer" target="org.salespointframework.catalog">
+      <point x="107.19999999999982" y="-69.0" />
+      <point x="2456.1171091495307" y="627.0" />
+      <point x="2419.128774350649" y="627.0" />
+      <point x="2419.128774350649" y="100.0" />
+      <point x="1318.411404220779" y="100.0" />
+      <point x="64.43181818181824" y="15.0" />
+    </edge>
+    <edge source="org.salespointframework.catalog" target="org.salespointframework.catalog">
+      <point x="-64.43181818181819" y="15.0" />
+      <point x="1189.5477678571428" y="50.0" />
+      <point x="1166.4795860389609" y="50.0" />
+      <point x="1166.4795860389609" y="25.0" />
+      <point x="-67.5" y="10.0" />
+    </edge>
+    <edge source="missmint.inventory.initializer.CatalogDataInitializer" target="missmint.inventory.products.Material">
+      <point x="-107.19999999999982" y="-69.0" />
+      <point x="2241.717109149531" y="627.0" />
+      <point x="2170.059966292388" y="627.0" />
+      <point x="38.71428571428578" y="38.0" />
+    </edge>
+    <edge source="org.salespointframework.inventory" target="org.salespointframework.catalog">
+      <point x="55.875" y="-15.0" />
+      <point x="1189.375" y="343.0" />
+      <point x="1272.9382130456347" y="343.0" />
+      <point x="1272.9382130456347" y="180.0" />
+      <point x="1269.3204951298699" y="180.0" />
+      <point x="15.340909090909008" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.manager.OrderItemManager" target="missmint.inventory.products.OrderItem">
+      <point x="-181.14285714285734" y="-102.0" />
+      <point x="135.85714285714266" y="343.0" />
+      <point x="151.14285714285688" y="343.0" />
+      <point x="-47.0" y="38.0" />
+    </edge>
+    <edge source="missmint.inventory.products.Material" target="org.salespointframework.catalog">
+      <point x="-67.75" y="-38.0" />
+      <point x="2063.595680578102" y="343.0" />
+      <point x="2153.926763167388" y="343.0" />
+      <point x="2153.926763167388" y="130.0" />
+      <point x="1300.002313311688" y="130.0" />
+      <point x="46.02272727272725" y="15.0" />
+    </edge>
+    <edge source="missmint.inventory.manager.OrderItemManager" target="org.salespointframework.catalog">
+      <point x="90.57142857142844" y="-102.0" />
+      <point x="407.57142857142844" y="343.0" />
+      <point x="418.4877029220777" y="343.0" />
+      <point x="418.4877029220777" y="120.0" />
+      <point x="1226.3659496753246" y="120.0" />
+      <point x="-27.61363636363626" y="15.0" />
+    </edge>
+    <edge source="org.salespointframework.order" target="org.salespointframework.order">
+      <point x="-13.444444444444457" y="15.0" />
+      <point x="749.9091726415942" y="303.0" />
+      <point x="652.8536170860386" y="303.0" />
+      <point x="652.8536170860386" y="226.75" />
+      <point x="-60.5" y="-11.25" />
+    </edge>
+    <edge source="org.salespointframework.inventory" target="org.salespointframework.inventory">
+      <point x="-55.875" y="15.0" />
+      <point x="1077.625" y="510.0" />
+      <point x="1029.0" y="510.0" />
+      <point x="1029.0" y="468.75" />
+      <point x="-74.5" y="3.75" />
+    </edge>
+    <edge source="missmint.inventory.controller.OrderItemController" target="org.salespointframework.order">
+      <point x="-83.75" y="-69.0" />
+      <point x="737.7499999999999" y="343.0" />
+      <point x="790.2425059749276" y="343.0" />
+      <point x="26.888888888888914" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.603585657370518" x="1245.0" y="618.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
