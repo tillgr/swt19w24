@@ -15,51 +15,52 @@
 <div class="container mt-md-5">
     <h1 th:text="#{materials}">Materialien</h1>
 
-    <form role="form" id="form" class="input-group mb-3" method="post" th:object="${form}" th:action="@{/material/consume}">
-        <div class="container mt-md-3">
-        <div class="alert alert-danger" role="alert" th:each="err : ${#fields.errors('*')}" th:text="${err}"></div>
+    <form role="form" id="form" class="input-group mb-3" method="post" th:object="${form}"
+          th:action="@{/material/consume}">
+        <div class="container mt-md-3 mb-md-3">
+            <div class="alert alert-danger" role="alert" th:each="err : ${#fields.errors('*')}" th:text="${err}"></div>
             <div class="alert alert-danger" th:if="${consumeError}" th:text="#{material.consume.error}"></div>
             <div class="alert alert-danger" th:if="${restockError}" th:text="#{material.restock.error}"></div>
-        <br/>
         </div>
         <div class="form-inline">
-        <label>
-            <select  class="form-control" name="materialId">
-                <option id="test" th:each="item : ${material}"
-                        th:value="${item.getId()}"
-                        th:text="${item.getProduct().getName()}">
-                </option>
-            </select>
-        </label>
+            <label>
+                <select class="form-control" name="materialId">
+                    <option id="test" th:each="item : ${material}"
+                            th:value="${item.getId()}"
+                            th:text="${item.getProduct().getName()}">
+                    </option>
+                </select>
+            </label>
         </div>
         <div class="form-inline">
-        <label for="number"></label>
-        <input id="number" required type="number" name="number" class="form-control">
+            <label for="number"></label>
+            <input id="number" required type="number" name="number" class="form-control">
 
         </div>
         <div class="form-inline">
-            <input class="btn btn-outline-primary" type="submit" name="restock_name" th:value="#{materials.restock}" th:formaction="@{/material/restock}"/>
+            <input class="btn btn-outline-primary" type="submit" name="restock_name" th:value="#{materials.restock}"
+                   th:formaction="@{/material/restock}"/>
         </div>
         <div class="form-inline">
-            <input class="btn btn-outline-secondary" type="submit" name="consume_name" th:value="#{materials.consume}" >
+            <input class="btn btn-outline-secondary" type="submit" name="consume_name" th:value="#{materials.consume}">
         </div>
     </form>
 
-<form class="table-bordered">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col" th:text="#{materials.table.name}">Name</th>
-            <th scope="col" th:text="#{materials.table.quantity}">Menge</th>
-        </tr>
-        </thead>
-        <tbody>
+    <form class="table-bordered">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" th:text="#{materials.table.name}">Name</th>
+                <th scope="col" th:text="#{materials.table.quantity}">Menge</th>
+            </tr>
+            </thead>
+            <tbody>
             <tr th:each="item : ${material}">
                 <td th:text="${item.product.name}"></td>
                 <td th:text="${{item.quantity.getAmount().intValueExact()}}+'/10000'+${item.getQuantity().getMetric().abbreviation}"></td>
-        </tbody>
-    </table>
-</form>
+            </tbody>
+        </table>
+    </form>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
