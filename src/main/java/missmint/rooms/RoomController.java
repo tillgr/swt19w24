@@ -44,15 +44,6 @@ public class RoomController {
 	}
 
 	/**
-	 * show detail of a specific oder
-	 * @return detail page
-	 */
-    @GetMapping("rooms/orders/detail/{id}")
-	public String idToDetails(@PathVariable("id") long id){
-		return "orders/detail/{id}";
-	}
-
-	/**
 	 * add a new room to the repository
 	 * @param model Spring model
 	 * @param form Spring form
