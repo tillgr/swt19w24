@@ -1,7 +1,7 @@
 Quicklink
 
-link:https://github.com/st-tu-dresden-praktikum/swt19w24/tree/srs/src/main/asciidoc/srs[Pflichtenheft]
-link:https://github.com/st-tu-dresden-praktikum/swt19w24/tree/master/src/main/asciidoc/protocols[Protocols]
+link:https://github.com/tillgr/swt19w24/tree/srs/src/main/asciidoc/srs[Pflichtenheft]
+link:https://github.com/tillgr/swt19w24/tree/master/src/main/asciidoc/protocols[Protocols]
 
 = Kickstart
 
